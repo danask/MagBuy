@@ -94,6 +94,7 @@ function checkPass($logingUserId, $password)
 
 /**
  * @param $email - email of the user
+ * @param $enabled - if user is active or blocked
  * @param null $firstName - first name of the user
  * @param null $lastName - last name of the user
  * @param null $mobilePhone - mobile phone of the user
@@ -103,7 +104,7 @@ function checkPass($logingUserId, $password)
  * @return bool - return the ID of registered user for the session
  */
 
-function registerUser($email, $firstName = null, $lastName = null, $mobilePhone = null,
+function registerUser($email, $enabled, $firstName = null, $lastName = null, $mobilePhone = null,
                       $imageUrl = "../web/uploads/default.jpg", $password, $role = 1)
 {
 
@@ -115,11 +116,11 @@ function registerUser($email, $firstName = null, $lastName = null, $mobilePhone 
 
 
         //Prepare statement to execute in the Database(prevention of Database injection)
-        $statement = $pdo->prepare("INSERT INTO users (email, first_name, last_name, mobile_phone, image_url,
-                                    password, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $statement = $pdo->prepare("INSERT INTO users (email, enabled, first_name, last_name, mobile_phone,
+                                              image_url,password, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
         //Execute statement
-        $statement->execute(array($email, $firstName, $lastName, $mobilePhone, $imageUrl, $password, $role));
+        $statement->execute(array($email, $enabled, $firstName, $lastName, $mobilePhone, $imageUrl, $password, $role));
 
         //Return the the ID of the registered user
         return $pdo->lastInsertId();
