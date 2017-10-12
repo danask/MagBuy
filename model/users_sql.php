@@ -25,14 +25,15 @@ function checkUserExist($email)
         if ($statement->rowCount()) {
 
             //Fetch User ID and return it as result
-            $userId = $statement->fetchAll(PDO::FETCH_ASSOC);
-            return $userId[0]['id'];
+            $userId = $statement->fetch();
+            return $userId['id'];
         } else {
             return false;
 
         }
     } catch (Exception $e) {
-//In case of PDO error, redirect to Error page
-        header("Location: ../view/error.php");
+
+        //HAVE TO ADD ERROR PAGE
+        return false;
     }
 }
