@@ -99,11 +99,12 @@ function checkPass($logingUserId, $password)
  * @param null $mobilePhone - mobile phone of the user
  * @param string $imageUrl - profile picture of the user
  * @param $password - password of the user
+ * @param int $role - role of user (1 for normal user)
  * @return bool - return the ID of registered user for the session
  */
 
 function registerUser($email, $firstName = null, $lastName = null, $mobilePhone = null,
-                      $imageUrl = "../web/uploads/default.jpg", $password)
+                      $imageUrl = "../web/uploads/default.jpg", $password, $role = 1)
 {
 
     //Try the code for exceptions
@@ -114,11 +115,11 @@ function registerUser($email, $firstName = null, $lastName = null, $mobilePhone 
 
 
         //Prepare statement to execute in the Database(prevention of Database injection)
-        $statement = $pdo->prepare("INSERT INTO users (email, first_name, last_name, mobile_number, mobile_phone, image_url, password)
-                                    VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $statement = $pdo->prepare("INSERT INTO users (email, first_name, last_name, mobile_number, mobile_phone, image_url, password, role)
+                                    VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
 
         //Execute statement
-        $statement->execute(array($email, $firstName, $lastName, $mobilePhone, $imageUrl, $password));
+        $statement->execute(array($email, $firstName, $lastName, $mobilePhone, $imageUrl, $password, $role));
 
         //Return the the ID of the registered user
         return $pdo->lastInsertId();
