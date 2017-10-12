@@ -2,7 +2,7 @@
 
 
 //Include PDO connection function
-require_once "sqlConnection.php";
+require_once "sql_connection.php";
 
 
 //Function to check if user exists
