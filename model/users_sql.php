@@ -49,6 +49,11 @@ function checkUserExist($email){
 
 //Function for checking if user entered correct password
 
+/**
+ * @param $logingUserId - receive loging user id
+ * @param $password - receive user's entered password
+ * @return mixed - return user's id for session if password match or false if doesn't
+ */
 
 function checkPass($logingUserId, $password){
 
