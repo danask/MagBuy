@@ -93,19 +93,19 @@ function checkPass($logingUserId, $password)
 //Function for registering user
 
 /**
- * @param $email - email of the user
- * @param $enabled - if user is active or blocked
- * @param null $firstName - first name of the user
- * @param null $lastName - last name of the user
- * @param null $mobilePhone - mobile phone of the user
- * @param string $imageUrl - profile picture of the user
- * @param $password - password of the user
- * @param int $role - role of user (1 for normal user)
- * @return bool - return the ID of registered user for the session
+ * @param $email
+ * @param $password
+ * @param int $enabled
+ * @param null $firstName
+ * @param null $lastName
+ * @param null $mobilePhone
+ * @param null $imageUrl
+ * @param int $role
+ * @return bool|string
  */
 
-function registerUser($email, $enabled, $firstName = null, $lastName = null, $mobilePhone = null,
-                      $imageUrl = "../web/uploads/default.jpg", $password, $role = 1)
+function registerUser($email, $password, $enabled = 1, $firstName = null, $lastName = null, $mobilePhone = null,
+                      $imageUrl = null, $role = 1)
 {
 
     //Try the code for exceptions
