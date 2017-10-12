@@ -115,8 +115,8 @@ function registerUser($email, $firstName = null, $lastName = null, $mobilePhone 
 
 
         //Prepare statement to execute in the Database(prevention of Database injection)
-        $statement = $pdo->prepare("INSERT INTO users (email, first_name, last_name, mobile_phone, image_url, password, role)
-                                    VALUES (?, ?, ?, ?, ?, ?, ?)");
+        $statement = $pdo->prepare("INSERT INTO users (email, first_name, last_name, mobile_phone, image_url,
+                                    password, role) VALUES (?, ?, ?, ?, ?, ?, ?)");
 
         //Execute statement
         $statement->execute(array($email, $firstName, $lastName, $mobilePhone, $imageUrl, $password, $role));
