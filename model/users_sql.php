@@ -3,44 +3,33 @@
 //Function to check if user exists
 
 /**
- * @param $username - username from Form
- * @param null $password - password from Form
- * @return bool|mixed - returns true or false when checking without password,
- * returns ID of user or false, when checking with password
+ * @param $email - receives email to check if user exists
+ * @return bool - returns the existing user ID or false if the user doesn't exist
  */
 
-function checkUser($username, $password = null)
+function checkUserExist($email)
 {
     try {
-//Get PDO connection, using the function above
+
+        //Get PDO connection, using the function above
+
         $pdo = getConnection();
-//If Password is null, check only username(for registration) otherwise check both(for login)
-//Check for Registration
-        if ($password == null) {
-//Prepare statement to execute in the Database(prevention of Database injection)
-            $statement = $pdo->prepare("SELECT 'name' FROM users WHERE 'name' = ?");
-//Execute statement
-            $statement->execute(array($username));
-//Check if Database returned a user (1 or 0 Columns)
-            if ($statement->rowCount()) {
-                return true;
-            } else {
-                return false;
-            }
-//Check for Login
+
+        //Prepare statement to execute in the Database(prevention of Database injection)
+        $statement = $pdo->prepare("SELECT id, email FROM users WHERE name = ?");
+
+        //Execute statement
+        $statement->execute(array($email));
+
+        //Check if Database returned a user (1 or 0 Columns)
+        if ($statement->rowCount()) {
+
+            //Fetch User ID and return it as result
+            $userId = $statement->fetchAll(PDO::FETCH_ASSOC);
+            return $userId[0]['id'];
         } else {
-//Prepare statement to execute in the Database(prevention of Database injection)
-            $statement = $pdo->prepare("SELECT user_id, name, password FROM users WHERE name = ? AND password = ?");
-//Execute statement
-            $statement->execute(array($username, $password));
-//Check if Database returned a user (1 or 0 Columns)
-            if ($statement->rowCount()) {
-//Fetch User ID and return it as result
-                $userInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
-                return $userInfo[0]['user_id'];
-            } else {
-                return false;
-            }
+            return false;
+
         }
     } catch (Exception $e) {
 //In case of PDO error, redirect to Error page
