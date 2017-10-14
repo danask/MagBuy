@@ -25,6 +25,7 @@ require_once "../../utility/session_main.php";
             <input type="email" name="email" placeholder="Enter Your Email"/>
             <input type="password" name="password" placeholder="Enter Your Password"/>
             <input id="login" type="submit" value="LOGIN">
+            <?php if(isset($_GET['error'])){ echo "<p id=\"wrongLogin\"\>User not found!</p>"; };?>
             <p class="message">Not registered? <a href="register.php">Create an account</a></p>
         </form>
     </div>

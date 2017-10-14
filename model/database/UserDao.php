@@ -15,6 +15,7 @@ class UserDao {
 
     //Statements defined as constants
     const CHECK_LOGIN = "SELECT id, email, password FROM users WHERE email = ? AND password = ?";
+    const CHECK_USER_EXIST = "SELECT id FROM users WHERE email = ?";
     const REGISTER_USER = "INSERT INTO users (email, enabled, first_name, last_name, mobile_phone,
                            image_url,password, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     const EDIT_USER = "UPDATE users SET email = ?, enabled = ?, first_name = ?, last_name = ?, mobile_phone = ?,
@@ -50,6 +51,25 @@ class UserDao {
             //Fetch User ID and return it as result
             $userId = $statement->fetch();
             return (int)$userId['id'];
+        } else {
+            return false;
+
+        }
+    }
+
+
+
+    //Function for checking if user exists
+    function checkUserExist(User $user) {
+
+        $statement = $this->pdo->prepare(self::CHECK_USER_EXIST);
+        $statement->execute(array($user->getEmail()));
+
+        //Check if Database returned a user (1 or 0 Columns)
+        if ($statement->rowCount()) {
+
+            //User exists, return true
+            return true;
         } else {
             return false;
 

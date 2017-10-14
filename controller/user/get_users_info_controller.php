@@ -1,7 +1,7 @@
 <?php
 
 //Check for Session
-require_once "../../utility/session_main.php";
+require_once "../../utility/no_session_main.php";
 
 //Autoload to require needed model files
 function __autoload($className) {

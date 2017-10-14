@@ -1,7 +1,11 @@
 <?php
 
 //Check for Session
-require_once "../../utility/session_main.php";
+require_once "../../utility/no_session_main.php";
+
+//Require old user's info
+require_once "../../controller/user/get_users_info_controller.php";
+
 
 ?>
 
@@ -15,7 +19,7 @@ require_once "../../utility/session_main.php";
 
     <link rel="stylesheet" href="../../web/assets/css/login.css" type="text/css">
 
-    <title>Register</title>
+    <title>Edit</title>
 </head>
 <body>
 
@@ -34,9 +38,9 @@ require_once "../../utility/session_main.php";
             <li class='wrongReg'>Email might exist</li><li class='wrongReg'>Password: between 4 and 12 symbols</li>
             <li class='wrongReg'>Names: between 4 and 20 symbols</li>
             <li class='wrongReg'>Mobile phone must be 10 digits</li>"; };?>
-            <p class="message">Already a user? <a href="login.php">&nbspLog In</a></p>
-        </form>
-    </div>
+<p class="message"><a href="../main/main.php">Back to offers?</a></p>
+</form>
+</div>
 </div>
 
 </body>
