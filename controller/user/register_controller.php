@@ -26,13 +26,13 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
 
         $userDao = \model\database\UserDao::getInstance();
 
-        $user->setEmail($_POST['email']);
+        $user->setEmail(htmlentities($_POST['email']));
         $user->setEnabled(1);
         $user->setPassword(sha1($_POST['password']));
-        $user->setFirstName($_POST['firstName']);
-        $user->setLastName($_POST['lastName']);
+        $user->setFirstName(htmlentities($_POST['firstName']));
+        $user->setLastName(htmlentities($_POST['lastName']));
         $user->setImageUrl("../../web/uploads/default.jpg");
-        $user->setMobilePhone($_POST['mobilePhone']);
+        $user->setMobilePhone((int)htmlentities($_POST['mobilePhone']));
         $user->setRole(1);
 
         //Check if user exists

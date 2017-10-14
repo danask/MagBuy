@@ -22,7 +22,7 @@ if (isset($_POST['email']) && isset($_POST['password'])
 
         $userDao = \model\database\UserDao::getInstance();
 
-        $user->setEmail($_POST['email']);
+        $user->setEmail(htmlentities($_POST['email']));
         $user->setPassword($_POST['password']);
 
         $result = $userDao->checkLogin($user);
@@ -33,7 +33,7 @@ if (isset($_POST['email']) && isset($_POST['password'])
             header("Location: ../../view/main/main.php");
         } else {
 
-            header("Location: ../../view/user/register.php?error");
+            header("Location: ../../view/user/login.php?error");
         }
 
 
@@ -44,5 +44,5 @@ if (isset($_POST['email']) && isset($_POST['password'])
 } else {
 
     //Locate to error Login Page
-    header("Location: ../../view/user/register.php?error");
+    header("Location: ../../view/user/login.php?error");
 }

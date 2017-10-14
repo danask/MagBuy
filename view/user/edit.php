@@ -1,8 +1,5 @@
 <?php
 
-//Check for Session
-require_once "../../utility/no_session_main.php";
-
 //Require old user's info
 require_once "../../controller/user/get_users_info_controller.php";
 
@@ -25,15 +22,19 @@ require_once "../../controller/user/get_users_info_controller.php";
 
 <div class="login-page">
     <div class="form">
-        <form class="login-form" action="../../controller/user/register_controller.php" method="post">
+        <form enctype="multipart/form-data" class="login-form" action="../../controller/user/edit_controller.php" method="post">
 
-            <input type="text" name="email" placeholder="Your Email" required/>
-            <input type="password" name="password" placeholder="Your Password" required/>
-            <input type="text" name="firstName" placeholder="First Name" required/>
-            <input type="text" name="lastName" placeholder="Last Name" required/>
-            <input type="tel" name="mobilePhone" placeholder="Mobile Number" required/>
+            <input type="text" name="email" value="<?=$userArr["email"]?>" required/>
+            <input type="password" name="password" placeholder="New Password" required/>
+            <input type="text" name="firstName" value="<?=$userArr["first_name"]?>" required/>
+            <input type="text" name="lastName" value="<?=$userArr["last_name"]?>" required/>
+            <input type="tel" name="mobilePhone" value="<?=$userArr["mobile_phone"]?>" required/>
+            <div id="fileupload">
+            <p id="fileuploadMessage">Profile picture</p>
+            <input type="file" name="image"/>
+            </div>
 
-            <input id="login" type="submit" value="REGISTER">
+            <input id="login" type="submit" value="UPDATE">
             <?php if(isset($_GET['error'])){ echo "
             <li class='wrongReg'>Email might exist</li><li class='wrongReg'>Password: between 4 and 12 symbols</li>
             <li class='wrongReg'>Names: between 4 and 20 symbols</li>

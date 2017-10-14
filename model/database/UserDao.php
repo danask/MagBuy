@@ -20,7 +20,7 @@ class UserDao {
                            image_url,password, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     const EDIT_USER = "UPDATE users SET email = ?, enabled = ?, first_name = ?, last_name = ?, mobile_phone = ?,
                            image_url = ?,password = ?, role = ? WHERE id = ?";
-    const GET_USER_INFO = "SELECT id email, enabled, first_name, last_name, mobile_phone,
+    const GET_USER_INFO = "SELECT id, email, enabled, first_name, last_name, mobile_phone,
                            image_url,password, last_login, role FROM users WHERE id = ?";
 
 

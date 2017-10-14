@@ -10,39 +10,22 @@ function __autoload($className) {
 }
 
 
-//Login Validation
-if (isset($_POST['email']) && isset($_POST['password'])
-    && strlen($_POST['email']) > 3 && strlen($_POST['email']) < 254
-    && strlen($_POST['password']) >= 4 && strlen($_POST['password']) <= 12) {
+//Get logged user's info
+$user = new \model\User();
 
-    $user = new \model\User();
+//Try to accomplish connection with the database
+try {
 
-    //Try to accomplish connection with the database
-    try {
+    $userDao = \model\database\UserDao::getInstance();
 
-        $userDao = \model\database\UserDao::getInstance();
+    $user->setId($_SESSION['loggedUser']);
 
-        $user->setEmail($_POST['email']);
-        $user->setPassword($_POST['password']);
-
-        $result = $userDao->checkLogin($user);
-
-        if ($result) {
-
-            $_SESSION['loggedUser'] = $result;
-            header("Location: ../../view/main/main.php");
-        } else {
-
-            header("Location: ../../view/user/register.php?error");
-        }
+    //Receive array with user's info
+    $userArr = $userDao->getUserInfo($user);
 
 
-    } catch (PDOException $e) {
 
-        header("Location: ../../view/error/pdo_error.php");
-    }
-} else {
+} catch (PDOException $e) {
 
-    //Locate to error Login Page
-    header("Location: ../../view/user/register.php?error");
+    header("Location: ../../view/error/pdo_error.php");
 }
