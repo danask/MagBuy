@@ -6,6 +6,16 @@ function __autoload($className) {
     require_once $className . '.php';
 }
 
-$var =  \model\database\UserDao::getInstance();
+$user = new \model\User();
+$userDao = \model\database\UserDao::getInstance();
 
-var_dump($var->checkUserExists("lachezar"));
+$user->setEmail("lachezar");
+
+
+try {
+    $result = $userDao->checkUserExists($user);
+    var_dump($result);
+
+} catch (PDOException $e){
+    return false;
+}

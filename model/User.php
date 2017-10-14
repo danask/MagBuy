@@ -3,6 +3,7 @@
 namespace model;
 
 
+//Create User class to use in the controller
 class User
 {
     private $id;

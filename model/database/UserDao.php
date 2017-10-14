@@ -3,6 +3,8 @@
 namespace model\database;
 
 use model\database\Connect\Connection;
+use model\User;
+
 
 class UserDao {
 
@@ -36,14 +38,14 @@ class UserDao {
     function checkUserExists(User $user) {
 
         $statement = $this->pdo->prepare(self::CHECK_USER_EXISTS);
-        $statement->execute(array($user->getEmail));
+        $statement->execute(array($user->getEmail()));
 
         //Check if Database returned a user (1 or 0 Columns)
         if ($statement->rowCount()) {
 
             //Fetch User ID and return it as result
             $userId = $statement->fetch();
-            return $userId['id'];
+            return (int)$userId['id'];
         } else {
             return false;
 
@@ -56,14 +58,14 @@ class UserDao {
     function checkPassword(User $user) {
 
         $statement = $this->pdo->prepare(self::CHECK_PASS);
-        $statement->execute(array($user->getId, $user->getPassword));
+        $statement->execute(array($user->getId(), $user->getPassword()));
 
         //Check if Database returned a user (1 or 0 Columns)
         if ($statement->rowCount()) {
 
             //Fetch User ID and return it as result
             $userId = $statement->fetch();
-            return $userId['id'];
+            return (int)$userId['id'];
         } else {
             return false;
 
@@ -76,8 +78,8 @@ class UserDao {
     function registerUser (User $user) {
 
         $statement = $this->pdo->prepare(self::REGISTER_USER);
-        $statement->execute(array($user->getEmail, $user->getEnabled, $user->getFirstName, $user->getLastName,
-            $user->getMobileNumber, $user->getimageUrl, $user->getPassword, $user->getRole));
+        $statement->execute(array($user->getEmail(), $user->getEnabled(), $user->getFirstName(), $user->getLastName(),
+            $user->getMobilePhone(), $user->getImageUrl(), $user->getPassword(), $user->getRole()));
 
         //Return registered user's ID
         return $this->pdo->lastInsertId();
