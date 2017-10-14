@@ -3,7 +3,6 @@
 namespace model\database;
 
 use model\database\Connect\Connection;
-use \PDOException;
 
 class UserDao {
 
@@ -36,25 +35,18 @@ class UserDao {
     //Function for checking if user exists
     function checkUserExists(User $user) {
 
-        try {
-            $statement = $this->pdo->prepare(self::CHECK_USER_EXISTS);
-            $statement->execute(array($user->getEmail));
+        $statement = $this->pdo->prepare(self::CHECK_USER_EXISTS);
+        $statement->execute(array($user->getEmail));
 
-            //Check if Database returned a user (1 or 0 Columns)
-            if ($statement->rowCount()) {
+        //Check if Database returned a user (1 or 0 Columns)
+        if ($statement->rowCount()) {
 
-                //Fetch User ID and return it as result
-                $userId = $statement->fetch();
-                return $userId['id'];
-            } else {
-                return false;
-
-            }
-
-        } catch (PDOException $e) {
-
-            //HAVE TO ADD ERROR PAGE
+            //Fetch User ID and return it as result
+            $userId = $statement->fetch();
+            return $userId['id'];
+        } else {
             return false;
+
         }
     }
 
@@ -63,25 +55,18 @@ class UserDao {
     //Function for password check
     function checkPassword(User $user) {
 
-        try {
-            $statement = $this->pdo->prepare(self::CHECK_PASS);
-            $statement->execute(array($user->getId, $user->getPassword));
+        $statement = $this->pdo->prepare(self::CHECK_PASS);
+        $statement->execute(array($user->getId, $user->getPassword));
 
-            //Check if Database returned a user (1 or 0 Columns)
-            if ($statement->rowCount()) {
+        //Check if Database returned a user (1 or 0 Columns)
+        if ($statement->rowCount()) {
 
-                //Fetch User ID and return it as result
-                $userId = $statement->fetch();
-                return $userId['id'];
-            } else {
-                return false;
-
-            }
-
-        } catch (PDOException $e) {
-
-            //HAVE TO ADD ERROR PAGE
+            //Fetch User ID and return it as result
+            $userId = $statement->fetch();
+            return $userId['id'];
+        } else {
             return false;
+
         }
     }
 
@@ -90,18 +75,11 @@ class UserDao {
     //Function for registering user
     function registerUser (User $user) {
 
-        try {
-            $statement = $this->pdo->prepare(self::REGISTER_USER);
-            $statement->execute(array($user->getEmail, $user->getEnabled, $user->getFirstName, $user->getLastName,
-                                      $user->getMobileNumber, $user->getimageUrl, $user->getPassword, $user->getRole));
+        $statement = $this->pdo->prepare(self::REGISTER_USER);
+        $statement->execute(array($user->getEmail, $user->getEnabled, $user->getFirstName, $user->getLastName,
+            $user->getMobileNumber, $user->getimageUrl, $user->getPassword, $user->getRole));
 
-            //Return registered user's ID
-            return $this->pdo->lastInsertId();
-
-        } catch (PDOException $e) {
-
-            //HAVE TO ADD ERROR PAGE
-            return false;
-        }
+        //Return registered user's ID
+        return $this->pdo->lastInsertId();
     }
 }

@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: lache
- * Date: 10/14/2017
- * Time: 11:00
- */
 
 namespace model;
 
@@ -13,7 +7,7 @@ class User
 {
     private $id;
     private $email;
-    private #enabled;
+    private $enabled;
     private $firstName;
     private $lastName;
     private $mobilePhone;
@@ -21,6 +15,8 @@ class User
     private $password;
     private $lastLogin;
     private $role;
+
+
 
     /**
      * @return mixed
@@ -52,6 +48,22 @@ class User
     public function setEmail($email)
     {
         $this->email = $email;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getEnabled()
+    {
+        return $this->enabled;
+    }
+
+    /**
+     * @param mixed $enabled
+     */
+    public function setEnabled($enabled)
+    {
+        $this->enabled = $enabled;
     }
 
     /**
@@ -165,6 +177,4 @@ class User
     {
         $this->role = $role;
     }
-
-    
 }
