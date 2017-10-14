@@ -6,7 +6,7 @@ body{
 
 .login-page {
     width: 360px;
-    padding: 8% 0 0;
+    padding: 9% 0 0;
     margin: auto;
 }
 .form {
@@ -30,23 +30,18 @@ body{
     box-sizing: border-box;
     font-size: 14px;
 }
-.form button {
+#login {
     font-family: "Roboto", sans-serif;
-    text-transform: uppercase;
     outline: 0;
-    background: #4CAF50;
+    background: #af0022;
     width: 100%;
     border: 0;
     padding: 15px;
     color: #FFFFFF;
     font-size: 14px;
-    -webkit-transition: all 0.3 ease;
-    transition: all 0.3 ease;
     cursor: pointer;
 }
-.form button:hover,.form button:active,.form button:focus {
-    background: #43A047;
-}
+
 .form .message {
     margin: 15px 0 0;
     color: #b3b3b3;
