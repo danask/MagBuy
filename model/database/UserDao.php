@@ -4,6 +4,7 @@ namespace model\database;
 
 use model\database\Connect\Connection;
 use model\User;
+use \PDO;
 
 
 class UserDao {
@@ -17,6 +18,10 @@ class UserDao {
     const CHECK_PASS = "SELECT id, password FROM users WHERE id = ? AND password = ?";
     const REGISTER_USER = "INSERT INTO users (email, enabled, first_name, last_name, mobile_phone,
                            image_url,password, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    const EDIT_USER = "UPDATE users SET email = ?, enabled = ?, first_name = ?, last_name = ?, mobile_phone = ?,
+                           image_url = ?,password = ?, role = ? WHERE id = ?";
+    const GET_USER_INFO = "SELECT id email, enabled, first_name, last_name, mobile_phone,
+                           image_url,password, last_login, role FROM users WHERE id = ?";
 
 
     //Get connection in construct
@@ -83,5 +88,25 @@ class UserDao {
 
         //Return registered user's ID
         return $this->pdo->lastInsertId();
+    }
+
+
+    //Function for editing users
+    function editUser (User $user) {
+
+        $statement = $this->pdo->prepare(self::EDIT_USER);
+        $statement->execute(array($user->getEmail(), $user->getEnabled(), $user->getFirstName(), $user->getLastName(),
+            $user->getMobilePhone(), $user->getImageUrl(), $user->getPassword(), $user->getRole(), $user->getId()));
+    }
+
+
+    //Function for getting user's info
+    function getUserInfo (User $user) {
+
+        $statement = $this->pdo->prepare(self::GET_USER_INFO);
+        $statement->execute(array($user->getId()));
+
+        $userInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $userInfo[0];
     }
 }
