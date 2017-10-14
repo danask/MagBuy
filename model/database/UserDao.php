@@ -88,7 +88,7 @@ class UserDao {
 
 
     //Function for registering user
-    function registerUser ($log) {
+    function registerUser (User $log) {
 
         try {
             $statement = $this->pdo->prepare(self::REGISTER_USER);
