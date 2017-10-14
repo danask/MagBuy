@@ -35,10 +35,11 @@ require_once "../../controller/user/get_users_info_controller.php";
             </div>
 
             <input id="login" type="submit" value="UPDATE">
-            <?php if(isset($_GET['error'])){ echo "
+            <?php if(isset($_GET['error']) || isset($_GET['errorUpload'])){ echo "
             <li class='wrongReg'>Email might exist</li><li class='wrongReg'>Password: between 4 and 12 symbols</li>
             <li class='wrongReg'>Names: between 4 and 20 symbols</li>
-            <li class='wrongReg'>Mobile phone must be 10 digits</li>"; };?>
+            <li class='wrongReg'>Mobile phone must be 10 digits</li>
+            <li class='wrongReg'>Image must be below 2MB</li>"; };?>
 <p class="message"><a href="../main/main.php">Back to offers?</a></p>
 </form>
 </div>

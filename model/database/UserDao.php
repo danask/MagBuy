@@ -17,11 +17,11 @@ class UserDao {
     const CHECK_LOGIN = "SELECT id, email, password FROM users WHERE email = ? AND password = ?";
     const CHECK_USER_EXIST = "SELECT id FROM users WHERE email = ?";
     const REGISTER_USER = "INSERT INTO users (email, enabled, first_name, last_name, mobile_phone,
-                           image_url,password, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                           image_url, password, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     const EDIT_USER = "UPDATE users SET email = ?, enabled = ?, first_name = ?, last_name = ?, mobile_phone = ?,
-                           image_url = ?,password = ?, role = ? WHERE id = ?";
+                           image_url = ?, password = ?, role = ? WHERE id = ?";
     const GET_USER_INFO = "SELECT id, email, enabled, first_name, last_name, mobile_phone,
-                           image_url,password, last_login, role FROM users WHERE id = ?";
+                           image_url, password, last_login, role FROM users WHERE id = ?";
 
 
     //Get connection in construct
