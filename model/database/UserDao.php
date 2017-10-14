@@ -34,11 +34,11 @@ class UserDao {
 
 
     //Function for checking if user exists
-    function checkUserExists(User $email) {
+    function checkUserExists(User $user) {
 
         try {
             $statement = $this->pdo->prepare(self::CHECK_USER_EXISTS);
-            $statement->execute(array($email->getEmail));
+            $statement->execute(array($user->getEmail));
 
             //Check if Database returned a user (1 or 0 Columns)
             if ($statement->rowCount()) {
@@ -61,11 +61,11 @@ class UserDao {
 
 
     //Function for password check
-    function checkPassword(User $id, $log) {
+    function checkPassword(User $user) {
 
         try {
             $statement = $this->pdo->prepare(self::CHECK_PASS);
-            $statement->execute(array($log->getId, $log->getPassword));
+            $statement->execute(array($user->getId, $user->getPassword));
 
             //Check if Database returned a user (1 or 0 Columns)
             if ($statement->rowCount()) {
@@ -88,12 +88,12 @@ class UserDao {
 
 
     //Function for registering user
-    function registerUser (User $log) {
+    function registerUser (User $user) {
 
         try {
             $statement = $this->pdo->prepare(self::REGISTER_USER);
-            $statement->execute(array($log->getEmail, $log->getEnabled, $log->getFirstName, $log->getLastName,
-                                      $log->getMobileNumber, $log->getimageUrl, $log->getPassword, $log->getRole));
+            $statement->execute(array($user->getEmail, $user->getEnabled, $user->getFirstName, $user->getLastName,
+                                      $user->getMobileNumber, $user->getimageUrl, $user->getPassword, $user->getRole));
 
             //Return registered user's ID
             return $this->pdo->lastInsertId();
