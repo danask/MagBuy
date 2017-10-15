@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
         $subcatDao = \model\database\SubCategoriesDao::getInstance();
 
         $subcategory->setName(htmlentities($_POST['name']));
-        $subcategory->setCategoryId($_POST['category_id']);
+        $subcategory->setCategoryId(htmlentities($_POST['category_id']));
 
 
         $id = $subcatDao->createSubCategory($subcategory);
@@ -35,6 +35,5 @@ if (isset($_POST['submit'])) {
 
 } else {
 
-    //Locate to error Register Page
-    header("Location: ../../view/user/register.php?error");
+    //Locate to error page
 }

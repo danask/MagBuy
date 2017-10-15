@@ -20,15 +20,15 @@ $supercategories = $supercatDao->getAllSuperCategories();
     <title>Document</title>
 </head>
 <body>
-<form class="login-form" action="../../controller/admin/new_category_controller.php" method="post">
-    <input type="text" name="name" placeholder="Category name" required/>
+<form action="../../controller/admin/new_category_controller.php" method="post">
+    <input type="text" name="name" placeholder="Category name" required/><br>
     <select name="supercategory_id">
         <?php
         foreach ($supercategories as $supercategory) {
             echo "<option value=\"" . $supercategory['id'] . "\">" . $supercategory['name'] . "</option>";
         }
         ?>
-    </select>
+    </select><br>
     <input type="submit" value="Create" name="submit">
 </form>
 </body>

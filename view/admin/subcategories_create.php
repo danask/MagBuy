@@ -20,15 +20,15 @@ $categories = $catDao->getAllCategories();
     <title>Document</title>
 </head>
 <body>
-<form class="login-form" action="../../controller/admin/new_subcategory_controller.php" method="post">
-    <input type="text" name="name" placeholder="Subcategory name" required/>
+<form action="../../controller/admin/new_subcategory_controller.php" method="post">
+    <input type="text" name="name" placeholder="Subcategory name" required/><br>
     <select name="category_id">
         <?php
         foreach ($categories as $category) {
             echo "<option value=\"" . $category['id'] . "\">" . $category['name'] . "</option>";
         }
         ?>
-    </select>
+    </select><br>
     <input type="submit" value="Create" name="submit">
 </form>
 </body>
