@@ -24,6 +24,6 @@ foreach ($products as $product) {
     echo $product['title'];
 }
 ?>
-
+<a href="../admin/supercategories.php">SUPERCAT CREATE</a>
 </body>
 </html>
