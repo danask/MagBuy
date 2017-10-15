@@ -85,8 +85,11 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
         $user->setId($userId);
 
 
-        //Check if user exists
-        if($userDao->checkUserExist($user)) {
+        //Get current user's email
+        $userArr = $userDao->getUserInfo($user);
+
+        //Check if user exists and if user's new email is the same as old one
+        if ($userDao->checkUserExist($user) && $userArr['email'] != $user->getEmail()) {
 
             //Locate to error Register Page
             header("Location: ../../view/user/edit.php?error");
