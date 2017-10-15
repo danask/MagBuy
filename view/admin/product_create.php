@@ -32,7 +32,7 @@ $subcategories = $subcatDao->getAllSubCategories();
         }
         ?>
     </select><br>
-    <input type="submit" value="Create" name="submit">
+    <input type="submit" value="Continue to specs" name="submit">
 </form>
 </body>
 </html>

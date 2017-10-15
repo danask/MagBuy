@@ -14,6 +14,7 @@ class SubcatSpecificationsDao
 
     //Statements defined as constants
     const CREATE_SPEC = "INSERT INTO subcat_specifications (name, subcategory_id) VALUES (?, ?)";
+    const GET_ALL_SPEC_FOR_SUBCAT = "SELECT * FROM subcat_specifications WHERE subcategory_id = ?";
 
     //Get connection in construct
     private function __construct()
@@ -36,5 +37,14 @@ class SubcatSpecificationsDao
         $statement->execute(array($specification->getName(), $specification->getSubcategoryId()));
 
         return $this->pdo->lastInsertId();
+    }
+
+    function getAllSpecificationsForSubcategory($subcatId)
+    {
+        $statement = $this->pdo->prepare(self::GET_ALL_SPEC_FOR_SUBCAT);
+        $statement->execute(array($subcatId));
+        $specs = $statement->fetchAll();
+
+        return $specs;
     }
 }

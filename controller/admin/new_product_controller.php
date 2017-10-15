@@ -14,27 +14,30 @@ function __autoload($className)
 if (isset($_POST['submit'])) {
     $product = new \model\Product();
 
+    $product->setTitle(htmlentities($_POST['title']));
+    $product->setDescription(htmlentities($_POST['description']));
+    $product->setPrice(htmlentities($_POST['price']));
+    $product->setQuantity(htmlentities($_POST['quantity']));
+    $subcatId = $_POST['subcategory_id'];
+    $product->setSubcategoryId(htmlentities($subcatId));
+
     //Try to accomplish connection with the database
     try {
 
         $productDao = \model\database\ProductsDao::getInstance();
 
-        $product->setTitle(htmlentities($_POST['title']));
-        $product->setDescription(htmlentities($_POST['description']));
-        $product->setPrice(htmlentities($_POST['price']));
-        $product->setQuantity(htmlentities($_POST['quantity']));
-        $product->setSubcategoryId(htmlentities($_POST['subcategory_id']));
-
         $id = $productDao->createNewProduct($product);
 
-        header("Location: ../../view/main/main.php");
+        header("Location: ../../view/admin/product_spec_create.php?pid=$id&subcid=$subcatId");
 
     } catch (PDOException $e) {
 
         header("Location: ../../view/error/pdo_error.php");
     }
 
-} else {
+} elseif (isset($_POST['final_submit'])) {
 
+
+} else {
     //Locate to error page
 }
