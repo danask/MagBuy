@@ -19,7 +19,11 @@ require_once '../../controller/products/all_products_controller.php';
 </head>
 <body>
 
-
+<?php
+foreach ($products as $product) {
+    echo $product['title'];
+}
+?>
 
 </body>
 </html>

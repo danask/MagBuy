@@ -4,6 +4,7 @@
 namespace model\database;
 
 use model\database\Connect\Connection;
+use model\Product;
 use PDO;
 
 
@@ -15,6 +16,7 @@ class ProductsDao
     private $pdo;
 
     //Statements defined as constants
+    const CREATE_PRODUCT = "INSERT INTO products(title, description, price, quantity, visible, created_at, subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
     const GET_ALL_AVAILABLE_PRODUCTS = "SELECT id, title, description, price FROM products ORDER BY created_at DESC";
     const GET_PRODUCT_BY_ID = "SELECT * FROM products WHERE id = ?";
     const GET_PRODUCT_IMAGES = "SELECT image_url FROM product_images WHERE product_id = ?";
@@ -38,15 +40,26 @@ class ProductsDao
     }
 
 
+    function createNewProduct(Product $product)
+    {
+        $statement = $this->pdo->prepare(self::CREATE_PRODUCT);
+        $statement->execute(array(
+            $product->getTitle(),
+            $product->getDescription(),
+            $product->getPrice(),
+            $product->getQuantity(),
+            $product->getVisible(),
+            $product->getCreatedAt(),
+            $product->getSubcategoryId()));
 
-    //Function for checking if login is correct
+        return $this->pdo->lastInsertId();
+    }
 
     /**
      * @return array|bool - returns array with all the products
      */
     function getAllAvailableProducts()
     {
-
         $statement = $this->pdo->prepare(self::GET_ALL_AVAILABLE_PRODUCTS);
         $statement->execute();
 
@@ -65,7 +78,7 @@ class ProductsDao
     function getProductByID($productId)
     {
         $statement = $this->pdo->prepare(self::GET_PRODUCT_BY_ID);
-        $statement->execute($productId);
+        $statement->execute(array($productId));
         $product = $statement->fetch();
 
         return $product;
@@ -74,7 +87,7 @@ class ProductsDao
     function getProductImages($productId)
     {
         $statement = $this->pdo->prepare(self::GET_PRODUCT_IMAGES);
-        $statement->execute($productId);
+        $statement->execute(array($productId));
         $productImages = $statement->fetchAll();
 
         return $productImages;
@@ -111,6 +124,5 @@ class ProductsDao
 
         return $products;
     }
-
 
 }

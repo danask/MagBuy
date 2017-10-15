@@ -4,6 +4,8 @@ namespace model;
 
 
 //Create User class to use in the controller
+use DateTime;
+
 class User
 {
     private $id;
@@ -17,7 +19,18 @@ class User
     private $lastLogin;
     private $role;
 
-
+    /**
+     * User constructor.
+     * @param $enabled
+     * @param $lastLogin
+     * @param $role
+     */
+    public function __construct($enabled, $lastLogin, $role)
+    {
+        $this->enabled = 1;
+        $this->lastLogin = new DateTime();
+        $this->role = 1;
+    }
 
     /**
      * @return mixed
@@ -25,14 +38,6 @@ class User
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
     }
 
     /**
