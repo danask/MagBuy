@@ -6,14 +6,14 @@ function __autoload($className) {
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
-$allProductsArr = null;
+$products = null;
 
 //Try to accomplish connection with the database
 try {
 
     $productsDao = \model\database\ProductsDao::getInstance();
 
-    $allProductsArr = $productsDao->getAllAvailableProducts();
+    $products = $productsDao->getAllAvailableProducts();
 
 
 } catch (PDOException $e) {
