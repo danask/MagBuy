@@ -30,11 +30,11 @@ img{max-width:100%;}
 /*end reset*/
 @font-face {
 	font-family: 'AmbleRegular';
-    src: url( ../fonts/Amble-Light-webfont.ttf ) format("truetype"); 
+    src: url( ../fonts/Amble-Light-webfont.ttf ) format("truetype");
 }
 body{
 	font-family: 'AmbleRegular';
-	background:url(../images/bg-body.jpg)repeat;
+	background-color: #efeeec;
 }
 .wrap{
 	width:80%;
