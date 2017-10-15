@@ -24,7 +24,7 @@ class User
     {
         $this->enabled = 1;
         $this->lastLogin = new DateTime();
-        $this->role = $role;
+        $this->role = 1;
     }
 
     /**
