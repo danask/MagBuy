@@ -14,6 +14,7 @@ class CategoriesDao
 
     //Statements defined as constants
     const CREATE_CAT = "INSERT INTO categories (name, supercategory_id) VALUES (?, ?)";
+    const GET_ALL_CATS = "SELECT * FROM categories";
 
     //Get connection in construct
     private function __construct()
@@ -36,5 +37,14 @@ class CategoriesDao
         $statement->execute(array($category->getName(), $category->getSupercategoryId()));
 
         return $this->pdo->lastInsertId();
+    }
+
+    function getAllCategories()
+    {
+        $statement = $this->pdo->prepare(self::GET_ALL_CATS);
+        $statement->execute();
+        $categories = $statement->fetchAll();
+
+        return $categories;
     }
 }

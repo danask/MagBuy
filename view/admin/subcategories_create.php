@@ -6,8 +6,8 @@ function __autoload($className)
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
-$supercatDao = \model\database\SuperCategoriesDao::getInstance();
-$supercategories = $supercatDao->getAllSuperCategories();
+$catDao = \model\database\CategoriesDao::getInstance();
+$categories = $catDao->getAllCategories();
 ?>
 
 <!doctype html>
@@ -20,12 +20,12 @@ $supercategories = $supercatDao->getAllSuperCategories();
     <title>Document</title>
 </head>
 <body>
-<form class="login-form" action="../../controller/admin/new_category_controller.php" method="post">
-    <input type="text" name="name" placeholder="Category name" required/>
-    <select name="supercategory_id">
+<form class="login-form" action="../../controller/admin/new_subcategory_controller.php" method="post">
+    <input type="text" name="name" placeholder="Subcategory name" required/>
+    <select name="category_id">
         <?php
-        foreach ($supercategories as $supercategory) {
-            echo "<option value=\"" . $supercategory['id'] . "\">" . $supercategory['name'] . "</option>";
+        foreach ($categories as $category) {
+            echo "<option value=\"" . $category['id'] . "\">" . $category['name'] . "</option>";
         }
         ?>
     </select>
