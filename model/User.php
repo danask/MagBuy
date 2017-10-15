@@ -27,12 +27,22 @@ class User
         $this->role = 1;
     }
 
+
+
     /**
      * @return mixed
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
@@ -52,7 +62,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getEnabled()
     {
@@ -60,7 +70,7 @@ class User
     }
 
     /**
-     * @param mixed $enabled
+     * @param int $enabled
      */
     public function setEnabled($enabled)
     {
@@ -148,7 +158,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return DateTime
      */
     public function getLastLogin()
     {
@@ -156,7 +166,7 @@ class User
     }
 
     /**
-     * @param mixed $lastLogin
+     * @param DateTime $lastLogin
      */
     public function setLastLogin($lastLogin)
     {
@@ -164,7 +174,7 @@ class User
     }
 
     /**
-     * @return mixed
+     * @return int
      */
     public function getRole()
     {
@@ -172,7 +182,7 @@ class User
     }
 
     /**
-     * @param mixed $role
+     * @param int $role
      */
     public function setRole($role)
     {

@@ -43,6 +43,9 @@ require_once '../../controller/products/all_products_controller.php';
                                 <li class="last"><a href="">
                                         <div class="button-t"><a href="../../utility/log_out.php">Log out</a></span></div>
                                     </a></li>
+                                <li class="last"><a href="">
+                                        <div class="button-t"><a href="../user/edit.php">Edit</a></span></div>
+                                    </a></li>
                             </ul>
                       <?php  } ?>
                     </div>
