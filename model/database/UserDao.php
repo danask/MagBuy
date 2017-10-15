@@ -40,6 +40,10 @@ class UserDao {
 
 
     //Function for checking if login is correct
+    /**
+     * @param User $user - receive user object
+     * @return bool|int - return user id or false
+     */
     function checkLogin(User $user) {
 
         $statement = $this->pdo->prepare(self::CHECK_LOGIN);
@@ -60,6 +64,10 @@ class UserDao {
 
 
     //Function for checking if user exists
+    /**
+     * @param User $user - receive user object
+     * @return bool - return of user exists or not
+     */
     function checkUserExist(User $user) {
 
         $statement = $this->pdo->prepare(self::CHECK_USER_EXIST);
@@ -79,6 +87,10 @@ class UserDao {
 
 
     //Function for registering user
+    /**
+     * @param User $user - receive user object
+     * @return string - return registered user's id
+     */
     function registerUser (User $user) {
 
         $statement = $this->pdo->prepare(self::REGISTER_USER);
@@ -91,6 +103,9 @@ class UserDao {
 
 
     //Function for editing users
+    /**
+     * @param User $user - receive user object and edit the existing with it
+     */
     function editUser (User $user) {
 
         $statement = $this->pdo->prepare(self::EDIT_USER);
@@ -99,7 +114,11 @@ class UserDao {
     }
 
 
-    //Function for getting user's info
+    //Function for getting user's info (used in edit predefined info)
+    /**
+     * @param User $user - receive user object
+     * @return mixed - return all info for the user
+     */
     function getUserInfo (User $user) {
 
         $statement = $this->pdo->prepare(self::GET_USER_INFO);

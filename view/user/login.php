@@ -20,6 +20,7 @@ require_once "../../utility/session_main.php";
 <body>
 
 <div class="login-page">
+    <div id="logo"><img src="../../web/uploads/magbuy/logo.png"></div>
     <div class="form">
         <form class="login-form" action="../../controller/user/login_controller.php" method="post">
             <input type="email" name="email" placeholder="Enter Your Email"/>

@@ -21,6 +21,7 @@ require_once "../../controller/user/get_users_info_controller.php";
 <body>
 
 <div class="login-page">
+    <div id="logo"><img src="../../web/uploads/magbuy/logo.png"></div>
     <div class="form">
         <form enctype="multipart/form-data" class="login-form" action="../../controller/user/edit_controller.php" method="post">
 
