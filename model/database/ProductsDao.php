@@ -10,7 +10,7 @@ use PDO;
 class ProductsDao
 {
 
-    //Make Singleton
+    //Make Singletonn
     private static $instance;
     private $pdo;
 
