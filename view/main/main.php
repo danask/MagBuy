@@ -28,10 +28,9 @@ require_once '../../controller/products/all_products_controller.php';
         <div class="h-bg">
             <div class="total">
                 <div class="header">
-                    <?php if(!isset($_SESSION['loggedUser'])) { ?>
                     <div class="box_header_user_menu">
+                        <?php if(!isset($_SESSION['loggedUser'])) { ?>
                         <ul class="user_menu">
-                            </a></li>
                             <li class=""><a href="">
                                     <div class="button-t"><span><a href="../user/register.php">Create an Account</a></span></div>
                                 </a></li>
@@ -39,7 +38,14 @@ require_once '../../controller/products/all_products_controller.php';
                                     <div class="button-t"><a href="../user/login.php">Log in</a></span></div>
                                 </a></li>
                         </ul>
-                    </div> <?php } ?>
+                        <?php } else { ?>
+                            <ul class="user_menu">
+                                <li class="last"><a href="">
+                                        <div class="button-t"><a href="../../utility/log_out.php">Log out</a></span></div>
+                                    </a></li>
+                            </ul>
+                      <?php  } ?>
+                    </div>
                     <div class="clear"></div>
                     <div class="header-bot">
                         <div class="logo">
