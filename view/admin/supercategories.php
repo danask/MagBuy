@@ -12,7 +12,7 @@
     <title>Document</title>
 </head>
 <body>
-<form class="login-form" action="../../controller/user/register_controller.php" method="post">
+<form class="login-form" action="../../controller/admin/new_supercategory_controller.php" method="post">
     <input type="text" name="name" placeholder="Supercategory name" required/>
     <input type="submit" value="Create" name="submit">
 </form>
