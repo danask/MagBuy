@@ -14,6 +14,7 @@ class SuperCategoriesDao
 
     //Statements defined as constants
     const CREATE_SUPERCAT = "INSERT INTO supercategories (name) VALUES (?)";
+    const GET_ALL_SUPERCATS = "SELECT * FROM supercategories";
 
     //Get connection in construct
     private function __construct()
@@ -36,5 +37,14 @@ class SuperCategoriesDao
         $statement->execute(array($superCategory->getName()));
 
         return $this->pdo->lastInsertId();
+    }
+
+    function getAllSuperCategories()
+    {
+        $statement = $this->pdo->prepare(self::GET_ALL_SUPERCATS);
+        $statement->execute();
+        $supercategories = $statement->fetchAll();
+
+        return $supercategories;
     }
 }
