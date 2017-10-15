@@ -28,13 +28,13 @@ class ProductsDao {
         if (self::$instance === null) {
             self::$instance = new ProductsDao();
         }
+
         return self::$instance;
     }
 
 
 
     //Function for checking if login is correct
-
     /**
      * @return array|bool - returns array with all the products
      */
@@ -50,8 +50,8 @@ class ProductsDao {
             $result = $statement->fetchAll(PDO::FETCH_ASSOC);
             return $result;
         } else {
-            return false;
 
+            return false;
         }
     }
 
