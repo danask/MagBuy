@@ -4,6 +4,8 @@
 namespace model;
 
 
+use DateTime;
+
 class Product
 {
     private $id;
@@ -26,7 +28,6 @@ class Product
      * @param $createdAt
      * @param $subcategoryId
      */
-
     public function __construct($id, $title, $description, $price, $quantity, $visible, $createdAt, $subcategoryId)
     {
         $this->id = $id;
@@ -34,8 +35,8 @@ class Product
         $this->description = $description;
         $this->price = $price;
         $this->quantity = $quantity;
-        $this->visible = $visible;
-        $this->createdAt = $createdAt;
+        $this->visible = 1;
+        $this->createdAt = new DateTime();
         $this->subcategoryId = $subcategoryId;
     }
 
