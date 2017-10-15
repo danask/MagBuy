@@ -34,6 +34,5 @@ if (isset($_POST['submit'])) {
 
 } else {
 
-    //Locate to error Register Page
-    header("Location: ../../view/user/register.php?error");
+    //Locate to error page
 }

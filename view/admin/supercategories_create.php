@@ -12,8 +12,8 @@
     <title>Document</title>
 </head>
 <body>
-<form class="login-form" action="../../controller/admin/new_supercategory_controller.php" method="post">
-    <input type="text" name="name" placeholder="Supercategory name" required/>
+<form action="../../controller/admin/new_supercategory_controller.php" method="post">
+    <input type="text" name="name" placeholder="Supercategory name" required/><br>
     <input type="submit" value="Create" name="submit">
 </form>
 </body>

@@ -19,25 +19,11 @@ class Product
 
     /**
      * Product constructor.
-     * @param $id
-     * @param $title
-     * @param $description
-     * @param $price
-     * @param $quantity
-     * @param $visible
-     * @param $createdAt
-     * @param $subcategoryId
      */
-    public function __construct($id, $title, $description, $price, $quantity, $visible, $createdAt, $subcategoryId)
+    public function __construct()
     {
-        $this->id = $id;
-        $this->title = $title;
-        $this->description = $description;
-        $this->price = $price;
-        $this->quantity = $quantity;
         $this->visible = 1;
-        $this->createdAt = new DateTime();
-        $this->subcategoryId = $subcategoryId;
+        $this->createdAt = date("Y-m-d H:i:s");
     }
 
     /**

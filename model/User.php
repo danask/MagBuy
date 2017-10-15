@@ -4,7 +4,6 @@ namespace model;
 
 
 //Create User class to use in the controller
-use DateTime;
 
 class User
 {
@@ -23,7 +22,7 @@ class User
     public function __construct()
     {
         $this->enabled = 1;
-        $this->lastLogin = new DateTime();
+        $this->lastLogin = date("Y-m-d H:i:s");
         $this->role = 1;
     }
 
