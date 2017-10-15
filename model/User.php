@@ -29,7 +29,7 @@ class User
     {
         $this->enabled = 1;
         $this->lastLogin = new DateTime();
-        $this->role = 1;
+        $this->role = $role;
     }
 
     /**
