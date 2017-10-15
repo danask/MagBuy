@@ -1,5 +1,8 @@
 <?php
 
+//Start Session
+session_start();
+
 require_once '../../controller/products/all_products_controller.php';
 
 ?>
@@ -25,6 +28,7 @@ require_once '../../controller/products/all_products_controller.php';
         <div class="h-bg">
             <div class="total">
                 <div class="header">
+                    <?php if(!isset($_SESSION['loggedUser'])) { ?>
                     <div class="box_header_user_menu">
                         <ul class="user_menu">
                             </a></li>
@@ -35,7 +39,7 @@ require_once '../../controller/products/all_products_controller.php';
                                     <div class="button-t"><a href="../user/login.php">Log in</a></span></div>
                                 </a></li>
                         </ul>
-                    </div>
+                    </div> <?php } ?>
                     <div class="clear"></div>
                     <div class="header-bot">
                         <div class="logo">

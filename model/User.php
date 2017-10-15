@@ -19,13 +19,8 @@ class User
     private $lastLogin;
     private $role;
 
-    /**
-     * User constructor.
-     * @param $enabled
-     * @param $lastLogin
-     * @param $role
-     */
-    public function __construct($enabled, $lastLogin, $role)
+
+    public function __construct()
     {
         $this->enabled = 1;
         $this->lastLogin = new DateTime();
