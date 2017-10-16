@@ -407,7 +407,7 @@ span.actual {
 .grid_1_of_3{
 	display: block;
 	float:left;
-	margin: 1% 0 1% 1.6%;
+	margin: 1% 0 1% 1%;
 }
 .grid_1_of_3:first-child { 
 	margin-left: 0; 
