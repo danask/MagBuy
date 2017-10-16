@@ -12,6 +12,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 
+
+
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -94,14 +96,18 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     echo '<div class="megapanel">';
                     echo '<div class="row">';
                     foreach ($categories as $category) {
-                        echo '<div class="col1">';
-                        echo '<div class="h_nav">';
-                        echo '<h4>' . $category["name"] . '</h4>';
-                        echo '<ul>';
-                        foreach ($subcategories as $subcategory) {
-                            echo '<li><a href="category.html?subcid=' . $subcategory["id"] . '">' . $subcategory["name"] . '</a></li>';
+                        if ($category['supercategory_id'] == $supercategory['id']) {
+                            echo '<div class="col1">';
+                            echo '<div class="h_nav">';
+                            echo '<h4>' . $category["name"] . '</h4>';
+                            echo '<ul>';
+                            foreach ($subcategories as $subcategory) {
+                                if ($subcategory['category_id'] == $category['id']) {
+                                    echo '<li><a href="category.html?subcid=' . $subcategory["id"] . '">' . $subcategory["name"] . '</a></li>';
+                                }
+                            }
+                            echo '</ul></div></div>';
                         }
-                        echo '</ul></div></div>';
                     }
                     echo '</div>';
                     echo '<div class="row">
