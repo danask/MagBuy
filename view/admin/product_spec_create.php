@@ -23,18 +23,13 @@ $specifications = $subcatSpecDao->getAllSpecificationsForSubcategory($_GET['subc
 <h3>specs</h3>
 <form action="../../controller/admin/new_product_specs_controller.php" method="post">
     <?php
-    $specsTotal = 0;
-    $specificationIds = array();
     foreach ($specifications as $spec) {
         echo $spec['name'] . "<br>";
         echo "<input type=\"text\" name=\"spec-" . $spec['id'] . "\" required/><br>";
-        $specificationIds = $specsTotal . "=>" . $spec['id'] . ";";
-        $specsTotal++;
     }
     ?>
-    <input type="hidden" name="spec_ids" value="<?= $specificationIds; ?>">
-    <input type="hidden" name="specs_total" value="<?= $specsTotal; ?>">
     <input type="hidden" name="product_id" value="<?= $_GET['pid']; ?>">
+    <input type="hidden" name="subcat_id" value="<?= $_GET['subcid']; ?>">
     <input type="submit" value="Create" name="submit">
 </form>
 </body>
