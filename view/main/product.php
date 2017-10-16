@@ -40,6 +40,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
+
+
+
+
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -106,7 +111,8 @@ require_once "navigation.php";
                         <div class="products-grd">
                             <div class="p-one simpleCart_shelfItem prd">
                                 <a href="single.php?pid=<?= $product['id']; ?>">
-                                    <img src="../../web/assets/images/p7.jpg" alt="" class="img-responsive"/>
+                                    <img src="<?= $product['image_url'] ?>"
+                                         alt="Product Image" class="img-responsive"/>
                                 </a>
                                 <h4><?= $product['title']; ?></h4>
                                 <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i>
