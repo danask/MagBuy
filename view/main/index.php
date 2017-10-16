@@ -8,6 +8,7 @@
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -46,63 +47,7 @@ require_once "../elements/header.php";
 require_once "../elements/navigation.php";
 ?>
 <!--start-content-->
-<!--start-banner-->
-<div class="banner">
-    <div class="container">
-        <div class="banner-grids">
-            <div class="col-md-6 jocket">
-                <div class="jock-img">
-                    <img src="../../web/assets/images/sht.jpg" alt="">
-                </div>
-                <div class="jock-text">
-                    <h3 class="b-tittle">Men's Jacket</h3>
-                    <a class="collection" href="single.php">View collection <i
-                                class="glyphicon glyphicon-arrow-right"></i></a>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <div class="col-md-6 shoe">
-                <div class="shoe-img">
-                    <img src="../../web/assets/images/shoe.jpg" class="img-responsive" alt="">
-                </div>
-                <div class="shoe-text">
-                    <h3 class="b-tittle">Men's Shoes</h3>
-                    <a class="collection" href="single.php">View collection <i
-                                class="glyphicon glyphicon-arrow-right"></i></a>
-                </div>
-                <div class="clearfix"></div>
-                <div class="bottom-bags">
-                    <div class="col-md-6 pack">
-                        <div class="bag-text">
-                            <h3 class="b-tittle">Bags</h3>
-                            <a class="collection" href="single.php">View collection <i
-                                        class="glyphicon glyphicon-arrow-right"></i></a>
-                        </div>
-                        <div class="bag-img">
-                            <img src="../../web/assets/images/bag.jpg" class="img-responsive" alt="">
-                        </div>
-                        <div class="clearfix"></div>
 
-                    </div>
-                    <div class="col-md-6 glass">
-                        <div class="glass-text">
-                            <h3 class="b-tittle">Glasses</h3>
-                            <a class="collection" href="single.php">View collection <i
-                                        class="glyphicon glyphicon-arrow-right"></i></a>
-                        </div>
-                        <div class="glass-img">
-                            <img src="../../web/assets/images/glass.jpg" class="img-responsive" alt="">
-                        </div>
-                        <div class="clearfix"></div>
-
-                    </div>
-                    <div class="clearfix"></div>
-                </div>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-</div>
 <!--/start-fashion-->
 <div class="fashion-section">
     <div class="container">
