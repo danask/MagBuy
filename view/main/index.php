@@ -1,17 +1,13 @@
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Nuevo Shop a Ecommerce Online Shopping Flat Bootstarp Resposive Website Template | Home :: w3layouts</title>
+    <title>MagBuy Home</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Nuevo Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
-
-
-
-
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -60,7 +56,7 @@ require_once "navigation.php";
                 </div>
                 <div class="jock-text">
                     <h3 class="b-tittle">Men's Jacket</h3>
-                    <a class="collection" href="single.html">View collection <i
+                    <a class="collection" href="single.php">View collection <i
                                 class="glyphicon glyphicon-arrow-right"></i></a>
                 </div>
                 <div class="clearfix"></div>
@@ -71,7 +67,7 @@ require_once "navigation.php";
                 </div>
                 <div class="shoe-text">
                     <h3 class="b-tittle">Men's Shoes</h3>
-                    <a class="collection" href="single.html">View collection <i
+                    <a class="collection" href="single.php">View collection <i
                                 class="glyphicon glyphicon-arrow-right"></i></a>
                 </div>
                 <div class="clearfix"></div>
@@ -79,7 +75,7 @@ require_once "navigation.php";
                     <div class="col-md-6 pack">
                         <div class="bag-text">
                             <h3 class="b-tittle">Bags</h3>
-                            <a class="collection" href="single.html">View collection <i
+                            <a class="collection" href="single.php">View collection <i
                                         class="glyphicon glyphicon-arrow-right"></i></a>
                         </div>
                         <div class="bag-img">
@@ -91,7 +87,7 @@ require_once "navigation.php";
                     <div class="col-md-6 glass">
                         <div class="glass-text">
                             <h3 class="b-tittle">Glasses</h3>
-                            <a class="collection" href="single.html">View collection <i
+                            <a class="collection" href="single.php">View collection <i
                                         class="glyphicon glyphicon-arrow-right"></i></a>
                         </div>
                         <div class="glass-img">
@@ -118,7 +114,7 @@ require_once "navigation.php";
                     <img src="../../web/assets/images/f1.jpg" alt=""/>
                     <figcaption>
                         <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.html">Shop</a></p>
+                        <p class="cart"><a href="single.php">Shop</a></p>
                     </figcaption>
                 </figure>
             </div>
@@ -127,7 +123,7 @@ require_once "navigation.php";
                     <img src="../../web/assets/images/f2.jpg" alt=""/>
                     <figcaption>
                         <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.html">Shop</a></p>
+                        <p class="cart"><a href="single.php">Shop</a></p>
                     </figcaption>
                 </figure>
             </div>
@@ -136,7 +132,7 @@ require_once "navigation.php";
                     <img src="../../web/assets/images/f3.jpg" alt=""/>
                     <figcaption>
                         <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.html">Shop</a></p>
+                        <p class="cart"><a href="single.php">Shop</a></p>
                     </figcaption>
                 </figure>
             </div>
@@ -156,7 +152,7 @@ require_once "navigation.php";
                     <img src="../../web/assets/images/f4.jpg" alt=""/>
                     <figcaption>
                         <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.html">Shop</a></p>
+                        <p class="cart"><a href="single.php">Shop</a></p>
                     </figcaption>
                 </figure>
             </div>
@@ -165,7 +161,7 @@ require_once "navigation.php";
                     <img src="../../web/assets/images/f5.jpg" alt=""/>
                     <figcaption>
                         <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.html">Shop</a></p>
+                        <p class="cart"><a href="single.php">Shop</a></p>
                     </figcaption>
                 </figure>
             </div>
@@ -174,7 +170,7 @@ require_once "navigation.php";
                     <img src="../../web/assets/images/f6.jpg" alt=""/>
                     <figcaption>
                         <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.html">Shop</a></p>
+                        <p class="cart"><a href="single.php">Shop</a></p>
                     </figcaption>
                 </figure>
             </div>
@@ -203,20 +199,20 @@ require_once "navigation.php";
                     <div class="standard active" data-selector="1">
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s2.jpg" class="img-responsive"
-                                                           alt=""/></a>
+                                <a href="single.php"><img src="../../web/assets/images/s2.jpg" class="img-responsive"
+                                                          alt=""/></a>
                                 <div class="r-title">
                                     <h3>Sunny Dress</h3>
                                     <h4>$30</h4>
                                 </div>
                             </div>
-                            <div class="atc"><a href="single.html">Shop</a></div>
+                            <div class="atc"><a href="single.php">Shop</a></div>
                         </div>
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s1.jpg" class="img-responsive"
-                                                           alt=""/></a>
-                                <div class="atc"><a href="single.html">Shop</a></div>
+                                <a href="single.php"><img src="../../web/assets/images/s1.jpg" class="img-responsive"
+                                                          alt=""/></a>
+                                <div class="atc"><a href="single.php">Shop</a></div>
                                 <div class="r-title">
                                     <h3>White Shirt</h3>
                                     <h4>$30</h4>
@@ -225,9 +221,9 @@ require_once "navigation.php";
                         </div>
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s3.jpg" class="img-responsive"
-                                                           alt=""/></a>
-                                <div class="atc"><a href="single.html">Shop</a></div>
+                                <a href="single.php"><img src="../../web/assets/images/s3.jpg" class="img-responsive"
+                                                          alt=""/></a>
+                                <div class="atc"><a href="single.php">Shop</a></div>
                                 <div class="r-title">
                                     <h3>Puma Shoe</h3>
                                     <h4>$30</h4>
@@ -239,9 +235,9 @@ require_once "navigation.php";
                     <div class="standard" data-selector="2">
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s3.jpg" class="img-responsive"
-                                                           alt=""/></a>
-                                <div class="atc"><a href="single.html">Shop</a></div>
+                                <a href="single.php"><img src="../../web/assets/images/s3.jpg" class="img-responsive"
+                                                          alt=""/></a>
+                                <div class="atc"><a href="single.php">Shop</a></div>
                                 <div class="r-title">
                                     <h3>Sunny Dress</h3>
                                     <h4>$30</h4>
@@ -250,9 +246,9 @@ require_once "navigation.php";
                         </div>
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s2.jpg" class="img-responsive"
-                                                           alt=""/></a>
-                                <div class="atc"><a href="single.html">Shop</a></div>
+                                <a href="single.php"><img src="../../web/assets/images/s2.jpg" class="img-responsive"
+                                                          alt=""/></a>
+                                <div class="atc"><a href="single.php">Shop</a></div>
                                 <div class="r-title">
                                     <h3>White Shirt</h3>
                                     <h4>$30</h4>
@@ -261,9 +257,9 @@ require_once "navigation.php";
                         </div>
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s1.jpg" class="img-responsive"
-                                                           alt=""/></a>
-                                <div class="atc"><a href="single.html">Shop</a></div>
+                                <a href="single.php"><img src="../../web/assets/images/s1.jpg" class="img-responsive"
+                                                          alt=""/></a>
+                                <div class="atc"><a href="single.php">Shop</a></div>
                                 <div class="r-title">
                                     <h3>Puma Shoe</h3>
                                     <h4>$30</h4>
@@ -275,9 +271,9 @@ require_once "navigation.php";
                     <div class="standard" data-selector="3">
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s2.jpg" class="img-responsive"
-                                                           alt=""/></a>
-                                <div class="atc"><a href="single.html">Shop</a></div>
+                                <a href="single.php"><img src="../../web/assets/images/s2.jpg" class="img-responsive"
+                                                          alt=""/></a>
+                                <div class="atc"><a href="single.php">Shop</a></div>
                                 <div class="r-title">
                                     <h3>Sunny Dress</h3>
                                     <h4>$30</h4>
@@ -286,9 +282,9 @@ require_once "navigation.php";
                         </div>
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s1.jpg" class="img-responsive"
-                                                           alt=""/></a>
-                                <div class="atc"><a href="single.html">Shop</a></div>
+                                <a href="single.php"><img src="../../web/assets/images/s1.jpg" class="img-responsive"
+                                                          alt=""/></a>
+                                <div class="atc"><a href="single.php">Shop</a></div>
                                 <div class="r-title">
                                     <h3>White Shirt</h3>
                                     <h4>$30</h4>
@@ -297,9 +293,9 @@ require_once "navigation.php";
                         </div>
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s3.jpg" class="img-responsive"
-                                                           alt=""/></a>
-                                <div class="atc"><a href="single.html">Shop</a></div>
+                                <a href="single.php"><img src="../../web/assets/images/s3.jpg" class="img-responsive"
+                                                          alt=""/></a>
+                                <div class="atc"><a href="single.php">Shop</a></div>
                                 <div class="r-title">
                                     <h3>Puma Shoe</h3>
                                     <h4>$30</h4>
@@ -311,9 +307,9 @@ require_once "navigation.php";
                     <div class="standard" data-selector="4">
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s1.jpg" class="img-responsive"
-                                                           alt=""/></a>
-                                <div class="atc"><a href="single.html">Shop</a></div>
+                                <a href="single.php"><img src="../../web/assets/images/s1.jpg" class="img-responsive"
+                                                          alt=""/></a>
+                                <div class="atc"><a href="single.php">Shop</a></div>
                                 <div class="r-title">
                                     <h3>Sunny Dress</h3>
                                     <h4>$30</h4>
@@ -322,9 +318,9 @@ require_once "navigation.php";
                         </div>
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s3.jpg" class="img-responsive"
-                                                           alt=""/></a>
-                                <div class="atc"><a href="single.html">Shop</a></div>
+                                <a href="single.php"><img src="../../web/assets/images/s3.jpg" class="img-responsive"
+                                                          alt=""/></a>
+                                <div class="atc"><a href="single.php">Shop</a></div>
                                 <div class="r-title">
                                     <h3>White Shirt</h3>
                                     <h4>$30</h4>
@@ -333,9 +329,9 @@ require_once "navigation.php";
                         </div>
                         <div class="tag-grid">
                             <div class="tag-wrapper">
-                                <a href="single.html"><img src="../../web/assets/images/s2.jpg" class="img-responsive"
-                                                           alt=""/></a>
-                                <div class="atc"><a href="single.html">Shop</a></div>
+                                <a href="single.php"><img src="../../web/assets/images/s2.jpg" class="img-responsive"
+                                                          alt=""/></a>
+                                <div class="atc"><a href="single.php">Shop</a></div>
                                 <div class="r-title">
                                     <h3>Puma Shoe</h3>
                                     <h4>$30</h4>
