@@ -100,10 +100,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
             header("Location: ../../view/user/edit.php?error");
         } else {
 
-
             $userDao->editUser($user);
-            $userDao->updateAddress($user);
-
 
             //Move file to permanent directory
             move_uploaded_file($tmpName, $imagesDirectory);

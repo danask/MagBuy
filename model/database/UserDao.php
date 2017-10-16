@@ -5,6 +5,7 @@ namespace model\database;
 use model\database\Connect\Connection;
 use model\User;
 use \PDO;
+use \PDOException;
 
 
 class UserDao {
@@ -21,7 +22,6 @@ class UserDao {
     const REGISTER_USER_ADDRESS = "INSERT INTO adresses (full_adress, is_personal, user_id) VALUES (?, ?, ?)";
     const EDIT_USER = "UPDATE users SET email = ?, enabled = ?, first_name = ?, last_name = ?, mobile_phone = ?,
                            image_url = ?, password = ?, role = ? WHERE id = ?";
-    const ADD_ADDRESS = "INSERT INTO adresses (full_adress, is_personal, user_id) VALUES (?, ?, ?)";
     const UPDATE_ADDRESS = "UPDATE adresses SET full_adress = ?, is_personal = ? WHERE user_id = ?";
     const CHECK_ADDRESS_SET = "SELECT id FROM adresses WHERE user_id = ?";
     const GET_USER_INFO = "SELECT U.id, U.email, U.enabled, U.first_name, U.last_name, U.mobile_phone, U.image_url, 
@@ -131,30 +131,27 @@ class UserDao {
      */
     function editUser (User $user) {
 
-        $statement = $this->pdo->prepare(self::EDIT_USER);
-        $statement->execute(array($user->getEmail(), $user->getEnabled(), $user->getFirstName(), $user->getLastName(),
-            $user->getMobilePhone(), $user->getImageUrl(), $user->getPassword(), $user->getRole(), $user->getId()));
-    }
+        try {
+
+            $this->pdo->beginTransaction();
+
+            $statement = $this->pdo->prepare(self::EDIT_USER);
+            $statement->execute(array($user->getEmail(), $user->getEnabled(), $user->getFirstName(), $user->getLastName(),
+                $user->getMobilePhone(), $user->getImageUrl(), $user->getPassword(), $user->getRole(), $user->getId()));
+
+            $statement = $this->pdo->prepare(self::UPDATE_ADDRESS);
+            $statement->execute(array($user->getAddress(), $user->getPersonal(), $user->getId()));
+
+            $this->pdo->commit();
+
+        } catch (PDOException $e) {
+
+            $this->pdo->rollBack();
+            header("Location: ../../view/error/pdo_error.php");
+
+        }
 
 
-    //Function for adding address
-    /**
-     * @param User $user - receive user object
-     */
-    function addAddress (User $user) {
-
-        $statement = $this->pdo->prepare(self::ADD_ADDRESS);
-        $statement->execute(array($user->getAddress(), $user->getPersonal(), $user->getId()));
-    }
-
-    //Function for updating address
-
-    /**
-     * @param User $user - receive use object
-     */
-    function updateAddress (User $user) {
-        $statement = $this->pdo->prepare(self::UPDATE_ADDRESS);
-        $statement->execute(array($user->getAddress(), $user->getPersonal(), $user->getId()));
     }
 
 
