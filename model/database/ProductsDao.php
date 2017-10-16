@@ -24,7 +24,7 @@ class ProductsDao
     const GET_PRODUCT_IMAGES = "SELECT image_url FROM product_images WHERE product_id = ?";
     const GET_MOST_SOLD = "SELECT * FROM products ORDER BY times_sold DESC";
     const GET_MOST_REVIEWED = "SELECT * FROM products ORDER BY times_reviewed DESC";
-    const GET_PRODUCTS_BY_SUBCAT = "SELECT * FROM products WHERE subcategory_id = ?";
+    const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id FROM products p INNER JOIN images i ON p.id = i.product_id WHERE p.subcategory_id = ? ORDER BY p.created_at DESC";
 
 
     //Get connection in construct
