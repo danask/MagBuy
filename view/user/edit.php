@@ -32,8 +32,14 @@ require_once "../../controller/user/get_users_info_controller.php";
             <input type="tel" name="mobilePhone" value="<?=$userArr["mobile_phone"]?>" required/>
             <input type="text" name="address" <?php if($userArr['full_adress'])
             { echo "value=\"" . $userArr['full_adress'] . "\"";} else { echo "placeholder=\"Enter Address\""; } ?> required >
-            <input type="radio" name="personal" value="1" <?php if($userArr['is_personal'] == 1) { echo "checked"; }?>>Personal
-            <input type="radio" name="personal" value="2" <?php if($userArr['is_personal'] == 2) { echo "checked"; }?>>Business
+            <div id="fileupload">
+                    <input class="radio" type="radio" name="personal" value="1" <?php if ($userArr['is_personal'] == 1) {
+                        echo "checked";
+                    } ?> required>&nbspPersonal&nbsp&nbsp&nbsp
+                    <input class="radio" type="radio" name="personal" value="2" <?php if ($userArr['is_personal'] == 2) {
+                        echo "checked";
+                    } ?> required>&nbspBusiness
+            </div>
             <div id="fileupload">
             <p id="fileuploadMessage">Profile picture</p>
             <input type="file" name="image"/>

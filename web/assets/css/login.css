@@ -19,7 +19,7 @@ body{
     text-align: center;
     box-shadow: 0 0 20px 0 rgba(0, 0, 0, 0.2), 0 5px 5px 0 rgba(0, 0, 0, 0.24);
 }
-.form input {
+.form input:not([type='radio']) {
     font-family: "Roboto", sans-serif;
     outline: 0;
     background: #f2f2f2;
@@ -91,4 +91,8 @@ body{
 #logo {
     margin-left: 31.1%;
     margin-bottom: 5%;
+}
+
+.radio {
+    margin: 7% 0 7% 0;
 }
