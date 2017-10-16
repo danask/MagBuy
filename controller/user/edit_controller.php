@@ -63,16 +63,31 @@ if (!isset($_POST['password'])) {
 }
 
 
+//Address and radio buttons validation
+if(isset($_POST['personal'])) {
+    if (!($_POST['personal'] == 1 || $_POST['personal'] == 2)) {
+
+        //Locate to error Register Page
+        header("Location: ../../view/user/edit.php?error");
+    }
+}
+
+if (isset($_POST['address'])) {
+    if(!(strlen($_POST['address']) > 4 && strlen($_POST['address']) < 200)){
+
+        //Locate to error Register Page
+        header("Location: ../../view/user/edit.php?error");
+    }
+}
+
 
 //Update Validation
 if (isset($_POST['email']) && (isset($_POST['password']) || $_POST['password'] == 0) && isset($_POST['firstName'])
-    && isset($_POST['lastName']) && isset($_POST['mobilePhone']) && isset($_POST['address']) && isset($_POST['personal'])
+    && isset($_POST['lastName']) && isset($_POST['mobilePhone'])
     && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && strlen($_POST['email']) > 3
     && strlen($_POST['email']) < 254 && ((strlen($_POST['password']) >= 4 && strlen($_POST['password']) < 20) || $_POST['password'] == 0)
     && strlen($_POST['firstName']) >= 4 && strlen($_POST['firstName']) < 20 && strlen($_POST['lastName']) >= 4
-    && strlen($_POST['lastName']) < 20 && ctype_digit($_POST['mobilePhone']) && strlen($_POST['mobilePhone']) == 10
-    && strlen($_POST['address']) > 4 && strlen($_POST['address']) < 200
-    && ($_POST['personal'] == 1 || $_POST['personal'] == 2)) {
+    && strlen($_POST['lastName']) < 20 && ctype_digit($_POST['mobilePhone']) && strlen($_POST['mobilePhone']) == 10) {
 
 
     $user = new \model\User();
@@ -109,6 +124,20 @@ if (isset($_POST['email']) && (isset($_POST['password']) || $_POST['password'] =
             $user->setImageUrl($imagesDirectory);
         } else {
             $user->setImageUrl($userArr['image_url']);
+        }
+
+        //Check if address is set
+        if(isset($_POST['address'])) {
+            $user->setAddress(htmlentities($_POST['address']));
+        } else {
+            $user->setAddress(0);
+        }
+
+        //Check if radio button is set
+        if(isset($_POST['personal'])){
+            $user->setPersonal(htmlentities($_POST['personal']));
+        } else {
+            $user->setPersonal(0);
         }
 
         //Check if user exists and if user's new email is the same as old one

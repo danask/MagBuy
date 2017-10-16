@@ -31,14 +31,14 @@ require_once "../../controller/user/get_users_info_controller.php";
             <input type="text" name="lastName" value="<?=$userArr["last_name"]?>" required/>
             <input type="tel" name="mobilePhone" value="<?=$userArr["mobile_phone"]?>" required/>
             <input type="text" name="address" <?php if($userArr['full_adress'])
-            { echo "value=\"" . $userArr['full_adress'] . "\"";} else { echo "placeholder=\"Enter Address\""; } ?> required >
+            { echo "value=\"" . $userArr['full_adress'] . "\"";} else { echo "placeholder=\"Enter Address\""; } ?> >
             <div id="fileupload">
                     <input class="radio" type="radio" name="personal" value="1" <?php if ($userArr['is_personal'] == 1) {
                         echo "checked";
-                    } ?> required>&nbspPersonal&nbsp&nbsp&nbsp
+                    } ?> >&nbspPersonal&nbsp&nbsp&nbsp
                     <input class="radio" type="radio" name="personal" value="2" <?php if ($userArr['is_personal'] == 2) {
                         echo "checked";
-                    } ?> required>&nbspBusiness
+                    } ?> >&nbspBusiness
             </div>
             <div id="fileupload">
             <p id="fileuploadMessage">Profile picture</p>
