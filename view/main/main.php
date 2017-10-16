@@ -23,7 +23,7 @@ require_once '../../controller/products/all_products_controller.php';
 </head>
 <body>
 
-<div class="header-bg">
+
     <div class="wrap">
         <div class="h-bg">
             <div class="total">
@@ -44,7 +44,7 @@ require_once '../../controller/products/all_products_controller.php';
                                         <div class="button-t"><a href="../../utility/log_out.php">Log out</a></span></div>
                                     </a></li>
                                 <li class="last"><a href="">
-                                        <div class="button-t"><a href="../user/edit.php">Edit</a></span></div>
+                                        <div class="button-t"><a href="../user/edit.php">Edit Account</a></span></div>
                                     </a></li>
                             </ul>
                       <?php  } ?>
@@ -77,22 +77,22 @@ require_once '../../controller/products/all_products_controller.php';
                             <div class="content-wrapper">
                                 <div class="content-top">
                                     <div class="text">
+
+                                        <?php foreach ($products as $product) { ?>
+
                                         <div class="grid_1_of_3 images_1_of_3">
                                             <div class="grid_1">
-                                                <a href="single.html"><img src="images/pic5.jpg"
+                                                <a href="single.html"><img src="<?= $product['image_url']?>"
                                                                            title="continue reading" alt=""></a>
                                                 <div class="grid_desc">
-                                                    <p class="title">Lorem ipsum dolor sitconsectetuer adipiscing
-                                                        elit</p>
-                                                    <p class="title1">Lorem ipsum dolor sitconsectetuer adipiscing
-                                                        elit</p>
+                                                    <p class="title"><?= $product['title']?></p>
+                                                    <p class="title1"><?= $product['description']?></p>
                                                     <div class="price" style="height: 19px;">
-                                                        <span class="reducedfrom">$66.00</span>
-                                                        <span class="actual">$12.00</span>
+                                                        <span class="reducedfrom"><?= $product['price']?></span>
                                                     </div>
                                                     <div class="cart-button">
                                                         <div class="cart">
-                                                            <a href="#"><img src="images/cart.png" alt=""/></a>
+                                                            <a href="#"><img src="../../web/uploads/magbuy/cart.png" alt=""/></a>
                                                         </div>
                                                         <button class="button"><span>Details</span></button>
                                                         <div class="clear"></div>
@@ -101,55 +101,8 @@ require_once '../../controller/products/all_products_controller.php';
                                             </div>
                                             <div class="clear"></div>
                                         </div>
-                                        <div class="grid_1_of_3 images_1_of_3">
-                                            <div class="grid_1">
-                                                <a href="single.html"><img src="images/pic6.jpg"
-                                                                           title="continue reading" alt=""></a>
-                                                <div class="grid_desc">
-                                                    <p class="title">Lorem ipsum dolor sitconsectetuer adipiscing
-                                                        elit</p>
-                                                    <p class="title1">Lorem ipsum dolor sitconsectetuer adipiscing
-                                                        elit</p>
-                                                    <div class="price" style="height: 19px;">
-                                                        <span class="reducedfrom">$66.00</span>
-                                                        <span class="actual">$12.00</span>
-                                                    </div>
-                                                    <div class="cart-button">
-                                                        <div class="cart">
-                                                            <a href="#"><img src="images/cart.png" alt=""/></a>
-                                                        </div>
-                                                        <button class="button"><span>Details</span></button>
-                                                        <div class="clear"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                        <div class="grid_1_of_3 images_1_of_3">
-                                            <div class="grid_1">
-                                                <a href="single.html"><img src="images/pic4.jpg"
-                                                                           title="continue reading" alt=""></a>
-                                                <div class="grid_desc">
-                                                    <p class="title">Lorem ipsum dolor sitconsectetuer adipiscing
-                                                        elit</p>
-                                                    <p class="title1">Lorem ipsum dolor sitconsectetuer adipiscing
-                                                        elit</p>
-                                                    <div class="price" style="height: 19px;">
-                                                        <span class="reducedfrom">$66.00</span>
-                                                        <span class="actual">$12.00</span>
-                                                    </div>
-                                                    <div class="cart-button">
-                                                        <div class="cart">
-                                                            <a href="#"><img src="images/cart.png" alt=""/></a>
-                                                        </div>
-                                                        <button class="button"><span>Details</span></button>
-                                                        <div class="clear"></div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div>
-                                        <div class="clear"></div>
+                                        <?php } ?>
+
                                     </div>
                                 </div>
                             </div>
@@ -173,7 +126,7 @@ require_once '../../controller/products/all_products_controller.php';
             </div>
         </div>
     </div>
-</div>
+
 
 </body>
 </html>

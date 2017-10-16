@@ -16,8 +16,10 @@ class ProductsDao
     private $pdo;
 
     //Statements defined as constants
-    const CREATE_PRODUCT = "INSERT INTO products(title, description, price, quantity, visible, created_at, subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
-    const GET_ALL_AVAILABLE_PRODUCTS = "SELECT id, title, description, price FROM products ORDER BY created_at DESC";
+    const CREATE_PRODUCT = "INSERT INTO products(title, description, price, quantity, visible, created_at, subcategory_id)
+                            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    const GET_ALL_AVAILABLE_PRODUCTS = "SELECT P.id, I.image_url, P.title, P.description, P.price FROM products as P 
+                                        INNER JOIN images as I ON P.id = I.product_id ORDER BY created_at DESC";
     const GET_PRODUCT_BY_ID = "SELECT * FROM products WHERE id = ?";
     const GET_PRODUCT_IMAGES = "SELECT image_url FROM product_images WHERE product_id = ?";
     const GET_MOST_SOLD = "SELECT * FROM products ORDER BY times_sold DESC";
