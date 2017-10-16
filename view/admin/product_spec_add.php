@@ -30,7 +30,7 @@ $specifications = $subcatSpecDao->getAllSpecificationsForSubcategory($_GET['subc
     ?>
     <input type="hidden" name="product_id" value="<?= $_GET['pid']; ?>">
     <input type="hidden" name="subcat_id" value="<?= $_GET['subcid']; ?>">
-    <input type="submit" value="Create" name="submit">
+    <input type="submit" value="Continue to images" name="submit">
 </form>
 </body>
 </html>

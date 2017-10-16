@@ -1,9 +1,5 @@
 <?php
 
-//Check for Session
-//require_once "../../utility/session_main.php";
-
-
 //Autoload to require needed model files
 function __autoload($className)
 {
@@ -27,11 +23,11 @@ if (isset($_POST['submit'])) {
 
             $id = $productSpecsDao->fillSpecification($specification);
 
-            header("Location: ../../view/main/main.php");
+            header("Location: ../../view/admin/product_images_add.php?pid=$productId");
 
         } catch (PDOException $e) {
 
-//            header("Location: ../../view/error/pdo_error.php");
+            header("Location: ../../view/error/pdo_error.php");
         }
     }
 
