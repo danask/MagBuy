@@ -72,8 +72,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 </head>
 <body>
 <?php
-require_once "head.php";
-require_once "navigation.php";
+require_once "../elements/header.php";
+require_once "../elements/navigation.php";
 ?>
 <!--start-content-->
 <!-- products -->
@@ -309,7 +309,7 @@ require_once "navigation.php";
 <!--start-bottom-->
 <!--start-image-cursuals-->
 <?php
-require_once "foot.php";
+require_once "../elements/footer.php";
 ?>
 <!--//end-copyright-->
 <!--end-footer-->

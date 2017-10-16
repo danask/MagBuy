@@ -4,21 +4,21 @@
             <div class="nbs-flexisel-inner">
                 <ul class="flexiselDemo3 nbs-flexisel-ul" style="left: -253.6px; display: block;">
                     <li onclick="location.href='#';" class="nbs-flexisel-item" style="width: 253.6px;"><img
-                            src="../../web/assets/images/c3.png" alt=""/></li>
+                                src="../../web/assets/images/c3.png" alt=""/></li>
                     <li onclick="location.href='#';" class="nbs-flexisel-item" style="width: 253.6px;"><img
-                            src="../../web/assets/images/c4.png" alt=""/></li>
+                                src="../../web/assets/images/c4.png" alt=""/></li>
                     <li onclick="location.href='#';" class="nbs-flexisel-item" style="width: 253.6px;"><img
-                            src="../../web/assets/images/c1.png" alt=""/></li>
+                                src="../../web/assets/images/c1.png" alt=""/></li>
                     <li onclick="location.href='#';" class="nbs-flexisel-item" style="width: 253.6px;"><img
-                            src="../../web/assets/images/c2.png" alt=""/></li>
+                                src="../../web/assets/images/c2.png" alt=""/></li>
                     <li onclick="location.href='#';" class="nbs-flexisel-item" style="width: 253.6px;"><img
-                            src="../../web/assets/images/c3.png" alt=""/></li>
+                                src="../../web/assets/images/c3.png" alt=""/></li>
                     <li onclick="location.href='#';" class="nbs-flexisel-item" style="width: 253.6px;"><img
-                            src="../../web/assets/images/c4.png" alt=""/></li>
+                                src="../../web/assets/images/c4.png" alt=""/></li>
                     <li onclick="location.href='#';" class="nbs-flexisel-item" style="width: 253.6px;"><img
-                            src="../../web/assets/images/c1.png" alt=""/></li>
+                                src="../../web/assets/images/c1.png" alt=""/></li>
                     <li onclick="location.href='#';" class="nbs-flexisel-item" style="width: 253.6px;"><img
-                            src="../../web/assets/images/c2.png" alt=""/></li>
+                                src="../../web/assets/images/c2.png" alt=""/></li>
                 </ul>
                 <div class="nbs-flexisel-nav-left" style="top: 21.5px;"></div>
                 <div class="nbs-flexisel-nav-right" style="top: 21.5px;"></div>
@@ -66,7 +66,7 @@
                 <h3>About Us</h3>
                 <ul>
                     <li><a href="#">Who We Are</a></li>
-                    <li><a href="contact.html">Contact Us</a></li>
+                    <li><a href="../main/contact.html">Contact Us</a></li>
                     <li><a href="#">Our Sites</a></li>
                     <li><a href="#">In The News</a></li>
                     <li><a href="#">Carrers</a></li>
@@ -75,9 +75,9 @@
             <div class="col-md-2 footer-left">
                 <h3>Your Account</h3>
                 <ul>
-                    <li><a href="account.html">Your Account</a></li>
+                    <li><a href="../main/account.html">Your Account</a></li>
                     <li><a href="#">Personal Information</a></li>
-                    <li><a href="contact.html">Addresses</a></li>
+                    <li><a href="../main/contact.html">Addresses</a></li>
                     <li><a href="#">Discount</a></li>
                     <li><a href="#">Track your order</a></li>
                 </ul>
