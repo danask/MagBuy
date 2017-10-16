@@ -97,17 +97,31 @@ class UserDao {
      */
     function registerUser (User $user) {
 
-        $statement = $this->pdo->prepare(self::REGISTER_USER);
-        $statement->execute(array($user->getEmail(), $user->getEnabled(), $user->getFirstName(), $user->getLastName(),
-            $user->getMobilePhone(), $user->getImageUrl(), $user->getPassword(), $user->getRole()));
 
-        $lastInsertId = $this->pdo->lastInsertId();
+        //Use try catch, to have transaction
+        try {
 
-        $statement = $this->pdo->prepare(self::REGISTER_USER_ADDRESS);
-        $statement->execute(array($user->getAddress(), $user->getPersonal(), $lastInsertId));
+            $this->pdo->beginTransaction();
 
-        //Return registered user's ID
-        return $lastInsertId;
+            $statement = $this->pdo->prepare(self::REGISTER_USER);
+            $statement->execute(array($user->getEmail(), $user->getEnabled(), $user->getFirstName(), $user->getLastName(),
+                $user->getMobilePhone(), $user->getImageUrl(), $user->getPassword(), $user->getRole()));
+
+            $lastInsertId = $this->pdo->lastInsertId();
+
+            $statement = $this->pdo->prepare(self::REGISTER_USER_ADDRESS);
+            $statement->execute(array($user->getAddress(), $user->getPersonal(), $lastInsertId));
+
+            $this->pdo->commit();
+            //Return registered user's ID
+            return $lastInsertId;
+
+        } catch (PDOException $e) {
+
+            $this->pdo->rollBack();
+            header("Location: ../../view/error/pdo_error.php");
+
+        }
     }
 
 

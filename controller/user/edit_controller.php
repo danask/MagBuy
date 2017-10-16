@@ -66,7 +66,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
     && strlen($_POST['firstName']) >= 4 && strlen($_POST['firstName']) < 20 && strlen($_POST['lastName']) >= 4
     && strlen($_POST['lastName']) < 20 && ctype_digit($_POST['mobilePhone']) && strlen($_POST['mobilePhone']) == 10
     && strlen($_POST['address']) > 4 && strlen($_POST['address']) < 200
-    && ($_POST['personal'] == 0 || $_POST['personal'] == 1)) {
+    && ($_POST['personal'] == 1 || $_POST['personal'] == 2)) {
 
 
     $user = new \model\User();
@@ -100,7 +100,6 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
             header("Location: ../../view/user/edit.php?error");
         } else {
 
-            //TO PUT TRANSACTION !!!!!!!!!!!!
 
             $userDao->editUser($user);
             $userDao->updateAddress($user);
