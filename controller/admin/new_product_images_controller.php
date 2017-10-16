@@ -20,7 +20,7 @@ if (isset($_POST['submit'])) {
 
             $productImageDao->addProductImage($image);
 
-            header("Location: ../../view/main/main.php");
+            header("Location: ../../view/main/index.php");
 
         } catch (PDOException $e) {
             echo "PDO EXCEPTION";

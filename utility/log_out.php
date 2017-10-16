@@ -4,4 +4,4 @@ session_start();
 
 unset($_SESSION{'loggedUser'});
 
-header("Location: ../view/main/main.php");
+header("Location: ../view/main/index.php");

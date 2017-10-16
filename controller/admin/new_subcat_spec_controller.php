@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 
         $id = $specDao->createSpecification($specification);
 
-        header("Location: ../../view/main/main.php");
+        header("Location: ../../view/main/index.php");
 
 
     } catch (PDOException $e) {
