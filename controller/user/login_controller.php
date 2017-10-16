@@ -23,7 +23,7 @@ if (isset($_POST['email']) && isset($_POST['password'])
         $userDao = \model\database\UserDao::getInstance();
 
         $user->setEmail(htmlentities($_POST['email']));
-        $user->setPassword($_POST['password']);
+        $user->setPassword(sha1($_POST['password']));
 
         $result = $userDao->checkLogin($user);
 

@@ -26,6 +26,8 @@ class User
         $this->enabled = 1;
         $this->lastLogin = date("Y-m-d H:i:s");
         $this->role = 1;
+        $this->address = 0;
+        $this->personal = 0;
     }
 
 

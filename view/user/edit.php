@@ -30,9 +30,9 @@ require_once "../../controller/user/get_users_info_controller.php";
             <input type="text" name="firstName" value="<?=$userArr["first_name"]?>" required/>
             <input type="text" name="lastName" value="<?=$userArr["last_name"]?>" required/>
             <input type="tel" name="mobilePhone" value="<?=$userArr["mobile_phone"]?>" required/>
-            <input type="text" name="address"  required/>
-            <input type="radio" name="personal" value="true" checked>Personal
-            <input type="radio" name="personal" value="false">Business
+            <input type="text" name="address" <?php if($userArr['full_adress']){ echo "value=\"" . $userArr['full_adress'] . "\"";} else { echo "placeholder=\"Enter Address\""; } ?> required >
+            <input type="radio" name="personal" value="1" <?php if($userArr['is_personal'] == 1) { echo "checked"; }?>>Personal
+            <input type="radio" name="personal" value="2" <?php if($userArr['is_personal'] == 2) { echo "checked"; }?>>Business
             <div id="fileupload">
             <p id="fileuploadMessage">Profile picture</p>
             <input type="file" name="image"/>
@@ -43,6 +43,7 @@ require_once "../../controller/user/get_users_info_controller.php";
             <li class='wrongReg'>Email might exist</li><li class='wrongReg'>Password: between 4 and 12 symbols</li>
             <li class='wrongReg'>Names: between 4 and 20 symbols</li>
             <li class='wrongReg'>Mobile phone must be 10 digits</li>
+            <li class='wrongReg'>Address: between 4 and 200 symbols</li>
             <li class='wrongReg'>Image must be below 2MB</li>"; };?>
 <p class="message"><a href="../main/main.php">Back to offers?</a></p>
 </form>

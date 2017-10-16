@@ -60,11 +60,13 @@ if(isset($_FILES['image']['tmp_name'])) {
 
 //Update Validation
 if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstName']) && isset($_POST['lastName'])
-    && isset($_POST['mobilePhone']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
-    && strlen($_POST['email']) > 3 && strlen($_POST['email']) < 254 && strlen($_POST['password']) >= 4
-    && strlen($_POST['password']) < 20 && strlen($_POST['firstName']) >= 4 && strlen($_POST['firstName']) < 20
-    && strlen($_POST['lastName']) >= 4 && strlen($_POST['lastName']) < 20 && ctype_digit($_POST['mobilePhone'])
-    && strlen($_POST['mobilePhone']) == 10) {
+    && isset($_POST['mobilePhone']) && isset($_POST['address']) && isset($_POST['personal'])
+    && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && strlen($_POST['email']) > 3
+    && strlen($_POST['email']) < 254 && strlen($_POST['password']) >= 4 && strlen($_POST['password']) < 20
+    && strlen($_POST['firstName']) >= 4 && strlen($_POST['firstName']) < 20 && strlen($_POST['lastName']) >= 4
+    && strlen($_POST['lastName']) < 20 && ctype_digit($_POST['mobilePhone']) && strlen($_POST['mobilePhone']) == 10
+    && strlen($_POST['address']) > 4 && strlen($_POST['address']) < 200
+    && ($_POST['personal'] == 0 || $_POST['personal'] == 1)) {
 
 
     $user = new \model\User();
@@ -98,8 +100,11 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
             header("Location: ../../view/user/edit.php?error");
         } else {
 
+            //TO PUT TRANSACTION !!!!!!!!!!!!
+
             $userDao->editUser($user);
-            $userDao->addAddress($user);
+            $userDao->updateAddress($user);
+
 
             //Move file to permanent directory
             move_uploaded_file($tmpName, $imagesDirectory);

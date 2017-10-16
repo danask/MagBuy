@@ -24,7 +24,6 @@ try {
     $userArr = $userDao->getUserInfo($user);
 
 
-
 } catch (PDOException $e) {
 
     header("Location: ../../view/error/pdo_error.php");
