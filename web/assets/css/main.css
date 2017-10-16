@@ -206,7 +206,7 @@ body{
 	width: 25%;
 }
 .header_bottom_right_images {
-	float:left;
+	float:right;
 	width: 74%;
 	margin-right: 1%;
 }

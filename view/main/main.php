@@ -107,17 +107,6 @@ require_once '../../controller/products/all_products_controller.php';
                                 </div>
                             </div>
                         </div>
-                        <div class="header-para">
-                            <div class="categories">
-                                <div class="box">
-                                    <div class="box-heading"><h1><a href="#">Cart:&nbsp;</a></h1></div>
-                                    <div class="box-content">
-                                        Now in your cart&nbsp;<strong> 0 items</strong>
-                                    </div>
-                                </div>
-                                <div class="clear"></div>
-                            </div>
-                        </div>
                         <div class="clear"></div>
                         <div class="footer-bottom">
                         </div>
