@@ -1,9 +1,5 @@
 <?php
 
-//Check for Session
-//require_once "../../utility/session_main.php";
-
-
 //Autoload to require needed model files
 function __autoload($className)
 {
@@ -13,11 +9,12 @@ function __autoload($className)
 
 if (isset($_POST['submit'])) {
     $productId = $_POST['product_id'];
-    $specificationIds = json_decode($_POST['spec_ids'], TRUE);
+    $specsDao = \model\database\SubcatSpecificationsDao::getInstance();
+    $productSpecs = $specsDao->getAllSpecificationsForSubcategory($_POST['subcat_id']);
 
-    for ($i = 0; $i < $_POST['specs_total']; $i++) {
-        $specId = $specificationIds[$i];
-        $value = $_POST[$specId];
+    foreach ($productSpecs as $specification) {
+        $specId = $specification['id'];
+        $value = $_POST['spec-' . $specId];
         $specification = new \model\ProductSpecification($value, $specId, $productId);
 
         try {
@@ -26,11 +23,11 @@ if (isset($_POST['submit'])) {
 
             $id = $productSpecsDao->fillSpecification($specification);
 
-            header("Location: ../../view/main/main.php");
+            header("Location: ../../view/admin/product_images_add.php?pid=$productId");
 
         } catch (PDOException $e) {
 
-//            header("Location: ../../view/error/pdo_error.php");
+            header("Location: ../../view/error/pdo_error.php");
         }
     }
 

@@ -1,9 +1,5 @@
 <?php
 
-//Check for Session
-//require_once "../../utility/session_main.php";
-
-
 //Autoload to require needed model files
 function __autoload($className)
 {
@@ -28,7 +24,7 @@ if (isset($_POST['submit'])) {
 
         $id = $productDao->createNewProduct($product);
 
-        header("Location: ../../view/admin/product_spec_create.php?pid=$id&subcid=$subcatId");
+        header("Location: ../../view/admin/product_spec_add.php?pid=$id&subcid=$subcatId");
 
     } catch (PDOException $e) {
 
