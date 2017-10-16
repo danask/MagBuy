@@ -64,34 +64,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </div>
 </div>
 <!--header-->
-<div class="header_bg">
-    <div class="container">
-        <div class="header">
-            <div class="head-t">
-                <div class="logo">
-                    <a href="index.php"><h1>Nuevo <span>Shop</span></h1></a>
-                </div>
-                <div class="header_right">
-                    <div class="cart box_1">
-                        <a href="checkout.html">
-                            <div class="total">
-                                <span class="simpleCart_total"></span> (<span id="simpleCart_quantity"
-                                                                              class="simpleCart_quantity"></span> items)
-                            </div>
-                            <i class="glyphicon glyphicon-shopping-cart"></i></a>
-                        <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="clearfix"></div>
-            </div>
-            <!--start-header-menu-->
-            <?php
-            require_once "navigation.php";
-            ?>
-        </div>
-    </div>
-</div>
+
+<?php
+require_once "navigation.php";
+?>
 <!--start-content-->
 <!--start-banner-->
 <div class="banner">
