@@ -20,6 +20,7 @@ class UserDao {
                            image_url, password, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
     const EDIT_USER = "UPDATE users SET email = ?, enabled = ?, first_name = ?, last_name = ?, mobile_phone = ?,
                            image_url = ?, password = ?, role = ? WHERE id = ?";
+    const ADD_ADDRESS = "INSERT INTO adresses (full_adress, is_personal, user_id) VALUES (?, ?, ?)";
     const GET_USER_INFO = "SELECT id, email, enabled, first_name, last_name, mobile_phone,
                            image_url, password, last_login, role FROM users WHERE id = ?";
 
@@ -114,6 +115,16 @@ class UserDao {
     }
 
 
+    //Function for adding address
+    function addAddress (User $user) {
+
+        $statement = $this->pdo->prepare(self::ADD_ADDRESS);
+        $statement->execute(array($user->getAddress(), $user->getPersonal(), $user->getId()));
+    }
+
+
+
+
     //Function for getting user's info (used in edit predefined info)
     /**
      * @param User $user - receive user object
@@ -127,4 +138,6 @@ class UserDao {
         $userInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $userInfo[0];
     }
+
+
 }

@@ -17,6 +17,8 @@ class User
     private $password;
     private $lastLogin;
     private $role;
+    private $address;
+    private $personal;
 
 
     public function __construct()
@@ -187,4 +189,38 @@ class User
     {
         $this->role = $role;
     }
+
+    /**
+     * @return mixed
+     */
+    public function getAddress()
+    {
+        return $this->address;
+    }
+
+    /**
+     * @param mixed $address
+     */
+    public function setAddress($address)
+    {
+        $this->address = $address;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getPersonal()
+    {
+        return $this->personal;
+    }
+
+    /**
+     * @param mixed $personal
+     */
+    public function setPersonal($personal)
+    {
+        $this->personal = $personal;
+    }
+
+
 }

@@ -29,6 +29,7 @@ table{
 }
 /*End reset*/
 
+/* start editing from here */
 a{text-decoration:none;}
 .txt-rt{text-align:right;}/* text align right */
 .txt-lt{text-align:left;}/* text align left */
@@ -407,7 +408,7 @@ span.actual {
 .grid_1_of_3{
 	display: block;
 	float:left;
-	margin: 1% 0 1% 1.6%;
+	margin: 1% 1.1% 1% 0%;
 }
 .grid_1_of_3:first-child { 
 	margin-left: 0; 

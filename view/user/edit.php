@@ -30,6 +30,9 @@ require_once "../../controller/user/get_users_info_controller.php";
             <input type="text" name="firstName" value="<?=$userArr["first_name"]?>" required/>
             <input type="text" name="lastName" value="<?=$userArr["last_name"]?>" required/>
             <input type="tel" name="mobilePhone" value="<?=$userArr["mobile_phone"]?>" required/>
+            <input type="text" name="address"  required/>
+            <input type="radio" name="personal" value="true" checked>Personal
+            <input type="radio" name="personal" value="false">Business
             <div id="fileupload">
             <p id="fileuploadMessage">Profile picture</p>
             <input type="file" name="image"/>

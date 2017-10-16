@@ -32,10 +32,10 @@ require_once '../../controller/products/all_products_controller.php';
                         <?php if(!isset($_SESSION['loggedUser'])) { ?>
                         <ul class="user_menu">
                             <li class=""><a href="">
-                                    <div class="button-t"><span><a href="../user/register.php">Create an Account</a></span></div>
+                                    <div class="button-t"><span><a href="../user/login.php">Log in</a></span></div>
                                 </a></li>
                             <li class="last"><a href="">
-                                    <div class="button-t"><a href="../user/login.php">Log in</a></span></div>
+                                    <div class="button-t"><a href="../user/register.php">Create an Account</a></span></div>
                                 </a></li>
                         </ul>
                         <?php } else { ?>
@@ -77,7 +77,6 @@ require_once '../../controller/products/all_products_controller.php';
                             <div class="content-wrapper">
                                 <div class="content-top">
                                     <div class="text">
-
                                         <?php foreach ($products as $product) { ?>
 
                                         <div class="grid_1_of_3 images_1_of_3">
@@ -88,7 +87,7 @@ require_once '../../controller/products/all_products_controller.php';
                                                     <p class="title"><?= $product['title']?></p>
                                                     <p class="title1"><?= $product['description']?></p>
                                                     <div class="price" style="height: 19px;">
-                                                        <span class="reducedfrom"><?= $product['price']?></span>
+                                                        <span class="reducedfrom">$<?= $product['price']?></span>
                                                     </div>
                                                     <div class="cart-button">
                                                         <div class="cart">

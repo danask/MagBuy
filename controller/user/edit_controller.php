@@ -83,6 +83,9 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
         $user->setMobilePhone($_POST['mobilePhone']);
         $user->setRole(1);
         $user->setId($userId);
+        $user->setAddress($_POST['address']);
+        $user->setPersonal($_POST['personal']);
+
 
 
         //Get current user's email
@@ -96,6 +99,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
         } else {
 
             $userDao->editUser($user);
+            $userDao->addAddress($user);
 
             //Move file to permanent directory
             move_uploaded_file($tmpName, $imagesDirectory);
