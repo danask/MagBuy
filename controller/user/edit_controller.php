@@ -15,10 +15,14 @@ function __autoload($className) {
 
 $imagesDirectory = null;
 $tmpName = null;
-$userId = null;
+$userId = $_SESSION['loggedUser'];
+$picture = null;
+
 
 //Check if file is uploaded
 if(isset($_FILES['image']['tmp_name'])) {
+
+    $picture = true;
 
     $tmpName = $_FILES['image']['tmp_name'];
 
@@ -39,7 +43,6 @@ if(isset($_FILES['image']['tmp_name'])) {
     //Validate image file - image file below 2MB
     if ($type == "image" && $fileSize < 2048576) {
 
-        $userId = $_SESSION['loggedUser'];
         $uploadTime = microtime();
         $imagesDirectory = "../../web/uploads/profileImage/$userId-$uploadTime.$extension";
 
@@ -50,8 +53,7 @@ if(isset($_FILES['image']['tmp_name'])) {
     }
 } else {
 
-    //Redirect to Error page
-    header('Location: ../../view/user/edit.php?errorUpload');
+    $picture = false;
 }
 
 
@@ -59,6 +61,7 @@ if(isset($_FILES['image']['tmp_name'])) {
 if (!isset($_POST['password'])) {
     $_POST['password'] = 0;
 }
+
 
 
 //Update Validation
@@ -79,16 +82,15 @@ if (isset($_POST['email']) && (isset($_POST['password']) || $_POST['password'] =
 
         $userDao = \model\database\UserDao::getInstance();
 
-        $user->setEmail($_POST['email']);
+        $user->setEmail(htmlentities($_POST['email']));
         $user->setEnabled(1);
-        $user->setFirstName($_POST['firstName']);
-        $user->setLastName($_POST['lastName']);
-        $user->setImageUrl($imagesDirectory);
-        $user->setMobilePhone($_POST['mobilePhone']);
+        $user->setFirstName(htmlentities($_POST['firstName']));
+        $user->setLastName(htmlentities($_POST['lastName']));
+        $user->setMobilePhone(htmlentities($_POST['mobilePhone']));
         $user->setRole(1);
         $user->setId($userId);
-        $user->setAddress($_POST['address']);
-        $user->setPersonal($_POST['personal']);
+        $user->setAddress(htmlentities($_POST['address']));
+        $user->setPersonal(htmlentities($_POST['personal']));
 
 
 
@@ -97,11 +99,16 @@ if (isset($_POST['email']) && (isset($_POST['password']) || $_POST['password'] =
 
         //Check if password is changed or is the same
         if ($_POST['password'] == 0) {
-
             $user->setPassword($userArr['password']);
         } else {
-
             $user->setPassword(sha1($_POST['password']));
+        }
+
+        //Check if picture is changed or is the same
+        if ($picture) {
+            $user->setImageUrl($imagesDirectory);
+        } else {
+            $user->setImageUrl($userArr['image_url']);
         }
 
         //Check if user exists and if user's new email is the same as old one
@@ -114,7 +121,9 @@ if (isset($_POST['email']) && (isset($_POST['password']) || $_POST['password'] =
             $userDao->editUser($user);
 
             //Move file to permanent directory
-            move_uploaded_file($tmpName, $imagesDirectory);
+            if($picture) {
+                move_uploaded_file($tmpName, $imagesDirectory);
+            }
 
             header("Location: ../../view/main/index.php");
         }

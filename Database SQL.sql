@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `magbuy`.`users` (
   `enabled` INT(1) UNSIGNED NOT NULL,
   `first_name` VARCHAR(50) NULL DEFAULT NULL,
   `last_name` VARCHAR(50) NULL DEFAULT NULL,
-  `mobile_phone` INT(11) NULL DEFAULT NULL,
+  `mobile_phone` VARCHAR(15) NULL DEFAULT NULL,
   `image_url` VARCHAR(255) NULL DEFAULT NULL,
   `password` VARCHAR(255) NOT NULL,
   `last_login` DATE NULL DEFAULT NULL,

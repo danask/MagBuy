@@ -11,8 +11,8 @@ session_start();
                         echo '<li><a href="../user/edit.php">Edit profile</a></li>';
                         echo '<li><a href="../../utility/log_out.php">LogOut</a></li>';
                     } else {
-                        echo '<li><a href="../user/login.php">Login</a></li>';
                         echo '<li><a href="../user/register.php">Register</a></li>';
+                        echo '<li><a href="../user/login.php">Login</a></li>';
                     }
                     ?>
                 </ul>

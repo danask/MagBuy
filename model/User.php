@@ -161,7 +161,7 @@ class User
     }
 
     /**
-     * @return DateTime
+     * @return false|string
      */
     public function getLastLogin()
     {
@@ -169,7 +169,7 @@ class User
     }
 
     /**
-     * @param DateTime $lastLogin
+     * @param $lastLogin
      */
     public function setLastLogin($lastLogin)
     {

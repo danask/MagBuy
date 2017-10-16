@@ -31,7 +31,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
         $user->setFirstName(htmlentities($_POST['firstName']));
         $user->setLastName(htmlentities($_POST['lastName']));
         $user->setImageUrl("../../web/uploads/default.jpg");
-        $user->setMobilePhone((int)htmlentities($_POST['mobilePhone']));
+        $user->setMobilePhone(htmlentities($_POST['mobilePhone']));
 
         //Check if user exists
         if($userDao->checkUserExist($user)) {
