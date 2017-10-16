@@ -30,7 +30,7 @@ if (isset($_POST['email']) && isset($_POST['password'])
         if ($result) {
 
             $_SESSION['loggedUser'] = $result;
-            header("Location: ../../view/main/main.php");
+            header("Location: ../../view/main/index.php");
         } else {
 
             header("Location: ../../view/user/login.php?error");

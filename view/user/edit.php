@@ -44,7 +44,7 @@ require_once "../../controller/user/get_users_info_controller.php";
             <li class='wrongReg'>Names: between 4 and 20 symbols</li>
             <li class='wrongReg'>Mobile phone must be 10 digits</li>
             <li class='wrongReg'>Image must be below 2MB</li>"; };?>
-<p class="message"><a href="../main/main.php">Back to offers?</a></p>
+<p class="message"><a href="../main/index.php">Back to offers?</a></p>
 </form>
 </div>
 </div>

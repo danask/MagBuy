@@ -45,27 +45,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
 </head>
 <body>
-<!--start-home-->
-<div class="top_bg" id="home">
-    <div class="container">
-        <div class="header_top">
-            <div class="top_right">
-                <ul>
-                    <li><a href="#">help</a></li>
-                    <li><a href="contact.html">Contact</a></li>
-                    <li><a href="#">Delivery information</a></li>
-                </ul>
-            </div>
-            <div class="top_left">
-                <h6><span></span> Call us : 032 2352 782</h6>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-</div>
-<!--header-->
-
 <?php
+require_once "head.php";
 require_once "navigation.php";
 ?>
 <!--start-content-->

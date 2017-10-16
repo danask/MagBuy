@@ -1,4 +1,4 @@
 <?php
 
 //Redirect to Main
-header('Location: view/main/main.php');
+header('Location: view/main/index.php');

@@ -42,7 +42,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
 
             $id = $userDao->registerUser($user);
             $_SESSION['loggedUser'] = $id;
-            header("Location: ../../view/main/main.php");
+            header("Location: ../../view/main/index.php");
         }
 
 

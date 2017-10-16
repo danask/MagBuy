@@ -104,7 +104,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
             //Move file to permanent directory
             move_uploaded_file($tmpName, $imagesDirectory);
 
-            header("Location: ../../view/main/main.php");
+            header("Location: ../../view/main/index.php");
         }
 
 

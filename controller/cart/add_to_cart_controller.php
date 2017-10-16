@@ -17,7 +17,7 @@ if (isset($_GET['pid'])) {
         var_dump($_SESSION['cart']);
     }
 
-    header("Location: ../../view/main/main.php");
+    header("Location: ../../view/main/index.php");
 } else {
     // 404 page
 }
