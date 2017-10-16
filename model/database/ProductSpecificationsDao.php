@@ -14,6 +14,8 @@ class ProductSpecificationsDao
 
     //Statements defined as constants
     const FILL_SPEC = "INSERT INTO subcat_specification_value (value, subcat_spec_id, product_id) VALUES (?, ?, ?)";
+    const GET_SPECS_FOR_PRODUCT = "SELECT v.value, s.name FROM subcat_specification_value v
+INNER JOIN subcat_specifications s ON v.subcat_spec_id = s.id WHERE v.product_id = ?";
 
     //Get connection in construct
     private function __construct()
@@ -36,5 +38,15 @@ class ProductSpecificationsDao
         $statement->execute(array($specification->getValue(), $specification->getSubcatSpecId(), $specification->getProductId()));
 
         return true;
+    }
+
+    function getAllSpecificationsForProduct($productId)
+    {
+        $statement = $this->pdo->prepare(self::GET_SPECS_FOR_PRODUCT);
+        $statement->execute(array($productId));
+
+        $specifications = $statement->fetchAll();
+
+        return $specifications;
     }
 }

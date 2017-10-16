@@ -94,8 +94,8 @@ require_once '../../controller/products/all_products_controller.php';
 
                                         <div class="grid_1_of_3 images_1_of_3">
                                             <div class="grid_1">
-                                                <a href="../main/single.html"><img src="<?= $product['image_url'] ?>"
-                                                                                   title="continue reading" alt=""></a>
+                                                <a href="../main/single.php"><img src="<?= $product['image_url'] ?>"
+                                                                                  title="continue reading" alt=""></a>
                                                 <div class="grid_desc">
                                                     <p class="title"><?= $product['title'] ?></p>
                                                     <p class="title1"><?= $product['description'] ?></p>
