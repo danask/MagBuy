@@ -53,7 +53,7 @@ require_once '../../controller/products/all_products_controller.php';
                 <div class="clear"></div>
                 <div class="header-bot">
                     <div class="logo">
-                        <a href="index.php"><img src="../../web/uploads/magbuy/logo.png" alt=""/></a>
+                        <a href="../main/index.php"><img src="../../web/uploads/magbuy/logo.png" alt=""/></a>
                     </div>
                     <div class="search">
                         <input type="text" class="textbox">
@@ -77,9 +77,9 @@ require_once '../../controller/products/all_products_controller.php';
             <div class="menu">
                 <div class="top-nav">
                     <ul>
-                        <li class="active"><a href="index.php">Products</a></li>
+                        <li class="active"><a href="../main/index.php">Products</a></li>
                         <li><a href="about.html">About</a></li>
-                        <li><a href="contact.html">Contact</a></li>
+                        <li><a href="../main/contact.html">Contact</a></li>
                     </ul>
                     <div class="clear"></div>
                 </div>
@@ -94,8 +94,8 @@ require_once '../../controller/products/all_products_controller.php';
 
                                         <div class="grid_1_of_3 images_1_of_3">
                                             <div class="grid_1">
-                                                <a href="single.html"><img src="<?= $product['image_url'] ?>"
-                                                                           title="continue reading" alt=""></a>
+                                                <a href="../main/single.html"><img src="<?= $product['image_url'] ?>"
+                                                                                   title="continue reading" alt=""></a>
                                                 <div class="grid_desc">
                                                     <p class="title"><?= $product['title'] ?></p>
                                                     <p class="title1"><?= $product['description'] ?></p>
