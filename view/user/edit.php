@@ -26,7 +26,7 @@ require_once "../../controller/user/get_users_info_controller.php";
         <form enctype="multipart/form-data" class="login-form" action="../../controller/user/edit_controller.php" method="post">
 
             <input type="text" name="email" value="<?=$userArr["email"]?>" required/>
-            <input type="password" name="password" placeholder="New Password" required/>
+            <input type="password" name="password" placeholder="New Password" />
             <input type="text" name="firstName" value="<?=$userArr["first_name"]?>" required/>
             <input type="text" name="lastName" value="<?=$userArr["last_name"]?>" required/>
             <input type="tel" name="mobilePhone" value="<?=$userArr["mobile_phone"]?>" required/>

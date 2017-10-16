@@ -55,14 +55,17 @@ if(isset($_FILES['image']['tmp_name'])) {
 }
 
 
-
+//If password isn't set
+if (!isset($_POST['password'])) {
+    $_POST['password'] = 0;
+}
 
 
 //Update Validation
-if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstName']) && isset($_POST['lastName'])
-    && isset($_POST['mobilePhone']) && isset($_POST['address']) && isset($_POST['personal'])
+if (isset($_POST['email']) && (isset($_POST['password']) || $_POST['password'] == 0) && isset($_POST['firstName'])
+    && isset($_POST['lastName']) && isset($_POST['mobilePhone']) && isset($_POST['address']) && isset($_POST['personal'])
     && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) && strlen($_POST['email']) > 3
-    && strlen($_POST['email']) < 254 && strlen($_POST['password']) >= 4 && strlen($_POST['password']) < 20
+    && strlen($_POST['email']) < 254 && ((strlen($_POST['password']) >= 4 && strlen($_POST['password']) < 20) || $_POST['password'] == 0)
     && strlen($_POST['firstName']) >= 4 && strlen($_POST['firstName']) < 20 && strlen($_POST['lastName']) >= 4
     && strlen($_POST['lastName']) < 20 && ctype_digit($_POST['mobilePhone']) && strlen($_POST['mobilePhone']) == 10
     && strlen($_POST['address']) > 4 && strlen($_POST['address']) < 200
@@ -78,7 +81,6 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
 
         $user->setEmail($_POST['email']);
         $user->setEnabled(1);
-        $user->setPassword(sha1($_POST['password']));
         $user->setFirstName($_POST['firstName']);
         $user->setLastName($_POST['lastName']);
         $user->setImageUrl($imagesDirectory);
@@ -90,8 +92,17 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
 
 
 
-        //Get current user's email
+        //Get current user's info
         $userArr = $userDao->getUserInfo($user);
+
+        //Check if password is changed or is the same
+        if ($_POST['password'] == 0) {
+
+            $user->setPassword($userArr['password']);
+        } else {
+
+            $user->setPassword(sha1($_POST['password']));
+        }
 
         //Check if user exists and if user's new email is the same as old one
         if ($userDao->checkUserExist($user) && $userArr['email'] != $user->getEmail()) {
