@@ -100,7 +100,6 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstNa
             header("Location: ../../view/user/edit.php?error");
         } else {
 
-            //TO PUT TRANSACTION !!!!!!!!!!!!
 
             $userDao->editUser($user);
             $userDao->updateAddress($user);
