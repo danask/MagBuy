@@ -56,6 +56,7 @@ if(isset($_FILES['image']['tmp_name'])) {
     $picture = false;
 }
 
+//END IMAGE FILE HANDLE
 
 //If password isn't set
 if (!isset($_POST['password'])) {
