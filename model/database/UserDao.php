@@ -4,7 +4,6 @@ namespace model\database;
 
 use model\database\Connect\Connection;
 use model\User;
-use \PDO;
 use \PDOException;
 
 
