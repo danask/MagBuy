@@ -1,0 +1,126 @@
+<?php
+require_once "../../controller/cart/show_cart_controller.php"
+?>
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Nuevo Shop a Ecommerce Online Shopping Flat Bootstarp Resposive Website Template | Checkout ::
+        w3layouts</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta name="keywords" content="Nuevo Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
+    <script type="applijegleryion/x-javascript">
+         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+
+
+
+
+    </script>
+    <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <!-- Custom Theme files -->
+    <link href="../../web/assets/css/style.css" rel='stylesheet' type='text/css'/>
+    <script src="../../web/assets/js/jquery-1.11.1.min.js"></script>
+    <!-- start menu -->
+    <link href="../../web/assets/css/megamenu.css" rel="stylesheet" type="text/css" media="all"/>
+    <script type="text/javascript" src="../../web/assets/js/megamenu.js"></script>
+    <script>$(document).ready(function () {
+            $(".megamenu").megamenu();
+        });</script>
+    <script src="../../web/assets/js/menu_jquery.js"></script>
+    <script src="../../web/assets/js/simpleCart.min.js"></script>
+    <!--web-fonts-->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,300italic,600,700' rel='stylesheet'
+          type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+    <!--//web-fonts-->
+    <script src="../../web/assets/js/modernizr.custom.js"></script>
+    <script type="text/javascript" src="../../web/assets/js/move-top.js"></script>
+    <script type="text/javascript" src="../../web/assets/js/easing.js"></script>
+    <!--/script-->
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 900);
+            });
+        });
+    </script>
+</head>
+<body>
+<?php
+require_once "../elements/header.php";
+require_once "../elements/navigation.php";
+?>
+<!--start-content-->
+<!-- checkout -->
+<div class="cart-items">
+    <div class="container">
+        <h3 class="tittle">My shopping(<?= $cartItems ?>)</h3>
+        <?php
+        foreach ($cartProducts as $product) {
+            ?>
+            <script>$(document).ready(function (c) {
+                    $('.close1').on('click', function (c) {
+                        $('.cart-header').fadeOut('slow', function (c) {
+                            $('.cart-header').remove();
+                        });
+                    });
+                });
+            </script>
+            <div class="cart-header">
+                <div class="close1"></div>
+                <div class="cart-sec simpleCart_shelfItem">
+                    <div class="cart-item cyc">
+                        <img src="../../web/assets/images/f4.jpg" class="img-responsive" alt="">
+                    </div>
+                    <div class="cart-item-info">
+                        <h3><a href="#"> Lorem Ipsum is not simply </a><span>Pickup time:</span></h3>
+                        <ul class="qty">
+                            <li><p>Min. order value:</p></li>
+                            <li><p>FREE delivery</p></li>
+                        </ul>
+                        <div class="delivery">
+                            <p>Service Charges : $10.00</p>
+                            <span>Delivered in 1-1:30 hours</span>
+                            <div class="clearfix"></div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+
+                </div>
+            </div>
+            <?php
+        }
+        ?>
+    </div>
+</div>
+<!--//checkout-->
+<!--start-bottom-->
+<?php
+require_once "../elements/footer.php";
+?>
+<!--end-footer-->
+<!--//end-content-->
+<!--start-smooth-scrolling-->
+<script type="text/javascript">
+    $(document).ready(function () {
+        /*
+         var defaults = {
+         containerID: 'toTop', // fading element id
+         containerHoverID: 'toTopHover', // fading element hover id
+         scrollSpeed: 1200,
+         easingType: 'linear'
+         };
+         */
+
+        $().UItoTop({easingType: 'easeOutQuart'});
+
+    });
+</script>
+<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover"
+                                                                         style="opacity: 1;"> </span></a>
+
+
+</body>
+</html>

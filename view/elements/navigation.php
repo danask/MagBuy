@@ -26,13 +26,13 @@ require_once "../../controller/cart/cart_navi_controller.php"
                 </div>
                 <div class="header_right">
                     <div class="cart box_1">
-                        <a href="checkout.html">
+                        <a href="checkout.php">
                             <div class="total">
-                                <div id="cartItems" style="display: inline"><?= $cartItems ?></div>
-                                products<br>
-                                ($
-                                <div id="cartTotalPrice" style="display: inline"><?= $cartTotalPrice ?></div>
-                                )
+                                $
+                                <div id="cartTotalPrice" style="display: inline"><?= $cartTotalPrice ?>.00</div>
+                                <br>
+                                <div id="cartItems" style="display: inline">(<?= $cartItems ?></div>
+                                items)
                             </div>
                             <i class="glyphicon glyphicon-shopping-cart"></i></a>
 
