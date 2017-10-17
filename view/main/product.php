@@ -11,6 +11,8 @@ require_once "../../controller/products/products_by_category_controller.php";
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+
+
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -81,7 +83,9 @@ require_once "../elements/navigation.php";
                                          alt="Product Image" class="img-responsive"/>
                                 </a>
                                 <h4><?= $product['title']; ?></h4>
-                                <p><a class="item_add" href="#"><i class="glyphicon glyphicon-shopping-cart"></i>
+                                <p><a class="item_add"
+                                      onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">Add
+                                        <i class="glyphicon glyphicon-shopping-cart"></i>
                                         <span
                                                 class=" item_price valsa">$<?= $product['price']; ?></span></a></p>
                                 <div class="pro-grd">
