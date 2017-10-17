@@ -23,6 +23,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
+
+
+
+
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -55,6 +60,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     </script>
     <script>
         function removeFromCart(productId, productPrice) {
+            $('#button-' + productId).remove();
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.status == 200 && this.readyState == 4) {
@@ -88,7 +94,8 @@ require_once "../elements/navigation.php";
             ?>
             <div id="product-<?= $product['id'] ?>">
                 <div class="cart-header">
-                    <div class="close1" onclick="removeFromCart(<?= $product['id'] . "," . $product['price'] ?>)"></div>
+                    <div id="button-<?= $product['id'] ?>" class="close1"
+                         onclick="removeFromCart(<?= $product['id'] . "," . $product['price'] ?>)"></div>
                     <div class="cart-sec simpleCart_shelfItem">
                         <div class="cart-item cyc">
                             <img src="<?= $product['image_url'] ?>" class="img-responsive" alt="">
