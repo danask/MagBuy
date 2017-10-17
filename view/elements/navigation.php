@@ -1,5 +1,6 @@
 <?php
 require_once "../../controller/navigation/navigation_controller.php";
+require_once "../../controller/cart/cart_navi_controller.php"
 ?>
 <div class="header_bg">
     <div class="container">
@@ -12,11 +13,10 @@ require_once "../../controller/navigation/navigation_controller.php";
                     <div class="cart box_1">
                         <a href="checkout.html">
                             <div class="total">
-                                <span class="simpleCart_total"></span> (<span id="simpleCart_quantity"
-                                                                              class="simpleCart_quantity"></span> items)
+                                <?= $cartItems ?> products in cart ($<?= $cartTotalPrice ?>)
                             </div>
                             <i class="glyphicon glyphicon-shopping-cart"></i></a>
-                        <p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+
                         <div class="clearfix"></div>
                     </div>
                 </div>
