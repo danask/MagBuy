@@ -8,7 +8,7 @@ use model\ProductImage;
 
 class ProductImagesDao
 {
-    //Make Singletonn
+    //Make Singleton
     private static $instance;
     private $pdo;
 
@@ -30,6 +30,13 @@ class ProductImagesDao
         return self::$instance;
     }
 
+
+    //Function for adding image path to database for products
+
+    /**
+     * @param ProductImage $image
+     * @return bool
+     */
     function addProductImage(ProductImage $image)
     {
         $statement = $this->pdo->prepare(self::ADD_PRODUCT_IMAGE);

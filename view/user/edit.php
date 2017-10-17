@@ -26,7 +26,7 @@ require_once "../../controller/user/get_users_info_controller.php";
         <form enctype="multipart/form-data" class="login-form" action="../../controller/user/edit_controller.php" method="post">
 
             <input type="text" name="email" value="<?=$userArr["email"]?>" required/>
-            <input type="password" name="password" placeholder="New Password" />
+            <input type="password" name="password" placeholder="New Password (Optional)" />
             <input type="text" name="firstName" value="<?=$userArr["first_name"]?>" required/>
             <input type="text" name="lastName" value="<?=$userArr["last_name"]?>" required/>
             <input type="tel" name="mobilePhone" value="<?=$userArr["mobile_phone"]?>" required/>
@@ -47,7 +47,7 @@ require_once "../../controller/user/get_users_info_controller.php";
 
             <input id="login" type="submit" value="UPDATE">
             <?php if(isset($_GET['error']) || isset($_GET['errorUpload'])){ echo "
-            <li class='wrongReg'>Email might exist</li><li class='wrongReg'>Password: between 4 and 12 symbols</li>
+            <li class='wrongReg'>Email might exists</li><li class='wrongReg'>Password: between 4 and 12 symbols</li>
             <li class='wrongReg'>Names: between 4 and 20 symbols</li>
             <li class='wrongReg'>Mobile phone must be 10 digits</li>
             <li class='wrongReg'>Address: between 4 and 200 symbols</li>

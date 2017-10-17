@@ -63,7 +63,7 @@ if (!isset($_POST['password'])) {
 }
 
 
-//Address and radio buttons validation
+//Radio and address buttons validation
 if(isset($_POST['personal'])) {
     if (!($_POST['personal'] == 1 || $_POST['personal'] == 2)) {
 

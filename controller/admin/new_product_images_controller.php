@@ -8,16 +8,59 @@ function __autoload($className)
 }
 
 if (isset($_POST['submit'])) {
+
     $productId = $_POST['product_id'];
 
     for ($i = 1; $i < 5; $i++) {
 
-        $image = new \model\ProductImage($imageUrl, $productId);
+        $imagesDirectory = null;
+        $imageName = "pic$i";
+        $image = new \model\ProductImage();
+
+
+        if(isset($_FILES[$imageName]['tmp_name'])) {
+
+            $tmpName = $_FILES[$imageName]['tmp_name'];
+
+
+            if (!is_uploaded_file($tmpName)) {
+
+                //Redirect to Error page
+                header('Location: ../../view/user/edit.php?errorUpload');
+            }
+
+            //Get the uploaded file's type, extension and size
+            $fileFormat = mime_content_type($tmpName);
+            $type = explode("/", $fileFormat)[0];
+            $extension = explode("/", $fileFormat)[1];
+            $fileSize = filesize($tmpName);
+
+
+            //Validate image file - image file below 2MB
+            if ($type == "image" && $fileSize < 2048576) {
+
+                $uploadTime = microtime();
+                $imagesDirectory = "../../web/uploads/productImages/$productId-$uploadTime.$extension";
+
+            } else {
+
+                //Redirect to Error page
+                header('Location: ../../view/user/edit.php?errorUpload');
+            }
+
+
+            $image->setImageUrl($imagesDirectory);
+            $image->setProductId($productId);
+
+        } else {
+
+            //Redirect to Error page
+            header('Location: ../../view/user/edit.php?errorUpload');
+        }
 
         try {
 
             $productImageDao = \model\database\ProductImagesDao::getInstance();
-
             $productImageDao->addProductImage($image);
 
             header("Location: ../../view/main/index.php");
