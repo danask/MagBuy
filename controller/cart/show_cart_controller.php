@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 //Autoload to require needed model files
 function __autoload($className)
 {
