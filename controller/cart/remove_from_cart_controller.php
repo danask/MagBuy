@@ -14,9 +14,13 @@ if (isset($_SESSION['cart']) && isset($_GET['pid'])) {
         $key = array_search($productId, $cart);
         unset($cart[$key]);
     }
-    $_SESSION['cart'] = implode(";", $cart);
+    if (count($cart) < 2) {
+        unset($_SESSION['cart']);
+    } else {
+        $_SESSION['cart'] = implode(";", $cart);
+    }
+    var_dump($cart);
 
-    header("Location: ../../view/main/index.php");
 } else {
     // 404 page
 }

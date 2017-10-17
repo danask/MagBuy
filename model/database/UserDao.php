@@ -4,10 +4,11 @@ namespace model\database;
 
 use model\database\Connect\Connection;
 use model\User;
-use \PDOException;
+use PDOException;
 
 
-class UserDao {
+class UserDao
+{
 
     //Make Singleton
     private static $instance;
@@ -26,10 +27,11 @@ class UserDao {
     const GET_USER_INFO = "SELECT U.id, U.email, U.enabled, U.first_name, U.last_name, U.mobile_phone, U.image_url, 
                                   U.password, U.last_login, U.role, A.full_adress, A.is_personal  FROM users AS U 
                                   JOIN adresses AS A ON U.id = A.user_id WHERE A.user_id = ?";
-
+    const SET_LAST_LOGIN = "UPDATE users SET last_login = ? WHERE email = ?";
 
     //Get connection in construct
-    private function __construct() {
+    private function __construct()
+    {
         $this->pdo = Connection::getInstance()->getConnection();
     }
 
@@ -44,11 +46,13 @@ class UserDao {
 
 
     //Function for checking if login is correct
+
     /**
      * @param User $user - receive user object
      * @return bool|int - return user id or false
      */
-    function checkLogin(User $user) {
+    function checkLogin(User $user)
+    {
 
         $statement = $this->pdo->prepare(self::CHECK_LOGIN);
         $statement->execute(array($user->getEmail(), $user->getPassword()));
@@ -68,11 +72,13 @@ class UserDao {
 
 
     //Function for checking if user exists
+
     /**
      * @param User $user - receive user object
      * @return bool - return of user exists or not
      */
-    function checkUserExist(User $user) {
+    function checkUserExist(User $user)
+    {
 
         $statement = $this->pdo->prepare(self::CHECK_USER_EXIST);
         $statement->execute(array($user->getEmail()));
@@ -90,11 +96,13 @@ class UserDao {
 
 
     //Function for registering user
+
     /**
      * @param User $user - receive user object
      * @return string - return registered user's id
      */
-    function registerUser (User $user) {
+    function registerUser(User $user)
+    {
 
 
         //Use try catch, to have transaction
@@ -125,10 +133,12 @@ class UserDao {
 
 
     //Function for editing users
+
     /**
      * @param User $user - receive user object and edit the existing with it
      */
-    function editUser (User $user) {
+    function editUser(User $user)
+    {
 
         try {
 
@@ -155,11 +165,13 @@ class UserDao {
 
 
     //Function for checking existing address
+
     /**
      * @param User $user - receive user object
      * @return bool - returns true of there is address and false if there isn't
      */
-    function checkAddressSet (User $user) {
+    function checkAddressSet(User $user)
+    {
         $statement = $this->pdo->prepare(self::CHECK_ADDRESS_SET);
         $statement->execute(array($user->getId()));
 
@@ -178,16 +190,27 @@ class UserDao {
 
 
     //Function for getting user's info (used in edit predefined info)
+
     /**
      * @param User $user - receive user object
      * @return mixed - return all info for the user
      */
-    function getUserInfo (User $user) {
+    function getUserInfo(User $user)
+    {
 
         $statement = $this->pdo->prepare(self::GET_USER_INFO);
         $statement->execute(array($user->getId()));
 
         $userInfo = $statement->fetch();
         return $userInfo;
+    }
+
+    function setLastLogin(User $user)
+    {
+        $statement = $this->pdo->prepare(self::SET_LAST_LOGIN);
+        $user->setLastLogin();
+        $statement->execute(array($user->getLastLogin(), $user->getEmail()));
+
+        return true;
     }
 }

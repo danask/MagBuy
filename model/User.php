@@ -171,9 +171,9 @@ class User
     /**
      * @param $lastLogin
      */
-    public function setLastLogin($lastLogin)
+    public function setLastLogin()
     {
-        $this->lastLogin = $lastLogin;
+        $this->lastLogin = date("Y-m-d H:i:s");
     }
 
     /**
