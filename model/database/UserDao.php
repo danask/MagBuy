@@ -188,7 +188,7 @@ class UserDao {
         $statement = $this->pdo->prepare(self::GET_USER_INFO);
         $statement->execute(array($user->getId()));
 
-        $userInfo = $statement->fetchAll(PDO::FETCH_ASSOC);
-        return $userInfo[0];
+        $userInfo = $statement->fetch();
+        return $userInfo;
     }
 }
