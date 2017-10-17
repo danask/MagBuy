@@ -10,7 +10,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
                 var items = document.getElementById("cartItems");
                 items.innerHTML = parseInt(items.innerHTML) + 1;
                 var price = document.getElementById("cartTotalPrice");
-                price.innerHTML = parseInt(price.innerHTML) + productPrice;
+                price.innerHTML = parseInt(price.innerHTML) + productPrice + ".00";
             }
         };
         xhttp.open("GET", "../../controller/cart/add_to_cart_controller.php?pid=" + productId, true);
@@ -31,8 +31,9 @@ require_once "../../controller/cart/cart_navi_controller.php"
                                 $
                                 <div id="cartTotalPrice" style="display: inline"><?= $cartTotalPrice ?>.00</div>
                                 <br>
-                                <div id="cartItems" style="display: inline">(<?= $cartItems ?></div>
-                                items)
+                                (
+                                <div id="cartItems" style="display: inline"><?= $cartItems ?></div>
+                                items )
                             </div>
                             <i class="glyphicon glyphicon-shopping-cart"></i></a>
 

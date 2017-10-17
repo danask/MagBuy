@@ -4,7 +4,8 @@
 require_once "../../utility/session_main.php";
 
 //Autoload to require needed model files
-function __autoload($className) {
+function __autoload($className)
+{
     $className = '..\\..\\' . $className;
     require_once str_replace("\\", "/", $className) . '.php';
 }
@@ -13,7 +14,8 @@ function __autoload($className) {
 //Login Validation
 if (isset($_POST['email']) && isset($_POST['password'])
     && strlen($_POST['email']) > 3 && strlen($_POST['email']) < 254
-    && strlen($_POST['password']) >= 4 && strlen($_POST['password']) <= 12) {
+    && strlen($_POST['password']) >= 4 && strlen($_POST['password']) <= 12
+) {
 
     $user = new \model\User();
 
@@ -30,6 +32,7 @@ if (isset($_POST['email']) && isset($_POST['password'])
         if ($result) {
 
             $_SESSION['loggedUser'] = $result;
+            $userDao->setLastLogin($user);
             header("Location: ../../view/main/index.php");
         } else {
 
