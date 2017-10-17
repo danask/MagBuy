@@ -17,6 +17,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
+
+
+
+
+
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -47,6 +53,25 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
+    <script>
+        function removeFromCart(productId, productPrice) {
+            var xhttp = new XMLHttpRequest();
+            xhttp.onreadystatechange = function () {
+                if (this.status == 200 && this.readyState == 4) {
+                    var items = document.getElementById("cartItems");
+                    items.innerHTML = parseInt(items.innerHTML) - 1;
+                    var price = document.getElementById("cartTotalPrice");
+                    price.innerHTML = parseInt(price.innerHTML) - productPrice + ".00";
+
+                    $('#product-' + productId).fadeOut('slow', function (c) {
+                        $('#product-' + productId).remove();
+                    });
+                }
+            };
+            xhttp.open("GET", "../../controller/cart/remove_from_cart_controller.php?pid=" + productId, true);
+            xhttp.send();
+        }
+    </script>
 </head>
 <body>
 <?php
@@ -61,34 +86,28 @@ require_once "../elements/navigation.php";
         <?php
         foreach ($cartProducts as $product) {
             ?>
-            <script>$(document).ready(function (c) {
-                    $('.close1').on('click', function (c) {
-                        $('.cart-header').fadeOut('slow', function (c) {
-                            $('.cart-header').remove();
-                        });
-                    });
-                });
-            </script>
-            <div class="cart-header">
-                <div class="close1"></div>
-                <div class="cart-sec simpleCart_shelfItem">
-                    <div class="cart-item cyc">
-                        <img src="<?= $product['image_url'] ?>" class="img-responsive" alt="">
-                    </div>
-                    <div class="cart-item-info">
-                        <h3><a href="single.php?pid=<?= $product['id'] ?>"> <?= $product['title'] ?> </a></h3>
-                        <ul class="qty">
-                            <li><p>Quantity:</p></li>
-                            <li><p>FREE delivery</p></li>
-                        </ul>
-                        <div class="delivery">
-                            <p>$<?= $product['price'] ?></p>
-                            <span>Delivered in 1-1:30 hours</span>
-                            <div class="clearfix"></div>
+            <div id="product-<?= $product['id'] ?>">
+                <div class="cart-header">
+                    <div class="close1" onclick="removeFromCart(<?= $product['id'] . "," . $product['price'] ?>)"></div>
+                    <div class="cart-sec simpleCart_shelfItem">
+                        <div class="cart-item cyc">
+                            <img src="<?= $product['image_url'] ?>" class="img-responsive" alt="">
                         </div>
-                    </div>
-                    <div class="clearfix"></div>
+                        <div class="cart-item-info">
+                            <h3><a href="single.php?pid=<?= $product['id'] ?>"> <?= $product['title'] ?> </a></h3>
+                            <ul class="qty">
+                                <li><p>Quantity:</p></li>
+                                <li><p>FREE delivery</p></li>
+                            </ul>
+                            <div class="delivery">
+                                <p>$<?= $product['price'] ?></p>
+                                <span>Delivered in 2 days</span>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
 
+                    </div>
                 </div>
             </div>
             <?php

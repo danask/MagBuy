@@ -14,7 +14,6 @@ if (isset($_GET['pid'])) {
         $_SESSION['cart'] = $cart;
     } else {
         $_SESSION['cart'] = $productId;
-        var_dump($_SESSION['cart']);
     }
 
     header("Location: ../../view/main/index.php");
