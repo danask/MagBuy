@@ -63,6 +63,8 @@ if (isset($_POST['submit'])) {
             $productImageDao = \model\database\ProductImagesDao::getInstance();
             $productImageDao->addProductImage($image);
 
+            move_uploaded_file($tmpName, $imagesDirectory);
+
             header("Location: ../../view/main/index.php");
 
         } catch (PDOException $e) {
