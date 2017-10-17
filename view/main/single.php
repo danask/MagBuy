@@ -1,6 +1,7 @@
 <?php
 require_once "../../controller/products/single_product_controller.php";
 ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -69,6 +70,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <!-- //the jScrollPane script -->
+
+    <!--Script for adding product to favourites -->
+    <script type="text/javascript" src="../../web/assets/js/add_favourites.js"></script>
+
 </head>
 <body>
 <?php
@@ -125,6 +130,9 @@ require_once "../elements/navigation.php";
                         <div class="clearfix"></div>
                         <button class="btn btn-default"
                                 onclick="addToCart(<?= $product['id'] ?>, <?= $product['price'] ?>)">Add to cart
+                        </button><br/><br/>
+                        <button class="btn btn-default"
+                                onclick="addFavourite(<?= $product['id'] ?>)">Add to favourites
                         </button>
                     </div>
                 </div>
