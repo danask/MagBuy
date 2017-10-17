@@ -2,6 +2,21 @@
 require_once "../../controller/navigation/navigation_controller.php";
 require_once "../../controller/cart/cart_navi_controller.php"
 ?>
+<script>
+    function addToCart(productId, productPrice) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.status == 200 && this.readyState == 4) {
+                var items = document.getElementById("cartItems");
+                items.innerHTML = parseInt(items.innerHTML) + 1;
+                var price = document.getElementById("cartTotalPrice");
+                price.innerHTML = parseInt(price.innerHTML) + productPrice;
+            }
+        };
+        xhttp.open("GET", "../../controller/cart/add_to_cart_controller.php?pid=" + productId, true);
+        xhttp.send();
+    }
+</script>
 <div class="header_bg">
     <div class="container">
         <div class="header">
@@ -13,7 +28,11 @@ require_once "../../controller/cart/cart_navi_controller.php"
                     <div class="cart box_1">
                         <a href="checkout.html">
                             <div class="total">
-                                <?= $cartItems ?> products in cart ($<?= $cartTotalPrice ?>)
+                                <div id="cartItems" style="display: inline"><?= $cartItems ?></div>
+                                products<br>
+                                ($
+                                <div id="cartTotalPrice" style="display: inline"><?= $cartTotalPrice ?></div>
+                                )
                             </div>
                             <i class="glyphicon glyphicon-shopping-cart"></i></a>
 

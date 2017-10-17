@@ -12,11 +12,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 
-
-
-
-
-
     </script>
     <style>
         table {
@@ -128,10 +123,9 @@ require_once "../elements/navigation.php";
                         <h2 class="quick">Quick Overview</h2>
                         <p class="quick_desc"><?= $product['description']; ?></p>
                         <div class="clearfix"></div>
-                        <div class="btn btn-default">
-                            <a href="../../controller/cart/add_to_cart_controller.php?<?= $product['id'] ?>">Add to
-                                cart</a>
-                        </div>
+                        <button class="btn btn-default"
+                                onclick="addToCart(<?= $product['id'] ?>, <?= $product['price'] ?>)">Add to cart
+                        </button>
                     </div>
                 </div>
                 <div class="clearfix"></div>
