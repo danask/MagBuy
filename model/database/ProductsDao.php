@@ -26,7 +26,6 @@ class ProductsDao
     const GET_MOST_REVIEWED = "SELECT * FROM products ORDER BY times_reviewed DESC";
     const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id FROM products p INNER JOIN images i ON p.id = i.product_id WHERE p.subcategory_id = ? ORDER BY p.created_at DESC";
 
-
     //Get connection in construct
     private function __construct()
     {
@@ -137,4 +136,12 @@ class ProductsDao
         return $products;
     }
 
+    function getProductPrice($productId)
+    {
+        $statement = $this->pdo->prepare(self::GET_PRODUCT_BY_ID);
+        $statement->execute(array($productId));
+        $product = $statement->fetch();
+
+        return $product['price'];
+    }
 }

@@ -12,6 +12,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 
+
+
+
+
+
     </script>
     <style>
         table {
@@ -123,75 +128,13 @@ require_once "../elements/navigation.php";
                         <h2 class="quick">Quick Overview</h2>
                         <p class="quick_desc"><?= $product['description']; ?></p>
                         <div class="clearfix"></div>
-                        <div class="single-but item_add">
-                            <input type="submit" value="add to cart"/>
+                        <div class="btn btn-default">
+                            <a href="../../controller/cart/add_to_cart_controller.php?<?= $product['id'] ?>">Add to
+                                cart</a>
                         </div>
                     </div>
                 </div>
                 <div class="clearfix"></div>
-            </div>
-            <div class="col-md-4 products-grid-right">
-                <div class="w_sidebar">
-                    <div class="w_nav1">
-                        <h4>All</h4>
-                        <ul>
-                            <li><a href="product.php">women</a></li>
-                            <li><a href="#">new fashions</a></li>
-                            <li><a href="#">trends</a></li>
-                            <li><a href="#">boys</a></li>
-                            <li><a href="#">girls</a></li>
-                            <li><a href="#">sale</a></li>
-                        </ul>
-                    </div>
-                    <section class="sky-form">
-                        <h4>CATEGORIES</h4>
-                        <div class="row1 scroll-pane">
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Men's
-                                    Jackets</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Shoes</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Glases</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Watches</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Hand Bags</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Bags</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shirts</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>tempore</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>soluta
-                                    nobis</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>molestiae</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>repudiandae
-                                    sint</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>nobis est</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>assumenda
-                                    est</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>tempore</label>
-                            </div>
-                        </div>
-                    </section>
-                    <section class="sky-form">
-                        <h4>brand</h4>
-                        <div class="row1 scroll-pane">
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"
-                                                               checked=""><i></i>Lee</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>tempore</label>
-                            </div>
-                            <div class="col col-4">
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>vishud</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>amari</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shree</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shree</label>
-                                <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-                            </div>
-                        </div>
-                    </section>
-                </div>
             </div>
             <div class="clearfix"></div>
             <!-- collapse -->
