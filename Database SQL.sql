@@ -35,7 +35,7 @@ CREATE TABLE IF NOT EXISTS `magbuy`.`users` (
   `mobile_phone` VARCHAR(15) NULL DEFAULT NULL,
   `image_url` VARCHAR(255) NULL DEFAULT NULL,
   `password` VARCHAR(255) NOT NULL,
-  `last_login` DATE NULL DEFAULT NULL,
+  `last_login` DATETIME NULL DEFAULT NULL,
   `role` INT(10) UNSIGNED NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE INDEX `email_UNIQUE` (`email` ASC))

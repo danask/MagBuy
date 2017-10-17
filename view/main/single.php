@@ -1,5 +1,8 @@
 <?php
+
 require_once "../../controller/products/single_product_controller.php";
+require_once "../../controller/favourites/check_favourites_controller.php";
+
 ?>
 
 <!DOCTYPE HTML>
@@ -131,9 +134,27 @@ require_once "../elements/navigation.php";
                         <button class="btn btn-default"
                                 onclick="addToCart(<?= $product['id'] ?>, <?= $product['price'] ?>)">Add to cart
                         </button><br/><br/>
-                        <button class="btn btn-default"
-                                onclick="addFavourite(<?= $product['id'] ?>)">Add to favourites
-                        </button>
+
+
+                        <?php if (!($isFavourite == 3)) {
+
+                            if ($isFavourite == 2) { ?>
+
+                                <div id="favourite">
+                                    <button style="display: inline-block;" class="btn btn-primary" onclick="addFavourite(<?= $product['id'] ?>)">Add to favourites</button>
+                                </div>
+
+                            <?php } else { ?>
+
+                                <div id="favourite">
+                                    <button style="display: inline-block;" class="btn btn-danger" onclick="removeFavourite(<?= $product['id'] ?>)">Remove from Favourites</button>
+                                </div>
+
+                            <?php }
+                        } ?>
+
+
+
                     </div>
                 </div>
                 <div class="clearfix"></div>
