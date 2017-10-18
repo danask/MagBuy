@@ -25,6 +25,9 @@ require_once "../../controller/cart/cart_navi_controller.php"
                     <a href="index.php"><h1>Mag<span>Buy</span></h1></a>
                 </div>
                 <div class="header_right">
+                    <?php if (isset($_SESSION['loggedUser'])) { ?>
+                    <a href="../main/favourites.php" class="btn btn-primary btn-info"><span class="glyphicon glyphicon-heart"></span> Favourites</a>&nbsp&nbsp&nbsp&nbsp
+                    <?php } ?>
                     <div class="cart box_1">
                         <a href="checkout.php">
                             <div class="total">
