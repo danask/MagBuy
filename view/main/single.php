@@ -104,6 +104,7 @@ require_once "../elements/navigation.php";
                                 <div class="thumb-image"><img src="../../web/assets/images/z4.jpg" data-imagezoom="true"
                                                               class="img-responsive" alt=""/></div>
                             </li>
+
                         </ul>
                     </div>
                     <!-- FlexSlider -->

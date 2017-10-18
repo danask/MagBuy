@@ -16,15 +16,19 @@ class ProductsDao
     private $pdo;
 
     //Statements defined as constants
-    const CREATE_PRODUCT = "INSERT INTO products(title, description, price, quantity, visible, created_at, subcategory_id)
-                            VALUES (?, ?, ?, ?, ?, ?, ?)";
+    const CREATE_PRODUCT = "INSERT INTO products(title, description, price, quantity, visible, created_at,
+                            subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
     const GET_ALL_AVAILABLE_PRODUCTS = "SELECT P.id, I.image_url, P.title, P.description, P.price FROM products AS P 
-                                        INNER JOIN images AS I ON P.id = I.product_id WHERE P.visible = 1 ORDER BY created_at DESC";
-    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price FROM products p INNER JOIN images i ON p.id = i.product_id WHERE p.id = ?";
+                                        INNER JOIN images AS I ON P.id = I.product_id WHERE P.visible = 1 
+                                        ORDER BY created_at DESC";
+    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price FROM products p INNER JOIN 
+                                images i ON p.id = i.product_id GROUP BY p.id HAVING p.id = ?";
     const GET_PRODUCT_IMAGES = "SELECT image_url FROM product_images WHERE product_id = ?";
     const GET_MOST_SOLD = "SELECT * FROM products ORDER BY times_sold DESC";
     const GET_MOST_REVIEWED = "SELECT * FROM products ORDER BY times_reviewed DESC";
-    const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, p.visible FROM products p INNER JOIN images i ON p.id = i.product_id GROUP BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC";
+    const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, 
+                                    p.visible FROM products p INNER JOIN images i ON p.id = i.product_id GROUP BY 
+                                    P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC";
 
     //Get connection in construct
     private function __construct()

@@ -19,7 +19,7 @@ class FavouritesDao {
     const CHECK_IF_IN_FAVOURITES = "SELECT id FROM favourites WHERE user_id = ? AND product_id = ?";
     const ALL_FAVOURITES_BY_USER_ID = "SELECT P.id, P.title, P.description, P.price, I.image_url, F.user_id, P.visible FROM products P 
                                       JOIN favourites F ON P.id = F.product_id JOIN images I ON P.id = I.product_id 
-                                      GROUP BY P.id HAVING F.user_id = ? AND P.visible = 1";
+                                      GROUP BY F.user_id HAVING F.user_id = ? AND P.visible = 1";
 
 
     //Get connection in construct
