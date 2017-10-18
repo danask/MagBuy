@@ -83,11 +83,11 @@ require_once "../elements/navigation.php";
                                          alt="Product Image" class="img-responsive"/>
                                 </a>
                                 <h4><?= $product['title']; ?></h4>
-                                <p><a class="item_add"
-                                      onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">Add
-                                        <i class="glyphicon glyphicon-shopping-cart"></i>
-                                        <span
-                                                class=" item_price valsa">$<?= $product['price']; ?></span></a></p>
+                                <p><a class="btn btn-default btn-sm"
+                                      onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
+                                        <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
+                                        </a>&nbsp&nbsp<span
+                                            class=" item_price valsa">$<?= $product['price']; ?></span></p>
                                 <div class="pro-grd">
                                     <a href="single.php?pid=<?= $product['id']; ?>">Quick View</a>
                                 </div>
