@@ -17,9 +17,9 @@ class FavouritesDao {
     const ADD_PRODUCT_TO_FAVOURITES = "INSERT INTO favourites (user_id, product_id) VALUES (?, ?)";
     const REMOVE_PRODUCT_FROM_FAVOURITES = "DELETE FROM favourites WHERE user_id = ? AND product_id = ?";
     const CHECK_IF_IN_FAVOURITES = "SELECT id FROM favourites WHERE user_id = ? AND product_id = ?";
-    const ALL_FAVOURITES_BY_USER_ID = "SELECT P.id, P.title, P.description, P.price, I.image_url FROM products P 
+    const ALL_FAVOURITES_BY_USER_ID = "SELECT P.id, P.title, P.description, P.price, I.image_url, F.user_id FROM products P 
                                       JOIN favourites F ON P.id = F.product_id JOIN images I ON P.id = I.product_id 
-                                      WHERE F.user_id = ? AND P.visible = 1";
+                                      GROUP BY P.id HAVING F.user_id = ?";
 
 
     //Get connection in construct

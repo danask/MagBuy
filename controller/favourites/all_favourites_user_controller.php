@@ -20,6 +20,9 @@ if (isset($_SESSION['loggedUser'])) {
     try {
 
         $favouritesDao = \model\database\FavouritesDao::getInstance();
+        $productsDao = \model\database\ProductsDao::getInstance();
+
+
         $products = $favouritesDao->getAllFavourites($favourites);
 
     } catch (PDOException $e) {
