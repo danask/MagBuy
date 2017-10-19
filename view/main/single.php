@@ -243,15 +243,6 @@ require_once "../elements/navigation.php";
 
                         <?php foreach ($reviews as $review) { ?>
 
-
-
-
-
-
-
-
-
-
                         <div class="tab-content">
                             <div class="tab-pane active" id="comments-logout">
                                 <ul class="media-list">
