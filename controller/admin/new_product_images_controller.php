@@ -11,7 +11,7 @@ if (isset($_POST['submit'])) {
 
     $productId = $_POST['product_id'];
 
-    for ($i = 1; $i < 5; $i++) {
+    for ($i = 1; $i < 4; $i++) {
 
         $imagesDirectory = null;
         $imageName = "pic$i";
