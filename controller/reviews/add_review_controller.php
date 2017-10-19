@@ -21,7 +21,7 @@ if (isset($_SESSION['loggedUser'])) {
         $review = new \model\Reviews();
 
         $review->setRating(htmlentities($_POST['rating']));
-        $review->setTitle(htmlentities($_POST['title']));
+        $review->setTitle(strtoupper(htmlentities($_POST['title'])));
         $review->setComment(htmlentities($_POST['review']));
         $review->setUserId($_SESSION['loggedUser']);
         $review->setProductId($_GET['pid']);

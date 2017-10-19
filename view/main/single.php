@@ -79,6 +79,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <!--Script for adding product to favourites -->
     <script type="text/javascript" src="../../web/assets/js/add_favourites.js"></script>
 
+    <!-- CSS for reviews -->
+    <link rel="stylesheet" href="../../web/assets/css/reviews.css" type="text/css"/>
+
 </head>
 <body>
 <?php
@@ -232,12 +235,42 @@ require_once "../elements/navigation.php";
                          aria-labelledby="headingThree">
 
                         <?php foreach ($reviews as $review) { ?>
-                            <div class="panel-body">
-                                <p>Title: <?= $review['title'] . "rating" . $review['rating'] ?></p>
-                                <?= $review['comment'] ?>
-                            </div>
-                        <?php } ?>
 
+
+
+
+
+
+
+
+
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="comments-logout">
+                                <ul class="media-list">
+                                    <li class="media">
+                                        <a class="pull-left" href="#">
+                                            <img class="media-object img-circle"
+                                                 src="<?= $review['image_url']?>"
+                                                 alt="profile">
+                                        </a>
+                                        <div class="media-body">
+                                            <div class="well well-lg">
+                                                <p class="media-heading text-uppercase reviews"><?= $review['title'] . " by " . $review['first_name'] ?> </p>
+                                                <ul class="media-date text-uppercase reviews list-inline">
+                                                    <li class="dd"> <?= $review['created_at'] ?></li>
+
+                                                </ul>
+                                                <p class="media-comment">
+                                                    <?= $review['comment'] ?>
+                                                </p>
+                                            </div>
+                                        </div>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <?php } ?>
 
                     </div>
                 </div>

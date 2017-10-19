@@ -18,8 +18,8 @@ class ReviewsDao
     //Statements defined as constants
     const ADD_REVIEW = "INSERT INTO reviews (title, comment, rating, user_id, product_id, created_at) 
                         VALUES (?, ?, ?, ?, ?, ?)";
-    const GET_REVIEWS_FOR_PRODUCT = "SELECT id, title, comment, rating, user_id, product_id, created_at 
-                          FROM reviews WHERE product_id = ?";
+    const GET_REVIEWS_FOR_PRODUCT = "SELECT R.id, R.title, R.comment, R.rating, R.user_id, R.product_id, R.created_at, 
+                                      U.image_url, U.first_name FROM reviews R JOIN users U ON U.id = R.user_id WHERE product_id = ? ";
 
 
 
