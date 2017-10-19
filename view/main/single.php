@@ -16,6 +16,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 
+
+
     </script>
     <style>
         table {
@@ -92,19 +94,17 @@ require_once "../elements/navigation.php";
                 <div class="col-md-5 grid-single">
                     <div class="flexslider">
                         <ul class="slides">
-                            <li data-thumb="<?= $product['image_url'] ?>">
-                                <div class="thumb-image"><img src="<?= $product['image_url'] ?>" data-imagezoom="true"
-                                                              class="img-responsive" alt=""/></div>
-                            </li>
-                            <li data-thumb="<?= $product['image_url'] ?>">
-                                <div class="thumb-image"><img src="<?= $product['image_url'] ?>" data-imagezoom="true"
-                                                              class="img-responsive" alt=""/></div>
-                            </li>
-                            <li data-thumb="../../uploads/productImages/<?= $product['image_url'] ?>">
-                                <div class="thumb-image"><img src="<?= $product['image_url'] ?>" data-imagezoom="true"
-                                                              class="img-responsive" alt=""/></div>
-                            </li>
-
+                            <?php
+                            foreach ($images as $image) {
+                                ?>
+                                <li data-thumb="<?= $image['image_url'] ?>">
+                                    <div class="thumb-image"><img src="<?= $image['image_url'] ?>"
+                                                                  data-imagezoom="true"
+                                                                  class="img-responsive" alt=""/></div>
+                                </li>
+                                <?php
+                            }
+                            ?>
                         </ul>
                     </div>
                     <!-- FlexSlider -->
@@ -134,7 +134,8 @@ require_once "../elements/navigation.php";
                         <div class="clearfix"></div>
                         <button class="btn btn-default"
                                 onclick="addToCart(<?= $product['id'] ?>, <?= $product['price'] ?>)">Add to cart
-                        </button><br/><br/>
+                        </button>
+                        <br/><br/>
 
 
                         <?php if (!($isFavourite == 3)) {
@@ -142,21 +143,27 @@ require_once "../elements/navigation.php";
                             if ($isFavourite == 2) { ?>
 
                                 <div id="favourite">
-                                    <button style="display: inline-block;" class="btn btn-primary" onclick="addFavourite(<?= $product['id'] ?>)">Add to favourites</button>
+                                    <button style="display: inline-block;" class="btn btn-primary"
+                                            onclick="addFavourite(<?= $product['id'] ?>)">Add to favourites
+                                    </button>
                                 </div>
 
                             <?php } else { ?>
 
                                 <div id="favourite">
-                                    <button style="display: inline-block;" class="btn btn-danger" onclick="removeFavourite(<?= $product['id'] ?>)">Remove from Favourites</button>
+                                    <button style="display: inline-block;" class="btn btn-danger"
+                                            onclick="removeFavourite(<?= $product['id'] ?>)">Remove from Favourites
+                                    </button>
                                 </div>
 
                             <?php }
                         } ?>
 
-                        <?php if(isset($_SESSION['loggedUser'])) { ?>
-                        <br/>
-                        <a href="review.php?pid=<?=$product['id']?>" style="display: inline-block;" class="btn btn-primary btn-warning"><span class="glyphicon glyphicon-tag"></span>Add Review</a>
+                        <?php if (isset($_SESSION['loggedUser'])) { ?>
+                            <br/>
+                            <a href="review.php?pid=<?= $product['id'] ?>" style="display: inline-block;"
+                               class="btn btn-primary btn-warning"><span class="glyphicon glyphicon-tag"></span>Add
+                                Review</a>
                         <?php } ?>
 
                     </div>
@@ -225,10 +232,10 @@ require_once "../elements/navigation.php";
                          aria-labelledby="headingThree">
 
                         <?php foreach ($reviews as $review) { ?>
-                        <div class="panel-body">
-                           <p>Title: <?= $review['title'] . "rating" . $review['rating']?></p>
-                            <?= $review['comment'] ?>
-                        </div>
+                            <div class="panel-body">
+                                <p>Title: <?= $review['title'] . "rating" . $review['rating'] ?></p>
+                                <?= $review['comment'] ?>
+                            </div>
                         <?php } ?>
 
 
