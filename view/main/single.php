@@ -254,7 +254,7 @@ require_once "../elements/navigation.php";
                                         </a>
                                         <div class="media-body">
                                             <div class="well well-lg">
-                                                <p class="media-heading text-uppercase reviews"><?= $review['title'] . " by " . $review['first_name'] ?> </p>
+                                                <h4 class="media-heading text-uppercase reviews"><?= $review['title'] . "<small>" . "&nbsp by " . $review['first_name'] . "</small>" ?><img class="media-object img" src="../../web/uploads/magbuy/rating<?=$review['rating']?>.png"> </h4>
                                                 <ul class="media-date text-uppercase reviews list-inline">
                                                     <li class="dd"> <?= $review['created_at'] ?></li>
 
