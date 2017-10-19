@@ -92,16 +92,16 @@ require_once "../elements/navigation.php";
                 <div class="col-md-5 grid-single">
                     <div class="flexslider">
                         <ul class="slides">
-                            <li data-thumb="images/z1.jpg">
-                                <div class="thumb-image"><img src="../../web/assets/images/z1.jpg" data-imagezoom="true"
+                            <li data-thumb="<?= $product['image_url'] ?>">
+                                <div class="thumb-image"><img src="<?= $product['image_url'] ?>" data-imagezoom="true"
                                                               class="img-responsive" alt=""/></div>
                             </li>
-                            <li data-thumb="images/z2.jpg">
-                                <div class="thumb-image"><img src="../../web/assets/images/z2.jpg" data-imagezoom="true"
+                            <li data-thumb="<?= $product['image_url'] ?>">
+                                <div class="thumb-image"><img src="<?= $product['image_url'] ?>" data-imagezoom="true"
                                                               class="img-responsive" alt=""/></div>
                             </li>
-                            <li data-thumb="images/z4.jpg">
-                                <div class="thumb-image"><img src="../../web/assets/images/z4.jpg" data-imagezoom="true"
+                            <li data-thumb="../../uploads/productImages/<?= $product['image_url'] ?>">
+                                <div class="thumb-image"><img src="<?= $product['image_url'] ?>" data-imagezoom="true"
                                                               class="img-responsive" alt=""/></div>
                             </li>
 
