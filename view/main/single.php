@@ -217,7 +217,7 @@ require_once "../elements/navigation.php";
                         <h4 class="panel-title">
                             <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
                                href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                reviews(5)
+                                reviews(<?= $reviewsCount ?>)
                             </a>
                         </h4>
                     </div>

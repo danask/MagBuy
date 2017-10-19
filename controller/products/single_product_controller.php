@@ -22,6 +22,7 @@ try {
     $product = $productsDao->getProductByID($productId);
     $specifications = $specsDao->getAllSpecificationsForProduct($productId);
     $reviews = $reviewsDao->getReviewsForProduct($productId);
+    $reviewsCount = count($reviews);
 
 } catch (PDOException $e) {
 
