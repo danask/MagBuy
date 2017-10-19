@@ -154,6 +154,8 @@ require_once "../elements/navigation.php";
                             <?php }
                         } ?>
 
+                        <br/>
+                        <a href="review.php?pid=<?=$product['id']?>" style="display: inline-block;" class="btn btn-primary btn-warning"><span class="glyphicon glyphicon-tag"></span>Add Review</a>
 
 
                     </div>

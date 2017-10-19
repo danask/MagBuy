@@ -10,3 +10,16 @@ function __autoload($className) {
 }
 
 
+$review = new \model\Reviews();
+
+$review->setRating($_POST['rating']);
+$review->setTitle($_POST['title']);
+$review->setComment($_POST['review']);
+$review->setUserId($_SESSION['loggedUser']);
+$review->setProductId($_GET['pid']);
+
+$reviewDao = \model\database\ReviewsDao::getInstance();
+
+$reviewDao->addNewReview($review);
+
+header("Location: ../../view/main/single.php?pid=" . $_GET['pid']);
