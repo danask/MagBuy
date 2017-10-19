@@ -28,6 +28,7 @@ class User
         $this->role = 1;
         $this->address = 0;
         $this->personal = 0;
+        $this->firstName = "User";
     }
 
 
