@@ -10,7 +10,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
                 var items = document.getElementById("cartItems");
                 items.innerHTML = parseInt(items.innerHTML) + 1;
                 var price = document.getElementById("cartTotalPrice");
-                price.innerHTML = parseInt(price.innerHTML) + productPrice;
+                price.innerHTML = (parseFloat(price.innerHTML) + productPrice).toFixed(2);
             }
         };
         xhttp.open("GET", "../../controller/cart/add_to_cart_controller.php?pid=" + productId, true);
@@ -26,7 +26,8 @@ require_once "../../controller/cart/cart_navi_controller.php"
                 </div>
                 <div class="header_right">
                     <?php if (isset($_SESSION['loggedUser'])) { ?>
-                    <a href="../main/favourites.php" class="btn btn-primary btn-info"><span class="glyphicon glyphicon-heart"></span> Favourites</a>&nbsp&nbsp&nbsp&nbsp
+                        <a href="../main/favourites.php" class="btn btn-primary btn-info"><span
+                                    class="glyphicon glyphicon-heart"></span> Favourites</a>&nbsp&nbsp&nbsp&nbsp
                     <?php } ?>
                     <div class="cart box_1">
                         <a href="checkout.php">

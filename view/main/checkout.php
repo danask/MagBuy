@@ -13,6 +13,7 @@ require_once "../../controller/cart/show_cart_controller.php"
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -52,7 +53,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     var items = document.getElementById("cartItems");
                     items.innerHTML = parseInt(items.innerHTML) - 1;
                     var price = document.getElementById("cartTotalPrice");
-                    price.innerHTML = parseInt(price.innerHTML) - productPrice;
+                    price.innerHTML = (parseFloat(price.innerHTML) - productPrice).toFixed(2);
                     var items2 = document.getElementById("cartItems2");
                     items2.innerHTML = parseInt(items2.innerHTML) - 1;
 
