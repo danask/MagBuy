@@ -13,21 +13,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -68,9 +53,11 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     items.innerHTML = parseInt(items.innerHTML) - 1;
                     var price = document.getElementById("cartTotalPrice");
                     price.innerHTML = parseInt(price.innerHTML) - productPrice + ".00";
+                    var items2 = document.getElementById("cartItems2");
+                    items2.innerHTML = parseInt(items2.innerHTML) - 1;
 
 
-                        $('#product-' + productId).remove();
+                    $('#product-' + productId).remove();
 
                 }
             };
@@ -88,7 +75,14 @@ require_once "../elements/navigation.php";
 <!-- checkout -->
 <div class="cart-items">
     <div class="container">
-        <h3 class="tittle">My shopping(<?= $cartItems ?>)</h3>
+        <h3 class="tittle">My shopping(
+            <div id="cartItems2" style="display: inline"><?= $cartItems ?></div>
+            )
+        </h3>
+        <br>
+        <h3 class="b-tittle" style="text-align: center">Price Total: <div style="color: red">$<?= $cartTotalPrice ?></div></h3>
+        <br>
+        <button class="btn btn-danger btn-lg btn-block" style="margin: 0 auto 0 auto; display: block">Checkout</button>
         <?php
         foreach ($cartProducts as $product) {
             ?>

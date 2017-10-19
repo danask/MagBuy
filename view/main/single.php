@@ -18,6 +18,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
+
+
+
     </script>
     <style>
         table {
@@ -133,7 +137,8 @@ require_once "../elements/navigation.php";
                         <p class="quick_desc"><?= $product['description']; ?></p>
                         <div class="clearfix"></div>
                         <button class="btn btn-default"
-                                onclick="addToCart(<?= $product['id'] ?>, <?= $product['price'] ?>)">Add to cart
+                                onclick="addToCart(<?= $product['id'] ?>, <?= $product['price'] ?>)"><span
+                                    class="glyphicon glyphicon-shopping-cart"></span> Add to cart
                         </button>
                         <br/><br/>
 
@@ -144,7 +149,8 @@ require_once "../elements/navigation.php";
 
                                 <div id="favourite">
                                     <button style="display: inline-block;" class="btn btn-primary"
-                                            onclick="addFavourite(<?= $product['id'] ?>)">Add to favourites
+                                            onclick="addFavourite(<?= $product['id'] ?>)"><span
+                                                class="glyphicon glyphicon-heart"></span> Add to favourites
                                     </button>
                                 </div>
 
@@ -152,7 +158,8 @@ require_once "../elements/navigation.php";
 
                                 <div id="favourite">
                                     <button style="display: inline-block;" class="btn btn-danger"
-                                            onclick="removeFavourite(<?= $product['id'] ?>)">Remove from Favourites
+                                            onclick="removeFavourite(<?= $product['id'] ?>)"><span
+                                                class="glyphicon glyphicon-heart-empty"></span> Remove from Favourites
                                     </button>
                                 </div>
 
@@ -162,7 +169,7 @@ require_once "../elements/navigation.php";
                         <?php if (isset($_SESSION['loggedUser'])) { ?>
                             <br/>
                             <a href="review.php?pid=<?= $product['id'] ?>" style="display: inline-block;"
-                               class="btn btn-primary btn-warning"><span class="glyphicon glyphicon-tag"></span>Add
+                               class="btn btn-primary btn-warning"><span class="glyphicon glyphicon-tag"></span> Add
                                 Review</a>
                         <?php } ?>
 
