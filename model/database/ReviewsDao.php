@@ -5,6 +5,7 @@ namespace model\database;
 
 use model\database\Connect\Connection;
 use model\Reviews;
+use PDO;
 
 
 class ReviewsDao
@@ -17,6 +18,8 @@ class ReviewsDao
     //Statements defined as constants
     const ADD_REVIEW = "INSERT INTO reviews (title, comment, rating, user_id, product_id, created_at) 
                         VALUES (?, ?, ?, ?, ?, ?)";
+    const GET_REVIEWS_FOR_PRODUCT = "SELECT id, title, comment, rating, user_id, product_id, created_at 
+                          FROM reviews WHERE product_id = ?";
 
 
 
@@ -37,6 +40,10 @@ class ReviewsDao
 
 
     //Function for adding review
+    /**
+     * @param Reviews $reviews
+     * @return string
+     */
     function addNewReview(Reviews $reviews) {
 
         $statement = $this->pdo->prepare(self::ADD_REVIEW);
@@ -49,6 +56,18 @@ class ReviewsDao
                         $reviews->getCreatedAt()));
 
         return $this->pdo->lastInsertId();
+    }
+
+
+    //Function for getting reviews for product
+    function getReviewsForProduct ($productId) {
+
+        $statement = $this->pdo->prepare(self::GET_REVIEWS_FOR_PRODUCT);
+        $statement->execute(array($productId));
+
+        $reviewsReceived = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $reviewsReceived;
     }
 
 }

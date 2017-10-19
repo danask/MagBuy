@@ -11,12 +11,17 @@ $product = null;
 
 //Try to accomplish connection with the database
 try {
+
+
+
     $productId = $_GET['pid'];
     $productsDao = \model\database\ProductsDao::getInstance();
     $specsDao = \model\database\ProductSpecificationsDao::getInstance();
+    $reviewsDao = \model\database\ReviewsDao::getInstance();
 
     $product = $productsDao->getProductByID($productId);
     $specifications = $specsDao->getAllSpecificationsForProduct($productId);
+    $reviews = $reviewsDao->getReviewsForProduct($productId);
 
 } catch (PDOException $e) {
 
