@@ -132,8 +132,8 @@ require_once "../elements/navigation.php";
                             <span class="reducedfrom">$800.00</span>
                             <span class="actual item_price">$<?= $product['price']; ?></span>
                         </div>
-                        <h2 class="quick">Quick Overview</h2>
-                        <p class="quick_desc"><?= $product['description']; ?></p>
+                        <img id="averageRating" class="media-object img"
+                             src="../../web/uploads/magbuy/rating<?=$product['average']?>.png"><br/>
                         <div class="clearfix"></div>
                         <button class="btn btn-default"
                                 onclick="addToCart(<?= $product['id'] ?>, <?= $product['price'] ?>)"><span
@@ -250,7 +250,12 @@ require_once "../elements/navigation.php";
                                         </a>
                                         <div class="media-body">
                                             <div class="well well-lg">
-                                                <h4 class="media-heading text-uppercase reviews"><?= $review['title'] . "<small>" . "&nbsp by " . $review['first_name'] . "</small>" ?><img class="media-object img" src="../../web/uploads/magbuy/rating<?=$review['rating']?>.png"> </h4>
+                                                <h4 class="media-heading text-uppercase reviews"><?= $review['title'] .
+                                                    "<small>" . "&nbsp by " . $review['first_name'] . "</small>" ?><img
+                                                            class="media-object img"
+                                                            src=
+                                                            "../../web/uploads/magbuy/rating<?=$review['rating']?>.png">
+                                                </h4>
                                                 <ul class="media-date text-uppercase reviews list-inline">
                                                     <li class="dd"> <?= $review['created_at'] ?></li>
 

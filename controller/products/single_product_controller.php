@@ -25,6 +25,11 @@ try {
     $images = $imagesDao->getAllProductImages($productId);
     $reviewsCount = count($reviews);
 
+    //Check if rating is null
+    if($product['average'] === null) {
+        $product['average'] = 0;
+    }
+
 } catch (PDOException $e) {
 
     header("Location: ../../view/error/pdo_error.php");

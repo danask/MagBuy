@@ -21,7 +21,8 @@ class ProductsDao
     const GET_ALL_AVAILABLE_PRODUCTS = "SELECT P.id, I.image_url, P.title, P.description, P.price FROM products AS P 
                                         INNER JOIN images AS I ON P.id = I.product_id WHERE P.visible = 1 
                                         ORDER BY created_at DESC";
-    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price FROM products p INNER JOIN 
+    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, (SELECT FLOOR(AVG(rating)) 
+                                FROM reviews WHERE product_id = ?) average FROM products p INNER JOIN 
                                 images i ON p.id = i.product_id GROUP BY p.id HAVING p.id = ?";
     const GET_PRODUCT_IMAGES = "SELECT image_url FROM product_images WHERE product_id = ?";
     const GET_MOST_SOLD = "SELECT * FROM products ORDER BY times_sold DESC";
@@ -84,7 +85,7 @@ class ProductsDao
     function getProductByID($productId)
     {
         $statement = $this->pdo->prepare(self::GET_PRODUCT_BY_ID);
-        $statement->execute(array($productId));
+        $statement->execute(array($productId, $productId));
         $product = $statement->fetch();
 
         return $product;

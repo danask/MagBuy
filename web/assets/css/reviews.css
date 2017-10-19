@@ -89,3 +89,8 @@ input[type="file"]{
     cursor: pointer;
 }
 .custom-input-file:hover .uploadPhoto { display: block; }
+
+
+#averageRating {
+    width: 50%;
+}
