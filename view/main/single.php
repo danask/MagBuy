@@ -8,16 +8,6 @@ require_once "../../controller/favourites/check_favourites_controller.php";
 <!DOCTYPE HTML>
 <html>
 <head>
-    <!-- CSS for image slider -->
-    <link rel="stylesheet" href="../../web/assets/css/slider.css">
-
-    <!-- Style for images slider -->
-    <style>
-        .mySlides {display:none}
-        .demo {cursor:pointer}
-    </style>
-
-
     <title>MagBuy | <?= $product['title'] ?></title>
     <link rel="shortcut icon" href="../../web/uploads/magbuy/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../../web/uploads/magbuy/favicon.ico" type="image/x-icon">
@@ -66,6 +56,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script src="../../web/assets/js/modernizr.custom.js"></script>
     <script type="text/javascript" src="../../web/assets/js/move-top.js"></script>
     <script type="text/javascript" src="../../web/assets/js/easing.js"></script>
+    <link rel="stylesheet" href="../../web/assets/css/flexslider.css" type="text/css" media="screen"/>
 
     <!--/script-->
     <script type="text/javascript">
@@ -102,39 +93,38 @@ require_once "../elements/navigation.php";
 <div class="products">
     <div class="container">
         <div class="products-grids">
-
-
-
             <div class="col-md-8 products-single">
                 <div class="col-md-5 grid-single">
                     <div class="flexslider">
                         <ul class="slides">
-
-                            <div class="w3-content" style="max-width:1200px">
-                                <img class="mySlides" src="<?= $images[0]['image_url'] ?>" style="width:100%">
-                                <img class="mySlides" src="<?= $images[1]['image_url'] ?>" style="width:100%">
-                                <img class="mySlides" src="<?= $images[2]['image_url'] ?>" style="width:100%">
-
-                                <div class="w3-row-padding w3-section">
-                                    <div class="w3-col s4">
-                                        <img class="demo w3-opacity w3-hover-opacity-off " src="<?= $images[0]['image_url'] ?>" style="width:100%" onclick="currentDiv(1)">
-                                    </div>
-                                    <div class="w3-col s4">
-                                        <img class="demo w3-opacity w3-hover-opacity-off" src="<?= $images[1]['image_url'] ?>" style="width:100%" onclick="currentDiv(2)">
-                                    </div>
-                                    <div class="w3-col s4">
-                                        <img class="demo w3-opacity w3-hover-opacity-off" src="<?= $images[2]['image_url'] ?>" style="width:100%" onclick="currentDiv(3)">
-                                    </div>
-                                </div>
-                            </div>
+                            <?php
+                            foreach ($images as $image) {
+                                ?>
+                                <li data-thumb="<?= $image['image_url'] ?>">
+                                    <div class="thumb-image"><img src="<?= $image['image_url'] ?>"
+                                                                  data-imagezoom="true"
+                                                                  class="img-responsive" alt=""/></div>
+                                </li>
+                                <?php
+                            }
+                            ?>
                         </ul>
                     </div>
+                    <!-- FlexSlider -->
+                    <script src="../../web/assets/js/imagezoom.js"></script>
+                    <script defer src="../../web/assets/js/jquery.flexslider.js"></script>
+                    <script>
+                        // Can also be used with $(document).ready()
+                        $(window).load(function () {
+                            $('.flexslider').flexslider({
+                                animation: "slide",
+                                controlNav: "thumbnails"
+                            });
+                        });
+                    </script>
+
                 </div>
-
-
-
-
-                <div class="col-md-6 single-text">
+                <div class="col-md-7 single-text">
                     <div class="details-left-info simpleCart_shelfItem">
                         <h3><?= $product['title']; ?></h3>
                         <p class="availability">Availability: <span class="color">In stock</span></p>
@@ -355,7 +345,3 @@ require_once "../elements/footer.php";
 
 </body>
 </html>
-
-
-<!-- JS for slider -->
-<script src="../../web/assets/js/slider.js"></script>
