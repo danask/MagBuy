@@ -4,8 +4,6 @@
 namespace model;
 
 
-use DateTime;
-
 class Product
 {
     private $id;

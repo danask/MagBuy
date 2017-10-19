@@ -4,15 +4,15 @@ require_once "../../controller/cart/show_cart_controller.php"
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>Nuevo Shop a Ecommerce Online Shopping Flat Bootstarp Resposive Website Template | Checkout ::
-        w3layouts</title>
+    <title>MagBuy Cart</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Nuevo Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
-
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -52,7 +52,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     var items = document.getElementById("cartItems");
                     items.innerHTML = parseInt(items.innerHTML) - 1;
                     var price = document.getElementById("cartTotalPrice");
-                    price.innerHTML = parseInt(price.innerHTML) - productPrice + ".00";
+                    price.innerHTML = parseInt(price.innerHTML) - productPrice;
                     var items2 = document.getElementById("cartItems2");
                     items2.innerHTML = parseInt(items2.innerHTML) - 1;
 
@@ -80,7 +80,11 @@ require_once "../elements/navigation.php";
             )
         </h3>
         <br>
-        <h3 class="b-tittle" style="text-align: center">Price Total: <div style="color: red">$<?= $cartTotalPrice ?></div></h3>
+        <h3 class="b-tittle" style="text-align: center">Price Total:
+            <div id="cartTotalPrice2" style="color: red">
+                $<?= $cartTotalPrice ?>
+            </div>
+        </h3>
         <br>
         <button class="btn btn-danger btn-lg btn-block" style="margin: 0 auto 0 auto; display: block">Checkout</button>
         <?php

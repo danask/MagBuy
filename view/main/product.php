@@ -4,7 +4,9 @@ require_once "../../controller/products/products_by_category_controller.php";
 <!DOCTYPE HTML>
 <html>
 <head>
-    <title>MagBuy</title>
+    <title>MagBuy Category</title>
+    <link rel="shortcut icon" href="../../favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Nuevo Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
