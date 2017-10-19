@@ -8,7 +8,7 @@ function addFavourite(product_id) {
         if (this.readyState == 4 && this.status == 200) {
 
             document.getElementById('favourite').innerHTML = "";
-            document.getElementById('favourite').innerHTML = "<button class='btn btn-danger' onclick='removeFavourite(" + product_id + ")'>Remove from Favourites</button>";
+            document.getElementById('favourite').innerHTML = "<button class='btn btn-danger' onclick='removeFavourite(" + product_id + ")'><span class='glyphicon glyphicon-heart-empty'></span> Remove from Favourites</button>";
         }
     };
 
@@ -27,7 +27,7 @@ function removeFavourite(product_id) {
         if (this.readyState == 4 && this.status == 200) {
 
             document.getElementById('favourite').innerHTML = "";
-            document.getElementById('favourite').innerHTML = "<button class='btn btn-primary' onclick='addFavourite(" + product_id + ")'>Add to favourites</button>";
+            document.getElementById('favourite').innerHTML = "<button class='btn btn-primary' onclick='addFavourite(" + product_id + ")'><span class='glyphicon glyphicon-heart'></span> Add to favourites</button>";
         }
     };
 

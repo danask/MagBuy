@@ -10,7 +10,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
                 var items = document.getElementById("cartItems");
                 items.innerHTML = parseInt(items.innerHTML) + 1;
                 var price = document.getElementById("cartTotalPrice");
-                price.innerHTML = parseInt(price.innerHTML) + productPrice + ".00";
+                price.innerHTML = parseInt(price.innerHTML) + productPrice;
             }
         };
         xhttp.open("GET", "../../controller/cart/add_to_cart_controller.php?pid=" + productId, true);
@@ -32,7 +32,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
                         <a href="checkout.php">
                             <div class="total">
                                 $
-                                <div id="cartTotalPrice" style="display: inline"><?= $cartTotalPrice ?>.00</div>
+                                <div id="cartTotalPrice" style="display: inline"><?= $cartTotalPrice ?></div>
                                 <br>
                                 (
                                 <div id="cartItems" style="display: inline"><?= $cartItems ?></div>
