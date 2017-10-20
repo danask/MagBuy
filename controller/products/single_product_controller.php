@@ -24,6 +24,7 @@ try {
     $reviews = $reviewsDao->getReviewsForProduct($productId);
     $images = $imagesDao->getAllProductImages($productId);
     $reviewsCount = count($reviews);
+    $relatedProducts = $productsDao->getRelated($productId);
 
     //Check if rating is null
     if($product['average'] === null) {

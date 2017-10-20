@@ -18,22 +18,39 @@ class ProductsDao
     //Statements defined as constants
     const CREATE_PRODUCT = "INSERT INTO products(title, description, price, quantity, visible, created_at,
                             subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
     const GET_ALL_AVAILABLE_PRODUCTS = "SELECT P.id, I.image_url, P.title, P.description, P.price FROM products AS P 
                                         INNER JOIN images AS I ON P.id = I.product_id WHERE P.visible = 1 
                                         ORDER BY created_at DESC";
+
     const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, (SELECT AVG(rating) 
                                 FROM reviews WHERE product_id = ?) average FROM products p INNER JOIN 
                                 images i ON p.id = i.product_id GROUP BY p.id HAVING p.id = ?";
+
     const GET_PRODUCT_IMAGES = "SELECT image_url FROM product_images WHERE product_id = ?";
+
     const GET_MOST_SOLD = "SELECT * FROM products ORDER BY times_sold DESC";
+
     const GET_MOST_REVIEWED = "SELECT * FROM products ORDER BY times_reviewed DESC";
+
     const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, 
                                     p.visible FROM products p INNER JOIN images i ON p.id = i.product_id GROUP BY 
                                     P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC";
-    const GET_MOST_RATED_PRODUCTS_FOR_MAIN = "SELECT P.id, P.title, P.price, I.image_url, (SELECT AVG(rating) 
+
+    const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, (SELECT AVG(rating) 
                                             FROM reviews WHERE product_id = P.id) average FROM products P
                                             JOIN images I ON P.id = I.product_id JOIN reviews R ON P.id = R.product_id
-                                            GROUP BY P.id ORDER BY average DESC LIMIT 3"   ;
+                                            GROUP BY P.id ORDER BY average DESC LIMIT 3";
+
+    const GET_RELATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.subcategory_id FROM products P JOIN images I 
+                                  ON P.id = I.product_id
+                                  GROUP BY P.id HAVING P.subcategory_id = ? LIMIT 3";
+
+    const SEARCH_PRODUCTS = "SELECT id, title, price FROM products WHERE title LIKE ? LIMIT 3";
+
+
+
+
 
     //Get connection in construct
     private function __construct()
@@ -157,10 +174,33 @@ class ProductsDao
     //Function for getting top 3 rated products for main page
     function getTopRated(){
 
-        $statement = $this->pdo->prepare(self::GET_MOST_RATED_PRODUCTS_FOR_MAIN);
+        $statement = $this->pdo->prepare(self::GET_MOST_RATED_PRODUCTS);
         $statement->execute(array());
         $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $products;
+    }
+
+    //Function for getting related products
+    function getRelated($subCat) {
+
+        $statement = $this->pdo->prepare(self::GET_RELATED_PRODUCTS);
+        $statement->execute(array($subCat));
+        $products = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $products;
+    }
+
+
+
+    //Function for searching products
+    function searchProduct ($needle) {
+
+        $statement = $this->pdo->prepare(self::SEARCH_PRODUCTS);
+        $statement->execute(array("%$needle%"));
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
     }
 }

@@ -353,36 +353,22 @@ require_once "../elements/navigation.php";
             <!-- collapse -->
             <!--/start-latest-->
             <div class="collection-section">
-                <h3 class="tittle">Related Products</h3>
+                <?php if(count($relatedProducts)) { echo "<h3 class=\"tittle\">Related Products</h3>"; } ?>
 
                 <div class="fashion-info">
-                    <div class="col-md-4 fashion-grids">
-                        <figure class="effect-bubba">
-                            <img src="../../web/assets/images/f4.jpg" alt=""/>
-                            <figcaption>
-                                <h4>Nuevo Shop</h4>
-                                <p class="cart"><a href="#">Shop</a></p>
-                            </figcaption>
-                        </figure>
+                    <?php foreach ($relatedProducts as $product) { ?>
+                    <div class="fashion-info">
+                        <div class="col-md-4 fashion-grids">
+                            <figure class="effect-bubba">
+                                <img src="<?= $product['image_url'] ?>" alt=""/>
+                                <figcaption>
+                                    <h4><?= $product['title'] ?></h4>
+                                    <p class="cart"><a href="single.php?pid=<?= $product['id'] ?>">Shop</a></p>
+                                </figcaption>
+                            </figure>
+                        </div>
                     </div>
-                    <div class="col-md-4 fashion-grids">
-                        <figure class="effect-bubba">
-                            <img src="../../web/assets/images/f5.jpg" alt=""/>
-                            <figcaption>
-                                <h4>Nuevo Shop</h4>
-                                <p class="cart"><a href="#">Shop</a></p>
-                            </figcaption>
-                        </figure>
-                    </div>
-                    <div class="col-md-4 fashion-grids">
-                        <figure class="effect-bubba">
-                            <img src="../../web/assets/images/f6.jpg" alt=""/>
-                            <figcaption>
-                                <h4>Nuevo Shop</h4>
-                                <p class="cart"><a href="#">Shop</a></p>
-                            </figcaption>
-                        </figure>
-                    </div>
+                <?php } ?>
                     <div class="clearfix"></div>
                 </div>
             </div>
