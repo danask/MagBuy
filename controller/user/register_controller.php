@@ -12,12 +12,12 @@ function __autoload($className) {
 
 
 //Register Validation
-if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['firstName']) && isset($_POST['lastName'])
-    && isset($_POST['mobilePhone']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
+if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['password']) && isset($_POST['firstName'])
+    && isset($_POST['lastName']) && isset($_POST['mobilePhone']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL)
     && strlen($_POST['email']) > 3 && strlen($_POST['email']) < 254 && strlen($_POST['password']) >= 4
-    && strlen($_POST['password']) < 20 && strlen($_POST['firstName']) >= 4 && strlen($_POST['firstName']) < 20
-    && strlen($_POST['lastName']) >= 4 && strlen($_POST['lastName']) < 20 && ctype_digit($_POST['mobilePhone'])
-    && strlen($_POST['mobilePhone']) == 10) {
+    && strlen($_POST['password']) < 20 && $_POST['password'] == $_POST['password2'] && strlen($_POST['firstName']) >= 4
+    && strlen($_POST['firstName']) < 20 && strlen($_POST['lastName']) >= 4 && strlen($_POST['lastName']) < 20
+    && ctype_digit($_POST['mobilePhone']) && strlen($_POST['mobilePhone']) == 10) {
 
     $user = new \model\User();
 

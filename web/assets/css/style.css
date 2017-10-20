@@ -2159,11 +2159,11 @@ ul.socials li {
 }
 
 .socials li .soc1 {
-    background: url(../images/social-1.png) 0 100% no-repeat;
+    background: url(../../uploads/magbuy/social-1.png) 0 100% no-repeat;
 }
 
 .socials li .soc2 {
-    background: url(../images/social-2.png) 0 100% no-repeat;
+    background: url(../../uploads/magbuy/social-2.png) 0 100% no-repeat;
 }
 
 .socials li .soc3 {
@@ -2197,7 +2197,7 @@ ul.socials li {
 }
 
 .close1, .close2, .close3 {
-    background: url('../images/close.png') no-repeat 0 0;
+    background: url('../../uploads/magbuy/close.png') no-repeat 0 0;
     cursor: pointer;
     width: 28px;
     height: 28px;
@@ -2312,7 +2312,7 @@ ul.qty li p {
     height: 22px;
     border: none;
     text-indent: 100%;
-    background: url(../images/move-top.png) no-repeat 0 0;
+    background: url(../../uploads/magbuy/move-top.png) no-repeat 0 0;
 }
 
 /*--responsive--*/

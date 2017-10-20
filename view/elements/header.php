@@ -19,9 +19,6 @@ if (session_status() == PHP_SESSION_NONE) {
                     ?>
                 </ul>
             </div>
-            <div class="top_left">
-                <h6><span></span> Call us GODS</h6>
-            </div>
             <div class="clearfix"></div>
         </div>
     </div>
