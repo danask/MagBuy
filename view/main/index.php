@@ -76,56 +76,7 @@ require_once "../elements/navigation.php";
         </div>
     </div>
 </div>
-<!--//fashion-->
-<!--/start-latest-->
-<div class="collection-section">
-    <div class="container">
-        <h3 class="tittle fea">FEATURED COLLECTIONS</h3>
 
-        <div class="fashion-info">
-            <div class="col-md-4 fashion-grids">
-                <figure class="effect-bubba">
-                    <img src="../../web/assets/images/f4.jpg" alt=""/>
-                    <figcaption>
-                        <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.php">Shop</a></p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-4 fashion-grids">
-                <figure class="effect-bubba">
-                    <img src="../../web/assets/images/f5.jpg" alt=""/>
-                    <figcaption>
-                        <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.php">Shop</a></p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-4 fashion-grids">
-                <figure class="effect-bubba">
-                    <img src="../../web/assets/images/f6.jpg" alt=""/>
-                    <figcaption>
-                        <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.php">Shop</a></p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="clearfix"></div>
-        </div>
-    </div>
-</div>
-<!--//latest-->
-
-<div class="mid-content">
-    <div class="container">
-        <div class="middle">
-            <div class="mid-top">
-                <h3>Discover a huge assortment of</h3>
-                <p>women`s handbags at the lowest prices</p>
-            </div>
-        </div>
-    </div>
-</div>
 <!--start-bottom-->
 <!--start-image-cursuals-->
 <?php
