@@ -3,6 +3,10 @@
 <!DOCTYPE HTML>
 <html>
 <head>
+
+    <!-- JS to remove item with AJAX -->
+    <script type="text/javascript" src="../../web/assets/js/add_favourites.js"></script>
+
     <title>MagBuy Favourites</title>
     <link rel="shortcut icon" href="../../web/uploads/magbuy/favicon.ico" type="image/x-icon">
     <link rel="icon" href="../../web/uploads/magbuy/favicon.ico" type="image/x-icon">
@@ -58,10 +62,12 @@ require_once "../elements/navigation.php";
         <?php
         foreach ($products as $product) {
             ?>
-            <a href="single.php?pid=<?= $product['id'] ?>">
+            <div id="deleteItem<?= $product['id']?>">
                 <div class="cart-header">
+                    <div class="close1" onclick="removeFavouriteList(<?= $product['id']?>)"></div>
                     <div class="cart-sec simpleCart_shelfItem">
                         <div class="cart-item cyc">
+                            <a href="single.php?pid=<?= $product['id'] ?>">
                             <img src="<?= $product['image_url'] ?>" class="img-responsive" alt="">
                         </div>
                         <div class="cart-item-info">
@@ -76,6 +82,7 @@ require_once "../elements/navigation.php";
                     </div>
                 </div>
             </a>
+            </div>
             <?php } ?>
     </div>
 </div>

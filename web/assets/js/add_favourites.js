@@ -35,3 +35,21 @@ function removeFavourite(product_id) {
     xhttp.open("GET", "../../../MagBuy/controller/favourites/remove_favourites_controller.php?product_id_remove=" + product_id, true);
     xhttp.send();
 }
+
+function removeFavouriteList(product_id) {
+
+    //Create XMLHTTP request object (the keystone of AJAX)
+    var xhttp = new XMLHttpRequest();
+
+    //What happens when response is received
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+
+                document.getElementById('deleteItem' + product_id).innerHTML = "";
+        }
+    };
+
+    //Where to send the request
+    xhttp.open("GET", "../../../MagBuy/controller/favourites/remove_favourites_controller.php?product_id_remove=" + product_id, true);
+    xhttp.send();
+}
