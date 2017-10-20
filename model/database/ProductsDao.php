@@ -23,7 +23,7 @@ class ProductsDao
                                         INNER JOIN images AS I ON P.id = I.product_id WHERE P.visible = 1 
                                         ORDER BY created_at DESC";
 
-    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, (SELECT AVG(rating) 
+    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, (SELECT AVG(rating) 
                                 FROM reviews WHERE product_id = ?) average FROM products p INNER JOIN 
                                 images i ON p.id = i.product_id GROUP BY p.id HAVING p.id = ?";
 
@@ -44,7 +44,10 @@ class ProductsDao
 
     const GET_RELATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.subcategory_id FROM products P JOIN images I 
                                   ON P.id = I.product_id
-                                  GROUP BY P.id HAVING P.subcategory_id = ? LIMIT 3";
+                                  GROUP BY P.id HAVING P.subcategory_id = ? ORDER BY P.created_at DESC LIMIT 3";
+
+    const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, p.title, i.image_url FROM products p JOIN images i 
+                                      ON p.id = i.product_id GROUP BY p.id ORDER BY p.created_at DESC LIMIT 3";
 
     const SEARCH_PRODUCTS = "SELECT id, title, price FROM products WHERE title LIKE ? LIMIT 3";
 
@@ -186,6 +189,16 @@ class ProductsDao
 
         $statement = $this->pdo->prepare(self::GET_RELATED_PRODUCTS);
         $statement->execute(array($subCat));
+        $products = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $products;
+    }
+
+    //Function for getting most recent products
+    function getMostRecent() {
+
+        $statement = $this->pdo->prepare(self::GET_MOST_RECENT_PRODUCTS);
+        $statement->execute(array());
         $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $products;

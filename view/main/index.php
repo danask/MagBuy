@@ -1,4 +1,4 @@
-<?php require_once "../../controller/products/top_rated_products_controller.php" ?>
+<?php require_once "../../controller/products/home_products_controller.php" ?>
 
 <!DOCTYPE HTML>
 <html>
@@ -76,6 +76,32 @@ require_once "../elements/navigation.php";
         </div>
     </div>
 </div>
+
+<div class="fashion-section">
+    <div class="container">
+        <h3 class="tittle">MOST RECENT</h3>
+
+        <div class="fashion-info">
+
+            <?php foreach ($mostRecent as $product) { ?>
+
+                <div class="col-md-4 fashion-grids">
+                    <figure class="effect-bubba">
+                        <img src="<?= $product['image_url'] ?>" alt=""/>
+                        <figcaption>
+                            <h4><?= $product['title'] ?></h4>
+                            <p class="cart"><a href="single.php?pid=<?= $product['id']?>">Shop</a></p>
+                        </figcaption>
+                    </figure>
+                </div>
+
+            <?php } ?>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>
+
+
 
 <!--start-bottom-->
 <!--start-image-cursuals-->

@@ -14,6 +14,7 @@ try {
     $productsDao = \model\database\ProductsDao::getInstance();
 
     $topRated = $productsDao->getTopRated();
+    $mostRecent = $productsDao->getMostRecent();
 
 } catch (PDOException $e) {
 
