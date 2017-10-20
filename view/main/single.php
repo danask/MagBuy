@@ -314,16 +314,16 @@ require_once "../elements/navigation.php";
                             <div class="tab-pane active" id="comments-logout">
                                 <ul class="media-list">
                                     <li class="media">
-                                        <a class="pull-left" href="#">
+                                        <div class="pull-left" href="#">
                                             <img class="media-object img-circle"
                                                  src="<?= $review['image_url']?>"
                                                  alt="profile">
-                                        </a>
+                                        </div>
                                         <div class="media-body">
                                             <div class="well well-lg">
                                                 <h4 class="media-heading text-uppercase reviews"><?= $review['title'] .
                                                     "<small>" . "&nbsp by " . $review['first_name'] . "</small>" ?><img
-                                                            class="media-object img"
+                                                            id="reviewRating" class="media-object img"
                                                             src=
                                                             "../../web/uploads/magbuy/rating<?=$review['rating']?>.png">
                                                 </h4>
