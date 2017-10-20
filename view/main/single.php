@@ -83,7 +83,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <link rel="stylesheet" href="../../web/assets/css/reviews.css" type="text/css"/>
 
     <!-- Normal Slider CSS -->
-    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="../../web/assets/css/simplerSlider.css">
 
     <style>
         #normalSlider {
