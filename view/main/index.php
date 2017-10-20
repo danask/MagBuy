@@ -1,3 +1,5 @@
+<?php require_once "../../controller/products/top_rated_products_controller.php" ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
@@ -41,6 +43,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
             });
         });
     </script>
+
 </head>
 <body>
 <?php
@@ -52,36 +55,23 @@ require_once "../elements/navigation.php";
 <!--/start-fashion-->
 <div class="fashion-section">
     <div class="container">
-        <h3 class="tittle">Fashions</h3>
+        <h3 class="tittle">TOP RATED</h3>
 
         <div class="fashion-info">
+
+            <?php foreach ($topRated as $product) { ?>
+
             <div class="col-md-4 fashion-grids">
                 <figure class="effect-bubba">
-                    <img src="../../web/assets/images/f1.jpg" alt=""/>
+                    <img src="<?= $product['image_url'] ?>" alt=""/>
                     <figcaption>
-                        <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.php">Shop</a></p>
+                        <h4><?= $product['title'] ?></h4>
+                        <p class="cart"><a href="single.php?pid=<?= $product['id']?>">Shop</a></p>
                     </figcaption>
                 </figure>
             </div>
-            <div class="col-md-4 fashion-grids">
-                <figure class="effect-bubba">
-                    <img src="../../web/assets/images/f2.jpg" alt=""/>
-                    <figcaption>
-                        <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.php">Shop</a></p>
-                    </figcaption>
-                </figure>
-            </div>
-            <div class="col-md-4 fashion-grids">
-                <figure class="effect-bubba">
-                    <img src="../../web/assets/images/f3.jpg" alt=""/>
-                    <figcaption>
-                        <h4>Nuevo Shop</h4>
-                        <p class="cart"><a href="single.php">Shop</a></p>
-                    </figcaption>
-                </figure>
-            </div>
+
+            <?php } ?>
             <div class="clearfix"></div>
         </div>
     </div>

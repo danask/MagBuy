@@ -28,6 +28,8 @@ try {
     //Check if rating is null
     if($product['average'] === null) {
         $product['average'] = 0;
+    } else {
+        $product['average'] = round($product['average'], 0);
     }
 
 } catch (PDOException $e) {
