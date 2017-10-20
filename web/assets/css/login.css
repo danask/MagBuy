@@ -1,7 +1,7 @@
 @import url(font.css);
 
 body{
-    background-color: #efeeec;
+    background-color: #FFFFFF;
 }
 
 .login-page {
@@ -33,7 +33,7 @@ body{
 #login {
     font-family: "Roboto", sans-serif;
     outline: 0;
-    background: #C63839;
+    background: #16C9D2;
     width: 100%;
     border: 0;
     padding: 15px;
@@ -56,7 +56,7 @@ body{
     margin-top: 0;
     font-size: large;
     font-weight: bold;
-    color: #af0800;
+    color: #16C9D2;
     text-decoration: none;
 }
 
@@ -65,7 +65,7 @@ body{
     margin-bottom: 8px;
     font-weight: bold;
     font-size: 88%;
-    color: #af0800;
+    color: #16C9D2;
     text-decoration: none;
     text-align: left;
 }
@@ -89,8 +89,8 @@ body{
 }
 
 #logo {
-    margin-left: 31.1%;
-    margin-bottom: 5%;
+    margin-left: 25%;
+    margin-bottom: 4%;
 }
 
 .radio {
