@@ -109,12 +109,21 @@ if (isset($_POST['email']) && (isset($_POST['password']) || $_POST['password'] =
         $user->setPersonal(htmlentities($_POST['personal']));
 
 
-
         //Get current user's info
         $userArr = $userDao->getUserInfo($user);
 
+        //Check if password is correct
+        if(sha1($_POST['passwordOld']) != $userArr['password']) {
+
+            //Locate to error Register Page
+            header("Location: ../../view/user/edit.php?error");
+
+            //Sends buffer
+            ob_flush();
+        }
+
         //Check if password is changed or is the same
-        if ($_POST['password'] == 0) {
+        if (strlen($_POST['password']) == 0) {
             $user->setPassword($userArr['password']);
         } else {
             $user->setPassword(sha1($_POST['password']));
