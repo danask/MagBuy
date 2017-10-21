@@ -3,7 +3,7 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
-<div class="top_bg" id="home">
+<div class="top_bg" id="home" style="position: fixed; z-index: 999; width: 100%; margin-bottom: 100px;">
     <div class="container">
         <div class="header_top">
             <div class="top_right">

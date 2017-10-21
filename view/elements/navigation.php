@@ -17,7 +17,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
         xhttp.send();
     }
 </script>
-<div class="header_bg">
+<div class="header_bg" style="padding-top: 50px;">
     <div class="container">
         <div class="header">
             <div class="head-t">
