@@ -14,6 +14,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 
+
+
+
+
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -83,8 +87,10 @@ require_once "../elements/navigation.php";
         </h3>
         <br>
         <h3 class="b-tittle" style="text-align: center">Price Total:
-            <div id="cartTotalPrice2" style="color: red">
-                $ <?= $cartTotalPrice ?>
+            <div style="color: red">$
+                <div id="cartTotalPrice2" style="display: inline;">
+                    <?= $cartTotalPrice ?>
+                </div>
             </div>
         </h3>
         <br>

@@ -1,5 +1,14 @@
 <?php
 
+//Autoload to require needed model files
+if (!function_exists("__autoload")) {
+    function __autoload($className)
+    {
+        $className = '..\\..\\' . $className;
+        require_once str_replace("\\", "/", $className) . '.php';
+    }
+}
+
 if (isset($_SESSION['cart'])) {
     $cart = $_SESSION['cart'];
     $cartItems = 0;
