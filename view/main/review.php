@@ -92,6 +92,7 @@ require_once "../elements/navigation.php";
             <option value="5">5</option>
         </select>
 
+
         <p>Title</p>
         <input type="text" name="title" placeholder="Enter Title" required>
 

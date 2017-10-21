@@ -3,7 +3,7 @@
         <div class="nbs-flexisel-container">
             <div class="nbs-flexisel-inner">
                 <ul class="flexiselDemo3 nbs-flexisel-ul" style="left: -253.6px; display: block;">
-                    <li onclick="location.href='http://upnetix.com/ class="nbs-flexisel-item" style="width: 253.6px;"><img
+                    <li onclick="location.href='http://upnetix.com/';" class="nbs-flexisel-item" style="width: 253.6px;"><img
                             src="../../web/uploads/magbuy/c3.png" alt=""/></li>
                     <li onclick="location.href='https://www.trader.bg/';" class="nbs-flexisel-item" style="width: 253.6px;"><img
                                 src="../../web/uploads/magbuy/c4.png" alt=""/></li>
