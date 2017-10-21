@@ -14,6 +14,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 
+
+
+
+
+
+
+
+
+
+
+
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -45,18 +56,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         });
     </script>
     <script>
-        function removeFromCart(productId, productPrice) {
+        function removeFromCart(productId, productPrice, productQuantity) {
             $('#button-' + productId).remove();
             var xhttp = new XMLHttpRequest();
             xhttp.onreadystatechange = function () {
                 if (this.status == 200 && this.readyState == 4) {
                     var items = document.getElementById("cartItems");
-                    items.innerHTML = parseInt(items.innerHTML) - 1;
+                    items.innerHTML = parseInt(items.innerHTML) - productQuantity;
                     var price = document.getElementById("cartTotalPrice");
-                    price.innerHTML = (parseFloat(price.innerHTML) - productPrice).toFixed(2);
-                    var items2 = document.getElementById("cartItems2");
-                    items2.innerHTML = parseInt(items2.innerHTML) - 1;
-
+                    price.innerHTML = (parseFloat(price.innerHTML) - (productPrice * productQuantity)).toFixed(2);
 
                     $('#product-' + productId).remove();
 
@@ -77,36 +85,39 @@ require_once "../elements/navigation.php";
 <div class="cart-items">
     <div class="container">
         <h3 class="tittle">My shopping(
-            <div id="cartItems2" style="display: inline"><?= $cartItems ?></div>
+            <div id="cartItems2" style="display: inline">TODO</div>
             )
         </h3>
         <br>
         <h3 class="b-tittle" style="text-align: center">Price Total:
             <div id="cartTotalPrice2" style="color: red">
-                $<?= $cartTotalPrice ?>
+                $ TODO
             </div>
         </h3>
         <br>
         <button class="btn btn-danger btn-lg btn-block" style="margin: 0 auto 0 auto; display: block">Checkout</button>
         <?php
-        foreach ($cartProducts as $product) {
+        foreach ($cart as $cartProduct) {
             ?>
-            <div id="product-<?= $product['id'] ?>">
+            <div id="product-<?= $cartProduct->getId() ?>">
                 <div class="cart-header">
-                    <div id="button-<?= $product['id'] ?>" class="close1"
-                         onclick="removeFromCart(<?= $product['id'] . "," . $product['price'] ?>)"></div>
+                    <div id="button-<?= $cartProduct->getId() ?>" class="close1"
+                         onclick="removeFromCart(<?= $cartProduct->getId() . "," . $cartProduct->getPrice() . "," . $cartProduct->getQuantity() ?>)"></div>
                     <div class="cart-sec simpleCart_shelfItem">
                         <div class="cart-item cyc">
-                            <img src="<?= $product['image_url'] ?>" class="img-responsive" alt="">
+                            <img src="<?= $cartProduct->getImage() ?>" class="img-responsive" alt="">
                         </div>
                         <div class="cart-item-info">
-                            <h3><a href="single.php?pid=<?= $product['id'] ?>"> <?= $product['title'] ?> </a></h3>
+                            <h3>
+                                <a href="single.php?pid=<?= $cartProduct->getId() ?>"> <?= $cartProduct->getTitle() ?> </a>
+                            </h3>
                             <ul class="qty">
-                                <li><p>Quantity:</p></li>
+                                <li><p>Quantity: <?= $cartProduct->getQuantity() ?></p></li>
                                 <li><p>FREE delivery</p></li>
                             </ul>
                             <div class="delivery">
-                                <p>$<?= $product['price'] ?></p>
+                                <p>$<?= $cartProduct->getPrice() * $cartProduct->getQuantity() ?></p><br>
+                                <p>Single price: $<?= $cartProduct->getPrice() ?></p>
                                 <span>Delivered in 2 days</span>
                                 <div class="clearfix"></div>
                             </div>

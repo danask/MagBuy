@@ -2,19 +2,13 @@
 
 if (isset($_SESSION['cart'])) {
     $cart = $_SESSION['cart'];
-    $cart = explode(';', $cart);
-    $cartItems = count($cart);
+    $cartItems = 0;
     $cartTotalPrice = 0;
-
-    $productsDao = \model\database\ProductsDao::getInstance();
-    foreach ($cart as $productId) {
-        try {
-            $price = $productsDao->getProductPrice($productId);
-            $cartTotalPrice += $price;
-        } catch (PDOException $e) {
-            header("Location: ../../view/error/pdo_error.php");
-        }
+    foreach ($cart as $cartProduct) {
+        $cartItems += $cartProduct->getQuantity();
+        $cartTotalPrice += $cartProduct->getPrice() * $cartProduct->getQuantity();
     }
+
 } else {
     $cartItems = "0";
     $cartTotalPrice = "0.00";
