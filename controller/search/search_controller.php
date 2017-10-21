@@ -13,6 +13,10 @@ $searchDao = \model\database\ProductsDao::getInstance();
 
 $result = $searchDao->searchProduct($_GET['needle']);
 
+$resultJson = json_encode($result,  JSON_UNESCAPED_SLASHES);
+echo $resultJson;
+
+
 } catch (PDOException $e) {
 
     header("Location: ../../view/error/pdo_error.php");

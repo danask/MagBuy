@@ -87,6 +87,7 @@ label {
 }
 
 .top_right ul {
+    margin-top: 8.5px;
     padding: 0;
     list-style: none;
 }
