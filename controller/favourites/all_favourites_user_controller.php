@@ -1,15 +1,14 @@
 <?php
 
 session_start();
+//Autoload to require needed model files
+function __autoload($className)
+{
+    $className = '..\\..\\' . $className;
+    require_once str_replace("\\", "/", $className) . '.php';
+}
 
 if (isset($_SESSION['loggedUser'])) {
-
-//Autoload to require needed model files
-    function __autoload($className)
-    {
-        $className = '..\\..\\' . $className;
-        require_once str_replace("\\", "/", $className) . '.php';
-    }
 
     $products = null;
     $favourites = new \model\Favourites();

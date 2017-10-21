@@ -14,17 +14,6 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
     <script type="applijegleryion/x-javascript">
          addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
 
-
-
-
-
-
-
-
-
-
-
-
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -65,6 +54,10 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     items.innerHTML = parseInt(items.innerHTML) - productQuantity;
                     var price = document.getElementById("cartTotalPrice");
                     price.innerHTML = (parseFloat(price.innerHTML) - (productPrice * productQuantity)).toFixed(2);
+                    var items2 = document.getElementById("cartItems2");
+                    items2.innerHTML = parseInt(items2.innerHTML) - productQuantity;
+                    var price2 = document.getElementById("cartTotalPrice2");
+                    price2.innerHTML = (parseFloat(price2.innerHTML) - (productPrice * productQuantity)).toFixed(2);
 
                     $('#product-' + productId).remove();
 
@@ -85,13 +78,13 @@ require_once "../elements/navigation.php";
 <div class="cart-items">
     <div class="container">
         <h3 class="tittle">My shopping(
-            <div id="cartItems2" style="display: inline">TODO</div>
+            <div id="cartItems2" style="display: inline"><?= $cartItems ?></div>
             )
         </h3>
         <br>
         <h3 class="b-tittle" style="text-align: center">Price Total:
             <div id="cartTotalPrice2" style="color: red">
-                $ TODO
+                $ <?= $cartTotalPrice ?>
             </div>
         </h3>
         <br>
