@@ -46,6 +46,7 @@ function removeFavouriteList(product_id) {
         if (this.readyState == 4 && this.status == 200) {
 
                 document.getElementById('deleteItem' + product_id).innerHTML = "";
+
         }
     };
 

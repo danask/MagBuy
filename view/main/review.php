@@ -1,4 +1,6 @@
 <?php require_once "../../controller/products/home_products_controller.php" ?>
+<?php require_once "../../utility/no_session_main.php" ?>
+
 
 <!DOCTYPE HTML>
 <html>

@@ -57,7 +57,7 @@ require_once "../elements/navigation.php";
 
 <div class="cart-items">
     <div class="container">
-        <h3 class="tittle">My Favourites</h3>
+        <h3 class="tittle"><?php if(count($products)){ echo "My Favourites";} else {echo "No Favourite Products Found";} ?> </h3>
 
         <?php
         foreach ($products as $product) {
