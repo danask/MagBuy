@@ -48,7 +48,7 @@ if (session_status() == PHP_SESSION_NONE) {
 
                                 for (var pid in products) {
 
-                                    var result = "<a href=\"single.php?pid=" + products[pid]["id"] + "\"><div style=\"border-radius: 10%; background-color: #F5F5F5 ;margin: 8px 0 0 9px;\"><img style=\"border-radius: 10%; display:inline-block; width: 70px;\" src='" + products[pid]['image_url'] + "'><p style=\" margin-left: 20px; display:inline-block;\">" + products[pid]['title'] + "<br/>" + products[pid]['price'] + "</p></div></a>";
+                                    var result = "<a href=\"single.php?pid=" + products[pid]["id"] + "\"><div style=\"background-color: #F5F5F5 ; margin: 0; padding: 10px; \"><img style=\"border-radius: 10%; display:inline-block; width: 70px;\" src='" + products[pid]['image_url'] + "'><p style=\" margin-left: 20px; display:inline-block;\">" + products[pid]['title'] + "<br/>$" + products[pid]['price'] + "</p></div></a>";
                                     var productDiv = document.createElement('div');
                                     productDiv.innerHTML = result;
                                     container.appendChild(productDiv);
