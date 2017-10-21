@@ -21,9 +21,9 @@ if (session_status() == PHP_SESSION_NONE) {
             </div>
             <div class="top_left">
                 <form action="../main/search.php" method="get" autocomplete="off" >
-                <input name="search" id="search" class="form-control" type="text" placeholder="Search" onkeyup="searchSuggest()" required>
+                 <input name="search" id="search" class="form-control" type="text" placeholder="Press Enter to Search" onkeyup="searchSuggest()" required>
 
-                    <div id='result' style=" display:none; z-index: 100; height: 200px; width: 184px; background-color: inherit; position: absolute;"></div>
+                    <div id='result' style="display:none; z-index: 100; height: 200px; width: 184px; background-color: inherit; position: absolute;"></div>
 
                 <input type="submit" style="position: absolute; left: -9999px">
                 </form>
@@ -49,7 +49,7 @@ if (session_status() == PHP_SESSION_NONE) {
                                 for (var pid in products) {
 
                                     var result = "<a href=\"single.php?pid=" + products[pid]["id"] + "\">" +
-                                        "<div style=\"border: solid thin #0AA5E2; background-color: #FFFFFF ; margin: 0; padding: 10px; \">" +
+                                        "<div style=\"border: solid thin #0AA5E2; border-radius: 4%; background-color: #FFFFFF ; margin: 3px 0 0 0; padding: 10px; \">" +
                                         "<img style=\"border-radius: 10%; display:inline-block; width: 70px;\" " +
                                         "src='" + products[pid]['image_url'] + "'><p style=\" margin-left: 20px; " +
                                         "display:inline-block;\">" + products[pid]['title'] + "<br/>" +
