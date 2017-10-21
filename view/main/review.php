@@ -1,3 +1,5 @@
+<?php require_once "../../controller/products/home_products_controller.php" ?>
+
 <!DOCTYPE HTML>
 <html>
 <head>
