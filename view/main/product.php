@@ -91,7 +91,7 @@ require_once "../elements/navigation.php";
                                         </a>&nbsp&nbsp<span
                                             class=" item_price valsa">$<?= $product['price']; ?></span></p>
                                 <div class="pro-grd">
-                                    <a href="single.php?pid=<?= $product['id']; ?>">Quick View</a>
+                                    <a href="single.php?pid=<?= $product['id']; ?>">View</a>
                                 </div>
                             </div>
                         </div>

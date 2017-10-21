@@ -51,6 +51,8 @@ class ProductsDao
 
     const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
                               ON P.id = I.product_id GROUP BY P.id HAVING title LIKE ? LIMIT 3";
+    const SEARCH_PRODUCTS_NO_LIMIT = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
+                              ON P.id = I.product_id GROUP BY P.id HAVING title LIKE ?";
 
 
 
@@ -211,6 +213,17 @@ class ProductsDao
     function searchProduct ($needle) {
 
         $statement = $this->pdo->prepare(self::SEARCH_PRODUCTS);
+        $statement->execute(array("%$needle%"));
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    //Function for searching products without limit
+    function searchProductNoLimit ($needle) {
+
+        $statement = $this->pdo->prepare(self::SEARCH_PRODUCTS_NO_LIMIT);
         $statement->execute(array("%$needle%"));
 
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);

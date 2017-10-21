@@ -7,26 +7,36 @@ function __autoload($className) {
 }
 
 
-//Echo empty JSON if search is empty
-if ($_GET['needle'] == "") {
 
-    echo "{}";
-} else {
+//Check if request if from AJAX
+if (isset($_GET['needle'])) {
+//Echo empty JSON if search is empty
+    if ($_GET['needle'] == "") {
+
+        echo "{}";
+    } else {
 
 //Try to accomplish connection with the database
-    try {
+        try {
 
-        $searchDao = \model\database\ProductsDao::getInstance();
+            $searchDao = \model\database\ProductsDao::getInstance();
 
-        $result = $searchDao->searchProduct($_GET['needle']);
+            $result = $searchDao->searchProduct($_GET['needle']);
 
-        $resultJson = json_encode($result, JSON_UNESCAPED_SLASHES);
-        echo $resultJson;
+            $resultJson = json_encode($result, JSON_UNESCAPED_SLASHES);
+            echo $resultJson;
 
 
-    } catch (PDOException $e) {
+        } catch (PDOException $e) {
 
-        header("Location: ../../view/error/pdo_error.php");
+            header("Location: ../../view/error/pdo_error.php");
+        }
+
     }
 
+} else {
+
+    $searchDao = \model\database\ProductsDao::getInstance();
+
+    $result = $searchDao->searchProductNoLimit($_GET['search']);
 }
