@@ -30,7 +30,7 @@ if (isset($_POST['email']) && isset($_POST['password']) && isset($_POST['passwor
         $user->setPassword(sha1($_POST['password']));
         $user->setFirstName(htmlentities($_POST['firstName']));
         $user->setLastName(htmlentities($_POST['lastName']));
-        $user->setImageUrl("../../web/uploads/default.jpg");
+        $user->setImageUrl("../../web/uploads/MagBuy/default.jpg");
         $user->setMobilePhone(htmlentities($_POST['mobilePhone']));
 
         //Check if user exists

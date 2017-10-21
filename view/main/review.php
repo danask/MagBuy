@@ -83,23 +83,40 @@ require_once "../elements/navigation.php";
 
     <form action="../../controller/reviews/add_review_controller.php?pid=<?=$_GET['pid']?>" method="post">
 
-        <p>Rating</p>
-        <select name="rating" required>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
+        <style>
+            label > input{ /* HIDE RADIO */
+                visibility: hidden; /* Makes input not-clickable */
+                position: absolute; /* Remove input from document flow */
+            }
+            label > input + img{ /* IMAGE STYLES */
+                cursor:pointer;
+                border:2px solid transparent;
+            }
+            label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
+                background-color: #FDF000;
+                border-radius: 50%;
 
+            }
+        </style>
 
-        <p>Title</p>
-        <input type="text" name="title" placeholder="Enter Title" required>
+        <div style="margin-bottom: 35px;"></div>
+        <label>Rating</label>
+        <div style="margin-bottom: 15px;"></div>
+        <label class="radio-inline"><input type="radio" name="rating" value="1" required><img style="height: 40px; width: auto;" src="../../web/uploads/magbuy/star1.png"></label>
+        <label class="radio-inline"><input type="radio" name="rating" value="2" required><img style="height: 43px; width: auto;" src="../../web/uploads/magbuy/star2.png"></label>
+        <label class="radio-inline"><input type="radio" name="rating" value="3" required><img style="height: 46px; width: auto;" src="../../web/uploads/magbuy/star3.png"></label>
+        <label class="radio-inline"><input type="radio" name="rating" value="4" required><img style="height: 49px; width: auto;" src="../../web/uploads/magbuy/star4.png"></label>
+        <label class="radio-inline"><input type="radio" name="rating" value="5" required><img style="height: 52px; width: auto;" src="../../web/uploads/magbuy/star5.png"></label>
 
-        <p>Review</p>
-        <textarea name="review"></textarea><br/>
+        <div class="clearfix"></div>
 
-        <button type="submit" class="btn btn-primary btn-warning"><span class="glyphicon glyphicon-tag"></span> Add Review</button>
+        <label for="title" style="margin-top: 20px;">Title</label>
+        <input class="form-control" type="text" name="title" placeholder="Enter Title" id="title" required>
+
+        <label for="reviewArea" style="margin-top: 20px;">Review</label>
+        <textarea class="form-control" rows="5" name="review" id="reviewArea"></textarea><br/>
+
+        <button style="margin-bottom: 50px;" type="submit" class="btn btn-primary btn-warning"><span class="glyphicon glyphicon-tag"></span> Add Review</button>
 
     </form>
 
