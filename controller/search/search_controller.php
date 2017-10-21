@@ -36,7 +36,13 @@ if (isset($_GET['needle'])) {
 
 } else {
 
-    $searchDao = \model\database\ProductsDao::getInstance();
+    if (!$_GET['search'] == "") {
 
-    $result = $searchDao->searchProductNoLimit($_GET['search']);
+        $searchDao = \model\database\ProductsDao::getInstance();
+
+        $result = $searchDao->searchProductNoLimit($_GET['search']);
+    } else {
+
+        $result = array();
+    }
 }

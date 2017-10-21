@@ -66,6 +66,9 @@ require_once "../elements/navigation.php";
     <div class="container">
         <div class="products-grids">
                     <?php
+
+                    if(count($result)) {
+
                     $counter = 0;
                     foreach ($result as $product) {
                         $counter++;
@@ -93,6 +96,9 @@ require_once "../elements/navigation.php";
                             </div>
                         </div>
                         <?php
+                        }
+                    } else {
+                        echo "<h3 class=\"tittle\">NO RESULTS FOUND</h3>";
                     }
                     ?>
         </div>
