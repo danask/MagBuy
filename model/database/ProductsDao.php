@@ -49,7 +49,8 @@ class ProductsDao
     const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, p.title, i.image_url FROM products p JOIN images i 
                                       ON p.id = i.product_id GROUP BY p.id ORDER BY p.created_at DESC LIMIT 3";
 
-    const SEARCH_PRODUCTS = "SELECT id, title, price FROM products WHERE title LIKE ? LIMIT 3";
+    const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
+                              ON P.id = I.product_id GROUP BY P.id HAVING title LIKE ? LIMIT 3";
 
 
 

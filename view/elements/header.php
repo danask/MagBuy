@@ -22,6 +22,9 @@ if (session_status() == PHP_SESSION_NONE) {
             <div class="top_left">
                 <form action="" method="get">
                 <input id="search" class="form-control" type="text" placeholder="Search" onkeyup="searchSuggest()">
+
+                    <div id='result' style=" display:none; z-index: 100; height: 200px; width: 184px; background-color: inherit; position: absolute;"></div>
+
                 <input type="submit" style="position: absolute; left: -9999px">
                 </form>
 
@@ -36,8 +39,20 @@ if (session_status() == PHP_SESSION_NONE) {
                         xhttp.onreadystatechange = function () {
                             if (this.readyState == 4 && this.status == 200) {
 
-                                alert (this.responseText);
+                                var products = JSON.parse(this.responseText);
 
+                                var container = document.getElementById('result');
+                                container.style.display = 'block';
+
+                                container.innerHTML = "";
+
+                                for (var pid in products) {
+
+                                    var result = "<a href=\"single.php?pid=" + products[pid]["id"] + "\"><div style=\" background-color: gainsboro ;margin: 8px 0 0 9px;\"><img style=\" display:inline-block; width: 70px;\" src='" + products[pid]['image_url'] + "'><p style=\" margin-left: 20px; display:inline-block;\">" + products[pid]['title'] + "<br/>" + products[pid]['price'] + "</p></div></a>";
+                                    var productDiv = document.createElement('div');
+                                    productDiv.innerHTML = result;
+                                    container.appendChild(productDiv);
+                                }
                             }
                         };
 
