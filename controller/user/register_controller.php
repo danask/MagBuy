@@ -59,33 +59,28 @@ if (isset($_POST['email']) &&
 
                 //Locate to error Register Page
                 header("Location: ../../view/user/register.php?error");
-                ob_flush();
             } else {
 
                 $id = $userDao->registerUser($user);
                 $_SESSION['loggedUser'] = $id;
 
                 header("Location: ../../view/main/index.php");
-                ob_flush();
             }
 
         } catch (PDOException $e) {
 
             header("Location: ../../view/error/pdo_error.php");
-            ob_flush();
         }
 
     } else {
 
         //Locate to error Register Page
         header("Location: ../../view/user/register.php?error");
-        ob_flush();
     }
 } else {
 
     //Locate to error Register Page
     header("Location: ../../view/user/register.php?error");
-    ob_flush();
 }
 
 

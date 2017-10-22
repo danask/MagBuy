@@ -135,7 +135,6 @@ class UserDao {
 
             $this->pdo->rollBack();
             header("Location: ../../view/error/pdo_error.php");
-            ob_flush();
         }
     }
 
@@ -175,7 +174,6 @@ class UserDao {
 
             $this->pdo->rollBack();
             header("Location: ../../view/error/pdo_error.php");
-            ob_flush();
         }
     }
 

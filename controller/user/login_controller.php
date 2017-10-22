@@ -42,28 +42,23 @@ if (isset($_POST['email']) &&
                 $userDao->setLastLogin($user);
 
                 header("Location: ../../view/main/index.php");
-                ob_flush();
             } else {
 
                 header("Location: ../../view/user/login.php?error");
-                ob_flush();
             }
 
 
         } catch (PDOException $e) {
 
             header("Location: ../../view/error/pdo_error.php");
-            ob_flush();
         }
     } else {
 
         //Locate to error Login Page
         header("Location: ../../view/user/login.php?error");
-        ob_flush();
     }
 } else {
 
     //Locate to error Login Page
     header("Location: ../../view/user/login.php?error");
-    ob_flush();
 }

@@ -26,5 +26,4 @@ try {
 } catch (PDOException $e) {
 
     header("Location: ../../view/error/pdo_error.php");
-    ob_flush();
 }

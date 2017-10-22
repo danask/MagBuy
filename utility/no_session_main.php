@@ -8,5 +8,4 @@ if (!isset($_SESSION['loggedUser'])) {
 
     //Redirect to Main
     header('Location: ../main/index.php');
-    ob_flush();
 }
