@@ -7,8 +7,8 @@ use model\database\Connect\Connection;
 use model\ProductImage;
 use PDO;
 
-class ProductImagesDao
-{
+class ProductImagesDao {
+
     //Make Singleton
     private static $instance;
     private $pdo;
@@ -28,8 +28,8 @@ class ProductImagesDao
         $this->pdo = Connection::getInstance()->getConnection();
     }
 
-    public static function getInstance()
-    {
+    public static function getInstance() {
+
         if (self::$instance === null) {
             self::$instance = new ProductImagesDao();
         }
@@ -59,8 +59,8 @@ class ProductImagesDao
      * @param $productId - Receives product's ID.
      * @return array - Returns product's images in associative array.
      */
-    function getAllProductImages($productId)
-    {
+    function getAllProductImages($productId) {
+
         $statement = $this->pdo->prepare(self::GET_PRODUCT_IMAGES);
         $statement->execute(array($productId));
         $images = $statement->fetchAll(PDO::FETCH_ASSOC);
@@ -74,8 +74,8 @@ class ProductImagesDao
      * @param $productId - Receives product's ID.
      * @return mixed - Returns images path.
      */
-    function getFirstProductImage($productId)
-    {
+    function getFirstProductImage($productId) {
+
         $statement = $this->pdo->prepare(self::GET_FIRST_IMAGE);
         $statement->execute(array($productId));
         $image = $statement->fetch();

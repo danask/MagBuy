@@ -8,8 +8,7 @@ use model\Reviews;
 use PDO;
 
 
-class ReviewsDao
-{
+class ReviewsDao {
 
     //Make Singletonn
     private static $instance;
@@ -18,6 +17,7 @@ class ReviewsDao
     //Statements defined as constants
     const ADD_REVIEW = "INSERT INTO reviews (title, comment, rating, user_id, product_id, created_at) 
                         VALUES (?, ?, ?, ?, ?, ?)";
+
     const GET_REVIEWS_FOR_PRODUCT = "SELECT R.id, R.title, R.comment, R.rating, R.user_id, R.product_id, R.created_at, 
                                       U.image_url, U.first_name FROM reviews R JOIN users U ON U.id = R.user_id 
                                       WHERE product_id = ? ORDER BY R.created_at DESC";
@@ -25,13 +25,13 @@ class ReviewsDao
 
 
     //Get connection in construct
-    private function __construct()
-    {
+    private function __construct() {
+
         $this->pdo = Connection::getInstance()->getConnection();
     }
 
-    public static function getInstance()
-    {
+    public static function getInstance() {
+
         if (self::$instance === null) {
             self::$instance = new ReviewsDao();
         }
@@ -40,10 +40,11 @@ class ReviewsDao
     }
 
 
-    //Function for adding review
+
     /**
-     * @param Reviews $reviews
-     * @return string
+     * Function for adding review.
+     * @param Reviews $reviews - Receives review information, products and user's ID as object.
+     * @return string - Returns review's ID.
      */
     function addNewReview(Reviews $reviews) {
 
@@ -60,7 +61,12 @@ class ReviewsDao
     }
 
 
-    //Function for getting reviews for product
+
+    /**
+     * Function for getting all reviews for product.
+     * @param $productId - Receives product's ID.
+     * @return array - Returns reviews for product.
+     */
     function getReviewsForProduct ($productId) {
 
         $statement = $this->pdo->prepare(self::GET_REVIEWS_FOR_PRODUCT);
@@ -70,5 +76,4 @@ class ReviewsDao
 
         return $reviewsReceived;
     }
-
 }

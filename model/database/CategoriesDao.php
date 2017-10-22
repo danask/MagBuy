@@ -7,8 +7,8 @@ use model\Category;
 use model\database\Connect\Connection;
 use PDO;
 
-class CategoriesDao
-{
+class CategoriesDao {
+
     //Make Singleton
     private static $instance;
     private $pdo;
@@ -40,8 +40,8 @@ class CategoriesDao
      * @param Category $category - Receives new category name and it's super category ID.
      * @return string - Returns the new category's ID.
      */
-    function createCategory(Category $category)
-    {
+    function createCategory(Category $category) {
+
         $statement = $this->pdo->prepare(self::CREATE_CAT);
         $statement->execute(array(
             $category->getName(),
@@ -56,8 +56,8 @@ class CategoriesDao
      * Function for getting categories.
      * @return array - Returns all categories as associative array.
      */
-    function getAllCategories()
-    {
+    function getAllCategories() {
+
         $statement = $this->pdo->prepare(self::GET_ALL_CATS);
         $statement->execute();
         $categories = $statement->fetchAll(PDO::FETCH_ASSOC);

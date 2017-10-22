@@ -8,8 +8,7 @@ use model\Product;
 use PDO;
 
 
-class ProductsDao
-{
+class ProductsDao {
 
     //Make Singletonn
     private static $instance;
@@ -53,13 +52,13 @@ class ProductsDao
 
 
     //Get connection in construct
-    private function __construct()
-    {
+    private function __construct() {
+
         $this->pdo = Connection::getInstance()->getConnection();
     }
 
-    public static function getInstance()
-    {
+    public static function getInstance() {
+
         if (self::$instance === null) {
             self::$instance = new ProductsDao();
         }
