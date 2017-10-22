@@ -98,13 +98,13 @@ require_once "../elements/navigation.php";
         <?php
         foreach ($cart as $cartProduct) {
             ?>
-            <a href="single.php?pid=<?=$cartProduct->getId()?>"><div id="product-<?= $cartProduct->getId() ?>">
+            <div id="product-<?= $cartProduct->getId() ?>">
                 <div class="cart-header">
                     <div id="button-<?= $cartProduct->getId() ?>" class="close1"
                          onclick="removeFromCart(<?= $cartProduct->getId() . "," . $cartProduct->getPrice() . "," . $cartProduct->getQuantity() ?>)"></div>
                     <div class="cart-sec simpleCart_shelfItem">
                         <div class="cart-item cyc">
-                            <img src="<?= $cartProduct->getImage() ?>" class="img-responsive" alt="">
+                            <a href="single.php?pid=<?=$cartProduct->getId()?>"><img src="<?= $cartProduct->getImage() ?>" class="img-responsive" alt=""></a>
                         </div>
                         <div class="cart-item-info">
                             <h3>
@@ -126,7 +126,6 @@ require_once "../elements/navigation.php";
                     </div>
                 </div>
             </div>
-            </a>
             <?php
         }
         ?>
