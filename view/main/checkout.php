@@ -98,7 +98,7 @@ require_once "../elements/navigation.php";
         <?php
         foreach ($cart as $cartProduct) {
             ?>
-            <div id="product-<?= $cartProduct->getId() ?>">
+            <a href="single.php?pid=<?=$cartProduct->getId()?>"><div id="product-<?= $cartProduct->getId() ?>">
                 <div class="cart-header">
                     <div id="button-<?= $cartProduct->getId() ?>" class="close1"
                          onclick="removeFromCart(<?= $cartProduct->getId() . "," . $cartProduct->getPrice() . "," . $cartProduct->getQuantity() ?>)"></div>
@@ -126,6 +126,7 @@ require_once "../elements/navigation.php";
                     </div>
                 </div>
             </div>
+            </a>
             <?php
         }
         ?>
