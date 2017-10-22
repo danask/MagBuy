@@ -19,15 +19,9 @@ class ProductsDao
     const CREATE_PRODUCT = "INSERT INTO products(title, description, price, quantity, visible, created_at,
                             subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    const GET_ALL_AVAILABLE_PRODUCTS = "SELECT P.id, I.image_url, P.title, P.description, P.price FROM products AS P 
-                                        INNER JOIN images AS I ON P.id = I.product_id WHERE P.visible = 1 
-                                        ORDER BY created_at DESC";
-
-    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, (SELECT AVG(rating) 
-                                FROM reviews WHERE product_id = ?) average FROM products p INNER JOIN 
-                                images i ON p.id = i.product_id GROUP BY p.id HAVING p.id = ?";
-
-    const GET_PRODUCT_IMAGES = "SELECT image_url FROM product_images WHERE product_id = ?";
+    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, 
+                               (SELECT AVG(rating) FROM reviews WHERE product_id = ?) average FROM products p 
+                                INNER JOIN images i ON p.id = i.product_id GROUP BY p.id HAVING p.id = ?";
 
     const GET_MOST_SOLD = "SELECT * FROM products ORDER BY times_sold DESC";
 
@@ -74,6 +68,11 @@ class ProductsDao
     }
 
 
+    /**
+     * Function for creating new product.
+     * @param Product $product - Receives new product's information object.
+     * @return string - Returns added product's ID.
+     */
     function createNewProduct(Product $product)
     {
         $statement = $this->pdo->prepare(self::CREATE_PRODUCT);
@@ -89,43 +88,22 @@ class ProductsDao
         return $this->pdo->lastInsertId();
     }
 
+
     /**
-     * @return array|bool - returns array with all the products
+     * Function for getting product by ID.
+     * @param $productId - Receives product's ID.
+     * @return mixed - Returns product as associative array.
      */
-    function getAllAvailableProducts()
-    {
-        $statement = $this->pdo->prepare(self::GET_ALL_AVAILABLE_PRODUCTS);
-        $statement->execute();
-
-        //Check if Database returned the products (1 or 0 Columns) because there might be no products
-        if ($statement->rowCount()) {
-
-            //Fetch all products and return them
-            $result = $statement->fetchAll(PDO::FETCH_ASSOC);
-            return $result;
-        } else {
-
-            return false;
-        }
-    }
-
     function getProductByID($productId)
     {
         $statement = $this->pdo->prepare(self::GET_PRODUCT_BY_ID);
         $statement->execute(array($productId, $productId));
-        $product = $statement->fetch();
+        $product = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $product;
     }
 
-    function getProductImages($productId)
-    {
-        $statement = $this->pdo->prepare(self::GET_PRODUCT_IMAGES);
-        $statement->execute(array($productId));
-        $productImages = $statement->fetchAll();
 
-        return $productImages;
-    }
 
     function getProductsFilteredByPrice($priceFilter)
     {
