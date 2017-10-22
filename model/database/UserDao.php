@@ -16,7 +16,7 @@ class UserDao {
     const CHECK_USER_EXIST = "SELECT id FROM users WHERE email = ?";
 
     const REGISTER_USER = "INSERT INTO users (email, enabled, first_name, last_name, mobile_phone,
-                           image_url, password, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+                           image_url, password, last_login, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 
     const REGISTER_USER_ADDRESS = "INSERT INTO adresses (full_adress, is_personal, user_id) VALUES (?, ?, ?)";
 
@@ -116,6 +116,7 @@ class UserDao {
                 $user->getMobilePhone(),
                 $user->getImageUrl(),
                 $user->getPassword(),
+                $user->getLastLogin(),
                 $user->getRole()));
 
             $lastInsertId = $this->pdo->lastInsertId();
@@ -134,6 +135,7 @@ class UserDao {
 
             $this->pdo->rollBack();
             header("Location: ../../view/error/pdo_error.php");
+            ob_flush();
         }
     }
 
@@ -173,6 +175,7 @@ class UserDao {
 
             $this->pdo->rollBack();
             header("Location: ../../view/error/pdo_error.php");
+            ob_flush();
         }
     }
 

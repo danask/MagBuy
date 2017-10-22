@@ -1,51 +1,69 @@
 <?php
 
-//Check for Session
-require_once "../../utility/session_main.php";
+//Check if user is logged
+require_once '../../utility/session_main.php';
 
 //Autoload to require needed model files
-function __autoload($className)
-{
+function __autoload($className) {
+
     $className = '..\\..\\' . $className;
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
 
-//Login Validation
-if (isset($_POST['email']) && isset($_POST['password'])
-    && strlen($_POST['email']) > 3 && strlen($_POST['email']) < 254
-    && strlen($_POST['password']) >= 4 && strlen($_POST['password']) <= 12
-) {
+//Validation
+if (isset($_POST['email']) &&
+    isset($_POST['password'])) {
 
-    $user = new \model\User();
+    $email = $_POST['email'];
+    $password = $_POST['password'];
 
-    //Try to accomplish connection with the database
-    try {
+    if (strlen($email) > 3 &&
+        strlen($email) < 254 &&
+        strlen($password) >= 4 &&
+        strlen($password) <= 12) {
 
-        $userDao = \model\database\UserDao::getInstance();
 
-        $user->setEmail(htmlentities($_POST['email']));
-        $user->setPassword(sha1($_POST['password']));
+        //Get user's object
+        $user = new \model\User();
 
-        $result = $userDao->checkLogin($user);
+        //Try to accomplish connection with the database
+        try {
+            $userDao = \model\database\UserDao::getInstance();
 
-        if ($result) {
+            $user->setEmail(htmlentities($email));
+            $user->setPassword(sha1($password));
 
-            $_SESSION['loggedUser'] = $result;
-            $userDao->setLastLogin($user);
-            header("Location: ../../view/main/index.php");
-        } else {
+            $result = $userDao->checkLogin($user);
 
-            header("Location: ../../view/user/login.php?error");
+            if ($result) {
+
+                $_SESSION['loggedUser'] = $result;
+                $userDao->setLastLogin($user);
+
+                header("Location: ../../view/main/index.php");
+                ob_flush();
+            } else {
+
+                header("Location: ../../view/user/login.php?error");
+                ob_flush();
+            }
+
+
+        } catch (PDOException $e) {
+
+            header("Location: ../../view/error/pdo_error.php");
+            ob_flush();
         }
+    } else {
 
-
-    } catch (PDOException $e) {
-
-        header("Location: ../../view/error/pdo_error.php");
+        //Locate to error Login Page
+        header("Location: ../../view/user/login.php?error");
+        ob_flush();
     }
 } else {
 
     //Locate to error Login Page
     header("Location: ../../view/user/login.php?error");
+    ob_flush();
 }

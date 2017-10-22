@@ -10,12 +10,11 @@ function __autoload($className) {
 }
 
 
-//Get logged user's info
+//Get user's object
 $user = new \model\User();
 
 //Try to accomplish connection with the database
 try {
-
     $userDao = \model\database\UserDao::getInstance();
 
     $user->setId($_SESSION['loggedUser']);
@@ -27,4 +26,5 @@ try {
 } catch (PDOException $e) {
 
     header("Location: ../../view/error/pdo_error.php");
+    ob_flush();
 }

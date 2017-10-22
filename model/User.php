@@ -24,6 +24,7 @@ class User
     public function __construct()
     {
         $this->enabled = 1;
+        $this->imageUrl = "../../web/uploads/MagBuy/default.jpg";
         $this->lastLogin = date("Y-m-d H:i:s");
         $this->role = 1;
         $this->address = 0;
