@@ -20,7 +20,7 @@ $picture = null;
 
 
 //Check if file is uploaded
-if(strlen($_FILES['image']) != 0) {
+if(!empty($_FILES['image']['tmp_name'])) {
 
     $picture = true;
 
@@ -50,7 +50,6 @@ if(strlen($_FILES['image']) != 0) {
 
         //Redirect to Error page
         header('Location: ../../view/user/edit.php?errorUpload');
-        die();
     }
 } else {
 
