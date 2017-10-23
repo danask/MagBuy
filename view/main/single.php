@@ -336,7 +336,7 @@ require_once "../elements/navigation.php";
                                                     <li class="dd"> <?= $review['created_at'] ?></li>
 
                                                 </ul>
-                                                <p class="media-comment">
+                                                <p style="word-wrap: break-word;" class="media-comment">
                                                     <?= $review['comment'] ?>
                                                 </p>
                                             </div>
