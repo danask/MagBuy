@@ -593,11 +593,11 @@ a.collection i {
 }
 
 figure.effect-bubba {
-    background-color: rgba(24, 201, 210, 0.84);
+    background-color: rgba(141, 150, 143, 0.84);
 }
 
 figure.effect-bubba img {
-    opacity: 0.9;
+    opacity: 0.8;
 }
 
 figure.effect-bubba figcaption::before,
