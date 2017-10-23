@@ -357,17 +357,23 @@ require_once "../elements/navigation.php";
 
                 <div class="fashion-info">
                     <?php foreach ($relatedProducts as $product) { ?>
-                    <div class="fashion-info">
-                        <div class="col-md-4 fashion-grids">
-                            <figure class="effect-bubba">
-                                <img src="<?= $product['image_url'] ?>" alt=""/>
-                                <figcaption>
-                                    <h4><?= $product['title'] ?></h4>
-                                    <p class="cart"><a href="single.php?pid=<?= $product['id'] ?>">Shop</a></p>
-                                </figcaption>
-                            </figure>
+                        <div class="products-grd">
+                            <div class="p-one simpleCart_shelfItem prd">
+                                <a href="single.php?pid=<?= $product['id']; ?>">
+                                    <img src="<?= $product['image_url'] ?>"
+                                         alt="Product Image" class="img-responsive"/>
+                                </a>
+                                <h4><?= $product['title']; ?></h4>
+                                <p><a class="btn btn-default btn-sm"
+                                      onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
+                                        <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
+                                    </a>&nbsp&nbsp<span
+                                            class=" item_price valsa">$<?= $product['price']; ?></span></p>
+                                <div class="pro-grd">
+                                    <a href="single.php?pid=<?= $product['id']; ?>">View</a>
+                                </div>
+                            </div>
                         </div>
-                    </div>
                 <?php } ?>
                     <div class="clearfix"></div>
                 </div>
