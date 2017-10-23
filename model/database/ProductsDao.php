@@ -20,11 +20,12 @@ class ProductsDao {
 
     const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, 
                                (SELECT AVG(rating) FROM reviews WHERE product_id = ?) average FROM products p 
-                                INNER JOIN images i ON p.id = i.product_id GROUP BY p.id HAVING p.id = ?";
+                                INNER JOIN images i ON p.id = i.product_id WHERE P.visible = 1 
+                                GROUP BY p.id HAVING p.id = ?";
 
-    const GET_MOST_SOLD = "SELECT * FROM products ORDER BY times_sold DESC";
+    const GET_MOST_SOLD = "SELECT * FROM products WHERE P.visible = 1 ORDER BY times_sold DESC";
 
-    const GET_MOST_REVIEWED = "SELECT * FROM products ORDER BY times_reviewed DESC";
+    const GET_MOST_REVIEWED = "SELECT * FROM products WHERE P.visible = 1 ORDER BY times_reviewed DESC";
 
     const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, 
                                     p.visible FROM products p INNER JOIN images i ON p.id = i.product_id GROUP BY 
@@ -33,19 +34,19 @@ class ProductsDao {
     const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price, (SELECT AVG(rating) 
                                             FROM reviews WHERE product_id = P.id) average FROM products P
                                             JOIN images I ON P.id = I.product_id JOIN reviews R ON P.id = R.product_id
-                                            GROUP BY P.id ORDER BY average DESC LIMIT 3";
+                                            WHERE P.visible = 1 GROUP BY P.id ORDER BY average DESC LIMIT 3";
 
     const GET_RELATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.subcategory_id, P.price FROM products P JOIN images I 
-                                  ON P.id = I.product_id
+                                  ON P.id = I.product_id WHERE P.visible = 1
                                   GROUP BY P.id HAVING P.subcategory_id = ? ORDER BY P.created_at DESC LIMIT 3";
 
     const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, p.title, i.image_url, p.price FROM products p JOIN images i 
-                                      ON p.id = i.product_id GROUP BY p.id ORDER BY p.created_at DESC LIMIT 3";
+                                      ON p.id = i.product_id WHERE p.visible = 1 GROUP BY p.id ORDER BY p.created_at DESC LIMIT 3";
 
     const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
-                              ON P.id = I.product_id GROUP BY P.id HAVING title LIKE ? LIMIT 3";
+                              ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ? LIMIT 3";
     const SEARCH_PRODUCTS_NO_LIMIT = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
-                              ON P.id = I.product_id GROUP BY P.id HAVING title LIKE ?";
+                              ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ?";
 
 
 
