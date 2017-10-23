@@ -36,7 +36,7 @@ if (isset($_GET['needle'])) {
 
 } else {
 
-    if (!$_GET['search'] == "") {
+    if (!trim($_GET['search']) == "") {
 
         $searchDao = \model\database\ProductsDao::getInstance();
 
