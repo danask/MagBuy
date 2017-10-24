@@ -1085,6 +1085,10 @@ span.valsa {
     padding: 1.5em 0 0;
 }
 
+.p-one:hover{
+    box-shadow: 3px 2px 30px #CCCBCB;
+}
+
 span.valsa {
     color: #333;
     font-size: 0.9em;
