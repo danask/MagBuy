@@ -8,7 +8,8 @@ use model\Reviews;
 use PDO;
 
 
-class ReviewsDao {
+class ReviewsDao
+{
 
     //Make Singletonn
     private static $instance;
@@ -23,14 +24,15 @@ class ReviewsDao {
                                       WHERE product_id = ? ORDER BY R.created_at DESC";
 
 
-
     //Get connection in construct
-    private function __construct() {
+    private function __construct()
+    {
 
         $this->pdo = Connection::getInstance()->getConnection();
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
 
         if (self::$instance === null) {
             self::$instance = new ReviewsDao();
@@ -40,26 +42,25 @@ class ReviewsDao {
     }
 
 
-
     /**
      * Function for adding review.
      * @param Reviews $reviews - Receives review information, products and user's ID as object.
      * @return string - Returns review's ID.
      */
-    function addNewReview(Reviews $reviews) {
+    function addNewReview(Reviews $reviews)
+    {
 
         $statement = $this->pdo->prepare(self::ADD_REVIEW);
         $statement->execute(array(
-                        $reviews->getTitle(),
-                        $reviews->getComment(),
-                        $reviews->getRating(),
-                        $reviews->getUserId(),
-                        $reviews->getProductId(),
-                        $reviews->getCreatedAt()));
+            $reviews->getTitle(),
+            $reviews->getComment(),
+            $reviews->getRating(),
+            $reviews->getUserId(),
+            $reviews->getProductId(),
+            $reviews->getCreatedAt()));
 
         return $this->pdo->lastInsertId();
     }
-
 
 
     /**
@@ -67,7 +68,8 @@ class ReviewsDao {
      * @param $productId - Receives product's ID.
      * @return array - Returns reviews for product.
      */
-    function getReviewsForProduct ($productId) {
+    function getReviewsForProduct($productId)
+    {
 
         $statement = $this->pdo->prepare(self::GET_REVIEWS_FOR_PRODUCT);
         $statement->execute(array($productId));

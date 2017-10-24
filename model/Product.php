@@ -7,14 +7,6 @@ namespace model;
 class Product
 {
     private $id;
-
-    /**
-     * @param mixed $id
-     */
-    public function setId($id)
-    {
-        $this->id = $id;
-    }
     private $title;
     private $description;
     private $price;
@@ -38,6 +30,14 @@ class Product
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**
