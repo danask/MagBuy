@@ -1,6 +1,6 @@
 <?php
 //Check for autoloader
-require_once "../../controller/autoloader.php";
+require_once "../../utility/autoloader.php";
 //Check for session
 require_once "../../utility/no_session_main.php";
 //Include main Headers
