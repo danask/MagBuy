@@ -24,7 +24,11 @@ if (isset($_GET['pid'])) {
     $cartProduct = new \model\CartProduct();
     $cartProduct->setId($productId);
     $cartProduct->setTitle($productDetails['title']);
-    $cartProduct->setPrice($productDetails['price']);
+    if ($productDetails['percent'] != null) {
+        $cartProduct->setPrice(round($productDetails['price'] - (($productDetails['price'] * $productDetails['percent']) / 100), 2));
+    } else {
+        $cartProduct->setPrice($productDetails['price']);
+    }
     $cartProduct->setImage($productImage);
 
     if (isset($_SESSION['cart'])) {

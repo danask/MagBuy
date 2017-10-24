@@ -19,9 +19,10 @@ class ProductsDao
     const CREATE_PRODUCT = "INSERT INTO products(title, description, price, quantity, visible, created_at,
                             subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, 
+    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, pr.percent, 
                                (SELECT AVG(rating) FROM reviews WHERE product_id = ?) average FROM products p 
-                                INNER JOIN images i ON p.id = i.product_id WHERE P.visible = 1 
+                                INNER JOIN images i ON p.id = i.product_id 
+                                LEFT JOIN promotions pr ON p.id = pr.product_id WHERE P.visible = 1 
                                 GROUP BY p.id HAVING p.id = ?";
 
     const GET_MOST_SOLD = "SELECT * FROM products WHERE P.visible = 1 ORDER BY times_sold DESC";
