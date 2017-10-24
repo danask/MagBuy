@@ -7,6 +7,25 @@ require_once "../elements/headers.php";
 
     <!-- Define Page Name -->
     <title>MagBuy | <?= $product['title'] ?></title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script>
+        $( function() {
+            $( "#slider-range" ).slider({
+                range: true,
+                min: 0,
+                max: 500,
+                values: [ 75, 300 ],
+                slide: function( event, ui ) {
+                    $( "#amount" ).val( "$" + ui.values[ 0 ] + " - $" + ui.values[ 1 ] );
+                }
+            });
+            $( "#amount" ).val( "$" + $( "#slider-range" ).slider( "values", 0 ) +
+                " - $" + $( "#slider-range" ).slider( "values", 1 ) );
+        } );
+    </script>
     </head>
 
 <?php
@@ -76,70 +95,26 @@ require_once "../elements/navigation.php";
                 <div class="col-md-4 products-grid-right">
                     <div class="w_sidebar">
                         <div class="w_nav1">
-                            <h4>All</h4>
+                            <h4>Filters</h4>
                             <ul>
-                                <li><a href="product.php">women</a></li>
-                                <li><a href="#">new fashions</a></li>
-                                <li><a href="#">trends</a></li>
-                                <li><a href="#">boys</a></li>
-                                <li><a href="#">girls</a></li>
-                                <li><a href="#">sale</a></li>
+                                <li>
+                                    <button>Most/least sold</button>
+                                </li>
+                                <li>
+                                    <button>Most/least reviewed</button>
+                                </li>
+                                <li>
+                                    <button>Date added</button>
+                                </li>
+                                <li>
+                                    <button>Highest/lowest rated</button>
+                                </li>
                             </ul>
                         </div>
                         <section class="sky-form">
-                            <h4>catogories</h4>
-                            <div class="row1 scroll-pane">
-                                <div class="col col-4">
-                                    <label class="checkbox"><input type="checkbox" name="checkbox" checked=""><i></i>Men's
-                                        Jackets</label>
-                                </div>
-                                <div class="col col-4">
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Shoes</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Glases</label>
-                                    <label class="checkbox"><input type="checkbox"
-                                                                   name="checkbox"><i></i>Watches</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Hand
-                                        Bags</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Bags</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shirts</label>
-                                    <label class="checkbox"><input type="checkbox"
-                                                                   name="checkbox"><i></i>tempore</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>soluta
-                                        nobis</label>
-                                    <label class="checkbox"><input type="checkbox"
-                                                                   name="checkbox"><i></i>molestiae</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>repudiandae
-                                        sint</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>nobis
-                                        est</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>assumenda
-                                        est</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-                                    <label class="checkbox"><input type="checkbox"
-                                                                   name="checkbox"><i></i>tempore</label>
-                                </div>
-                            </div>
-                        </section>
-                        <section class="sky-form">
-                            <h4>brand</h4>
-                            <div class="row1 scroll-pane">
-                                <div class="col col-4">
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"
-                                                                   checked=""><i></i>Lee</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-                                    <label class="checkbox"><input type="checkbox"
-                                                                   name="checkbox"><i></i>tempore</label>
-                                </div>
-                                <div class="col col-4">
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>vishud</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>amari</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shree</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>biba</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>shree</label>
-                                    <label class="checkbox"><input type="checkbox" name="checkbox"><i></i>Anouk</label>
-                                </div>
-                            </div>
+                            <h4>Price filter</h4>
+                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
+                            <div id="slider-range"></div>
                         </section>
                     </div>
                 </div>
