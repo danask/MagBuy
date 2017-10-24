@@ -15,13 +15,10 @@ class Order
 
     /**
      * Order constructor.
-     * @param $id
      * @param $user_id
-     * @param $created_at
-     * @param $status
      * @param $products
      */
-    public function __construct($id, $user_id, $created_at, $status, $products)
+    public function __construct($user_id, $products)
     {
         $this->id = microtime();
         $this->user_id = $user_id;

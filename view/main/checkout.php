@@ -18,6 +18,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 
 
 
+
+
     </script>
     <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
     <!-- Custom Theme files -->
@@ -94,7 +96,10 @@ require_once "../elements/navigation.php";
             </div>
         </h3>
         <br>
-        <button class="btn btn-danger btn-lg btn-block" style="margin: 0 auto 0 auto; display: block">Checkout</button>
+        <a href="../../controller/cart/new_order_controller.php">
+            <button class="btn btn-danger btn-lg btn-block" style="margin: 0 auto 0 auto; display: block">Checkout
+            </button>
+        </a>
         <?php
         foreach ($cart as $cartProduct) {
             ?>
@@ -104,7 +109,8 @@ require_once "../elements/navigation.php";
                          onclick="removeFromCart(<?= $cartProduct->getId() . "," . $cartProduct->getPrice() . "," . $cartProduct->getQuantity() ?>)"></div>
                     <div class="cart-sec simpleCart_shelfItem">
                         <div class="cart-item cyc">
-                            <a href="single.php?pid=<?=$cartProduct->getId()?>"><img src="<?= $cartProduct->getImage() ?>" class="img-responsive" alt=""></a>
+                            <a href="single.php?pid=<?= $cartProduct->getId() ?>"><img
+                                        src="<?= $cartProduct->getImage() ?>" class="img-responsive" alt=""></a>
                         </div>
                         <div class="cart-item-info">
                             <h3>

@@ -14,7 +14,7 @@ class OrdersDao
 
     //Statements defined as constants
     const ADD_NEW_ORDER = "INSERT INTO orders (id, user_id, created_at, status) VALUES (?, ?, ?, ?)";
-    const ADD_ORDER_PRODUCT = "INSERT INTO order_products (order_id, product_id) VALUES (?, ?)";
+    const ADD_ORDER_PRODUCT = "INSERT INTO order_products (order_id, product_id, quantity) VALUES (?, ?, ?)";
 
     //Get connection in construct
     private function __construct()
@@ -42,10 +42,10 @@ class OrdersDao
         return $orderId;
     }
 
-    function addOrderProduct($orderId, $productId)
+    function addOrderProduct($orderId, $productId, $quantity)
     {
         $statement = $this->pdo->prepare(self::ADD_ORDER_PRODUCT);
-        $statement->execute(array($orderId, $productId));
+        $statement->execute(array($orderId, $productId, $quantity));
 
         return true;
     }
