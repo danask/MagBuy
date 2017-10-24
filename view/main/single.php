@@ -17,7 +17,7 @@ require_once "../elements/headers.php";
     <link rel="stylesheet" href="../../web/assets/css/reviews.css" type="text/css"/>
 
     <!-- Script for adding product to favourites -->
-    <script type="text/javascript" src="../../web/assets/js/add.favourites.js"></script>
+    <script type="text/javascript" src="../../web/assets/js/favourites.js"></script>
     <!-- Flex Slider JQuery -->
     <script type="text/javascript" defer src="../../web/assets/js/jquery.flexslider.js"></script>
     <!-- Image Zoom JS -->

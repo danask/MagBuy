@@ -1,4 +1,5 @@
 <?php
+//Check for autoloader
 require_once "../../controller/autoloader.php";
 //Check for session
 require_once "../../utility/no_session_main.php";

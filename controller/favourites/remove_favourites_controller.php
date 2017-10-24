@@ -24,7 +24,13 @@ if (isset($_SESSION['loggedUser']) && isset($_GET['product_id_remove'])) {
         $favourites->setProductId($productId);
 
         $favouritesDao->removeFavourite($favourites);
+        $products = $favouritesDao->getAllFavourites($favourites);
 
+        if(count($products) == 0) {
+            echo true;
+        } else {
+            echo false;
+        }
 
 
     } catch (PDOException $e) {

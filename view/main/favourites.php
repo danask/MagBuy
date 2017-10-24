@@ -6,7 +6,7 @@ require_once "../elements/headers.php";
 ?>
 
     <!-- Script for removing product from favourites -->
-    <script type="text/javascript" src="../../web/assets/js/add.favourites.js"></script>
+    <script type="text/javascript" src="../../web/assets/js/favourites.js"></script>
 
     <!-- Define Page Name -->
     <title>MagBuy | Favourites</title>
@@ -21,7 +21,7 @@ require_once "../elements/navigation.php";
     <!-- Show favourite products -->
     <div class="cart-items">
         <div class="container">
-            <h3 class="title"><?= (count($products) ? "My Favourites" : "No Favourite Products Found") ?> </h3>
+            <h3 id='favouritesTitle' class="title"><?= (count($products) ? "My Favourites" : "No Favourite Products Found") ?> </h3>
 
             <?php foreach ($products as $product) { ?>
                 <div id="deleteItem<?= $product['id'] ?>">

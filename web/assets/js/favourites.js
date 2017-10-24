@@ -45,8 +45,11 @@ function removeFavouriteList(product_id) {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
 
-                document.getElementById('deleteItem' + product_id).innerHTML = "";
+                if (this.responseText) {
+                    document.getElementById('favouritesTitle').innerHTML = "Empty Favourites List";
+                }
 
+                document.getElementById('deleteItem' + product_id).innerHTML = "";
         }
     };
 
