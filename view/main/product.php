@@ -26,9 +26,9 @@ require_once "../elements/navigation.php";
                         foreach ($products as $product) {
                             if ($product['percent'] != null) {
                                 $promotedPrice = round($product['price'] - (($product['price'] * $product['percent']) / 100), 2);
+                            } else {
+                                unset($promotedPrice);
                             }
-                            var_dump($product['percent']);
-                            var_dump($promotedPrice);
                             $counter++;
                             if ($counter > 3) {
                                 echo '<div class="clearfix"></div>
@@ -45,7 +45,7 @@ require_once "../elements/navigation.php";
                                     </a>
                                     <h4><?= $product['title']; ?></h4>
                                     <p><a class="btn btn-default btn-sm"
-                                          onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
+                                          onclick="addToCart(<?= $product['id'] . "," . (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)">
                                             <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
                                         </a>&nbsp&nbsp
                                         <?php
