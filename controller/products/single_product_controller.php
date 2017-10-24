@@ -28,7 +28,9 @@ try {
     $reviewsCount = count($reviews);
     $relatedProducts = $productsDao->getRelated($product['subcategory_id'], $productId);
 
-    if ($promotion != null) {
+    if ($promotion != null && $promotion['start_date'] < date("Y-m-d H:i:s")
+        && $promotion['end_date'] > date("Y-m-d H:i:s")
+    ) {
         $promotedPrice = round($product['price'] - (($product['price'] * $promotion['percent']) / 100), 2);
     }
 

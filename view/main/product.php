@@ -6,7 +6,7 @@ require_once "../elements/headers.php";
 ?>
 
     <!-- Define Page Name -->
-    <title>MagBuy | <?=$categoryName?></title>
+    <title>MagBuy | <?= $categoryName ?></title>
 
 <?php
 //Include Header
@@ -24,7 +24,9 @@ require_once "../elements/navigation.php";
                         <?php
                         $counter = 0;
                         foreach ($products as $product) {
-                            if ($product['percent'] != null) {
+                            if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
+                                && $product['end_date'] > date("Y-m-d H:i:s")
+                            ) {
                                 $promotedPrice = round($product['price'] - (($product['price'] * $product['percent']) / 100), 2);
                             } else {
                                 unset($promotedPrice);

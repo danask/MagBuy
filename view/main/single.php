@@ -236,7 +236,7 @@ require_once "../elements/navigation.php";
                                                             <?= $review['title'] . "<small>" . "&nbsp by " .
                                                             $review['first_name'] . "</small>" ?>
                                                             <img id="reviewRating" class="media-object img"
-                                                      src="../../web/assets/images/rating<?= $review['rating'] ?>.png">
+                                                                 src="../../web/assets/images/rating<?= $review['rating'] ?>.png">
                                                         </h4>
                                                         <ul class="media-date text-uppercase reviews list-inline">
                                                             <li class="dd"> <?= $review['created_at'] ?></li>
@@ -262,7 +262,16 @@ require_once "../elements/navigation.php";
                         echo "<h3 class=\"title\">Related Products</h3>";
                     } ?>
                     <div class="main_filtered_product-info">
-                        <?php foreach ($relatedProducts as $product) { ?>
+                        <?php foreach ($relatedProducts as $product) {
+                            if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
+                                && $product['end_date'] > date("Y-m-d H:i:s")
+                            ) {
+                                $promotedPrice = round($product['price'] - (($product['price'] *
+                                            $product['percent']) / 100), 2);
+                            } else {
+                                unset($promotedPrice);
+                            }
+                            ?>
                             <div class="products-grd">
                                 <div class="p-one simpleCart_shelfItem prd">
                                     <a href="single.php?pid=<?= $product['id']; ?>">
@@ -273,8 +282,19 @@ require_once "../elements/navigation.php";
                                     <p><a class="btn btn-default btn-sm"
                                           onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
                                             <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
-                                        </a>&nbsp&nbsp<span
-                                                class=" item_price valsa">$<?= $product['price']; ?></span></p>
+                                        </a>&nbsp&nbsp
+                                        <?php
+                                        if (isset($promotedPrice)) {
+                                            ?>
+                                            <span class="item_price valsa"
+                                                  style="color: red;">$<?= $promotedPrice; ?></span>
+                                            <span class="item_price promoValsa">$<?= $product['price']; ?></span>
+                                            <?php
+                                        } else {
+                                            ?>
+                                            <span class="item_price valsa">$<?= $product['price']; ?></span>
+                                            <?php
+                                        } ?></p>
                                     <div class="pro-grd">
                                         <a href="single.php?pid=<?= $product['id']; ?>">View</a>
                                     </div>

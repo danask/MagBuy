@@ -23,7 +23,9 @@ require_once "../elements/navigation.php";
             <div class="main_filtered_product-info">
 
                 <?php foreach ($mostSold as $product) {
-                    if ($product['percent'] != null) {
+                    if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
+                        && $product['end_date'] > date("Y-m-d H:i:s")
+                    ) {
                         $promotedPrice = round($product['price'] - (($product['price'] *
                                     $product['percent']) / 100), 2);
                     } else {
@@ -72,7 +74,9 @@ require_once "../elements/navigation.php";
             <div class="main_filtered_product-info">
 
                 <?php foreach ($topRated as $product) {
-                    if ($product['percent'] != null) {
+                    if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
+                        && $product['end_date'] > date("Y-m-d H:i:s")
+                    ) {
                         $promotedPrice = round($product['price'] - (($product['price'] *
                                     $product['percent']) / 100), 2);
                     } else {
@@ -121,7 +125,9 @@ require_once "../elements/navigation.php";
             <div class="main_filtered_product-info">
 
                 <?php foreach ($mostRecent as $product) {
-                    if ($product['percent'] != null) {
+                    if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
+                        && $product['end_date'] > date("Y-m-d H:i:s")
+                    ) {
                         $promotedPrice = round($product['price'] - (($product['price'] *
                                     $product['percent']) / 100), 2);
                     } else {

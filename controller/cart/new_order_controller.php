@@ -24,7 +24,7 @@ if (isset($_SESSION['cart'])) {
         header("Location: ../../view/error/pdo_error.php");
     }
 
-    header("Location: ../../view/main/index.php?oid=" . $orderId);
+    header("Location: ../../view/main/index.php");
 } else {
     //error
 }

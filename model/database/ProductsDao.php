@@ -19,7 +19,8 @@ class ProductsDao
     const CREATE_PRODUCT = "INSERT INTO products(title, description, price, quantity, visible, created_at,
                             subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, pr.percent, 
+    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, pr.percent,
+                                pr.start_date, pr.end_date,
                                (SELECT AVG(rating) FROM reviews WHERE product_id = ?) average FROM products p 
                                 INNER JOIN images i ON p.id = i.product_id 
                                 LEFT JOIN promotions pr ON p.id = pr.product_id WHERE P.visible = 1 
@@ -28,26 +29,30 @@ class ProductsDao
     const GET_MOST_REVIEWED = "SELECT * FROM products WHERE P.visible = 1 ORDER BY times_reviewed DESC";
 
     const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
-                                    p.visible, pr.percent FROM products p INNER JOIN images i 
+                                    p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
                                     BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC";
 
-    const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, (SELECT AVG(rating) 
+    const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, pr.start_date, pr.end_date,
+                                     (SELECT AVG(rating) 
                                      FROM reviews WHERE product_id = P.id) average FROM products P
                                      JOIN images I ON P.id = I.product_id JOIN reviews R ON P.id = R.product_id
                                      LEFT JOIN promotions pr ON P.id = pr.product_id
                                      WHERE P.visible = 1 GROUP BY P.id ORDER BY average DESC LIMIT 3";
 
-    const GET_RELATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.subcategory_id, P.price FROM products P 
+    const GET_RELATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.subcategory_id, P.price, pr.percent, pr.start_date,
+                                  pr.end_date FROM products P LEFT JOIN promotions pr ON P.id = pr.product_id
                                   JOIN images I ON P.id = I.product_id WHERE P.visible = 1 AND NOT P.id = ?
                                   GROUP BY P.id HAVING P.subcategory_id = ? ORDER BY P.created_at DESC LIMIT 3";
 
-    const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, p.title, i.image_url, p.price, pr.percent FROM products p 
-                                      JOIN images i ON p.id = i.product_id LEFT JOIN promotions pr 
+    const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, p.title, i.image_url, p.price, pr.percent, pr.start_date, pr.end_date 
+                                      FROM products p 
+                                      JOIN images i ON p.id = i.product_id LEFT JOIN promotions pr
                                       ON P.id = pr.product_id WHERE p.visible = 1 GROUP BY p.id 
                                       ORDER BY p.created_at DESC LIMIT 3";
 
-    const GET_MOST_SOLD = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, (SELECT count(product_id) 
+    const GET_MOST_SOLD = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, pr.start_date, pr.end_date,
+                           (SELECT count(product_id) 
                            FROM order_products WHERE product_id = P.id) ordered FROM products P
                            JOIN images I ON P.id = I.product_id JOIN reviews R ON P.id = R.product_id
                            LEFT JOIN promotions pr ON P.id = pr.product_id WHERE P.visible = 1 GROUP BY P.id 
@@ -201,7 +206,8 @@ class ProductsDao
     }
 
     //Function for searching products without limit
-    function searchProductNoLimit($needle) {
+    function searchProductNoLimit($needle)
+    {
 
         $statement = $this->pdo->prepare(self::SEARCH_PRODUCTS_NO_LIMIT);
         $statement->execute(array("%$needle%"));
@@ -212,7 +218,8 @@ class ProductsDao
     }
 
     //Function for getting most sold
-    function mostSoldProducts () {
+    function mostSoldProducts()
+    {
 
         $statement = $this->pdo->prepare(self::GET_MOST_SOLD);
         $statement->execute();
