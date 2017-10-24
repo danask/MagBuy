@@ -200,6 +200,7 @@ DROP TABLE IF EXISTS `magbuy`.`order_products` ;
 
 CREATE TABLE IF NOT EXISTS `magbuy`.`order_products` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
+  `quantity` INT(11) NOT NULL,
   `order_id` INT(11) NOT NULL,
   `product_id` INT(11) NOT NULL,
   PRIMARY KEY (`id`),

@@ -1,9 +1,3 @@
-<?php
-if (session_status() == PHP_SESSION_NONE) {
-    session_start();
-}
-?>
-
 <body>
 <div class="top_bar">
     <div class="container">
@@ -31,7 +25,7 @@ if (session_status() == PHP_SESSION_NONE) {
                            placeholder="Press Enter to Search"
                            onkeyup="searchSuggest()" required>
                     <div id='result'></div>
-                <input type="submit" id="search-submit">
+                    <input type="submit" id="search-submit">
                 </form>
             </div>
             <div class="clearfix"></div>

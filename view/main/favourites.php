@@ -18,39 +18,34 @@ require_once "../elements/header.php";
 require_once "../elements/navigation.php";
 ?>
 
-<!-- Show favourite prodcts -->
-<div class="cart-items">
-    <div class="container">
-        <h3 class="title"><?php (count($products)) ? echo "My Favourites" : {echo "No Favourite Products Found";
-        (isset($promotedPrice) ? $promotedPrice : $product['price'])?> </h3>
+    <!-- Show favourite products -->
+    <div class="cart-items">
+        <div class="container">
+            <h3 class="title"><?= (count($products) ? "My Favourites" : "No Favourite Products Found") ?> </h3>
 
-        <?php
-        foreach ($products as $product) {
-            ?>
-            <div id="deleteItem<?= $product['id']?>">
-                <div class="cart-header">
-                    <div class="close1" onclick="removeFavouriteList(<?= $product['id']?>)"></div>
-                    <div class="cart-sec simpleCart_shelfItem">
-                        <div class="cart-item cyc">
-                            <a href="single.php?pid=<?= $product['id'] ?>">
-                            <img src="<?= $product['image_url'] ?>" class="img-responsive" alt="">
-                        </div>
-                        <div class="cart-item-info">
-                            <h3><a href="single.php?pid=<?= $product['id'] ?>"> <?= $product['title'] ?> </a></h3>
-                            <div class="delivery">
-                                <p>$<?= $product['price'] ?></p>
-                                <div class="clearfix"></div>
+            <?php foreach ($products as $product) { ?>
+                <div id="deleteItem<?= $product['id'] ?>">
+                    <div class="cart-header">
+                        <div class="close1" onclick="removeFavouriteList(<?= $product['id'] ?>)"></div>
+                        <div class="cart-sec simpleCart_shelfItem">
+                            <div class="cart-item cyc">
+                                <a href="single.php?pid=<?= $product['id'] ?>">
+                                    <img src="<?= $product['image_url'] ?>" class="img-responsive" alt=""></a>
                             </div>
+                            <div class="cart-item-info">
+                                <h3><a href="single.php?pid=<?= $product['id'] ?>"> <?= $product['title'] ?> </a></h3>
+                                <div class="delivery">
+                                    <p>$<?= $product['price'] ?></p>
+                                    <div class="clearfix"></div>
+                                </div>
+                            </div>
+                            <div class="clearfix"></div>
                         </div>
-                        <div class="clearfix"></div>
-
                     </div>
                 </div>
-            </a>
-            </div>
             <?php } ?>
+        </div>
     </div>
-</div>
 
 <?php
 //Include Footer

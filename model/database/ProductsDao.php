@@ -32,7 +32,7 @@ class ProductsDao
     const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  p.visible, pr.percent FROM products p 
 INNER JOIN images i ON p.id = i.product_id
 LEFT JOIN promotions pr ON p.id = pr.product_id
-GROUP BY P.id HAVING p.subcategory_id = 1 AND p.visible = 1 ORDER BY p.created_at DESC";
+GROUP BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC";
 
     const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, (SELECT AVG(rating) 
                                             FROM reviews WHERE product_id = P.id) average FROM products P

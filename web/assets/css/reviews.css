@@ -94,3 +94,7 @@ input[type="file"]{
 #averageRating {
     width: 50%;
 }
+
+#reviewComment {
+    word-wrap: break-word;
+}

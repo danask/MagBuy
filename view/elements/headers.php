@@ -1,3 +1,10 @@
+<?php
+//Check for session and start if for some reason it isn't
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+?>
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -20,10 +27,14 @@
     <script src="../../web/assets/js/jquery-1.11.1.min.js"></script>
     <!-- Bootstrap JS Library -->
     <script src="../../web/assets/js/bootstrap.js"></script>
-    <!-- Navigation JS -->
-    <script type="text/javascript" src="../../web/assets/js/mega.menu.js"></script>
     <!-- Search JS -->
     <script type="text/javascript" src="../../web/assets/js/search.js"></script>
+    <!-- Navigation JS -->
+    <script type="text/javascript" src="../../web/assets/js/mega.menu.js"></script>
+    <!-- Cart JS -->
+    <script type="text/javascript" src="../../web/assets/js/add.cart.js"></script>
+    <!-- Footer slider JS -->
+    <script type="text/javascript" src="../../web/assets/js/jquery.footer.slider.js"></script>
 
     <!-- Web fonts -->
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,300italic,600,700' rel='stylesheet'

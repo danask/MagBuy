@@ -2045,6 +2045,8 @@ p.comment-form-author {
 /*-----*/
 .flexiselDemo3 {
     display: none;
+    left: -253.6px;
+    display: block;
 }
 
 .nbs-flexisel-container {
@@ -2078,6 +2080,7 @@ p.comment-form-author {
     position: relative;
     line-height: 0;
     cursor: pointer;
+    width: 253.6px;
 }
 
 .nbs-flexisel-item img {
@@ -3186,4 +3189,20 @@ ul.qty li p {
 .search-result-p {
     margin-left: 20px;
     display: inline-block;
+}
+
+#header_bg {
+    padding-top: 52px;
+}
+
+#favouritesButton {
+    margin-top: 10px;
+}
+
+#cartTotalPrice {
+    display: inline;
+}
+
+#cartItems {
+    display: inline;
 }

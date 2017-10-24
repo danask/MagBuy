@@ -1,0 +1,20 @@
+#cartItems2 {
+    display: inline;
+}
+
+#totalPrice {
+    text-align: center;
+}
+
+#totalPriceCurrency {
+    color: red;
+}
+
+#cartTotalPrice2 {
+    display: inline;
+}
+
+#checkOutButton {
+    margin: 0 auto 0 auto;
+    display: block;
+}
