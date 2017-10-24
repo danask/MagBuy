@@ -9,8 +9,8 @@ require_once "../../controller/favourites/check_favourites_controller.php";
 <html>
 <head>
     <title>MagBuy | <?= $product['title'] ?></title>
-    <link rel="shortcut icon" href="../../web/uploads/magbuy/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../../web/uploads/magbuy/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../web/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../web/assets/images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Nuevo Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -209,7 +209,7 @@ require_once "../elements/navigation.php";
                             <span class="actual item_price">$<?= $product['price']; ?></span>
                         </div>
                         <img id="averageRating" class="media-object img"
-                             src="../../web/uploads/magbuy/rating<?=$product['average']?>.png"><br/>
+                             src="../../web/assets/images/rating<?=$product['average']?>.png"><br/>
                         <div class="clearfix"></div>
                         <button class="btn btn-default"
                                 onclick="addToCart(<?= $product['id'] ?>, <?= $product['price'] ?>)"><span
@@ -330,7 +330,7 @@ require_once "../elements/navigation.php";
                                                     "<small>" . "&nbsp by " . $review['first_name'] . "</small>" ?><img
                                                             id="reviewRating" class="media-object img"
                                                             src=
-                                                            "../../web/uploads/magbuy/rating<?=$review['rating']?>.png">
+                                                            "../../web/assets/images/rating<?=$review['rating']?>.png">
                                                 </h4>
                                                 <ul class="media-date text-uppercase reviews list-inline">
                                                     <li class="dd"> <?= $review['created_at'] ?></li>
@@ -355,7 +355,7 @@ require_once "../elements/navigation.php";
             <div class="collection-section">
                 <?php if(count($relatedProducts)) { echo "<h3 class=\"tittle\">Related Products</h3>"; } ?>
 
-                <div class="fashion-info">
+                <div class="main_filtered_product-info">
                     <?php foreach ($relatedProducts as $product) { ?>
                         <div class="products-grd">
                             <div class="p-one simpleCart_shelfItem prd">

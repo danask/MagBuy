@@ -5,8 +5,8 @@ require_once "../../controller/cart/show_cart_controller.php"
 <html>
 <head>
     <title>MagBuy Cart</title>
-    <link rel="shortcut icon" href="../../web/uploads/magbuy/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../../web/uploads/magbuy/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../web/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../web/assets/images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Nuevo Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -81,7 +81,7 @@ require_once "../elements/navigation.php";
 <!-- checkout -->
 <div class="cart-items">
     <div class="container">
-        <h3 class="tittle">My shopping(
+        <h3 class="title">My shopping(
             <div id="cartItems2" style="display: inline"><?= $cartItems ?></div>
             )
         </h3>

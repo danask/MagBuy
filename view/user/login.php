@@ -1,8 +1,6 @@
 <?php
-
 //Check for Session
 require_once "../../utility/session_main.php";
-
 ?>
 
 <!doctype html>
@@ -13,20 +11,22 @@ require_once "../../utility/session_main.php";
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <!-- CSS for Login pages -->
-    <link rel="stylesheet" href="../../web/assets/css/login.css" type="text/css">
+    <!-- CSS for login/register/edit form -->
+    <link rel="stylesheet" href="../../web/assets/css/user.css" type="text/css">
 
     <title>Login</title>
 </head>
 <body>
 
 <div class="login-page">
-    <div id="logo"><img src="../../web/uploads/magbuy/logo.png"></div>
+    <div id="logo"><a href="../main/index.php"><img src="../../web/assets/images/logo.png"></a></div>
     <div class="form">
         <form class="login-form" action="../../controller/user/login_controller.php" method="post">
             <input type="email" name="email" placeholder="Enter Your Email"/>
             <input type="password" name="password" placeholder="Enter Your Password"/>
+
             <input id="login" type="submit" value="LOGIN">
+
             <?php if(isset($_GET['error'])){ echo "<p id=\"wrongLogin\">User not found!</p>"; };?>
             <p class="message">Not registered? <a href="register.php">Create an account</a></p>
         </form>

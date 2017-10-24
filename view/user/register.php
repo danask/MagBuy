@@ -1,8 +1,6 @@
 <?php
-
 //Check for Session
 require_once "../../utility/session_main.php";
-
 ?>
 
 <!doctype html>
@@ -13,14 +11,15 @@ require_once "../../utility/session_main.php";
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-    <link rel="stylesheet" href="../../web/assets/css/login.css" type="text/css">
+    <!-- CSS for login/register/edit form -->
+    <link rel="stylesheet" href="../../web/assets/css/user.css" type="text/css">
 
     <title>Register</title>
 </head>
 <body>
 
 <div class="login-page">
-    <div id="logo"><img src="../../web/uploads/magbuy/logo.png"></div>
+    <div id="logo"><a href="../main/index.php"><img src="../../web/assets/images/logo.png"></a></div>
     <div class="form">
         <form class="login-form" action="../../controller/user/register_controller.php" method="post">
 
@@ -32,6 +31,7 @@ require_once "../../utility/session_main.php";
             <input type="tel" name="mobilePhone" placeholder="Mobile Number" required/>
 
             <input id="login" type="submit" value="REGISTER">
+
             <?php if(isset($_GET['error'])){ echo "
             <li class='wrongReg'>Email might exists</li><li class='wrongReg'>Password: between 4 and 12 symbols</li>
             <li class='wrongReg'>Passwords must match</li>

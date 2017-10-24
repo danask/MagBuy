@@ -111,11 +111,11 @@ require_once "../elements/navigation.php";
         <div style="margin-bottom: 35px;"></div>
         <label>Rating</label>
         <div style="margin-bottom: 15px;"></div>
-        <label class="radio-inline"><input type="radio" name="rating" value="1" required><img class="starRating" src="../../web/uploads/magbuy/star1.png"></label>
-        <label class="radio-inline"><input type="radio" name="rating" value="2" required><img class="starRating" src="../../web/uploads/magbuy/star2.png"></label>
-        <label class="radio-inline"><input type="radio" name="rating" value="3" required checked><img class="starRating" src="../../web/uploads/magbuy/star3.png"></label>
-        <label class="radio-inline"><input type="radio" name="rating" value="4" required><img class="starRating" src="../../web/uploads/magbuy/star4.png"></label>
-        <label class="radio-inline"><input type="radio" name="rating" value="5" required><img class="starRating" src="../../web/uploads/magbuy/star5.png"></label>
+        <label class="radio-inline"><input type="radio" name="rating" value="1" required><img class="starRating" src="../../web/assets/images/star1.png"></label>
+        <label class="radio-inline"><input type="radio" name="rating" value="2" required><img class="starRating" src="../../web/assets/images/star2.png"></label>
+        <label class="radio-inline"><input type="radio" name="rating" value="3" required checked><img class="starRating" src="../../web/assets/images/star3.png"></label>
+        <label class="radio-inline"><input type="radio" name="rating" value="4" required><img class="starRating" src="../../web/assets/images/star4.png"></label>
+        <label class="radio-inline"><input type="radio" name="rating" value="5" required><img class="starRating" src="../../web/assets/images/star5.png"></label>
         <div class="clearfix"></div>
 
         <label for="title" style="margin-top: 20px;">Title</label>

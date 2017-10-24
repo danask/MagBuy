@@ -8,8 +8,8 @@
     <script type="text/javascript" src="../../web/assets/js/add_favourites.js"></script>
 
     <title>MagBuy Favourites</title>
-    <link rel="shortcut icon" href="../../web/uploads/magbuy/favicon.ico" type="image/x-icon">
-    <link rel="icon" href="../../web/uploads/magbuy/favicon.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="../../web/assets/images/favicon.ico" type="image/x-icon">
+    <link rel="icon" href="../../web/assets/images/favicon.ico" type="image/x-icon">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <meta name="keywords" content="Nuevo Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
@@ -57,7 +57,7 @@ require_once "../elements/navigation.php";
 
 <div class="cart-items">
     <div class="container">
-        <h3 class="tittle"><?php if(count($products)){ echo "My Favourites";} else {echo "No Favourite Products Found";} ?> </h3>
+        <h3 class="title"><?php if(count($products)){ echo "My Favourites";} else {echo "No Favourite Products Found";} ?> </h3>
 
         <?php
         foreach ($products as $product) {
