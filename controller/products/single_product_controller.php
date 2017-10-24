@@ -26,7 +26,7 @@ try {
     $images = $imagesDao->getAllProductImages($productId);
     $promotion = $promoDao->getBiggestActivePromotionByProductId($productId);
     $reviewsCount = count($reviews);
-    $relatedProducts = $productsDao->getRelated($product['subcategory_id']);
+    $relatedProducts = $productsDao->getRelated($product['subcategory_id'], $productId);
 
     if ($promotion != null) {
         $promotedPrice = round($product['price'] - (($product['price'] * $promotion['percent']) / 100), 2);

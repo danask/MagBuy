@@ -41,7 +41,7 @@ class ProductsDao
                                      WHERE P.visible = 1 GROUP BY P.id ORDER BY average DESC LIMIT 3";
 
     const GET_RELATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.subcategory_id, P.price FROM products P 
-                                  JOIN images I ON P.id = I.product_id WHERE P.visible = 1
+                                  JOIN images I ON P.id = I.product_id WHERE P.visible = 1 AND NOT P.id = ?
                                   GROUP BY P.id HAVING P.subcategory_id = ? ORDER BY P.created_at DESC LIMIT 3";
 
     const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, p.title, i.image_url, p.price, pr.percent FROM products p 
@@ -171,11 +171,11 @@ class ProductsDao
     }
 
     //Function for getting related products
-    function getRelated($subCat)
+    function getRelated($subCat, $product)
     {
 
         $statement = $this->pdo->prepare(self::GET_RELATED_PRODUCTS);
-        $statement->execute(array($subCat));
+        $statement->execute(array($product, $subCat));
         $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $products;
