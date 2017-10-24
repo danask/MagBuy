@@ -14,6 +14,7 @@ class PromotionsDao
 
     //Statements defined as constants
     const CREATE_PROMOTION = "INSERT INTO promotions (percent, start_date, end_date, product_id) VALUES (?, ?, ?, ?)";
+    const BIGGEST_ACTIVE_BY_PRODUCT_ID = "SELECT percent FROM promotions WHERE product_id = ? ORDER BY percent DESC";
 
     //Get connection in construct
     private function __construct()
@@ -35,15 +36,24 @@ class PromotionsDao
     function createPromotion(Promotion $promotion)
     {
         $statement = $this->pdo->prepare(self::CREATE_PROMOTION);
-        $statement->execute(
-            $promotion->getPercent(),
-            $promotion->getStartDate(),
-            $promotion->getEndDate(),
-            $promotion->getProductId()
+        $statement->execute(array(
+                $promotion->getPercent(),
+                $promotion->getStartDate(),
+                $promotion->getEndDate(),
+                $promotion->getProductId())
         );
         $promoId = $this->pdo->lastInsertId();
 
         return $promoId;
+    }
+
+    function getBiggestActivePromotionByProductId($productId)
+    {
+        $statement = $this->pdo->prepare(self::BIGGEST_ACTIVE_BY_PRODUCT_ID);
+        $statement->execute(array($productId));
+        $promotion = $statement->fetch();
+
+        return $promotion;
     }
 
 }

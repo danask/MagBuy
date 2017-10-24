@@ -18,16 +18,20 @@ try {
     $specsDao = \model\database\ProductSpecificationsDao::getInstance();
     $reviewsDao = \model\database\ReviewsDao::getInstance();
     $imagesDao = \model\database\ProductImagesDao::getInstance();
+    $promoDao = \model\database\PromotionsDao::getInstance();
 
     $product = $productsDao->getProductByID($productId);
     $specifications = $specsDao->getAllSpecificationsForProduct($productId);
     $reviews = $reviewsDao->getReviewsForProduct($productId);
     $images = $imagesDao->getAllProductImages($productId);
+    $promotion = $promoDao->getBiggestActivePromotionByProductId($productId);
     $reviewsCount = count($reviews);
     $relatedProducts = $productsDao->getRelated($product['subcategory_id']);
 
+    $promotedPrice = round($product['price'] - (($product['price'] * $promotion['percent']) / 100), 2);
+
     //Check if rating is null
-    if($product['average'] === null) {
+    if ($product['average'] === null) {
         $product['average'] = 0;
     } else {
         $product['average'] = round($product['average'], 0);

@@ -28,7 +28,6 @@ require_once "../elements/headers.php";
     </head>
 
 
-
 <?php
 //Include Header
 require_once "../elements/header.php";
@@ -98,9 +97,16 @@ require_once "../elements/navigation.php";
                             <h3><?= $product['title']; ?></h3>
                             <p class="availability">Availability: <span class="color">In stock</span></p>
                             <div class="price_single">
-                                <span class="reducedfrom">$800.00</span>
-                                <span class="actual item_price">$<?= $product['price']; ?></span>
+                                <span class="reducedfrom">$<?= $product['price']; ?></span>
+                                <span class="actual item_price">$<?= $promotedPrice; ?></span>
                             </div>
+                            <?php
+                            // if is authenticated admin
+                            ?>
+                            <a href="../admin/promotion_create.php?pid=<?= $product['id'] ?>">Add promotion</a>
+                            <?php
+                            // endif
+                            ?>
                             <img id="averageRating" class="media-object img"
                                  src="../../web/assets/images/rating<?= $product['average'] ?>.png"><br/>
                             <div class="clearfix"></div>
@@ -142,132 +148,136 @@ require_once "../elements/navigation.php";
                 <div class="clearfix"></div>
 
 
-            <!-- Accordion Information about product -->
-            <div class="panel-group collpse" id="accordion" role="tablist" aria-multiselectable="true">
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingOne">
-                        <h4 class="panel-title">
-                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
-                               aria-expanded="true" aria-controls="collapseOne">
-                                Description
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
-                         aria-labelledby="headingOne">
-                        <div class="panel-body">
-                            <?= $product['description']; ?>
+                <!-- Accordion Information about product -->
+                <div class="panel-group collpse" id="accordion" role="tablist" aria-multiselectable="true">
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingOne">
+                            <h4 class="panel-title">
+                                <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapseOne"
+                                   aria-expanded="true" aria-controls="collapseOne">
+                                    Description
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel"
+                             aria-labelledby="headingOne">
+                            <div class="panel-body">
+                                <?= $product['description']; ?>
+                            </div>
                         </div>
                     </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingTwo">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                               href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                Specifications
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
-                        <div class="panel-body">
-                            <table>
-                                <tr>
-                                    <th>Specification</th>
-                                    <th>Value</th>
-                                </tr>
-                                <?php
-                                foreach ($specifications as $spec) {
-                                    ?>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingTwo">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Specifications
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseTwo" class="panel-collapse collapse" role="tabpanel"
+                             aria-labelledby="headingTwo">
+                            <div class="panel-body">
+                                <table>
                                     <tr>
-                                        <td><?= $spec['name']; ?></td>
-                                        <td><?= $spec['value']; ?></td>
+                                        <th>Specification</th>
+                                        <th>Value</th>
                                     </tr>
                                     <?php
-                                }
-                                ?>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel panel-default">
-                    <div class="panel-heading" role="tab" id="headingThree">
-                        <h4 class="panel-title">
-                            <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
-                               href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                reviews(<?= $reviewsCount ?>)
-                            </a>
-                        </h4>
-                    </div>
-                    <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
-                         aria-labelledby="headingThree">
-
-                        <?php foreach ($reviews as $review) { ?>
-
-                        <div class="tab-content">
-                            <div class="tab-pane active" id="comments-logout">
-                                <ul class="media-list">
-                                    <li class="media">
-                                        <div class="pull-left" href="#">
-                                            <img class="media-object img-circle"
-                                                 src="<?= $review['image_url']?>"
-                                                 alt="profile">
-                                        </div>
-                                        <div class="media-body">
-                                            <div class="well well-lg">
-                                                <h4 class="media-heading text-uppercase reviews"><?= $review['title'] .
-                                                    "<small>" . "&nbsp by " . $review['first_name'] . "</small>" ?><img
-                                                            id="reviewRating" class="media-object img"
-                                                            src=
-                                                            "../../web/assets/images/rating<?=$review['rating']?>.png">
-                                                </h4>
-                                                <ul class="media-date text-uppercase reviews list-inline">
-                                                    <li class="dd"> <?= $review['created_at'] ?></li>
-
-                                                </ul>
-                                                <p style="word-wrap: break-word;" class="media-comment">
-                                                    <?= $review['comment'] ?>
-                                                </p>
-                                            </div>
-                                        </div>
-                                </ul>
+                                    foreach ($specifications as $spec) {
+                                        ?>
+                                        <tr>
+                                            <td><?= $spec['name']; ?></td>
+                                            <td><?= $spec['value']; ?></td>
+                                        </tr>
+                                        <?php
+                                    }
+                                    ?>
+                                </table>
                             </div>
                         </div>
-                        <?php } ?>
+                    </div>
+                    <div class="panel panel-default">
+                        <div class="panel-heading" role="tab" id="headingThree">
+                            <h4 class="panel-title">
+                                <a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion"
+                                   href="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    reviews(<?= $reviewsCount ?>)
+                                </a>
+                            </h4>
+                        </div>
+                        <div id="collapseThree" class="panel-collapse collapse" role="tabpanel"
+                             aria-labelledby="headingThree">
 
+                            <?php foreach ($reviews as $review) { ?>
+
+                                <div class="tab-content">
+                                    <div class="tab-pane active" id="comments-logout">
+                                        <ul class="media-list">
+                                            <li class="media">
+                                                <div class="pull-left" href="#">
+                                                    <img class="media-object img-circle"
+                                                         src="<?= $review['image_url'] ?>"
+                                                         alt="profile">
+                                                </div>
+                                                <div class="media-body">
+                                                    <div class="well well-lg">
+                                                        <h4 class="media-heading text-uppercase reviews"><?= $review['title'] .
+                                                            "<small>" . "&nbsp by " . $review['first_name'] . "</small>" ?>
+                                                            <img
+                                                                    id="reviewRating" class="media-object img"
+                                                                    src=
+                                                                    "../../web/assets/images/rating<?= $review['rating'] ?>.png">
+                                                        </h4>
+                                                        <ul class="media-date text-uppercase reviews list-inline">
+                                                            <li class="dd"> <?= $review['created_at'] ?></li>
+
+                                                        </ul>
+                                                        <p style="word-wrap: break-word;" class="media-comment">
+                                                            <?= $review['comment'] ?>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                        </ul>
+                                    </div>
+                                </div>
+                            <?php } ?>
+
+                        </div>
                     </div>
                 </div>
-            </div>
 
                 <!-- Realated products -->
-            <div class="collection-section">
-                <?php if(count($relatedProducts)) { echo "<h3 class=\"tittle\">Related Products</h3>"; } ?>
-                <div class="main_filtered_product-info">
-                    <?php foreach ($relatedProducts as $product) { ?>
-                        <div class="products-grd">
-                            <div class="p-one simpleCart_shelfItem prd">
-                                <a href="single.php?pid=<?= $product['id']; ?>">
-                                    <img src="<?= $product['image_url'] ?>"
-                                         alt="Product Image" class="img-responsive"/>
-                                </a>
-                                <h4><?= $product['title']; ?></h4>
-                                <p><a class="btn btn-default btn-sm"
-                                      onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
-                                        <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
-                                    </a>&nbsp&nbsp<span
-                                            class=" item_price valsa">$<?= $product['price']; ?></span></p>
-                                <div class="pro-grd">
-                                    <a href="single.php?pid=<?= $product['id']; ?>">View</a>
+                <div class="collection-section">
+                    <?php if (count($relatedProducts)) {
+                        echo "<h3 class=\"tittle\">Related Products</h3>";
+                    } ?>
+                    <div class="main_filtered_product-info">
+                        <?php foreach ($relatedProducts as $product) { ?>
+                            <div class="products-grd">
+                                <div class="p-one simpleCart_shelfItem prd">
+                                    <a href="single.php?pid=<?= $product['id']; ?>">
+                                        <img src="<?= $product['image_url'] ?>"
+                                             alt="Product Image" class="img-responsive"/>
+                                    </a>
+                                    <h4><?= $product['title']; ?></h4>
+                                    <p><a class="btn btn-default btn-sm"
+                                          onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
+                                            <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
+                                        </a>&nbsp&nbsp<span
+                                                class=" item_price valsa">$<?= $product['price']; ?></span></p>
+                                    <div class="pro-grd">
+                                        <a href="single.php?pid=<?= $product['id']; ?>">View</a>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                <?php } ?>
-                    <div class="clearfix"></div>
+                        <?php } ?>
+                        <div class="clearfix"></div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 
 <?php
 require_once "../elements/footer.php";
