@@ -97,8 +97,18 @@ require_once "../elements/navigation.php";
                             <h3><?= $product['title']; ?></h3>
                             <p class="availability">Availability: <span class="color">In stock</span></p>
                             <div class="price_single">
-                                <span class="reducedfrom">$<?= $product['price']; ?></span>
-                                <span class="actual item_price">$<?= $promotedPrice; ?></span>
+                                <?php
+                                if (isset($promotedPrice)) {
+                                    ?>
+                                    <span class="reducedfrom">$<?= $product['price']; ?></span>
+                                    <span class="actual item_price">$<?= $promotedPrice; ?></span>
+                                    <?php
+                                } else {
+                                    ?>
+                                    <span class="actual item_price">$<?= $product['price']; ?></span>
+                                    <?php
+                                }
+                                ?>
                             </div>
                             <?php
                             // if is authenticated admin

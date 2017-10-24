@@ -8,7 +8,8 @@ use model\Product;
 use PDO;
 
 
-class ProductsDao {
+class ProductsDao
+{
 
     //Make Singletonn
     private static $instance;
@@ -27,9 +28,10 @@ class ProductsDao {
 
     const GET_MOST_REVIEWED = "SELECT * FROM products WHERE P.visible = 1 ORDER BY times_reviewed DESC";
 
-    const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, 
-                                    p.visible FROM products p INNER JOIN images i ON p.id = i.product_id GROUP BY 
-                                    P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC";
+    const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  p.visible, pr.percent FROM products p 
+INNER JOIN images i ON p.id = i.product_id
+LEFT JOIN promotions pr ON p.id = pr.product_id
+GROUP BY P.id HAVING p.subcategory_id = 1 AND p.visible = 1 ORDER BY p.created_at DESC";
 
     const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price, (SELECT AVG(rating) 
                                             FROM reviews WHERE product_id = P.id) average FROM products P
@@ -49,16 +51,15 @@ class ProductsDao {
                               ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ?";
 
 
-
-
-
     //Get connection in construct
-    private function __construct() {
+    private function __construct()
+    {
 
         $this->pdo = Connection::getInstance()->getConnection();
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
 
         if (self::$instance === null) {
             self::$instance = new ProductsDao();
@@ -102,7 +103,6 @@ class ProductsDao {
 
         return $product;
     }
-
 
 
     function getProductsFilteredByPrice($priceFilter)
@@ -156,7 +156,8 @@ class ProductsDao {
     }
 
     //Function for getting top 3 rated products for main page
-    function getTopRated(){
+    function getTopRated()
+    {
 
         $statement = $this->pdo->prepare(self::GET_MOST_RATED_PRODUCTS);
         $statement->execute(array());
@@ -166,7 +167,8 @@ class ProductsDao {
     }
 
     //Function for getting related products
-    function getRelated($subCat) {
+    function getRelated($subCat)
+    {
 
         $statement = $this->pdo->prepare(self::GET_RELATED_PRODUCTS);
         $statement->execute(array($subCat));
@@ -176,7 +178,8 @@ class ProductsDao {
     }
 
     //Function for getting most recent products
-    function getMostRecent() {
+    function getMostRecent()
+    {
 
         $statement = $this->pdo->prepare(self::GET_MOST_RECENT_PRODUCTS);
         $statement->execute(array());
@@ -186,9 +189,9 @@ class ProductsDao {
     }
 
 
-
     //Function for searching products
-    function searchProduct ($needle) {
+    function searchProduct($needle)
+    {
 
         $statement = $this->pdo->prepare(self::SEARCH_PRODUCTS);
         $statement->execute(array("%$needle%"));
@@ -199,7 +202,8 @@ class ProductsDao {
     }
 
     //Function for searching products without limit
-    function searchProductNoLimit ($needle) {
+    function searchProductNoLimit($needle)
+    {
 
         $statement = $this->pdo->prepare(self::SEARCH_PRODUCTS_NO_LIMIT);
         $statement->execute(array("%$needle%"));
