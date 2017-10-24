@@ -25,8 +25,6 @@ class ProductsDao
                                 LEFT JOIN promotions pr ON p.id = pr.product_id WHERE P.visible = 1 
                                 GROUP BY p.id HAVING p.id = ?";
 
-    const GET_MOST_SOLD = "SELECT * FROM products WHERE P.visible = 1 ORDER BY times_sold DESC";
-
     const GET_MOST_REVIEWED = "SELECT * FROM products WHERE P.visible = 1 ORDER BY times_reviewed DESC";
 
     const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
@@ -48,6 +46,12 @@ class ProductsDao
                                       JOIN images i ON p.id = i.product_id LEFT JOIN promotions pr 
                                       ON P.id = pr.product_id WHERE p.visible = 1 GROUP BY p.id 
                                       ORDER BY p.created_at DESC LIMIT 3";
+
+    const GET_MOST_SOLD = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, (SELECT count(product_id) 
+                           FROM order_products WHERE product_id = P.id) ordered FROM products P
+                           JOIN images I ON P.id = I.product_id JOIN reviews R ON P.id = R.product_id
+                           LEFT JOIN promotions pr ON P.id = pr.product_id WHERE P.visible = 1 GROUP BY P.id 
+                           ORDER BY ordered DESC LIMIT 3";
 
     const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
                               ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ? LIMIT 3";
@@ -117,15 +121,6 @@ class ProductsDao
             $filter = "ASC";
         }
         $statement = $this->pdo->prepare("SELECT * FROM products ORDER BY price $filter");
-        $statement->execute();
-        $products = $statement->fetchAll();
-
-        return $products;
-    }
-
-    function getMostSoldProducts()
-    {
-        $statement = $this->pdo->prepare(self::GET_MOST_SOLD);
         $statement->execute();
         $products = $statement->fetchAll();
 
@@ -206,11 +201,21 @@ class ProductsDao
     }
 
     //Function for searching products without limit
-    function searchProductNoLimit($needle)
-    {
+    function searchProductNoLimit($needle) {
 
         $statement = $this->pdo->prepare(self::SEARCH_PRODUCTS_NO_LIMIT);
         $statement->execute(array("%$needle%"));
+
+        $result = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $result;
+    }
+
+    //Function for getting most sold
+    function mostSoldProducts () {
+
+        $statement = $this->pdo->prepare(self::GET_MOST_SOLD);
+        $statement->execute();
 
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 

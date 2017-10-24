@@ -15,6 +15,7 @@ try {
 
     $topRated = $productsDao->getTopRated();
     $mostRecent = $productsDao->getMostRecent();
+    $mostSold = $productsDao->mostSoldProducts();
 
 } catch (PDOException $e) {
 
