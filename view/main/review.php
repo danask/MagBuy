@@ -1,6 +1,5 @@
 <?php
-//MYSTERY REQUIRE OR CART IS BROKEN - RANGELE OPRAVI GO :D GARMI, AKO DOBAVISH V KOLICHKA I OT SINGALA DOIDESH V review.php
-require_once "../../controller/products/home_products_controller.php";
+require_once "../../controller/autoloader.php";
 //Check for session
 require_once "../../utility/no_session_main.php";
 //Include main Headers
