@@ -230,6 +230,7 @@ require_once "../elements/navigation.php";
                                                 </p>
                                             </div>
                                         </div>
+                                    </li>
                                 </ul>
                             </div>
                         </div>
