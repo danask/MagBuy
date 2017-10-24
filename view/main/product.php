@@ -27,8 +27,6 @@ require_once "../elements/navigation.php";
                             if ($product['percent'] != null) {
                                 $promotedPrice = round($product['price'] - (($product['price'] * $product['percent']) / 100), 2);
                             }
-                            var_dump($product['percent']);
-                            var_dump($promotedPrice);
                             $counter++;
                             if ($counter > 3) {
                                 echo '<div class="clearfix"></div>

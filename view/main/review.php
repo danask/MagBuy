@@ -1,165 +1,59 @@
 <?php
-
+//MYSTERY REQUIRE OR CART IS BROKEN - RANGELE OPRAVI GO :D GARMI, AKO DOBAVISH V KOLICHKA I OT SINGALA DOIDESH V review.php
 require_once "../../controller/products/home_products_controller.php";
+//Check for session
 require_once "../../utility/no_session_main.php";
+//Include main Headers
+require_once "../elements/headers.php";
 ?>
 
+    <!-- CSS for Simple Slider  -->
+    <link rel="stylesheet" href="../../web/assets/css/addReview.css">
 
-<!DOCTYPE HTML>
-<html>
-<head>
-    <title>Nuevo Shop a Ecommerce Online Shopping Flat Bootstarp Resposive Website Template |Single :: w3layouts</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <meta name="keywords" content="Nuevo Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
-Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design"/>
-    <script type="applijegleryion/x-javascript">
-         addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); }
+    <!-- Define Page Name -->
+    <title>MagBuy | Add Review></title>
+    </head>
 
-    </script>
-    <style>
-        table {
-            border-collapse: collapse;
-            width: 100%;
-        }
-
-        th, td {
-            padding: 8px;
-            text-align: left;
-            border-bottom: 1px solid #ddd;
-        }
-
-        tr:hover {
-            background-color: #f5f5f5
-        }
-    </style>
-    <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
-    <!-- Custom Theme files -->
-    <link href="../../web/assets/css/style.css" rel='stylesheet' type='text/css'/>
-    <script src="../../web/assets/js/jquery-1.11.1.min.js"></script>
-    <!-- start menu -->
-    <link href="../../web/assets/css/megaMenu.css" rel="stylesheet" type="text/css" media="all"/>
-    <script type="text/javascript" src="../../web/assets/js/mega.menu.js"></script>
-    <script>$(document).ready(function () {
-            $(".megamenu").megamenu();
-        });</script>
-    <script src="../../web/assets/js/menu_jquery.js"></script>
-    <script src="../../web/assets/js/simpleCart.min.js"></script>
-    <script src="../../web/assets/js/bootstrap.js"></script>
-    <!--web-fonts-->
-    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,300italic,600,700' rel='stylesheet'
-          type='text/css'>
-    <link href='//fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
-    <!--//web-fonts-->
-    <script src="../../web/assets/js/modernizr.custom.js"></script>
-    <script type="text/javascript" src="../../web/assets/js/move-top.js"></script>
-    <script type="text/javascript" src="../../web/assets/js/easing.js"></script>
-    <link rel="stylesheet" href="../../web/assets/css/flexSliderJQuery.css" type="text/css" media="screen"/>
-
-    <!--/script-->
-    <script type="text/javascript">
-        jQuery(document).ready(function ($) {
-            $(".scroll").click(function (event) {
-                event.preventDefault();
-                $('html,body').animate({scrollTop: $(this.hash).offset().top}, 900);
-            });
-        });
-    </script>
-    <!-- the jScrollPane script -->
-    <script type="text/javascript" src="../../web/assets/js/jquery.jscrollpane.min.js"></script>
-    <script type="text/javascript" id="sourcecode">
-        $(function () {
-            $('.scroll-pane').jScrollPane();
-        });
-    </script>
-    <!-- //the jScrollPane script -->
-
-    <!--Script for adding product to favourites -->
-    <script type="text/javascript" src="../../web/assets/js/add.favourites.js"></script>
-
-</head>
-<body>
 <?php
+//Include Header
 require_once "../elements/header.php";
+//Include Navigation
 require_once "../elements/navigation.php";
 ?>
-<!--start-content-->
-<!-- products -->
 
-<div class="container">
+    <!-- Adding new review -->
+    <div class="container">
+        <form action="../../controller/reviews/add_review_controller.php?pid=<?= $_GET['pid'] ?>" method="post">
 
-    <form action="../../controller/reviews/add_review_controller.php?pid=<?=$_GET['pid']?>" method="post">
+            <div id='uppderDiv'></div>
+            <label>Rating</label>
+            <div id='lowerDiv'></div>
+            <label class="radio-inline"><input type="radio" name="rating" value="1" required>
+                <img class="starRating" src="../../web/assets/images/star1.png"></label>
+            <label class="radio-inline"><input type="radio" name="rating" value="2" required>
+                <img class="starRating" src="../../web/assets/images/star2.png"></label>
+            <label class="radio-inline"><input type="radio" name="rating" value="3" required checked>
+                <img class="starRating" src="../../web/assets/images/star3.png"></label>
+            <label class="radio-inline"><input type="radio" name="rating" value="4" required>
+                <img class="starRating" src="../../web/assets/images/star4.png"></label>
+            <label class="radio-inline"><input type="radio" name="rating" value="5" required>
+                <img class="starRating" src="../../web/assets/images/star5.png"></label>
+            <div class="clearfix"></div>
 
-        <style>
-            label > input{ /* HIDE RADIO */
-                visibility: hidden; /* Makes input not-clickable */
-                position: absolute; /* Remove input from document flow */
-            }
-            label > input + img{ /* IMAGE STYLES */
-                cursor:pointer;
-                border:2px solid transparent;
-            }
-            label > input:checked + img{ /* (RADIO CHECKED) IMAGE STYLES */
-                height: 80px;
+            <label id='labelTitle' for="title">Title</label>
+            <input class="form-control" type="text" name="title" placeholder="Enter Title" id="title" required>
 
-            }
+            <label id='labelTextArea' for="reviewArea">Review</label>
+            <textarea class="form-control" rows="5" name="review" id="reviewArea"></textarea><br/>
 
-            .starRating {
-                height: 49px;
-                width: auto;
-            }
+            <button id='addReviewButton' type="submit" class="btn btn-primary btn-warning">
+                <span class="glyphicon glyphicon-tag"></span> Add Review
+            </button>
 
-        </style>
+        </form>
+    </div>
 
-        <div style="margin-bottom: 35px;"></div>
-        <label>Rating</label>
-        <div style="margin-bottom: 15px;"></div>
-        <label class="radio-inline"><input type="radio" name="rating" value="1" required><img class="starRating" src="../../web/assets/images/star1.png"></label>
-        <label class="radio-inline"><input type="radio" name="rating" value="2" required><img class="starRating" src="../../web/assets/images/star2.png"></label>
-        <label class="radio-inline"><input type="radio" name="rating" value="3" required checked><img class="starRating" src="../../web/assets/images/star3.png"></label>
-        <label class="radio-inline"><input type="radio" name="rating" value="4" required><img class="starRating" src="../../web/assets/images/star4.png"></label>
-        <label class="radio-inline"><input type="radio" name="rating" value="5" required><img class="starRating" src="../../web/assets/images/star5.png"></label>
-        <div class="clearfix"></div>
-
-        <label for="title" style="margin-top: 20px;">Title</label>
-        <input class="form-control" type="text" name="title" placeholder="Enter Title" id="title" required>
-
-        <label for="reviewArea" style="margin-top: 20px;">Review</label>
-        <textarea class="form-control" rows="5" name="review" id="reviewArea"></textarea><br/>
-
-        <button style="margin-bottom: 50px;" type="submit" class="btn btn-primary btn-warning"><span class="glyphicon glyphicon-tag"></span> Add Review</button>
-
-    </form>
-
-</div>
-<!-- //products -->
-<!--start-bottom-->
-<!--start-image-cursuals-->
 <?php
+//Include Footer
 require_once "../elements/footer.php";
 ?>
-<!--//end-copyright-->
-<!--end-footer-->
-<!--//end-content-->
-<!--start-smooth-scrolling-->
-<script type="text/javascript">
-    $(document).ready(function () {
-        /*
-         var defaults = {
-         containerID: 'toTop', // fading element id
-         containerHoverID: 'toTopHover', // fading element hover id
-         scrollSpeed: 1200,
-         easingType: 'linear'
-         };
-         */
-
-        $().UItoTop({easingType: 'easeOutQuart'});
-
-    });
-</script>
-<a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover"
-                                                                         style="opacity: 1;"> </span></a>
-
-
-</body>
-</html>
