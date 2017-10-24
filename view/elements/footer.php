@@ -26,7 +26,7 @@
         </div>
         <div class="clearfix"></div>
         <!--start-image-->
-        <script type="text/javascript" src="../../web/assets/js/jquery_footer_slider.js"></script>
+        <script type="text/javascript" src="../../web/assets/js/jquery.footer.slider.js"></script>
         <!--//end-->
         <script type="text/javascript">
             $(window).load(function () {

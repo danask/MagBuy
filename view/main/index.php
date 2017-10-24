@@ -1,7 +1,15 @@
 <?php
 //Include controller to display products
 require_once "../../controller/products/home_products_controller.php";
+//Include main Headers
+require_once "../elements/headers.php";
+?>
 
+    <!-- Define Page Name -->
+    <title>MagBuy | Home</title>
+    </head>
+
+<?php
 //Include Header
 require_once "../elements/header.php";
 //Include Navigation
