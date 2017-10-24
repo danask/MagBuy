@@ -24,11 +24,11 @@ require_once "../elements/navigation.php";
 
                 <?php foreach ($topRated as $product) {
                     if ($product['percent'] != null) {
-                        $promotedPrice = round($product['price'] - (($product['price'] * $product['percent']) / 100), 2);
+                        $promotedPrice = round($product['price'] - (($product['price'] *
+                                    $product['percent']) / 100), 2);
                     } else {
                         unset($promotedPrice);
-                    }
-                    ?>
+                    } ?>
                     <div class="products-grd">
                         <div class="p-one simpleCart_shelfItem prd">
                             <a href="single.php?pid=<?= $product['id']; ?>">
@@ -36,7 +36,8 @@ require_once "../elements/navigation.php";
                                      alt="Product Image" class="img-responsive"/></a>
                             <h4><?= $product['title']; ?></h4>
                             <p><a class="btn btn-default btn-sm"
-                                  onclick="addToCart(<?= $product['id'] . "," . (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)">
+                                  onclick="addToCart(<?= $product['id'] . "," .
+                                  (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)">
                                     <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
                                 </a>&nbsp&nbsp
                                 <?php
@@ -72,7 +73,8 @@ require_once "../elements/navigation.php";
 
                 <?php foreach ($mostRecent as $product) {
                     if ($product['percent'] != null) {
-                        $promotedPrice = round($product['price'] - (($product['price'] * $product['percent']) / 100), 2);
+                        $promotedPrice = round($product['price'] - (($product['price'] *
+                                    $product['percent']) / 100), 2);
                     } else {
                         unset($promotedPrice);
                     }
@@ -84,7 +86,8 @@ require_once "../elements/navigation.php";
                                      alt="Product Image" class="img-responsive"/></a>
                             <h4><?= $product['title']; ?></h4>
                             <p><a class="btn btn-default btn-sm"
-                                  onclick="addToCart(<?= $product['id'] . "," . (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)">
+                                  onclick="addToCart(<?= $product['id'] . "," .
+                                  (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)">
                                     <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
                                 </a>&nbsp&nbsp
                                 <?php

@@ -232,12 +232,12 @@ require_once "../elements/navigation.php";
                                                 </div>
                                                 <div class="media-body">
                                                     <div class="well well-lg">
-                                                        <h4 class="media-heading text-uppercase reviews"><?= $review['title'] .
-                                                            "<small>" . "&nbsp by " . $review['first_name'] . "</small>" ?>
-                                                            <img
-                                                                    id="reviewRating" class="media-object img"
-                                                                    src=
-                                                                    "../../web/assets/images/rating<?= $review['rating'] ?>.png">
+                                                        <h4 class="media-heading text-uppercase reviews">
+                                                            <?= $review['title'] . "<small>" . "&nbsp by " .
+                                                            $review['first_name'] . "</small>" ?>
+                                                            <img id="reviewRating" class="media-object img"
+                                                                    src="../../web/assets/images/rating
+                                                                    <?= $review['rating'] ?>.png">
                                                         </h4>
                                                         <ul class="media-date text-uppercase reviews list-inline">
                                                             <li class="dd"> <?= $review['created_at'] ?></li>
