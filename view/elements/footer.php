@@ -68,3 +68,5 @@
         <p>&copy; 2017 IT Talents | By Rangel Mihailov and Lachezar Gadzhev</a></p>
     </div>
 </div>
+</body>
+</html>

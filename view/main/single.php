@@ -152,8 +152,8 @@ require_once "../elements/navigation.php";
                     <script src="../../web/assets/js/normalSlider.js"></script>
 
                     <!-- FlexSlider -->
-                    <script src="../../web/assets/js/imagezoom.js"></script>
-                    <script defer src="../../web/assets/js/jquery.flexslider.js"></script>
+                    <script src="../../web/assets/js/image_zoom.js"></script>
+                    <script defer src="../../web/assets/js/jquery_flexslider.js"></script>
                     <script>
                         // Can also be used with $(document).ready()
                         $(window).load(function () {
@@ -187,8 +187,8 @@ require_once "../elements/navigation.php";
                         </ul>
                     </div>
                     <!-- FlexSlider sourse -->
-                    <script src="../../web/assets/js/imagezoom.js"></script>
-                    <script defer src="../../web/assets/js/jquery.flexslider.js"></script>
+                    <script src="../../web/assets/js/image_zoom.js"></script>
+                    <script defer src="../../web/assets/js/jquery_flexslider.js"></script>
                     <script>
                         // Can also be used with $(document).ready()
                         $(window).load(function () {

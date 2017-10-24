@@ -45,8 +45,12 @@ label {
 /*--start-header--*/
 
 /*-- header --*/
-.top_bg {
+.top_bar {
     background: #252525;
+    position: fixed;
+    z-index: 999;
+    width: 100%;
+    margin-bottom: 100px;
 }
 
 .header_top {
@@ -3141,4 +3145,37 @@ ul.qty li p {
         font-size: 11px;
         margin: 0 5px;
     }
+}
+
+#result {
+    display: none;
+    z-index: 100;
+    height: 200px;
+    width: 184px;
+    background-color: inherit;
+    position: absolute;
+}
+
+#search-submit {
+    position: absolute;
+    left: -9999px;
+}
+
+.search-result {
+    border: solid thin #0AA5E2;
+    border-radius: 4%;
+    background-color: #FFFFFF;
+    margin: 3px 0 0 0;
+    padding: 10px;
+}
+
+.search-result-img {
+    border-radius: 10%;
+    display: inline-block;
+    width: 70px;
+}
+
+.search-result-p {
+    margin-left: 20px;
+    display:inline-block;
 }

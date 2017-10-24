@@ -3,9 +3,44 @@ if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 ?>
-<div class="top_bg" id="home" style="position: fixed; z-index: 999; width: 100%; margin-bottom: 100px;">
+<!doctype html>
+<html lang="en">
+<head>
+
+    <!-- Add Favicon -->
+    <link rel="shortcut icon" href="../../web/assets/images/favicon.ico" type="image/x-icon">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+
+    <!-- Bootstrap CSS Library -->
+    <link href="../../web/assets/css/bootstrap.css" rel='stylesheet' type='text/css'/>
+    <!-- Main site CSS -->
+    <link href="../../web/assets/css/style.css" rel='stylesheet' type='text/css'/>
+    <!-- Navigation CSS -->
+    <link href="../../web/assets/css/megamenu.css" rel="stylesheet" type="text/css" media="all"/>
+
+    <!-- JQuery Library -->
+    <script src="../../web/assets/js/jquery-1.11.1.min.js"></script>
+    <!-- Navigation JS -->
+    <script type="text/javascript" src="../../web/assets/js/megamenu.js"></script>
+    <!-- Search JS -->
+    <script type="text/javascript" src="../../web/assets/js/search.js"></script>
+
+    <!-- Web fonts -->
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,300italic,600,700' rel='stylesheet'
+          type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
+
+    <title>MagBuy Home</title>
+</head>
+<body>
+<div class="top_bar">
     <div class="container">
         <div class="header_top">
+
+            <!-- User Control -->
             <div class="top_right">
                 <ul>
                     <?php
@@ -19,56 +54,16 @@ if (session_status() == PHP_SESSION_NONE) {
                     ?>
                 </ul>
             </div>
+
+            <!-- Search bar -->
             <div class="top_left">
-                <form action="../main/search.php" method="get" autocomplete="off" >
-                 <input name="search" id="search" class="form-control" type="text" placeholder="Press Enter to Search" onkeyup="searchSuggest()" required>
-
-                    <div id='result' style="display:none; z-index: 100; height: 200px; width: 184px; background-color: inherit; position: absolute;"></div>
-
-                <input type="submit" style="position: absolute; left: -9999px">
+                <form action="../main/search.php" method="get" autocomplete="off">
+                    <input name="search" id="search" class="form-control" type="text"
+                           placeholder="Press Enter to Search"
+                           onkeyup="searchSuggest()" required>
+                    <div id='result'></div>
+                <input type="submit" id="search-submit">
                 </form>
-
-                <script>
-                    function searchSuggest() {
-
-                        var needle = document.getElementById("search").value;
-
-                        //Create XMLHTTP request object (the keystone of AJAX)
-                        var xhttp = new XMLHttpRequest();
-
-                        xhttp.onreadystatechange = function () {
-                            if (this.readyState == 4 && this.status == 200) {
-
-                                var products = JSON.parse(this.responseText);
-
-                                var container = document.getElementById('result');
-                                container.style.display = 'block';
-
-                                container.innerHTML = "";
-
-                                for (var pid in products) {
-
-                                    var result = "<a href=\"single.php?pid=" + products[pid]["id"] + "\">" +
-                                        "<div style=\"border: solid thin #0AA5E2; border-radius: 4%; background-color: #FFFFFF ; margin: 3px 0 0 0; padding: 10px; \">" +
-                                        "<img style=\"border-radius: 10%; display:inline-block; width: 70px;\" " +
-                                        "src='" + products[pid]['image_url'] + "'><p style=\" margin-left: 20px; " +
-                                        "display:inline-block;\">" + products[pid]['title'] + "<br/>" +
-                                        "$" + products[pid]['price'] + "</p></div></a>";
-
-                                    var productDiv = document.createElement('div');
-                                    productDiv.innerHTML = result;
-                                    container.appendChild(productDiv);
-                                }
-                            }
-                        };
-
-                        //Where to send the request
-                        xhttp.open("GET", "../../controller/search/search_controller.php?needle=" + needle, true);
-                        xhttp.send();
-
-                    }
-                </script>
-
             </div>
             <div class="clearfix"></div>
         </div>
