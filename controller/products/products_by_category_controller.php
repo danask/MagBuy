@@ -13,8 +13,10 @@ $products = null;
 try {
     $subcatId = $_GET['subcid'];
     $productsDao = \model\database\ProductsDao::getInstance();
+    $subCat = \model\database\SubCategoriesDao::getInstance();
 
     $products = $productsDao->getProductsBySubcategory($subcatId);
+    $categoryName = $subCat->getSubCategoryName($subcatId);
 
 
 } catch (PDOException $e) {

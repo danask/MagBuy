@@ -6,7 +6,7 @@ require_once "../elements/headers.php";
 ?>
 
     <!-- Define Page Name -->
-    <title>MagBuy | <?= $product['title'] ?></title>
+    <title>MagBuy | <?=$categoryName?></title>
 
 <?php
 //Include Header

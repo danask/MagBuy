@@ -18,6 +18,8 @@ class SubCategoriesDao {
 
     const GET_ALL_SUBCATS = "SELECT * FROM subcategories";
 
+    const GET_SUBCAT_NAME = "SELECT name FROM subcategories WHERE id = ?";
+
 
     //Get connection in construct
     private function __construct() {
@@ -62,5 +64,14 @@ class SubCategoriesDao {
         $subcategories = $statement->fetchAll();
 
         return $subcategories;
+    }
+
+    function getSubCategoryName($subId) {
+
+        $statement = $this->pdo->prepare(self::GET_SUBCAT_NAME);
+        $statement->execute(array($subId));
+        $subcategory = $statement->fetch();
+
+        return $subcategory[0];
     }
 }
