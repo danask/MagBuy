@@ -27,8 +27,6 @@ require_once "../elements/headers.php";
     <title>MagBuy | <?= $product['title'] ?></title>
     </head>
 
-
-
 <?php
 //Include Header
 require_once "../elements/header.php";
