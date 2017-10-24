@@ -1,4 +1,5 @@
 <?php
+//Include products by category controller
 require_once "../../controller/products/products_by_category_controller.php";
 //Include main Headers
 require_once "../elements/headers.php";
@@ -148,5 +149,6 @@ require_once "../elements/navigation.php";
     </div>
 
 <?php
+//Include Footer
 require_once "../elements/footer.php";
 ?>
