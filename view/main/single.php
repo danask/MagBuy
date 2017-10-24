@@ -250,7 +250,7 @@ require_once "../elements/navigation.php";
                 <!-- Realated products -->
                 <div class="collection-section">
                     <?php if (count($relatedProducts)) {
-                        echo "<h3 class=\"tittle\">Related Products</h3>";
+                        echo "<h3 class=\"title\">Related Products</h3>";
                     } ?>
                     <div class="main_filtered_product-info">
                         <?php foreach ($relatedProducts as $product) { ?>
@@ -280,5 +280,6 @@ require_once "../elements/navigation.php";
     </div>
 
 <?php
+//Include Footer
 require_once "../elements/footer.php";
 ?>
