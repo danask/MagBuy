@@ -36,6 +36,9 @@ function removeOneQuantityFromCart(productId, productPrice) {
             items2.innerHTML = parseInt(items2.innerHTML) - 1;
             var price2 = document.getElementById("cartTotalPrice2");
             price2.innerHTML = (parseFloat(price2.innerHTML) - productPrice).toFixed(2);
+            if (currentQuantity.innerHTML == 0) {
+                $('#product-' + productId).remove();
+            }
         }
     };
     xhttp.open("GET", "../../controller/cart/remove_from_cart_controller.php?pid=" + productId + "&pqty=1", true);

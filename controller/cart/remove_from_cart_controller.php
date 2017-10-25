@@ -13,10 +13,13 @@ if (isset($_SESSION['cart']) && isset($_GET['pid'])) {
     $cart = $_SESSION['cart'];
     if (isset($_GET['pqty'])) {
         $cartProduct = $cart[$productId];
-        $cartProduct->setQuantity($cartProduct->getQuantity() - 1);
-        $cart[$productId] = $cartProduct;
+        if ($cartProduct->getQuantity() - 1 == 0) {
+            unset($cart[$productId]);
+        } else {
+            $cartProduct->setQuantity($cartProduct->getQuantity() - 1);
+            $cart[$productId] = $cartProduct;
+        }
         $_SESSION['cart'] = $cart;
-        echo "tuk";
     } else {
         if (array_key_exists($productId, $cart)) {
             unset($cart[$productId]);
@@ -26,7 +29,6 @@ if (isset($_SESSION['cart']) && isset($_GET['pid'])) {
         } else {
             $_SESSION['cart'] = $cart;
         }
-        echo "tam";
     }
 } else {
     // 404 page
