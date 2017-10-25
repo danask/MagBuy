@@ -16,8 +16,9 @@ if (isset($_SESSION['cart'])) {
     $cartIsEmpty = 1;
 }
 
-if (isset($_GET['oid'])) {
-    $orderNumber = $_GET['oid'];
+if (isset($_SESSION['oid'])) {
+    $orderNumber = $_SESSION['oid'];
+    unset($_SESSION['oid']);
     $orderSuccessful = 1;
 } else {
     $orderSuccessful = 0;

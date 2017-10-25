@@ -20,7 +20,8 @@ if (isset($_SESSION['cart'])) {
             $ordersDao->addOrderProduct($orderId, $cartProduct->getId(), $cartProduct->getQuantity());
         }
         unset($_SESSION['cart']);
-        header("Location: ../../view/main/checkout.php?oid=" . $orderId);
+        $_SESSION['oid'] = $orderId;
+        header("Location: ../../view/main/checkout.php");
     } catch (PDOException $e) {
         header("Location: ../../view/error/pdo_error.php");
     }
