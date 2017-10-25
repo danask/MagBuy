@@ -18,3 +18,14 @@
     margin: 0 auto 0 auto;
     display: block;
 }
+
+#quantityText {
+    margin: 5px 0 5px 0;
+    font-weight: bold;
+    font-size: 0.9em;
+}
+
+#quantityNumber {
+    font-size: 1.01em;
+    color: #0990c0;
+}

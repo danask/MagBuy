@@ -63,20 +63,19 @@ require_once "../elements/navigation.php";
                                             <?= $cartProduct->getTitle() ?>
                                         </a>
                                     </h3>
-                                    <p>Quantity:
-                                        <button onclick="removeOneQuantityFromCart
-                                                (<?= $cartProduct->getId()
-                                        . "," . $cartProduct->getPrice() ?>)">
-                                            -
-                                        </button>
-                                    <div id="product-<?= $cartProduct->getId() ?>-quantity" style="display: inline">
+                                    <p><div id="quantityText">Quantity:<span id="quantityNumber">
+                                            <span id="product-<?= $cartProduct->getId() ?>-quantity">
                                         <?= $cartProduct->getQuantity() ?>
-                                    </div>
-                                    <button onclick="addOneQuantityToCart
+                                    </span></span></div>
+                                        <button class="btn btn-xs btn-info glyphicon glyphicon-minus"
+                                                onclick="removeOneQuantityFromCart
+                                                (<?= $cartProduct->getId()
+                                        . "," . $cartProduct->getPrice() ?>)"></button>
+
+                                    <button class="btn btn-xs btn-info glyphicon glyphicon-plus"
+                                            onclick="addOneQuantityToCart
                                             (<?= $cartProduct->getId()
-                                    . "," . $cartProduct->getPrice() ?>)">
-                                        +
-                                    </button>
+                                    . "," . $cartProduct->getPrice() ?>)"></button>
                                     </p>
                                     <div class="delivery">
                                         <p>$
