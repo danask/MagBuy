@@ -18,17 +18,24 @@
                     <li><a href="../admin/admin_panel.php">Admin Panel</a></li>
                 </ul>
             </div>
-
-            <!-- Search bar -->
-            <div class="top_left">
-                <form action="../main/search.php" method="get" autocomplete="off">
-                    <input name="search" id="search" class="form-control" type="text"
-                           placeholder="Press Enter to Search"
-                           onkeyup="searchSuggest()" required>
-                    <div id='result'></div>
-                    <input type="submit" id="search-submit">
-                </form>
-            </div>
+            <?php
+            $url = $_SERVER['PHP_SELF'];
+            $url = explode("/", $url);
+            if ($url[5] != "admin_panel.php") {
+                ?>
+                <!-- Search bar -->
+                <div class="top_left">
+                    <form action="../main/search.php" method="get" autocomplete="off">
+                        <input name="search" id="search" class="form-control" type="text"
+                               placeholder="Press Enter to Search"
+                               onkeyup="searchSuggest()" required>
+                        <div id='result'></div>
+                        <input type="submit" id="search-submit">
+                    </form>
+                </div>
+                <?php
+            }
+            ?>
             <div class="clearfix"></div>
         </div>
     </div>
