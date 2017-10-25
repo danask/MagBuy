@@ -19,12 +19,12 @@ if (isset($_SESSION['cart'])) {
         foreach ($cart as $cartProduct) {
             $ordersDao->addOrderProduct($orderId, $cartProduct->getId(), $cartProduct->getQuantity());
         }
-
+        unset($_SESSION['cart']);
+        $_SESSION['oid'] = $orderId;
+        header("Location: ../../view/main/checkout.php");
     } catch (PDOException $e) {
         header("Location: ../../view/error/pdo_error.php");
     }
-
-    header("Location: ../../view/main/index.php");
 } else {
     //error
 }

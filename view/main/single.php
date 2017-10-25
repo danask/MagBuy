@@ -124,8 +124,11 @@ require_once "../elements/navigation.php";
                             <div class="clearfix"></div>
 
                             <!-- Buttons for Add Cart, Add Favourites & Review -->
-                            <button class="btn btn-default"
-                                    onclick="addToCart(<?= $product['id'] ?>, <?= $product['price'] ?>)"><span
+                            <label for="buyQuantity">Quantity:</label>
+                            <input type="number" id="buyQuantity" value="1" min="1">
+                            <button type="submit" class="btn btn-default"
+                                    onclick="addToCartSingle(<?= $product['id'] . "," .
+                                    (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)"><span
                                         class="glyphicon glyphicon-shopping-cart"></span> Add to cart
                             </button>
                             <br/><br/>
