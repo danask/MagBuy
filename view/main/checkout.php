@@ -52,8 +52,7 @@ require_once "../elements/navigation.php";
                 <div id="product-<?= $cartProduct->getId() ?>">
                     <div class="cart-header">
                         <div id="button-<?= $cartProduct->getId() ?>" class="close1"
-                             onclick="removeFromCart(<?= $cartProduct->getId() . "," . $cartProduct->getPrice() . "," .
-                             $cartProduct->getQuantity() ?>)"></div>
+                             onclick="removeFromCart(<?= $cartProduct->getId() . "," . $cartProduct->getPrice() ?>)"></div>
                         <div class="cart-sec simpleCart_shelfItem">
                             <div class="cart-item cyc">
                                 <a href="single.php?pid=<?= $cartProduct->getId() ?>"><img
@@ -74,11 +73,11 @@ require_once "../elements/navigation.php";
                                 <div id="product-<?= $cartProduct->getId() ?>-quantity" style="display: inline">
                                     <?= $cartProduct->getQuantity() ?>
                                 </div>
-                                    <button onclick="addOneQuantityToCart
-                                            (<?= $cartProduct->getId()
-                                    . "," . $cartProduct->getPrice() ?>)">
-                                        +
-                                    </button>
+                                <button onclick="addOneQuantityToCart
+                                        (<?= $cartProduct->getId()
+                                . "," . $cartProduct->getPrice() ?>)">
+                                    +
+                                </button>
                                 </p>
                                 <div class="delivery">
                                     <p>$
