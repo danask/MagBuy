@@ -25,7 +25,7 @@ body{
     background: #f2f2f2;
     width: 100%;
     border: 0;
-    margin: 0 0 15px;
+    margin: 15px 0 0;
     padding: 15px;
     box-sizing: border-box;
     font-size: 14px;
@@ -60,16 +60,6 @@ body{
     text-decoration: none;
 }
 
-.wrongReg {
-    margin-top: 0;
-    margin-bottom: 8px;
-    font-weight: bold;
-    font-size: 88%;
-    color: #16C9D2;
-    text-decoration: none;
-    text-align: left;
-}
-
 #fileupload {
     font-family: "Roboto", sans-serif;
     outline: 0;
@@ -95,4 +85,41 @@ body{
 
 .radio {
     margin: 6% 0 6% 0;
+}
+
+.wrongInput {
+    font-size: 0.82em;
+    font-weight: bold;
+    color: red;
+    margin: 3px 0 0 10px;
+    padding: 0;
+    text-align: left
+}
+
+#wrongField{
+    display: none;
+}
+
+#wrongEmail{
+    display: none;
+}
+
+#wrongPass {
+    display: none;
+}
+
+#passMatch {
+    display: none;
+}
+
+#wrongFN {
+    display: none;
+}
+
+#wrongLN {
+    display: none;
+}
+
+#wrongMN {
+    display: none;
 }

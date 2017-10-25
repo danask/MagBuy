@@ -4,20 +4,20 @@
 require_once '../../utility/session_main.php';
 
 //Autoload to require needed model files
-function __autoload($className) {
-
+function __autoload($className)
+{
     $className = '..\\..\\' . $className;
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
 
 //Validation
-if (isset($_POST['email']) &&
-    isset($_POST['password']) &&
-    isset($_POST['password2']) &&
-    isset($_POST['firstName']) &&
-    isset($_POST['lastName']) &&
-    isset($_POST['mobilePhone'])) {
+if (!empty($_POST['email']) &&
+    !empty($_POST['password']) &&
+    !empty($_POST['password2']) &&
+    !empty($_POST['firstName']) &&
+    !empty($_POST['lastName']) &&
+    !empty($_POST['mobilePhone'])) {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
@@ -26,61 +26,83 @@ if (isset($_POST['email']) &&
     $lastName = $_POST['lastName'];
     $mobilePhone = $_POST['mobilePhone'];
 
-    if (filter_var($email, FILTER_VALIDATE_EMAIL) &&
-        strlen($email) > 3 &&
-        strlen($email) < 254 &&
-        strlen($password) >= 4 &&
-        strlen($password) < 20 &&
-        strlen($password2) >= 4 &&
-        strlen($password2) < 20 &&
-        $password == $password2 &&
-        strlen($firstName) >= 4 &&
-        strlen($firstName) < 20 &&
-        strlen($lastName) >= 4 &&
-        strlen($lastName) < 20 &&
-        ctype_digit($mobilePhone) &&
-        strlen($mobilePhone) == 10) {
-
-        //Create user's object
-        $user = new \model\User();
-
-        //Try to accomplish connection with the database
-        try {
-            $userDao = \model\database\UserDao::getInstance();
-
-            $user->setEmail(htmlentities($email));
-            $user->setPassword(sha1($password));
-            $user->setFirstName(htmlentities($firstName));
-            $user->setLastName(htmlentities($lastName));
-            $user->setMobilePhone(htmlentities($mobilePhone));
-
-            //Check if user exists
-            if ($userDao->checkUserExist($user)) {
-
-                //Locate to error Register Page
-                header("Location: ../../view/user/register.php?error");
-            } else {
-
-                $id = $userDao->registerUser($user);
-                $_SESSION['loggedUser'] = $id;
-
-                header("Location: ../../view/main/index.php");
-            }
-
-        } catch (PDOException $e) {
-
-            header("Location: ../../view/error/pdo_error.php");
-        }
-
-    } else {
+    if (!(filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($email) > 3 && strlen($email) < 254)) {
 
         //Locate to error Register Page
-        header("Location: ../../view/user/register.php?error");
+        header("Location: ../../view/error/registration_error.php");
+        die();
     }
+
+    if (!(ctype_digit($mobilePhone) && strlen($mobilePhone) == 10)) {
+
+        //Locate to error page Wrong Mobile Number
+        header("Location: ../../view/user/register.php?errorMN");
+        die();
+    }
+
+    if (!(strlen($password) >= 4 && strlen($password) < 20 && strlen($password2) >= 4 && strlen($password2) < 20)) {
+        //Locate to error page Wrong Password length
+        header("Location: ../../view/user/register.php?errorPassSyntax");
+        die();
+    }
+
+    if (!($password == $password2)) {
+        //Locate to error page Wrong Password match
+        header("Location: ../../view/user/register.php?errorPassMatch");
+        die();
+    }
+
+    if (!(strlen($firstName) >= 4 && strlen($firstName) < 20)) {
+        //Locate to error page Wrong First Name length
+        header("Location: ../../view/user/register.php?errorFN");
+        die();
+    }
+
+    if (!(strlen($lastName) >= 4 && strlen($lastName) < 20)) {
+        //Locate to error page Wrong Last Name length
+        header("Location: ../../view/user/register.php?errorLN");
+        die();
+    }
+
+
+    //Create user's object
+    $user = new \model\User();
+
+    //Try to accomplish connection with the database
+    try {
+        $userDao = \model\database\UserDao::getInstance();
+
+        $user->setEmail(htmlentities($email));
+        $user->setPassword(sha1($password));
+        $user->setFirstName(htmlentities($firstName));
+        $user->setLastName(htmlentities($lastName));
+        $user->setMobilePhone(htmlentities($mobilePhone));
+
+        //Check if user exists
+        if ($userDao->checkUserExist($user)) {
+
+            //Locate to error Register Page
+            header("Location: ../../view/user/register.php?errorEmail");
+            die();
+        } else {
+
+            $id = $userDao->registerUser($user);
+            $_SESSION['loggedUser'] = $id;
+
+            header("Location: ../../view/main/index.php");
+            die();
+        }
+
+    } catch (PDOException $e) {
+
+        header("Location: ../../view/error/pdo_error.php");
+        die();
+    }
+
 } else {
 
     //Locate to error Register Page
-    header("Location: ../../view/user/register.php?error");
+    header("Location: ../../view/error/registration_error.php");
 }
 
 

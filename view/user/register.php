@@ -23,20 +23,28 @@ require_once "../../utility/session_main.php";
     <div class="form">
         <form class="login-form" action="../../controller/user/register_controller.php" method="post">
 
+            <p id='wrongField' class="wrongInput" <?= ($_GET['errorField']) ?:"style='display: block;'"?>>
+                All fields are required!</p>
             <input type="text" name="email" placeholder="Your Email" required/>
+            <p id='wrongEmail' class="wrongInput" <?= ($_GET['errorEmail']) ?:"style='display: block;'"?>>
+                Email already exists!</p>
             <input type="password" name="password" placeholder="Your Password" required/>
+            <p id='wrongPass' class="wrongInput" <?= ($_GET['errorPassSyntax']) ?:"style='display: block;'"?>>
+                Passwords must be between 4 and 12 symbols!</p>
+            <p id='passMatch' class="wrongInput" <?= ($_GET['errorPassMatch']) ?:"style='display: block;'"?>>
+                Passwords doesn't match!</p>
             <input type="password" name="password2" placeholder="Repeat Password" required/>
             <input type="text" name="firstName" placeholder="First Name" required/>
+            <p id='wrongFN' class="wrongInput"  <?= ($_GET['errorFN']) ?:"style='display: block;'"?>>
+                First Name should be between 4 and 20 symbols!</p>
             <input type="text" name="lastName" placeholder="Last Name" required/>
+            <p id='wrongLN' class="wrongInput"  <?= ($_GET['errorLN']) ?:"style='display: block;'"?>>
+                Last Name should be between 4 and 20 symbols!</p>
             <input type="tel" name="mobilePhone" placeholder="Mobile Number" required/>
+            <p id='wrongMN' class="wrongInput"  <?= ($_GET['errorMN']) ?:"style='display: block;'"?>>
+                Mobile Number should be 10 digits!</p>
 
             <input id="login" type="submit" value="REGISTER">
-
-            <?php if(isset($_GET['error'])){ echo "
-            <li class='wrongReg'>Email might exists</li><li class='wrongReg'>Password: between 4 and 12 symbols</li>
-            <li class='wrongReg'>Passwords must match</li>
-            <li class='wrongReg'>Names: between 4 and 20 symbols</li>
-            <li class='wrongReg'>Mobile phone must be 10 digits</li>"; };?>
             <p class="message">Already a user? <a href="login.php">&nbspLog In</a></p>
         </form>
     </div>
