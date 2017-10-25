@@ -39,61 +39,76 @@ require_once "../elements/navigation.php";
                 </div>
             </h3>
             <br>
+            <?php
+            if ($cartIsEmpty === 0) {
+                ?>
+                <a href="../../controller/cart/new_order_controller.php">
+                    <button class="btn btn-danger btn-lg btn-block" id="checkOutButton">Checkout</button>
+                </a>
+                <a href="index.php">
+                    <button class="btn btn-success btn-lg btn-block">Continue shopping</button>
+                </a>
 
-            <a href="../../controller/cart/new_order_controller.php">
-                <button class="btn btn-danger btn-lg btn-block" id="checkOutButton">Checkout</button>
-            </a>
+                <!-- Show products in cart -->
+                <?php foreach ($cart as $cartProduct) { ?>
+                    <div id="product-<?= $cartProduct->getId() ?>">
+                        <div class="cart-header">
+                            <div id="button-<?= $cartProduct->getId() ?>" class="close1"
+                                 onclick="removeFromCart(<?= $cartProduct->getId() . "," . $cartProduct->getPrice() ?>)"></div>
+                            <div class="cart-sec simpleCart_shelfItem">
+                                <div class="cart-item cyc">
+                                    <a href="single.php?pid=<?= $cartProduct->getId() ?>"><img
+                                                src="<?= $cartProduct->getImage() ?>" class="img-responsive" alt=""></a>
+                                </div>
+                                <div class="cart-item-info">
+                                    <h3>
+                                        <a href="single.php?pid=<?= $cartProduct->getId() ?>">
+                                            <?= $cartProduct->getTitle() ?>
+                                        </a>
+                                    </h3>
+                                    <p>Quantity:
+                                        <button onclick="removeOneQuantityFromCart
+                                                (<?= $cartProduct->getId()
+                                        . "," . $cartProduct->getPrice() ?>)">
+                                            -
+                                        </button>
+                                    <div id="product-<?= $cartProduct->getId() ?>-quantity" style="display: inline">
+                                        <?= $cartProduct->getQuantity() ?>
+                                    </div>
+                                    <button onclick="addOneQuantityToCart
+                                            (<?= $cartProduct->getId()
+                                    . "," . $cartProduct->getPrice() ?>)">
+                                        +
+                                    </button>
+                                    </p>
+                                    <div class="delivery">
+                                        <p>$
+                                        <div id="product-<?= $cartProduct->getId() ?>-totalPrice">
+                                            <?= $cartProduct->getPrice() * $cartProduct->getQuantity() ?>
+                                        </div>
+                                        </p><br>
+                                        <p>Single price: $<?= $cartProduct->getPrice() ?></p>
+                                        <div class="clearfix"></div>
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                    </div>
+                <?php }
+            } elseif ($cartIsEmpty === 1 && $orderSuccessful === 0) { ?>
+                <h3 align="center">Your cart is empty!</h3><br>
+                <?php
+            } elseif ($orderSuccessful === 1) {
+                ?>
+                <h3 align="center">Your order was successful! Your order number is <?= $orderNumber ?>.
+                    Expect a call from us within 24 hours.</h3><br>
+                <?php
+            }
+            ?>
             <a href="index.php">
                 <button class="btn btn-success btn-lg btn-block">Continue shopping</button>
             </a>
-
-            <!-- Show products in cart -->
-            <?php foreach ($cart as $cartProduct) { ?>
-                <div id="product-<?= $cartProduct->getId() ?>">
-                    <div class="cart-header">
-                        <div id="button-<?= $cartProduct->getId() ?>" class="close1"
-                             onclick="removeFromCart(<?= $cartProduct->getId() . "," . $cartProduct->getPrice() ?>)"></div>
-                        <div class="cart-sec simpleCart_shelfItem">
-                            <div class="cart-item cyc">
-                                <a href="single.php?pid=<?= $cartProduct->getId() ?>"><img
-                                            src="<?= $cartProduct->getImage() ?>" class="img-responsive" alt=""></a>
-                            </div>
-                            <div class="cart-item-info">
-                                <h3>
-                                    <a href="single.php?pid=<?= $cartProduct->getId() ?>">
-                                        <?= $cartProduct->getTitle() ?>
-                                    </a>
-                                </h3>
-                                <p>Quantity:
-                                    <button onclick="removeOneQuantityFromCart
-                                            (<?= $cartProduct->getId()
-                                    . "," . $cartProduct->getPrice() ?>)">
-                                        -
-                                    </button>
-                                <div id="product-<?= $cartProduct->getId() ?>-quantity" style="display: inline">
-                                    <?= $cartProduct->getQuantity() ?>
-                                </div>
-                                <button onclick="addOneQuantityToCart
-                                        (<?= $cartProduct->getId()
-                                . "," . $cartProduct->getPrice() ?>)">
-                                    +
-                                </button>
-                                </p>
-                                <div class="delivery">
-                                    <p>$
-                                    <div id="product-<?= $cartProduct->getId() ?>-totalPrice">
-                                        <?= $cartProduct->getPrice() * $cartProduct->getQuantity() ?>
-                                    </div>
-                                    </p><br>
-                                    <p>Single price: $<?= $cartProduct->getPrice() ?></p>
-                                    <div class="clearfix"></div>
-                                </div>
-                            </div>
-                            <div class="clearfix"></div>
-                        </div>
-                    </div>
-                </div>
-            <?php } ?>
         </div>
     </div>
 
