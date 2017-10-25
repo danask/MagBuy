@@ -21,7 +21,8 @@ require_once "../elements/navigation.php";
     <!-- Show favourite products -->
     <div class="cart-items">
         <div class="container">
-            <h3 id='favouritesTitle' class="title"><?= (count($products) ? "My Favourites" : "No Favourite Products Found") ?> </h3>
+            <h3 id='favouritesTitle' class="title">
+                <?= (count($products) ? "My Favourites" : "No Favourite Products Found") ?> </h3>
 
             <?php foreach ($products as $product) { ?>
                 <div id="deleteItem<?= $product['id'] ?>">

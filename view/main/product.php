@@ -27,7 +27,8 @@ require_once "../elements/navigation.php";
                             if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
                                 && $product['end_date'] > date("Y-m-d H:i:s")
                             ) {
-                                $promotedPrice = round($product['price'] - (($product['price'] * $product['percent']) / 100), 2);
+                                $promotedPrice = round($product['price'] - (($product['price'] *
+                                            $product['percent']) / 100), 2);
                             } else {
                                 unset($promotedPrice);
                             }
@@ -47,7 +48,8 @@ require_once "../elements/navigation.php";
                                     </a>
                                     <h4><?= $product['title']; ?></h4>
                                     <p><a class="btn btn-default btn-sm"
-                                          onclick="addToCart(<?= $product['id'] . "," . (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)">
+                                          onclick="addToCart(<?= $product['id'] . "," .
+                                          (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)">
                                             <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
                                         </a>&nbsp&nbsp
                                         <?php

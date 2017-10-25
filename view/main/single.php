@@ -238,7 +238,8 @@ require_once "../elements/navigation.php";
                                                             <?= $review['title'] . "<small>" . "&nbsp by " .
                                                             $review['first_name'] . "</small>" ?>
                                                             <img id="reviewRating" class="media-object img"
-                                                                 src="../../web/assets/images/rating<?= $review['rating'] ?>.png">
+                                                                 src="../../web/assets/images/rating<?=
+                                                                 $review['rating'] ?>.png">
                                                         </h4>
                                                         <ul class="media-date text-uppercase reviews list-inline">
                                                             <li class="dd"> <?= $review['created_at'] ?></li>
