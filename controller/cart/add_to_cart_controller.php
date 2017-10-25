@@ -13,6 +13,7 @@ if (isset($_GET['pid'])) {
 //        header('Location: ../../view/user/login.php');
 //    }
     $productId = $_GET['pid'];
+    $quantity = $_GET['pqty'];
     try {
         $productsDao = \model\database\ProductsDao::getInstance();
         $productImagesDao = \model\database\ProductImagesDao::getInstance();
@@ -34,15 +35,15 @@ if (isset($_GET['pid'])) {
     if (isset($_SESSION['cart'])) {
         $cart = $_SESSION['cart'];
         if (array_key_exists($cartProduct->getId(), $cart)) {
-            $cartProduct->setQuantity($cart[$cartProduct->getId()]->getQuantity() + 1);
+            $cartProduct->setQuantity($cart[$cartProduct->getId()]->getQuantity() + $quantity);
             $cart[$cartProduct->getId()] = $cartProduct;
         } else {
-            $cartProduct->setQuantity(1);
+            $cartProduct->setQuantity($quantity);
             $cart[$cartProduct->getId()] = $cartProduct;
         }
         $_SESSION['cart'] = $cart;
     } else {
-        $cartProduct->setQuantity(1);
+        $cartProduct->setQuantity($quantity);
         $cart[$cartProduct->getId()] = $cartProduct;
         $_SESSION['cart'] = $cart;
     }

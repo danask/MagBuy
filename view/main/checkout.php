@@ -11,9 +11,11 @@ require_once "../elements/headers.php";
     <!-- Script for removing product from cart -->
     <script type="text/javascript" src="../../web/assets/js/remove.cart.js"></script>
 
+    <!-- Script for controlling cart quantity -->
+    <script type="text/javascript" src="../../web/assets/js/quantity.cart.js"></script>
+
     <!-- Define Page Name -->
     <title>MagBuy | Cart</title>
-
 
 <?php
 //Include Header
@@ -39,7 +41,10 @@ require_once "../elements/navigation.php";
             <br>
 
             <a href="../../controller/cart/new_order_controller.php">
-            <button class="btn btn-danger btn-lg btn-block" id="checkOutButton">Checkout</button>
+                <button class="btn btn-danger btn-lg btn-block" id="checkOutButton">Checkout</button>
+            </a>
+            <a href="index.php">
+                <button class="btn btn-success btn-lg btn-block">Continue shopping</button>
             </a>
 
             <!-- Show products in cart -->
@@ -60,11 +65,27 @@ require_once "../elements/navigation.php";
                                         <?= $cartProduct->getTitle() ?>
                                     </a>
                                 </h3>
-                                <ul class="qty">
-                                    <li><p>Quantity: <?= $cartProduct->getQuantity() ?></p></li>
-                                </ul>
+                                <p>Quantity:
+                                    <button onclick="removeOneQuantityFromCart
+                                            (<?= $cartProduct->getId()
+                                    . "," . $cartProduct->getPrice() ?>)">
+                                        -
+                                    </button>
+                                <div id="product-<?= $cartProduct->getId() ?>-quantity" style="display: inline">
+                                    <?= $cartProduct->getQuantity() ?>
+                                </div>
+                                    <button onclick="addOneQuantityToCart
+                                            (<?= $cartProduct->getId()
+                                    . "," . $cartProduct->getPrice() ?>)">
+                                        +
+                                    </button>
+                                </p>
                                 <div class="delivery">
-                                    <p>$<?= $cartProduct->getPrice() * $cartProduct->getQuantity() ?></p><br>
+                                    <p>$
+                                    <div id="product-<?= $cartProduct->getId() ?>-totalPrice">
+                                        <?= $cartProduct->getPrice() * $cartProduct->getQuantity() ?>
+                                    </div>
+                                    </p><br>
                                     <p>Single price: $<?= $cartProduct->getPrice() ?></p>
                                     <div class="clearfix"></div>
                                 </div>
