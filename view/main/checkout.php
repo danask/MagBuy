@@ -45,9 +45,6 @@ require_once "../elements/navigation.php";
                 <a href="../../controller/cart/new_order_controller.php">
                     <button class="btn btn-danger btn-lg btn-block" id="checkOutButton">Checkout</button>
                 </a>
-                <a href="index.php">
-                    <button class="btn btn-success btn-lg btn-block">Continue shopping</button>
-                </a>
 
                 <!-- Show products in cart -->
                 <?php foreach ($cart as $cartProduct) { ?>
