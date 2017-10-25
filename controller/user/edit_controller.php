@@ -5,7 +5,8 @@ require_once "../../utility/no_session_main.php";
 
 
 //Autoload to require needed model files
-function __autoload($className) {
+function __autoload($className)
+{
     $className = '..\\..\\' . $className;
     require_once str_replace("\\", "/", $className) . '.php';
 }
@@ -20,7 +21,7 @@ $picture = null;
 
 
 //Check if file is uploaded
-if(!empty($_FILES['image']['tmp_name'])) {
+if (!empty($_FILES['image']['tmp_name'])) {
 
     $picture = true;
 
@@ -30,7 +31,8 @@ if(!empty($_FILES['image']['tmp_name'])) {
     if (!is_uploaded_file($tmpName)) {
 
         //Redirect to Error page
-        header('Location: ../../view/user/edit.php?errorUpload');
+        header('Location: ../../view/error/edit_error.php');
+        die();
     }
 
     //Get the uploaded file's type, extension and size
@@ -48,8 +50,9 @@ if(!empty($_FILES['image']['tmp_name'])) {
 
     } else {
 
-        //Redirect to Error page
-        header('Location: ../../view/user/edit.php?errorUpload');
+        //Redirect to error file type or size edit
+        header('Location: ../../view/user/edit.php?errorUL');
+        die();
     }
 } else {
 
@@ -59,43 +62,76 @@ if(!empty($_FILES['image']['tmp_name'])) {
 //END IMAGE FILE HANDLE
 
 //If password isn't set
-if (!isset($_POST['password'])) {
-    $_POST['password'] = 0;
+if (empty($_POST['password'])) {
+    $_POST['password'] = false;
 }
 
-
 //Radio and address buttons validation
-if(isset($_POST['personal'])) {
+if (!empty($_POST['personal'])) {
     if (!($_POST['personal'] == 1 || $_POST['personal'] == 2)) {
 
         //Locate to error Register Page
-        header("Location: ../../view/user/edit.php?error");
+        header('Location: ../../view/error/edit_error.php');
+        die();
     }
 }
 
-if (isset($_POST['address'])) {
-    if(!(strlen($_POST['address']) > 4 && strlen($_POST['address']) < 200)){
+if (!empty($_POST['address'])) {
+    if (!(strlen($_POST['address']) > 4 && strlen($_POST['address']) < 200)) {
 
         //Locate to error Register Page
-        header("Location: ../../view/user/edit.php?error");
+        header("Location: ../../view/user/edit.php?errorAR");
+        die();
     }
 }
 
 
 //Update Validation
-if (isset($_POST['email']) &&
-    (isset($_POST['password']) || $_POST['password'] == 0) &&
-    isset($_POST['firstName']) && isset($_POST['lastName']) &&
-    isset($_POST['mobilePhone']) && filter_var($_POST['email'], FILTER_VALIDATE_EMAIL) &&
-    strlen($_POST['email']) > 3 &&
-    strlen($_POST['email']) < 254 &&
-    ((strlen($_POST['password']) >= 4 && strlen($_POST['password']) < 20) || $_POST['password'] == 0) &&
-    strlen($_POST['firstName']) >= 4 &&
-    strlen($_POST['firstName']) < 20 &&
-    strlen($_POST['lastName']) >= 4 &&
-    strlen($_POST['lastName']) < 20 &&
-    ctype_digit($_POST['mobilePhone']) &&
-    strlen($_POST['mobilePhone']) == 10) {
+if (!empty($_POST['email']) && (!empty($_POST['password']) || $_POST['password'] === false) && !empty($_POST['firstName'])
+    && !empty($_POST['lastName']) && !empty($_POST['mobilePhone'])) {
+
+    $email = $_POST['email'];
+    $password = $_POST['password'];
+    $firstName = $_POST['firstName'];
+    $lastName = $_POST['lastName'];
+    $mobilePhone = $_POST['mobilePhone'];
+
+    //Validate Email input
+    if (!(filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($email) > 3 && strlen($email) < 254)) {
+
+        //Redirect to Error page
+        header('Location: ../../view/error/edit_error.php');
+        die();
+    }
+
+    //Validate password input
+    if (!((strlen($password) >= 4 && strlen($password) <= 20) || $password === false)) {
+
+        //Redirect password input error edit
+        header('Location: ../../view/user/edit.php?errorPassSyntax');
+        die();
+    }
+
+    if (!(strlen($firstName) >= 4 && strlen($firstName) < 20)) {
+
+        //Redirect First Name input error edit
+        header('Location: ../../view/user/edit.php?errorFN');
+        die();
+    }
+
+    if (!(strlen($lastName) >= 4 && strlen($lastName) < 20)) {
+
+        //Redirect Last Name input error edit
+        header('Location: ../../view/user/edit.php?errorLN');
+        die();
+    }
+
+    if (!(ctype_digit($mobilePhone) && strlen($mobilePhone) == 10)) {
+
+        //Redirect Last Name input error edit
+        header('Location: ../../view/user/edit.php?errorMN');
+        die();
+    }
 
 
     $user = new \model\User();
@@ -105,12 +141,10 @@ if (isset($_POST['email']) &&
 
         $userDao = \model\database\UserDao::getInstance();
 
-        $user->setEmail(htmlentities($_POST['email']));
-        $user->setEnabled(1);
-        $user->setFirstName(htmlentities($_POST['firstName']));
-        $user->setLastName(htmlentities($_POST['lastName']));
-        $user->setMobilePhone(htmlentities($_POST['mobilePhone']));
-        $user->setRole(1);
+        $user->setEmail(htmlentities($email));
+        $user->setFirstName(htmlentities($firstName));
+        $user->setLastName(htmlentities($lastName));
+        $user->setMobilePhone(htmlentities($mobilePhone));
         $user->setId($userId);
         $user->setAddress(htmlentities($_POST['address']));
         $user->setPersonal(htmlentities($_POST['personal']));
@@ -120,10 +154,10 @@ if (isset($_POST['email']) &&
         $userArr = $userDao->getUserInfo($user);
 
         //Check if password is correct
-        if(sha1($_POST['passwordOld']) == $userArr['password']) {
+        if (sha1($_POST['passwordOld']) == $userArr['password']) {
 
             //Check if password is changed or is the same
-            if (strlen($_POST['password']) == 0) {
+            if ($password === false) {
                 $user->setPassword($userArr['password']);
             } else {
                 $user->setPassword(sha1($_POST['password']));
@@ -137,14 +171,14 @@ if (isset($_POST['email']) &&
             }
 
             //Check if address is set
-            if (isset($_POST['address'])) {
+            if (!empty($_POST['address'])) {
                 $user->setAddress(htmlentities($_POST['address']));
             } else {
                 $user->setAddress(0);
             }
 
             //Check if radio button is set
-            if (isset($_POST['personal'])) {
+            if (!empty($_POST['personal'])) {
                 $user->setPersonal(htmlentities($_POST['personal']));
             } else {
                 $user->setPersonal(0);
@@ -154,7 +188,8 @@ if (isset($_POST['email']) &&
             if ($userDao->checkUserExist($user) && $userArr['email'] != $user->getEmail()) {
 
                 //Locate to error Register Page
-                header("Location: ../../view/user/edit.php?error");
+                header("Location: ../../view/user/edit.php?errorEmail");
+                die();
             } else {
 
                 $userDao->editUser($user);
@@ -165,12 +200,14 @@ if (isset($_POST['email']) &&
                 }
 
                 header("Location: ../../view/main/index.php");
+                die();
             }
 
         } else {
 
             //Locate to error Register Page
-            header("Location: ../../view/user/edit.php?error");
+            header("Location: ../../view/user/edit.php?errorPassMatch");
+            die();
 
         }
 
@@ -178,10 +215,11 @@ if (isset($_POST['email']) &&
     } catch (PDOException $e) {
 
         header("Location: ../../view/error/pdo_error.php");
+        die();
     }
 
 } else {
 
-    //Locate to error Register Page
-    header("Location: ../../view/user/edit.php?error");
+    //Redirect to Error page
+    header('Location: ../../view/error/edit_error.php');
 }

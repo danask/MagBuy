@@ -53,10 +53,10 @@ body{
 }
 
 #wrongLogin {
-    margin-top: 0;
+    margin-top: 5px;
     font-size: large;
     font-weight: bold;
-    color: #16C9D2;
+    color: red;
     text-decoration: none;
 }
 
@@ -93,33 +93,6 @@ body{
     color: red;
     margin: 3px 0 0 10px;
     padding: 0;
-    text-align: left
-}
-
-#wrongField{
-    display: none;
-}
-
-#wrongEmail{
-    display: none;
-}
-
-#wrongPass {
-    display: none;
-}
-
-#passMatch {
-    display: none;
-}
-
-#wrongFN {
-    display: none;
-}
-
-#wrongLN {
-    display: none;
-}
-
-#wrongMN {
+    text-align: left;
     display: none;
 }

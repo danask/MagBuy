@@ -23,25 +23,35 @@ require_once "../../utility/session_main.php";
     <div class="form">
         <form class="login-form" action="../../controller/user/register_controller.php" method="post">
 
-            <p id='wrongField' class="wrongInput" <?= ($_GET['errorField']) ?:"style='display: block;'"?>>
+            <p class="wrongInput" <?= ($_GET['errorField']) ?:"style='display: block;'"?>>
                 All fields are required!</p>
-            <input type="text" name="email" placeholder="Your Email" required/>
-            <p id='wrongEmail' class="wrongInput" <?= ($_GET['errorEmail']) ?:"style='display: block;'"?>>
+            <input type="email" name="email" placeholder="Your Email"  required/>
+            <p class="wrongInput" <?= ($_GET['errorEmail']) ?:"style='display: block;'"?>>
                 Email already exists!</p>
-            <input type="password" name="password" placeholder="Your Password" required/>
-            <p id='wrongPass' class="wrongInput" <?= ($_GET['errorPassSyntax']) ?:"style='display: block;'"?>>
+
+            <input type="password" name="password" placeholder="Your Password"
+                   pattern=".{4,20}" required title="Password 4 to 20 characters"/>
+            <p class="wrongInput" <?= ($_GET['errorPassSyntax']) ?:"style='display: block;'"?>>
                 Passwords must be between 4 and 12 symbols!</p>
-            <p id='passMatch' class="wrongInput" <?= ($_GET['errorPassMatch']) ?:"style='display: block;'"?>>
+            <p class="wrongInput" <?= ($_GET['errorPassMatch']) ?:"style='display: block;'"?>>
                 Passwords doesn't match!</p>
-            <input type="password" name="password2" placeholder="Repeat Password" required/>
-            <input type="text" name="firstName" placeholder="First Name" required/>
-            <p id='wrongFN' class="wrongInput"  <?= ($_GET['errorFN']) ?:"style='display: block;'"?>>
+
+            <input type="password" name="password2" placeholder="Repeat Password"
+                   pattern=".{4,20}" required title="Password 4 to 20 characters"/>
+
+            <input type="text" name="firstName" placeholder="First Name"
+                   pattern=".{4,20}" required title="First Name 4 to 20 characters"/>
+            <p class="wrongInput"  <?= ($_GET['errorFN']) ?:"style='display: block;'"?>>
                 First Name should be between 4 and 20 symbols!</p>
-            <input type="text" name="lastName" placeholder="Last Name" required/>
-            <p id='wrongLN' class="wrongInput"  <?= ($_GET['errorLN']) ?:"style='display: block;'"?>>
+
+            <input type="text" name="lastName" placeholder="Last Name"
+                   pattern=".{4,20}" required title="Last Name 4 to 20 characters"/>
+            <p class="wrongInput"  <?= ($_GET['errorLN']) ?:"style='display: block;'"?>>
                 Last Name should be between 4 and 20 symbols!</p>
-            <input type="tel" name="mobilePhone" placeholder="Mobile Number" required/>
-            <p id='wrongMN' class="wrongInput"  <?= ($_GET['errorMN']) ?:"style='display: block;'"?>>
+
+            <input type="tel" name="mobilePhone" placeholder="Mobile Number"
+                   pattern="[0-9]{10}" required title="Number must be 10 digits"/>
+            <p class="wrongInput"  <?= ($_GET['errorMN']) ?:"style='display: block;'"?>>
                 Mobile Number should be 10 digits!</p>
 
             <input id="login" type="submit" value="REGISTER">

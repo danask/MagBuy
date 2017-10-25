@@ -24,18 +24,43 @@ require_once "../../controller/user/get_users_info_controller.php";
         <form enctype="multipart/form-data" class="login-form" action="../../controller/user/edit_controller.php"
               method="post">
 
-            <input type="text" name="email" value="<?= $userArr["email"] ?>" required/>
-            <input type="password" name="passwordOld" placeholder="Your Current Password" required/>
-            <input type="password" name="password" placeholder="New Password (Optional)"/>
-            <input type="text" name="firstName" value="<?= $userArr["first_name"] ?>" required/>
-            <input type="text" name="lastName" value="<?= $userArr["last_name"] ?>" required/>
-            <input type="tel" name="mobilePhone" value="<?= $userArr["mobile_phone"] ?>" required/>
+            <input type="email" name="email" value="<?= $userArr["email"] ?>" required/>
+            <p class="wrongInput" <?= ($_GET['errorEmail']) ?:"style='display: block;'"?>>
+                Email already exists!</p>
+
+            <input type="password" name="passwordOld" placeholder="Your Current Password"
+                   pattern=".{4,20}" required title="Password 4 to 20 characters"/>
+            <p class="wrongInput" <?= ($_GET['errorPassMatch']) ?:"style='display: block;'"?>>
+                Wrong Password!</p>
+
+            <input type="password" name="password" placeholder="New Password (Optional)"
+                   pattern=".{4,20}" title="Password 4 to 20 characters"/>
+            <p class="wrongInput" <?= ($_GET['errorPassSyntax']) ?:"style='display: block;'"?>>
+                Passwords must be between 4 and 12 symbols!</p>
+
+            <input type="text" name="firstName" value="<?= $userArr["first_name"] ?>"
+                   pattern=".{4,20}" required title="First Name 4 to 20 characters"/>
+            <p class="wrongInput"  <?= ($_GET['errorFN']) ?:"style='display: block;'"?>>
+                First Name should be between 4 and 20 symbols!</p>
+
+            <input type="text" name="lastName" value="<?= $userArr["last_name"] ?>"
+                   pattern=".{4,20}" required title="Last Name 4 to 20 characters"/>
+            <p class="wrongInput"  <?= ($_GET['errorLN']) ?:"style='display: block;'"?>>
+                Last Name should be between 4 and 20 symbols!</p>
+
+            <input type="tel" name="mobilePhone" value="<?= $userArr["mobile_phone"] ?>"
+                   pattern="[0-9]{10}" required title="Number must be 10 digits"/>
+            <p class="wrongInput"  <?= ($_GET['errorMN']) ?:"style='display: block;'"?>>
+                Mobile Number should be 10 digits!</p>
+
             <input type="text" name="address" <?php if ($userArr['full_adress']) {
                 echo "value=\"" . $userArr['full_adress'] . "\"";
             } else {
                 echo "placeholder=\"Enter Address\"";
-            } ?> >
+            } ?> pattern=".{4,200}" title="Password 4 to 200 characters" ><p class="wrongInput"  <?= ($_GET['errorAR']) ?:"style='display: block;'"?>>
+                Address must be between 4 and 200 symbols!</p>
             <div id="fileupload">
+
                 <input class="radio" type="radio" name="personal" value="1" <?php if ($userArr['is_personal'] == 1) {
                     echo "checked";
                 } ?> >&nbspPersonal&nbsp&nbsp&nbsp
@@ -43,22 +68,16 @@ require_once "../../controller/user/get_users_info_controller.php";
                     echo "checked";
                 } ?> >&nbspBusiness
             </div>
+
             <div id="fileupload">
                 <p id="fileuploadMessage">Profile picture</p>
                 <input type="file" name="image"/>
             </div>
+            <p class="wrongInput"  <?= ($_GET['errorUL']) ?:"style='display: block;'"?>>
+                Please upload image file below 2MB</p>
 
             <input id="login" type="submit" value="UPDATE">
-            <?php if (isset($_GET['error']) || isset($_GET['errorUpload'])) {
-                echo "
-            <li class='wrongReg'>Email might exists</li>
-            <li class='wrongReg'>Password: between 4 and 12 symbols</li>
-            <li class='wrongReg'>Enter your current password</li>
-            <li class='wrongReg'>Names: between 4 and 20 symbols</li>
-            <li class='wrongReg'>Mobile phone must be 10 digits</li>
-            <li class='wrongReg'>Address: between 4 and 200 symbols</li>
-            <li class='wrongReg'>Image must be below 2MB</li>";
-            }; ?>
+
             <p class="message"><a href="../main/index.php">Back to offers?</a></p>
         </form>
     </div>
