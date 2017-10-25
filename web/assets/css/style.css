@@ -3211,3 +3211,18 @@ ul.qty li p {
 #cartItems {
     display: inline;
 }
+
+#buyQuantity {
+    margin: 2px 0 15px 0;
+    width: 55px;
+    display: inline-block;
+}
+
+#quantityTextSingle {
+    font-size: 1em;
+    display: inline;
+}
+
+#addCartButtonSingle {
+    display: block;
+}
