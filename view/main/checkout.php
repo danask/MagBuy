@@ -28,14 +28,14 @@ require_once "../elements/navigation.php";
     <div class="cart-items">
         <div class="container">
             <h3 class="title">My shopping(
-                <div id="cartItems2"><?= $cartItems ?></div>
+                <div id="cartItems2"><?= ($orderSuccessful === 1 ? $orderQuantity : $cartItems) ?></div>
                 )
             </h3>
             <br>
             <h3 class="b-tittle" id='totalPrice'>Price Total:
                 <div id="totalPriceCurrency">$
                     <div id="cartTotalPrice2">
-                        <?= $cartTotalPrice ?></div>
+                        <?= ($orderSuccessful === 1 ? $orderTotalPrice : $cartTotalPrice) ?></div>
                 </div>
             </h3>
             <br>

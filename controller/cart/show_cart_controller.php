@@ -18,7 +18,11 @@ if (isset($_SESSION['cart'])) {
 
 if (isset($_SESSION['oid'])) {
     $orderNumber = $_SESSION['oid'];
+    $orderQuantity = $_SESSION['oItems'];
+    $orderTotalPrice = $_SESSION['oTotalPrice'];
     unset($_SESSION['oid']);
+    unset($_SESSION['oItems']);
+    unset($_SESSION['oTotalPrice']);
     $orderSuccessful = 1;
 } else {
     $orderSuccessful = 0;

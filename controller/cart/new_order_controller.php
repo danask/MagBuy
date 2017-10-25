@@ -16,11 +16,17 @@ if (isset($_SESSION['cart'])) {
     try {
         $ordersDao = \model\database\OrdersDao::getInstance();
         $orderId = $ordersDao->newOrder($order);
+        $totalPrice = 0;
+        $quantity = 0;
         foreach ($cart as $cartProduct) {
             $ordersDao->addOrderProduct($orderId, $cartProduct->getId(), $cartProduct->getQuantity());
+            $totalPrice += $cartProduct->getPrice() * $cartProduct->getQuantity();
+            $quantity += $cartProduct->getQuantity();
         }
         unset($_SESSION['cart']);
         $_SESSION['oid'] = $orderId;
+        $_SESSION['oItems'] = $quantity;
+        $_SESSION['oTotalPrice'] = $totalPrice;
     } catch (PDOException $e) {
         header("Location: ../../view/error/pdo_error.php");
     }
