@@ -15,6 +15,7 @@
                         echo '<li><a href="../user/login.php">Login</a></li>';
                     }
                     ?>
+                    <li><a href="../admin/admin_panel.php">Admin Panel</a></li>
                 </ul>
             </div>
 
