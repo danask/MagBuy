@@ -125,7 +125,9 @@ require_once "../elements/navigation.php";
 
                             <!-- Buttons for Add Cart, Add Favourites & Review -->
                             <span id="quantityTextSingle" class="label label-default">Quantity:</span>
-                            <input type="number" id="buyQuantity" class="form-control" value="1" min="1">
+                            <select id="buyQuantity" class="form-control">
+                                <?php for($i = 1; $i <= 50; $i++) { echo "<option value=\"$i\">$i</option>"; } ?>
+                            </select>
                             <button id ='addCartButtonSingle' type="submit" class="btn btn-default"
                                     onclick="addToCartSingle(<?= $product['id'] . "," .
                                     (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)"><span
