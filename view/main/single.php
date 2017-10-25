@@ -15,6 +15,8 @@ require_once "../elements/headers.php";
     <link rel="stylesheet" href="../../web/assets/css/replaceFlexNormalSlider.css">
     <!-- CSS for reviews -->
     <link rel="stylesheet" href="../../web/assets/css/reviews.css" type="text/css"/>
+    <!-- CSS for accordion -->
+    <link rel="stylesheet" href="../../web/assets/css/accordion.css" type="text/css"/>
 
     <!-- Script for adding product to favourites -->
     <script type="text/javascript" src="../../web/assets/js/favourites.js"></script>
