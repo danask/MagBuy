@@ -22,7 +22,7 @@ require_once "../elements/header.php";
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Super<br>Categories
         </button>
     </a>
-    <a href="categories/categories_create.php">
+    <a href="categories/categories_view.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Categories
         </button>
     </a>

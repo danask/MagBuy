@@ -9,10 +9,10 @@ require_once "../elements/headers.php";
     <link rel="stylesheet" href="../../web/assets/css/cart.css">
 
     <!-- Script for removing product from cart -->
-    <script type="text/javascript" src="../../web/assets/js/remove.cart.js"></script>
+    <script type="text/javascript" src="../../web/assets/js/cart/remove.cart.js"></script>
 
     <!-- Script for controlling cart quantity -->
-    <script type="text/javascript" src="../../web/assets/js/quantity.cart.js"></script>
+    <script type="text/javascript" src="../../web/assets/js/cart/quantity.cart.js"></script>
 
     <!-- Define Page Name -->
     <title>MagBuy | Cart</title>

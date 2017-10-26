@@ -19,7 +19,7 @@ if (isset($_POST['submit'])) {
         $supercategory->setId($_POST['supercat_id']);
 
 
-        $id = $supercatDao->editSuperCategory($supercategory);
+        $supercatDao->editSuperCategory($supercategory);
 
         header("Location: ../../../view/admin/supercategories/supercategories_view.php");
 

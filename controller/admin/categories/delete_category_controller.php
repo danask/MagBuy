@@ -7,14 +7,14 @@ function __autoload($className)
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
-if (isset($_GET['scid'])) {
+if (isset($_GET['cid'])) {
     //Try to accomplish connection with the database
     try {
-        $superCatId = $_GET['scid'];
-        $supercatDao = \model\database\SuperCategoriesDao::getInstance();
-        $supercatDao->deleteSuperCategory($superCatId);
+        $catId = $_GET['cid'];
+        $catDao = \model\database\CategoriesDao::getInstance();
+        $catDao->deleteCategory($catId);
 
-        header("Location: ../../../view/admin/supercategories/supercategories_view.php");
+        header("Location: ../../../view/admin/categories/categories_view.php");
 
     } catch (PDOException $e) {
         header("Location: ../../view/error/pdo_error.php");

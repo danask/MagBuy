@@ -1,5 +1,5 @@
 <?php
-require_once "../../../controller/admin/categories/new_category_controller.php";
+require_once "../../../controller/admin/categories/edit_category_controller.php";
 ?>
 
 <!doctype html>
@@ -14,16 +14,21 @@ require_once "../../../controller/admin/categories/new_category_controller.php";
 </head>
 <body>
 <div class="page">
-    <form action="../../../controller/admin/categories/new_category_controller.php" method="post">
-        <input type="text" name="name" placeholder="Category name" required/><br>
+    <form action="../../../controller/admin/categories/edit_category_controller.php" method="post">
+        <input type="hidden" name="cat_id" value="<?= $cat['id'] ?>">
+        <input type="text" name="name" placeholder="Category name" value="<?= $cat['name'] ?>" required/><br>
         <select name="supercategory_id">
             <?php
             foreach ($supercategories as $supercategory) {
-                echo "<option value=\"" . $supercategory['id'] . "\">" . $supercategory['name'] . "</option>";
+                echo "<option value=\"" . $supercategory['id'] . "\"";
+                if ($supercategory['id'] == $cat['supercategory_id']) {
+                    echo "selected";
+                }
+                echo ">" . $supercategory['name'] . "</option>";
             }
             ?>
         </select><br>
-        <input type="submit" value="Create" name="submit">
+        <input type="submit" value="Edit" name="submit">
     </form>
     <a href="categories_view.php">
         <button>Back to Categories</button>

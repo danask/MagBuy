@@ -17,11 +17,12 @@ if (isset($_POST['submit'])) {
 
         $category->setName(htmlentities($_POST['name']));
         $category->setSupercategoryId(htmlentities($_POST['supercategory_id']));
+        $category->setId($_POST['cat_id']);
 
 
-        $id = $catDao->createCategory($category);
+        $catDao->editCategory($category);
 
-        header("Location: ../../view/main/index.php");
+        header("Location: ../../../view/admin/categories/categories_view.php");
 
 
     } catch (PDOException $e) {
@@ -31,8 +32,11 @@ if (isset($_POST['submit'])) {
 
 } else {
     try {
+        $catId = $_GET['cid'];
         $supercatDao = \model\database\SuperCategoriesDao::getInstance();
+        $catDao = \model\database\CategoriesDao::getInstance();
         $supercategories = $supercatDao->getAllSuperCategories();
+        $cat = $catDao->getCategoryById($catId);
     } catch (PDOException $e) {
 
         header("Location: ../../view/error/pdo_error.php");

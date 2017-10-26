@@ -32,7 +32,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <!-- Navigation JS -->
     <script type="text/javascript" src="../../web/assets/js/mega.menu.js"></script>
     <!-- Cart JS -->
-    <script type="text/javascript" src="../../web/assets/js/add.cart.js"></script>
+    <script type="text/javascript" src="../../web/assets/js/cart/add.cart.js"></script>
     <!-- Footer slider JS -->
     <script type="text/javascript" src="../../web/assets/js/jquery.footer.slider.js"></script>
 

@@ -1,5 +1,5 @@
 <?php
-require_once "../../../controller/admin/supercategories/view_supercategories_controller.php";
+require_once "../../../controller/admin/categories/view_categories_controller.php";
 ?>
 <!doctype html>
 <html lang="en">
@@ -8,35 +8,37 @@ require_once "../../../controller/admin/supercategories/view_supercategories_con
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Admin | Supercategories</title>
+    <title>Admin | Categories</title>
     <link rel="stylesheet" href="../../../web/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../web/assets/css/adminPanel.css">
     <script src="../../../web/assets/js/jquery-1.11.1.min.js"></script>
     <script src="../../../web/assets/js/admin/remove.admin.js"></script>
 </head>
 <body>
-<h2>Supercategories</h2>
-<p>Here you can add, edit or delete supercategories.</p>
-<a href="supercategories_create.php">
-    <button class="btn btn-primary">New Supercategory</button>
+<h2>Categories</h2>
+<p>Here you can add, edit or delete categories.</p>
+<a href="categories_create.php">
+    <button class="btn btn-primary">New Category</button>
 </a>
 <table>
     <tr>
         <th>Id</th>
         <th>Name</th>
+        <th>Supercategory</th>
         <th>Options</th>
     </tr>
     <?php
-    foreach ($superCats as $superCat) {
+    foreach ($cats as $cat) {
         ?>
-        <tr id="delId-<?= $superCat['id'] ?>">
-            <td><?= $superCat['id'] ?></td>
-            <td><?= $superCat['name'] ?></td>
+        <tr id="delId-<?= $cat['id'] ?>">
+            <td><?= $cat['id'] ?></td>
+            <td><?= $cat['name'] ?></td>
+            <td><?= $cat['supercatname'] ?></td>
             <td>
-                <a href="supercategories_edit.php?scid=<?= $superCat['id'] ?>">
+                <a href="categories_edit.php?cid=<?= $cat['id'] ?>">
                     Edit
                 </a>,
-                <button onclick="deleteSuperCat(<?= $superCat['id'] ?>)">Delete</button>
+                <button onclick="deleteCat(<?= $cat['id'] ?>)">Delete</button>
             </td>
         </tr>
         <?php
