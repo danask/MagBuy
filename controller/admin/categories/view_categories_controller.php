@@ -10,7 +10,7 @@ function __autoload($className)
 
 try {
     $catDao = \model\database\CategoriesDao::getInstance();
-    $cats = $catDao->getAllCategories();
+    $cats = $catDao->getAllCategoriesAdmin();
 } catch (PDOException $e) {
     header("Location: ../../view/error/pdo_error.php");
     die();

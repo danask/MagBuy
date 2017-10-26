@@ -88,7 +88,8 @@ CREATE TABLE IF NOT EXISTS `magbuy`.`categories` (
   INDEX `categories_ibfk_1` (`supercategory_id` ASC),
   CONSTRAINT `categories_ibfk_1`
     FOREIGN KEY (`supercategory_id`)
-    REFERENCES `magbuy`.`supercategories` (`id`))
+    REFERENCES `magbuy`.`supercategories` (`id`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
@@ -106,7 +107,8 @@ CREATE TABLE IF NOT EXISTS `magbuy`.`subcategories` (
   INDEX `category_id` (`category_id` ASC),
   CONSTRAINT `subcategories_ibfk_1`
     FOREIGN KEY (`category_id`)
-    REFERENCES `magbuy`.`categories` (`id`))
+    REFERENCES `magbuy`.`categories` (`id`)
+    ON DELETE CASCADE)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
@@ -129,7 +131,8 @@ CREATE TABLE IF NOT EXISTS `magbuy`.`products` (
   INDEX `subcategory_id` (`subcategory_id` ASC),
   CONSTRAINT `products_ibfk_1`
     FOREIGN KEY (`subcategory_id`)
-    REFERENCES `magbuy`.`subcategories` (`id`))
+    REFERENCES `magbuy`.`subcategories` (`id`)
+    ON DELETE SET NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
@@ -275,7 +278,8 @@ CREATE TABLE IF NOT EXISTS `magbuy`.`subcat_specifications` (
   INDEX `subcat_spec_ibfk_1` (`subcategory_id` ASC),
   CONSTRAINT `subcat_spec_ibfk_1`
     FOREIGN KEY (`subcategory_id`)
-    REFERENCES `magbuy`.`subcategories` (`id`))
+    REFERENCES `magbuy`.`subcategories` (`id`)
+    ON DELETE SET NULL)
 ENGINE = InnoDB
 DEFAULT CHARACTER SET = utf8mb4;
 
