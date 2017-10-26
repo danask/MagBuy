@@ -16,19 +16,25 @@ if (isset($_POST['submit'])) {
         $supercatDao = \model\database\SuperCategoriesDao::getInstance();
 
         $supercategory->setName(htmlentities($_POST['name']));
+        $supercategory->setId($_POST['supercat_id']);
 
 
-        $id = $supercatDao->createSuperCategory($supercategory);
+        $id = $supercatDao->editSuperCategory($supercategory);
 
         header("Location: ../../../view/admin/supercategories/supercategories_view.php");
 
 
     } catch (PDOException $e) {
-        header("Location: ../../../view/error/pdo_error.php");
+        header("Location: ../../view/error/pdo_error.php");
         die();
     }
-
 } else {
-
-    //Locate to error page
+    try {
+        $superCatId = $_GET['scid'];
+        $supercatDao = \model\database\SuperCategoriesDao::getInstance();
+        $superCat = $supercatDao->getSuperCategoryById($superCatId);
+    } catch (PDOException $e) {
+        header("Location: ../../view/error/pdo_error.php");
+        die();
+    }
 }

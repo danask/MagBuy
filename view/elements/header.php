@@ -20,9 +20,10 @@
             </div>
             <?php
             $url = $_SERVER['PHP_SELF'];
-            $url = array_slice(explode('/', $url), -1)[0];
+            $urlCheck = array_slice(explode('/', $url), -2)[0];
+            $urlCheck2 = array_slice(explode('/', $url), -3)[0];
 
-            if ($url != "admin_panel.php") {
+            if ($urlCheck != "admin" && $urlCheck2 != "admin") {
                 ?>
                 <!-- Search bar -->
                 <div class="top_left">
