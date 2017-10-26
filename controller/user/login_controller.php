@@ -39,23 +39,34 @@ if (isset($_POST['email']) &&
             if ($result) {
 
                 $_SESSION['loggedUser'] = $result;
+                $_SESSION['role'] = 1;
                 $userDao->setLastLogin($user);
 
+
+                //Check if user is admin (role = 3)
+                if($userDao->checkIfLoggedUserIsAdmin($user) == 3) {
+                    $_SESSION['role'] = 3;
+                }
+
                 header("Location: ../../view/main/index.php");
+                die();
             } else {
 
                 header("Location: ../../view/user/login.php?error");
+                die();
             }
 
 
         } catch (PDOException $e) {
 
             header("Location: ../../view/error/pdo_error.php");
+            die();
         }
     } else {
 
         //Locate to error Login Page
         header("Location: ../../view/user/login.php?error");
+        die();
     }
 } else {
 

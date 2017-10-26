@@ -78,6 +78,11 @@ if (!empty($_POST['email']) &&
         $user->setLastName(htmlentities($lastName));
         $user->setMobilePhone(htmlentities($mobilePhone));
 
+        //Check if it's first user and make it admin (role = 3)
+        if($userDao->checkIfUserFirst()) {
+            $user->setRole(3);
+        }
+
         //Check if user exists
         if ($userDao->checkUserExist($user)) {
 
