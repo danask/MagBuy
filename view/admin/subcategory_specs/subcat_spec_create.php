@@ -20,7 +20,7 @@ $subcategories = $subcatDao->getAllSubCategories();
     <title>Document</title>
 </head>
 <body>
-<form action="../../controller/admin/new_subcat_spec_controller.php" method="post">
+<form action="../../../controller/admin/subcategory_specs/new_subcat_spec_controller.php" method="post">
     <input type="text" name="name" placeholder="Title" required/><br>
     <select name="subcategory_id">
         <?php

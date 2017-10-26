@@ -19,23 +19,23 @@ require_once "../elements/header.php";
 </a>
 <div align="center">
     <h3>Welcome, boss! What would you like to check?</h3>
-    <a href="supercategories_create.php">
+    <a href="supercategories/supercategories_create.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Super<br>Categories
         </button>
     </a>
-    <a href="categories_create.php">
+    <a href="categories/categories_create.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Categories
         </button>
     </a>
-    <a href="subcategories_create.php">
+    <a href="subcategories/subcategories_create.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Sub Categories
         </button>
     </a>
-    <a href="subcat_spec_create.php">
+    <a href="subcategory_specs/subcat_spec_create.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Subcategory<br>Specifications
         </button>
     </a><br>
-    <a href="product_create.php">
+    <a href="products_promotions_reviews/product_create.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-cubes fa-4x" aria-hidden="true"></i><br>Products,<br>
             Reviews and<br>
             Promotions

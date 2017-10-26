@@ -20,7 +20,7 @@ $categories = $catDao->getAllCategories();
     <title>Document</title>
 </head>
 <body>
-<form action="../../controller/admin/new_subcategory_controller.php" method="post">
+<form action="../../../controller/admin/subcategories/new_subcategory_controller.php" method="post">
     <input type="text" name="name" placeholder="Subcategory name" required/><br>
     <select name="category_id">
         <?php

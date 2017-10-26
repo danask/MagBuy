@@ -20,7 +20,7 @@ $supercategories = $supercatDao->getAllSuperCategories();
     <title>Document</title>
 </head>
 <body>
-<form action="../../controller/admin/categories/new_category_controller.php" method="post">
+<form action="../../../controller/admin/categories/new_category_controller.php" method="post">
     <input type="text" name="name" placeholder="Category name" required/><br>
     <select name="supercategory_id">
         <?php

@@ -15,7 +15,7 @@ class PromotionsDao
     //Statements defined as constants
     const CREATE_PROMOTION = "INSERT INTO promotions (percent, start_date, end_date, product_id) VALUES (?, ?, ?, ?)";
     const BIGGEST_ACTIVE_BY_PRODUCT_ID = "SELECT percent, start_date, end_date FROM promotions 
-                                          WHERE product_id = ? ORDER BY percent DESC";
+                                          WHERE product_id = ? ORDER BY percent DESC LIMIT 1";
 
     //Get connection in construct
     private function __construct()

@@ -115,7 +115,7 @@ require_once "../elements/navigation.php";
                             <?php
                             // if is authenticated admin
                             ?>
-                            <a href="../admin/promotion_create.php?pid=<?= $product['id'] ?>">Add promotion</a>
+                            <a href="../admin/products_promotions_reviews/promotion_create.php?pid=<?= $product['id'] ?>">Add promotion</a>
                             <?php
                             // endif
                             ?>

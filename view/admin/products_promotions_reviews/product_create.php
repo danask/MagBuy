@@ -20,7 +20,7 @@ $subcategories = $subcatDao->getAllSubCategories();
     <title>Document</title>
 </head>
 <body>
-<form action="../../controller/admin/new_product_controller.php" method="post">
+<form action="../../../controller/admin/products_promotions_reviews/new_product_controller.php" method="post">
     <input type="text" name="title" placeholder="Title" required/><br>
     <textarea name="description" placeholder="Description" required></textarea><br>
     <input type="number" name="price" step="0.01" placeholder="Price" min="0" required/><br>

@@ -8,7 +8,7 @@
     <title>Document</title>
 </head>
 <body>
-<form action="../../controller/admin/new_promotion_controller.php" method="post">
+<form action="../../../controller/admin/products_promotions_reviews/new_promotion_controller.php" method="post">
     <input type="number" name="percent" placeholder="%"><br>
     <input type="datetime-local" name="start_date" placeholder="Start Date"><br>
     <input type="datetime-local" name="end_date" placeholder="End Date"><br>

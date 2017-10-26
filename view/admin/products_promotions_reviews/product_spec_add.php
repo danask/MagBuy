@@ -21,7 +21,7 @@ $specifications = $subcatSpecDao->getAllSpecificationsForSubcategory($_GET['subc
 </head>
 <body>
 <h3>specs</h3>
-<form action="../../controller/admin/new_product_specs_controller.php" method="post">
+<form action="../../../controller/admin/products_promotions_reviews/new_product_specs_controller.php" method="post">
     <?php
     foreach ($specifications as $spec) {
         echo $spec['name'] . "<br>";

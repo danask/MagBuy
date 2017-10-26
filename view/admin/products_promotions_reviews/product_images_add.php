@@ -9,7 +9,7 @@
 </head>
 <body>
 <h3>images</h3>
-<form action="../../controller/admin/new_product_images_controller.php" method="post" enctype="multipart/form-data">
+<form action="../../../controller/admin/products_promotions_reviews/new_product_images_controller.php" method="post" enctype="multipart/form-data">
     <label>Main Image</label>
     <input type="file" name="pic1"><br>
     <input type="file" name="pic2"><br>
