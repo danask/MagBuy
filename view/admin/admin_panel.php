@@ -10,7 +10,6 @@ require_once "../elements/headers.php";
 <?php
 //Include Header
 require_once "../elements/header.php";
-
 ?>
 <body>
 <br><br><br><br>
@@ -19,7 +18,7 @@ require_once "../elements/header.php";
 </a>
 <div align="center">
     <h3>Welcome, boss! What would you like to check?</h3>
-    <a href="supercategories/supercategories_create.php">
+    <a href="supercategories/supercategories_view.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Super<br>Categories
         </button>
     </a>

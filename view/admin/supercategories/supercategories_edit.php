@@ -1,7 +1,6 @@
 <?php
-
+require_once "../../../controller/admin/supercategories/edit_supercategory_controller.php";
 ?>
-
 <!doctype html>
 <html lang="en">
 <head>
@@ -14,9 +13,12 @@
 </head>
 <body>
 <div class="page">
-    <form action="../../../controller/admin/supercategories/new_supercategory_controller.php" method="post">
-        <input type="text" name="name" placeholder="Supercategory name" required/><br>
-        <input type="submit" value="Create" name="submit">
+    <form action="../../../controller/admin/supercategories/edit_supercategory_controller.php" method="post">
+        <input type="hidden" name="supercat_id" value="<?= $superCat['id'] ?>">
+        Name:<br>
+        <input type="text" name="name" placeholder="Supercategory name" value="<?= $superCat['name'] ?>" required
+               style="width: 300px"/><br>
+        <input type="submit" value="Edit" name="submit">
     </form>
     <a href="supercategories_view.php">
         <button>Back to Supercategories</button>

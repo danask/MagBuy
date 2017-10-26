@@ -28,8 +28,7 @@ if (isset($_SESSION['cart'])) {
         $_SESSION['oItems'] = $quantity;
         $_SESSION['oTotalPrice'] = $totalPrice;
     } catch (PDOException $e) {
-        $err = $e->getMessage();
-        require_once "../../view/error/pdo_error.php";
+        header("Location: ../../view/error/pdo_error.php");
         die();
     }
     header("Location: ../../view/main/checkout.php");

@@ -6,5 +6,4 @@
  * Time: 20:47
  */
 
-echo $err;
-var_dump($e);
+echo "PDO ERROR LUCHO!";
