@@ -41,10 +41,12 @@ require_once "../elements/navigation.php";
             <div class="clearfix"></div>
 
             <label id='labelTitle' for="title">Title</label>
-            <input class="form-control" type="text" name="title" placeholder="Enter Title" id="title" required>
+            <input class="form-control" type="text" name="title" placeholder="Enter Title" id="title"
+                   pattern=".{4,15}" required title="Title 4 to 15 characters">
 
             <label id='labelTextArea' for="reviewArea">Review</label>
-            <textarea class="form-control" rows="5" name="review" id="reviewArea"></textarea><br/>
+            <textarea class="form-control" rows="5" name="review" id="reviewArea"
+                      maxlength="255" minlength="10" required></textarea><br/>
 
             <button id='addReviewButton' type="submit" class="btn btn-primary btn-warning">
                 <span class="glyphicon glyphicon-tag"></span> Add Review

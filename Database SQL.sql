@@ -243,7 +243,7 @@ DROP TABLE IF EXISTS `magbuy`.`reviews` ;
 
 CREATE TABLE IF NOT EXISTS `magbuy`.`reviews` (
   `id` INT(11) UNSIGNED NOT NULL AUTO_INCREMENT,
-  `title` VARCHAR(50) NOT NULL,
+  `title` VARCHAR(15) NOT NULL,
   `comment` VARCHAR(255) NOT NULL,
   `rating` INT(1) UNSIGNED NOT NULL,
   `user_id` INT(11) NOT NULL,

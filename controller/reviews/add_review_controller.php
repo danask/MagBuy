@@ -14,7 +14,7 @@ if (isset($_SESSION['loggedUser'])) {
     //Validation of inputs
 
     if (isset($_POST['rating']) && isset($_POST['title']) && isset($_POST['review']) && isset($_GET['pid'])
-        && strlen($_POST['review']) > 10 && strlen($_POST['review']) < 255
+        && strlen($_POST['review']) >= 10 && strlen($_POST['review']) <= 255
         && strlen($_POST['title']) > 3 && strlen($_POST['title']) < 15
         && $_POST['rating'] >= 1 && $_POST['rating'] <= 5) {
 
@@ -38,7 +38,7 @@ if (isset($_SESSION['loggedUser'])) {
         }
     } else {
 
-        header ("Location: ../../view/main/review.php?pid=" . $_GET['pid'] . "&error");
+        header ("Location: ../../view/error/review_error.php");
     }
 
 
