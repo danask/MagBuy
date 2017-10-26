@@ -1,13 +1,5 @@
 <?php
-//Autoload to require needed model files
-function __autoload($className)
-{
-    $className = '..\\..\\' . $className;
-    require_once str_replace("\\", "/", $className) . '.php';
-}
-
-$catDao = \model\database\CategoriesDao::getInstance();
-$categories = $catDao->getAllCategories();
+require_once "../../../controller/admin/subcategories/new_subcategory_controller.php";
 ?>
 
 <!doctype html>

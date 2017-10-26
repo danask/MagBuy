@@ -20,6 +20,15 @@ class SubCategoriesDao {
 
     const GET_SUBCAT_NAME = "SELECT name FROM subcategories WHERE id = ?";
 
+    const GET_ALL_SUBCATS_ADMIN = "SELECT sc.id, sc.name, c.name AS catname FROM subcategories sc 
+                                    LEFT JOIN categories c ON sc.category_id = c.id";
+
+    const GET_SUBCAT_BY_ID = "SELECT * FROM subcategories WHERE id = ?";
+
+    const EDIT_SUBCAT = "UPDATE subcategories SET name = ?, category_id = ? WHERE id = ?";
+
+    const DELETE_SUBCAT = "DELETE FROM subcategories WHERE id = ?";
+
 
     //Get connection in construct
     private function __construct() {
@@ -66,6 +75,15 @@ class SubCategoriesDao {
         return $subcategories;
     }
 
+    function getAllSubCategoriesAdmin() {
+
+        $statement = $this->pdo->prepare(self::GET_ALL_SUBCATS_ADMIN);
+        $statement->execute();
+        $subcategories = $statement->fetchAll();
+
+        return $subcategories;
+    }
+
     function getSubCategoryName($subId) {
 
         $statement = $this->pdo->prepare(self::GET_SUBCAT_NAME);
@@ -73,5 +91,30 @@ class SubCategoriesDao {
         $subcategory = $statement->fetch();
 
         return $subcategory[0];
+    }
+
+    function getSubCategoryById($subcatId)
+    {
+        $statement = $this->pdo->prepare(self::GET_SUBCAT_BY_ID);
+        $statement->execute(array($subcatId));
+        $category = $statement->fetch();
+
+        return $category;
+    }
+
+    function editSubCategory(SubCategory $subcat)
+    {
+        $statement = $this->pdo->prepare(self::EDIT_SUBCAT);
+        $statement->execute(array($subcat->getName(), $subcat->getCategoryId(), $subcat->getId()));
+
+        return true;
+    }
+
+    function deleteSubCategory($subcatId)
+    {
+        $statement = $this->pdo->prepare(self::DELETE_SUBCAT);
+        $statement->execute(array($subcatId));
+
+        return true;
     }
 }

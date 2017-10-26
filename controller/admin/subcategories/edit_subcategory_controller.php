@@ -8,31 +8,35 @@ function __autoload($className)
 }
 
 if (isset($_POST['submit'])) {
-    $subcategory = new \model\SubCategory();
+    $subCategory = new \model\SubCategory();
 
     //Try to accomplish connection with the database
     try {
 
-        $subcatDao = \model\database\SubCategoriesDao::getInstance();
+        $subCatDao = \model\database\SubCategoriesDao::getInstance();
 
-        $subcategory->setName(htmlentities($_POST['name']));
-        $subcategory->setCategoryId(htmlentities($_POST['category_id']));
+        $subCategory->setName(htmlentities($_POST['name']));
+        $subCategory->setCategoryId(htmlentities($_POST['category_id']));
+        $subCategory->setId($_POST['subcat_id']);
 
 
-        $id = $subcatDao->createSubCategory($subcategory);
+        $subCatDao->editSubCategory($subCategory);
 
-        header("Location: ../../view/main/index.php");
+        header("Location: ../../../view/admin/subcategories/subcategories_view.php");
 
 
     } catch (PDOException $e) {
-
         header("Location: ../../view/error/pdo_error.php");
+        die();
     }
 
 } else {
     try {
+        $subcatId = $_GET['scid'];
         $catDao = \model\database\CategoriesDao::getInstance();
+        $subcatDao = \model\database\SubCategoriesDao::getInstance();
         $categories = $catDao->getAllCategories();
+        $subcat = $subcatDao->getSubCategoryById($subcatId);
     } catch (PDOException $e) {
 
         header("Location: ../../view/error/pdo_error.php");
