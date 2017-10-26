@@ -17,7 +17,9 @@ class CategoriesDao
     //Statements defined as constants
     const CREATE_CAT = "INSERT INTO categories (name, supercategory_id) VALUES (?, ?)";
 
-    const GET_ALL_CATS = "SELECT c.id, c.name, sc.name AS supercatname FROM categories c 
+    const GET_ALL_CATS = "SELECT * FROM categories";
+
+    const GET_ALL_CATS_ADMIN = "SELECT c.id, c.name, sc.name AS supercatname FROM categories c 
                           LEFT JOIN supercategories sc ON c.supercategory_id = sc.id";
 
     const GET_CAT_BY_ID = "SELECT * FROM categories WHERE id = ?";
@@ -66,8 +68,17 @@ class CategoriesDao
      */
     function getAllCategories()
     {
-
         $statement = $this->pdo->prepare(self::GET_ALL_CATS);
+        $statement->execute();
+        $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $categories;
+    }
+
+    function getAllCategoriesAdmin()
+    {
+
+        $statement = $this->pdo->prepare(self::GET_ALL_CATS_ADMIN);
         $statement->execute();
         $categories = $statement->fetchAll(PDO::FETCH_ASSOC);
 
