@@ -5,3 +5,6 @@
  * Date: 10/14/2017
  * Time: 20:47
  */
+
+echo $err;
+var_dump($e);

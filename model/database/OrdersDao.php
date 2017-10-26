@@ -13,7 +13,7 @@ class OrdersDao
     private $pdo;
 
     //Statements defined as constants
-    const ADD_NEW_ORDER = "INSERT INTO orders (id, user_id, created_at, status) VALUES (?, ?, ?, ?)";
+    const ADD_NEW_ORDER = "INSERT INTO orders (user_id, created_at, status) VALUES (?, ?, ?)";
     const ADD_ORDER_PRODUCT = "INSERT INTO order_products (order_id, product_id, quantity) VALUES (?, ?, ?)";
 
     //Get connection in construct
@@ -36,7 +36,7 @@ class OrdersDao
     function newOrder(Order $order)
     {
         $statement = $this->pdo->prepare(self::ADD_NEW_ORDER);
-        $statement->execute(array($order->getId(), $order->getUserId(), $order->getCreatedAt(), $order->getStatus()));
+        $statement->execute(array($order->getUserId(), $order->getCreatedAt(), $order->getStatus()));
         $orderId = $this->pdo->lastInsertId();
 
         return $orderId;
