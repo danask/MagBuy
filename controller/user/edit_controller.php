@@ -2,6 +2,8 @@
 
 //Check for Session
 require_once "../../utility/no_session_main.php";
+//Include custom imageCrop Function
+require_once "../../utility/imageCrop.php";
 
 
 //Autoload to require needed model files
@@ -41,6 +43,12 @@ if (!empty($_FILES['image']['tmp_name'])) {
     $extension = explode("/", $fileFormat)[1];
     $fileSize = filesize($tmpName);
 
+    if (!($extension == "jpeg" || $extension == "jpg" || $extension == "png" || $extension == "gif")) {
+
+        //Redirect to error file type or size edit
+        header('Location: ../../view/user/edit.php?errorUL');
+        die();
+    }
 
     //Validate image file - image file below 2MB
     if ($type == "image" && $fileSize < 2048576) {
@@ -197,6 +205,7 @@ if (!empty($_POST['email']) && (!empty($_POST['password']) || $_POST['password']
                 //Move file to permanent directory
                 if ($picture) {
                     move_uploaded_file($tmpName, $imagesDirectory);
+                    cropImage($imagesDirectory, 200);
                 }
 
                 header("Location: ../../view/main/index.php");

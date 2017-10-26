@@ -74,7 +74,7 @@ require_once "../../controller/user/get_users_info_controller.php";
                 <input type="file" name="image"/>
             </div>
             <p class="wrongInput"  <?= ($_GET['errorUL']) ?:"style='display: block;'"?>>
-                Please upload image file below 2MB</p>
+                Please upload image file below 2MB (jpg/jpeg/png/gif)</p>
 
             <input id="login" type="submit" value="UPDATE">
 
