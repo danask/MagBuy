@@ -15,7 +15,6 @@ require_once "../elements/header.php";
 //Include Navigation
 require_once "../elements/navigation.php";
 ?>
-
     <!-- Most Sold Products -->
     <div class="main_filtered_products-section">
         <div class="container">

@@ -33,6 +33,10 @@ class UserDao {
 
     const SET_LAST_LOGIN = "UPDATE users SET last_login = ? WHERE email = ?";
 
+    const IS_FIRST_USER = "SELECT id FROM users";
+
+    const IS_ADMIN = "SELECT role FROM users WHERE email = ? AND password = ?";
+
 
 
     //Get connection in construct
@@ -221,7 +225,6 @@ class UserDao {
     /**
      * Function for setting last login.
      * @param User $user - Receives user's login time and email.
-     * @return bool -
      */
     function setLastLogin(User $user) {
 
@@ -230,5 +233,34 @@ class UserDao {
         $statement->execute(array(
             $user->getLastLogin(),
             $user->getEmail()));
+    }
+
+    /**
+     *
+     * @return bool - Returns true if user is admin (first registered)
+     */
+    function checkIfUserFirst() {
+
+        $statement = $this->pdo->prepare(self::IS_FIRST_USER);
+        $statement->execute();
+
+        if ($statement->rowCount()) {
+            //Existing users
+            return false;
+        } else {
+            //First User
+            return true;
+        }
+    }
+
+    function checkIfLoggedUserIsAdmin(User $user) {
+
+        $statement = $this->pdo->prepare(self::IS_ADMIN);
+        $statement->execute(array(
+            $user->getEmail(),
+            $user->getPassword()));
+
+            $userRole = $statement->fetch();
+            return (int)$userRole['role'];
     }
 }
