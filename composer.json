@@ -1,6 +1,5 @@
 {
     "require": {
-        "phpmailer/phpmailer": "^6.0",
-        "calcinai/php-imagick": "^0.1.2"
+        "phpmailer/phpmailer": "^6.0"
     }
 }

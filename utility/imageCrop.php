@@ -1,21 +1,21 @@
 <?php
 
-function cropImage($path, $cropPX)
-{
+/**
+ * Function for cropping center of image using aspect ratio
+ * @param $imagePath - Receives path of image with extension
+ * @param $cropPX - Receives pixel for both width and height
+ */
+function cropImage($imagePath, $cropPX){
 
-//Your Image
-    $imgSrc = $path;
+    //Getting the image dimensions
+    list($width, $height) = getimagesize($imagePath);
 
-//getting the image dimensions
-    list($width, $height) = getimagesize($imgSrc);
-
-
-    function imageCreateFromAny($filepath)
-    {
+    //Function for creating image for any format
+    function imageCreateFromAny($filepath){
 
         $im = null;
 
-        $type = exif_imagetype($filepath); // [] if you don't have exif you could use getImageSize()
+        $type = exif_imagetype($filepath); // [] If you don't have exif you could use getImageSize()
         $allowedTypes = array(
             1,  // [] gif
             2,  // [] jpg
@@ -39,11 +39,11 @@ function cropImage($path, $cropPX)
         return $im;
     }
 
-    //saving the image into memory (for manipulation with GD Library)
-    $myImage = imageCreateFromAny($imgSrc);
+    //Saving the image into memory (for manipulation with GD Library)
+    $myImage = imageCreateFromAny($imagePath);
 
 
-// calculating the part of the image to use for thumbnail
+// Calculating the part of the image to use for thumbnail
     if ($width > $height) {
         $y = 0;
         $x = ($width - $height) / 2;
@@ -54,13 +54,13 @@ function cropImage($path, $cropPX)
         $smallestSide = $width;
     }
 
-// copying the part into thumbnail
+// Copying the part into thumbnail
     $thumbSize = $cropPX;
     $thumb = imagecreatetruecolor($thumbSize, $thumbSize);
     imagecopyresampled($thumb, $myImage, 0, 0, $x, $y, $thumbSize, $thumbSize, $smallestSide, $smallestSide);
 
-//final output
+//Final output
     header('Content-type: image/jpeg');
-    imagejpeg($thumb, $imgSrc);
+    imagejpeg($thumb, $imagePath);
 
 }

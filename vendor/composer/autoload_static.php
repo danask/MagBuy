@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInitdd3ce839f917f69f32ddc08f47cd249e
+class ComposerStaticInit18f8b5a3a431de186a836ef9b78785b2
 {
     public static $prefixLengthsPsr4 = array (
         'P' => 
@@ -20,22 +20,11 @@ class ComposerStaticInitdd3ce839f917f69f32ddc08f47cd249e
         ),
     );
 
-    public static $prefixesPsr0 = array (
-        'I' => 
-        array (
-            'Imagick' => 
-            array (
-                0 => __DIR__ . '/..' . '/calcinai/php-imagick/src',
-            ),
-        ),
-    );
-
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInitdd3ce839f917f69f32ddc08f47cd249e::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInitdd3ce839f917f69f32ddc08f47cd249e::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInitdd3ce839f917f69f32ddc08f47cd249e::$prefixesPsr0;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit18f8b5a3a431de186a836ef9b78785b2::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit18f8b5a3a431de186a836ef9b78785b2::$prefixDirsPsr4;
 
         }, null, ClassLoader::class);
     }
