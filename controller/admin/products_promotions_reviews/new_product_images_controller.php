@@ -3,7 +3,7 @@
 //Autoload to require needed model files
 function __autoload($className)
 {
-    $className = '..\\..\\' . $className;
+    $className = '..\\..\\..\\' . $className;
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
             if (!is_uploaded_file($tmpName)) {
 
                 //Redirect to Error page
-                header('Location: ../../view/error/admin_upload_error.php');
+                header('Location: ../../../view/error/admin_upload_error.php');
             }
 
             //Get the uploaded file's type, extension and size
@@ -40,12 +40,12 @@ if (isset($_POST['submit'])) {
             if ($type == "image" && $fileSize < 2048576) {
 
                 $uploadTime = microtime();
-                $imagesDirectory = "../../web/uploads/productImages/$productId-$uploadTime.$extension";
+                $imagesDirectory = "../../../web/uploads/productImages/$productId-$uploadTime.$extension";
 
             } else {
 
                 //Redirect to Error page
-                header('Location: ../../view/error/admin_upload_error.php');
+                header('Location: ../../../view/error/admin_upload_error.php');
             }
 
 
@@ -55,7 +55,7 @@ if (isset($_POST['submit'])) {
         } else {
 
             //Redirect to Error page
-            header('Location: ../../view/error/admin_upload_error.php');
+            header('Location: ../../../view/error/admin_upload_error.php');
         }
 
         try {
@@ -65,16 +65,16 @@ if (isset($_POST['submit'])) {
 
             move_uploaded_file($tmpName, $imagesDirectory);
 
-            header("Location: ../../view/main/index.php");
+            header("Location: ../../../view/main/index.php");
 
         } catch (PDOException $e) {
 
-            header("Location: ../../view/error/pdo_error.php");
+            header("Location: ../../../view/error/pdo_error.php");
         }
     }
 
 } else {
     
     //Redirect to Error page
-    header('Location: ../../view/error/admin_upload_error.php');
+    header('Location: ../../../view/error/admin_upload_error.php');
 }

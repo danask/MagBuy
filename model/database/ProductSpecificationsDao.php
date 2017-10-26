@@ -41,6 +41,7 @@ class ProductSpecificationsDao {
     /**
      * Function for filling specifications for product.
      * @param ProductSpecification $specification - Receives object with specifications information and product ID.
+     * @return bool
      */
     function fillSpecification(ProductSpecification $specification) {
 
@@ -49,6 +50,8 @@ class ProductSpecificationsDao {
             $specification->getValue(),
             $specification->getSubcatSpecId(),
             $specification->getProductId()));
+
+        return true;
     }
 
 

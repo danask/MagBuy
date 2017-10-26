@@ -3,7 +3,7 @@
 //Autoload to require needed model files
 function __autoload($className)
 {
-    $className = '..\\..\\' . $className;
+    $className = '..\\..\\..\\' . $className;
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
@@ -23,11 +23,11 @@ if (isset($_POST['submit'])) {
 
             $id = $productSpecsDao->fillSpecification($specification);
 
-            header("Location: ../../view/admin/product_images_add.php?pid=$productId");
+            header("Location: ../../../view/admin/product_images_add.php?pid=$productId");
 
         } catch (PDOException $e) {
 
-            header("Location: ../../view/error/pdo_error.php");
+            header("Location: ../../../view/error/pdo_error.php");
         }
     }
 

@@ -17,7 +17,7 @@ if (isset($_GET['cid'])) {
         header("Location: ../../../view/admin/categories/categories_view.php");
 
     } catch (PDOException $e) {
-        header("Location: ../../view/error/pdo_error.php");
+        header("Location: ../../../view/error/pdo_error.php");
         die();
     }
 } else {

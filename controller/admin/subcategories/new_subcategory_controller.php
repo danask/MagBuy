@@ -21,12 +21,12 @@ if (isset($_POST['submit'])) {
 
         $id = $subcatDao->createSubCategory($subcategory);
 
-        header("Location: ../../view/main/index.php");
+        header("Location: ../../../view/main/index.php");
 
 
     } catch (PDOException $e) {
 
-        header("Location: ../../view/error/pdo_error.php");
+        header("Location: ../../../view/error/pdo_error.php");
     }
 
 } else {
@@ -35,6 +35,6 @@ if (isset($_POST['submit'])) {
         $categories = $catDao->getAllCategories();
     } catch (PDOException $e) {
 
-        header("Location: ../../view/error/pdo_error.php");
+        header("Location: ../../../view/error/pdo_error.php");
     }
 }
