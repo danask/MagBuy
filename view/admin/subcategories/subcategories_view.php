@@ -17,6 +17,9 @@ require_once "../../../controller/admin/subcategories/view_subcategories_control
 <body>
 <h2>SubCategories</h2>
 <p>Here you can add, edit or delete subcategories.</p>
+<a href="../admin_panel.php">
+    <button class="btn btn-primary">Back to Admin Panel</button>
+</a>
 <a href="subcategories_create.php">
     <button class="btn btn-primary">New SubCategory</button>
 </a>
@@ -36,17 +39,16 @@ require_once "../../../controller/admin/subcategories/view_subcategories_control
             <td><?= $subCat['catname'] ?></td>
             <td>
                 <a href="subcategories_edit.php?scid=<?= $subCat['id'] ?>">
-                    Edit
+                    <button class="btn btn-warning">
+                        Edit
+                    </button>
                 </a>,
-                <button onclick="deleteSubCat(<?= $subCat['id'] ?>)">Delete</button>
+                <button class="btn btn-danger" onclick="deleteSubCat(<?= $subCat['id'] ?>)">Delete</button>
             </td>
         </tr>
         <?php
     }
     ?>
 </table>
-<a href="../admin_panel.php">
-    <button class="btn btn-primary">Back to Admin Panel</button>
-</a>
 </body>
 </html>

@@ -17,6 +17,9 @@ require_once "../../../controller/admin/categories/view_categories_controller.ph
 <body>
 <h2>Categories</h2>
 <p>Here you can add, edit or delete categories.</p>
+<a href="../admin_panel.php">
+    <button class="btn btn-primary">Back to Admin Panel</button>
+</a>
 <a href="categories_create.php">
     <button class="btn btn-primary">New Category</button>
 </a>
@@ -36,17 +39,16 @@ require_once "../../../controller/admin/categories/view_categories_controller.ph
             <td><?= $cat['supercatname'] ?></td>
             <td>
                 <a href="categories_edit.php?cid=<?= $cat['id'] ?>">
-                    Edit
+                    <button class="btn btn-warning">
+                        Edit
+                    </button>
                 </a>,
-                <button onclick="deleteCat(<?= $cat['id'] ?>)">Delete</button>
+                <button class="btn btn-danger" onclick="deleteCat(<?= $cat['id'] ?>)">Delete</button>
             </td>
         </tr>
         <?php
     }
     ?>
 </table>
-<a href="../admin_panel.php">
-    <button class="btn btn-primary">Back to Admin Panel</button>
-</a>
 </body>
 </html>

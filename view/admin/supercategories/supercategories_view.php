@@ -17,6 +17,9 @@ require_once "../../../controller/admin/supercategories/view_supercategories_con
 <body>
 <h2>Supercategories</h2>
 <p>Here you can add, edit or delete supercategories.</p>
+<a href="../admin_panel.php">
+    <button class="btn btn-primary">Back to Admin Panel</button>
+</a>
 <a href="supercategories_create.php">
     <button class="btn btn-primary">New Supercategory</button>
 </a>
@@ -34,17 +37,16 @@ require_once "../../../controller/admin/supercategories/view_supercategories_con
             <td><?= $superCat['name'] ?></td>
             <td>
                 <a href="supercategories_edit.php?scid=<?= $superCat['id'] ?>">
-                    Edit
+                    <button class="btn btn-warning">
+                        Edit
+                    </button>
                 </a>,
-                <button onclick="deleteSuperCat(<?= $superCat['id'] ?>)">Delete</button>
+                <button class="btn btn-danger" onclick="deleteSuperCat(<?= $superCat['id'] ?>)">Delete</button>
             </td>
         </tr>
         <?php
     }
     ?>
 </table>
-<a href="../admin_panel.php">
-    <button class="btn btn-primary">Back to Admin Panel</button>
-</a>
 </body>
 </html>
