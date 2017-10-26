@@ -15,14 +15,16 @@ require_once "../../../controller/admin/subcategories/view_subcategories_control
     <script src="../../../web/assets/js/admin/remove.admin.js"></script>
 </head>
 <body>
-<h2>SubCategories</h2>
-<p>Here you can add, edit or delete subcategories.</p>
-<a href="../admin_panel.php">
-    <button class="btn btn-primary">Back to Admin Panel</button>
-</a>
-<a href="subcategories_create.php">
-    <button class="btn btn-primary">New SubCategory</button>
-</a>
+<div align="center">
+    <h2>SubCategories</h2>
+    <p>Here you can add, edit or delete subcategories.</p>
+    <a href="../admin_panel.php">
+        <button class="btn btn-primary">Back to Admin Panel</button>
+    </a>
+    <a href="subcategories_create.php">
+        <button class="btn btn-primary">New SubCategory</button>
+    </a>
+</div>
 <table>
     <tr>
         <th>Id</th>

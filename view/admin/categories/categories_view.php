@@ -15,14 +15,16 @@ require_once "../../../controller/admin/categories/view_categories_controller.ph
     <script src="../../../web/assets/js/admin/remove.admin.js"></script>
 </head>
 <body>
-<h2>Categories</h2>
-<p>Here you can add, edit or delete categories.</p>
-<a href="../admin_panel.php">
-    <button class="btn btn-primary">Back to Admin Panel</button>
-</a>
-<a href="categories_create.php">
-    <button class="btn btn-primary">New Category</button>
-</a>
+<div align="center">
+    <h2>Categories</h2>
+    <p>Here you can add, edit or delete categories.</p>
+    <a href="../admin_panel.php">
+        <button class="btn btn-primary">Back to Admin Panel</button>
+    </a>
+    <a href="categories_create.php">
+        <button class="btn btn-primary">New Category</button>
+    </a>
+</div>
 <table>
     <tr>
         <th>Id</th>

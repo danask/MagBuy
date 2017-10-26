@@ -15,14 +15,16 @@ require_once "../../../controller/admin/supercategories/view_supercategories_con
     <script src="../../../web/assets/js/admin/remove.admin.js"></script>
 </head>
 <body>
-<h2>Supercategories</h2>
-<p>Here you can add, edit or delete supercategories.</p>
-<a href="../admin_panel.php">
-    <button class="btn btn-primary">Back to Admin Panel</button>
-</a>
-<a href="supercategories_create.php">
-    <button class="btn btn-primary">New Supercategory</button>
-</a>
+<div align="center">
+    <h2>Supercategories</h2>
+    <p>Here you can add, edit or delete supercategories.</p>
+    <a href="../admin_panel.php">
+        <button class="btn btn-primary">Back to Admin Panel</button>
+    </a>
+    <a href="supercategories_create.php">
+        <button class="btn btn-primary">New Supercategory</button>
+    </a>
+</div>
 <table>
     <tr>
         <th>Id</th>
