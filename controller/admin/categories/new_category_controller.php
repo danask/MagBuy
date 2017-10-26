@@ -21,7 +21,7 @@ if (isset($_POST['submit'])) {
 
         $id = $catDao->createCategory($category);
 
-        header("Location: ../../view/main/index.php");
+        header("Location: ../../../view/admin/categories/categories_view.php");
 
 
     } catch (PDOException $e) {
