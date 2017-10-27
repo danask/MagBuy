@@ -37,6 +37,9 @@ class UserDao {
 
     const IS_ADMIN = "SELECT role FROM users WHERE email = ? AND password = ?";
 
+    const RESET_PASS = "UPDATE users SET password = ? WHERE email = ?";
+
+
 
 
     //Get connection in construct
@@ -262,5 +265,13 @@ class UserDao {
 
             $userRole = $statement->fetch();
             return (int)$userRole['role'];
+    }
+
+    function resetPassword (User $user) {
+
+        $statement = $this->pdo->prepare(self::RESET_PASS);
+        $statement->execute(array(
+            $user->getPassword(),
+            $user->getEmail()));
     }
 }

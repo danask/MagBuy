@@ -21,15 +21,11 @@ require_once "../../utility/session_main.php";
 <div class="login-page">
     <div id="logo"><a href="../main/index.php"><img src="../../web/assets/images/logo.png"></a></div>
     <div class="form">
-        <form class="login-form" action="../../controller/user/login_controller.php" method="post">
-            <input type="email" name="email" placeholder="Enter Your Email"/>
-            <input type="password" name="password" placeholder="Enter Your Password"/>
+        <form class="login-form" action="../../controller/user/new_pass_controller.php" method="post">
+            <input type="password" name="pass1" placeholder="Enter New Password"/>
+            <input type="password" name="pass2" placeholder="Repeat New Password"/>
 
-            <input id="login" type="submit" value="LOGIN">
-
-            <?php if(isset($_GET['error'])){ echo "<p id=\"wrongLogin\">User not found!</p>"; };?>
-            <p class="message">Forgotten password? <a href="forgotten.php">Reset password</a></p>
-            <p class="message">Not registered? <a href="register.php">Create an account</a></p>
+            <input id="login" type="submit" value="UPDATE">
 
         </form>
     </div>

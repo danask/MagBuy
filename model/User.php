@@ -19,6 +19,7 @@ class User
     private $role;
     private $address;
     private $personal;
+    private $tokken;
 
 
     public function __construct()
@@ -32,6 +33,21 @@ class User
         $this->firstName = "User";
     }
 
+    /**
+     * @return mixed
+     */
+    public function getTokken()
+    {
+        return $this->tokken;
+    }
+
+    /**
+     * @param mixed $tokken
+     */
+    public function setTokken($tokken)
+    {
+        $this->tokken = $tokken;
+    }
 
 
     /**
