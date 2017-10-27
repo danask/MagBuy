@@ -148,7 +148,29 @@ label {
     padding: 1em 0;
 }
 
-.header_right {
+@media (max-width: 433px) {
+    .head-t {
+        padding: 1em 0;
+        margin-top: 35px;
+    }
+}
+
+@media (max-width: 276px) {
+    .head-t {
+        padding: 1em 0;
+        margin-top: 45px;
+    }
+}
+
+@media (max-width: 185px) {
+    .head-t {
+        padding: 1em 0;
+        margin-top: 60px;
+    }
+}
+
+
+    .header_right {
     position: relative;
 }
 
