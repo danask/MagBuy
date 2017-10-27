@@ -54,6 +54,7 @@ if (!empty($_POST['tokken'])) {
         die();
     } else {
 
+        session_destroy();
         header ('Location: ../../view/user/forgotten.php?errorTokken');
     }
 
