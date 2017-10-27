@@ -18,21 +18,27 @@ $subcategories = $subcatDao->getAllSubCategories();
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="../../../web/assets/css/adminPanel.css">
 </head>
 <body>
-<form action="../../../controller/admin/products_promotions_reviews/new_product_controller.php" method="post">
-    <input type="text" name="title" placeholder="Title" required/><br>
-    <textarea name="description" placeholder="Description" required></textarea><br>
-    <input type="number" name="price" step="0.01" placeholder="Price" min="0" required/><br>
-    <input type="number" name="quantity" placeholder="Quantity" min="0" required/><br>
-    <select name="subcategory_id">
-        <?php
-        foreach ($subcategories as $subcategory) {
-            echo "<option value=\"" . $subcategory['id'] . "\">" . $subcategory['name'] . "</option>";
-        }
-        ?>
-    </select><br>
-    <input type="submit" value="Continue to specs" name="submit">
-</form>
+<div class="page">
+    <form action="../../../controller/admin/products_promotions_reviews/new_product_controller.php" method="post">
+        <input type="text" name="title" placeholder="Title" required/><br>
+        <textarea name="description" placeholder="Description" required></textarea><br>
+        <input type="number" name="price" step="0.01" placeholder="Price" min="0" required/><br>
+        <input type="number" name="quantity" placeholder="Quantity" min="0" required/><br>
+        <select name="subcategory_id">
+            <?php
+            foreach ($subcategories as $subcategory) {
+                echo "<option value=\"" . $subcategory['id'] . "\">" . $subcategory['name'] . "</option>";
+            }
+            ?>
+        </select><br>
+        <input type="submit" value="Continue to specs" name="submit">
+    </form>
+    <a href="products_view.php">
+        <button>Back to Products</button>
+    </a>
+</div>
 </body>
 </html>

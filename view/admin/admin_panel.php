@@ -34,7 +34,7 @@ require_once "../elements/header.php";
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Subcategory<br>Specifications
         </button>
     </a><br>
-    <a href="products_promotions_reviews/product_create.php">
+    <a href="products_promotions_reviews/products_view.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-cubes fa-4x" aria-hidden="true"></i><br>Products,<br>
             Reviews and<br>
             Promotions

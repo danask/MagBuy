@@ -63,6 +63,11 @@ class ProductsDao
     const SEARCH_PRODUCTS_NO_LIMIT = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
                               ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ?";
 
+    const GET_ALL_PRODUCTS_ADMIN = "SELECT p.id, p.title, p.description, p.price, p.quantity, p.visible, 
+                                    p.created_at, sc.name AS subcat_name FROM products p LEFT JOIN subcategories sc
+                                    ON p.subcategory_id = sc.id";
+
+    const TOGGLE_VISIBILITY = "UPDATE products SET visible = ? WHERE id = ?";
 
     //Get connection in construct
     private function __construct()
@@ -227,5 +232,23 @@ class ProductsDao
         $result = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $result;
+    }
+
+    function getAllProductsAdmin()
+    {
+        $statement = $this->pdo->prepare(self::GET_ALL_PRODUCTS_ADMIN);
+        $statement->execute();
+
+        $products = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $products;
+    }
+
+    function toggleVisibility($productId, $toggleTo)
+    {
+        $statement = $this->pdo->prepare(self::TOGGLE_VISIBILITY);
+        $statement->execute(array($toggleTo, $productId));
+
+        return true;
     }
 }

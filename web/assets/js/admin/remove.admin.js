@@ -39,3 +39,22 @@ function deleteSubCat(subcatId) {
         xhttp.send();
     }
 }
+
+function toggleVisibility(productId, currentVis) {
+    if (confirm("Are you sure you want to toggle visibility of Product with ID " + productId + " ?")) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.status == 200 && this.readyState == 4) {
+                var visibility = document.getElementById("togId-" + productId);
+                if (visibility.innerHTML == 1) {
+                    visibility.innerHTML = 0;
+                } else {
+                    visibility.innerHTML = 1;
+                }
+            }
+        };
+        xhttp.open("GET", "../../../controller/admin/products_promotions_reviews/visibility_product_controller.php?pid="
+            + productId + "&vis=" + currentVis, true);
+        xhttp.send();
+    }
+}
