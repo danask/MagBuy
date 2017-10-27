@@ -15,13 +15,11 @@ class ProductSpecification
      * ProductSpecification constructor.
      * @param $value
      * @param $subcatSpecId
-     * @param $productId
      */
-    public function __construct($value, $subcatSpecId, $productId)
+    public function __construct($value, $subcatSpecId)
     {
         $this->value = $value;
         $this->subcatSpecId = $subcatSpecId;
-        $this->productId = $productId;
     }
 
     /**

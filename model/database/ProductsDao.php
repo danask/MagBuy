@@ -89,22 +89,49 @@ class ProductsDao
 
     /**
      * Function for creating new product.
-     * @param Product $product - Receives new product's information object.
+     * @param Product $product
+     * @param $images
+     * @param $specs
      * @return string - Returns added product's ID.
      */
-    function createNewProduct(Product $product)
+    function createNewProduct(Product $product, $images, $specs)
     {
-        $statement = $this->pdo->prepare(self::CREATE_PRODUCT);
-        $statement->execute(array(
-            $product->getTitle(),
-            $product->getDescription(),
-            $product->getPrice(),
-            $product->getQuantity(),
-            $product->getVisible(),
-            $product->getCreatedAt(),
-            $product->getSubcategoryId()));
+        $this->pdo->beginTransaction();
+        try {
+            //product info
+            $title = $product->getTitle();
+            $description = $product->getDescription();
+            $price = $product->getPrice();
+            $quantity = $product->getQuantity();
+            $visible = $product->getVisible();
+            $createdAt = $product->getCreatedAt();
+            $subcatId = $product->getSubcategoryId();
+            $this->pdo->query("INSERT INTO products(title, description, price, quantity, visible, created_at,
+        subcategory_id) VALUES ('$title', '$description', '$price', '$quantity', '$visible', '$createdAt', '$subcatId')");
+            $productId = $this->pdo->lastInsertId();
 
-        return $this->pdo->lastInsertId();
+            //product images
+            foreach ($images as $image) {
+                $url = $image->getImageUrl();
+                $this->pdo->query("INSERT INTO images (image_url, product_id) VALUES ('$url', $productId)");
+            }
+
+            //product specs
+            foreach ($specs as $spec) {
+                $value = $spec->getValue();
+                $specId = $spec->getSubcatSpecId();;
+
+                $this->pdo->query("INSERT INTO subcat_specification_value (value, subcat_spec_id, product_id)
+                                            VALUES ('$value', $specId, $productId)");
+            }
+
+            $this->pdo->commit();
+
+            return $productId;
+        } catch (\PDOException $e) {
+            $this->pdo->rollBack();
+            return false;
+        }
     }
 
 

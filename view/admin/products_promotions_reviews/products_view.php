@@ -54,7 +54,7 @@ require_once "../../../controller/admin/products_promotions_reviews/view_product
                     <button class="btn btn-warning">
                         Edit
                     </button>
-                </a>,
+                </a>
                 <button class="btn btn-danger"
                         onclick="toggleVisibility(<?= $product['id'] . ", " . $product['visible'] ?>)">Toggle visibility
                 </button>
