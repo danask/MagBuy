@@ -11,8 +11,6 @@ $product = null;
 
 //Try to accomplish connection with the database
 try {
-
-
     $productId = $_GET['pid'];
     $productsDao = \model\database\ProductsDao::getInstance();
     $specsDao = \model\database\ProductSpecificationsDao::getInstance();
@@ -21,6 +19,10 @@ try {
     $promoDao = \model\database\PromotionsDao::getInstance();
 
     $product = $productsDao->getProductByID($productId);
+    if ($product['visible'] == 0) {
+        header("Location: ../../view/main/index.php");
+        die();
+    }
     $specifications = $specsDao->getAllSpecificationsForProduct($productId);
     $reviews = $reviewsDao->getReviewsForProduct($productId);
     $images = $imagesDao->getAllProductImages($productId);
