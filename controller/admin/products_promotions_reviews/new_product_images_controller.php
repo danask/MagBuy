@@ -1,5 +1,8 @@
 <?php
 
+//Include cropping image function
+require_once '../../../utility/imageCrop.php';
+
 //Autoload to require needed model files
 function __autoload($className)
 {
@@ -64,6 +67,7 @@ if (isset($_POST['submit'])) {
             $productImageDao->addProductImage($image);
 
             move_uploaded_file($tmpName, $imagesDirectory);
+            cropImage($imagesDirectory, 450);
 
             header("Location: ../../../view/main/index.php");
 
