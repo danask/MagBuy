@@ -37,7 +37,7 @@
 <!-- Copyright -->
 <div class="copy">
     <div class="container">
-        <p>&copy; 2017 IT Talents | By Lachezar Gadzhev and Rangel Mihailov</a></p>
+        <p>&copy; 2017 IT Talents | By Rangel Mihaylov and Lachezar Gadzhev </a></p>
     </div>
 </div>
 </body>

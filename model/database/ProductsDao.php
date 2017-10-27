@@ -20,7 +20,7 @@ class ProductsDao
                             subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, pr.percent,
-                                pr.start_date, pr.end_date,
+                                pr.start_date, pr.end_date, p.visible,
                                (SELECT AVG(rating) FROM reviews WHERE product_id = ?) average FROM products p 
                                 INNER JOIN images i ON p.id = i.product_id 
                                 LEFT JOIN promotions pr ON p.id = pr.product_id WHERE P.visible = 1 
