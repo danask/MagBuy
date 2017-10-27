@@ -273,7 +273,7 @@ DROP TABLE IF EXISTS `magbuy`.`subcat_specifications` ;
 CREATE TABLE IF NOT EXISTS `magbuy`.`subcat_specifications` (
   `id` INT(11) NOT NULL AUTO_INCREMENT,
   `name` VARCHAR(50) NOT NULL DEFAULT '',
-  `subcategory_id` INT(11) NOT NULL,
+  `subcategory_id` INT(11),
   PRIMARY KEY (`id`),
   INDEX `subcat_spec_ibfk_1` (`subcategory_id` ASC),
   CONSTRAINT `subcat_spec_ibfk_1`
