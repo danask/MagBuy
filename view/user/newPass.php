@@ -1,6 +1,10 @@
 <?php
 //Check for Session
 require_once "../../utility/session_main.php";
+
+if(!isset($_SESSION['passReset'])) {
+    header('Location: ../../view/user/login.php');
+}
 ?>
 
 <!doctype html>
@@ -22,8 +26,15 @@ require_once "../../utility/session_main.php";
     <div id="logo"><a href="../main/index.php"><img src="../../web/assets/images/logo.png"></a></div>
     <div class="form">
         <form class="login-form" action="../../controller/user/new_pass_controller.php" method="post">
-            <input type="password" name="pass1" placeholder="Enter New Password"/>
-            <input type="password" name="pass2" placeholder="Repeat New Password"/>
+            <input type="password" name="pass1" placeholder="Enter New Password"
+                   pattern=".{4,20}" required title="Password 4 to 20 characters"/>
+            <input type="password" name="pass2" placeholder="Repeat New Password"
+                   pattern=".{4,20}" required title="Password 4 to 20 characters"/>
+
+            <p class="wrongInput" <?= ($_GET['errorPassSyntax']) ?:"style='display: block;'"?>>
+                Passwords must be between 4 and 12 symbols!</p>
+            <p class="wrongInput" <?= ($_GET['errorPassMatch']) ?:"style='display: block;'"?>>
+                Passwords doesn't match!</p>
 
             <input id="login" type="submit" value="UPDATE">
 

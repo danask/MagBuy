@@ -1,5 +1,11 @@
 <?php
 
+session_start();
+
+if(!isset($_SESSION['passReset'])) {
+    header('Location: ../../view/user/login.php');
+}
+
 //Check for Session
 require_once "../../utility/no_session_main.php";
 
@@ -9,23 +15,33 @@ function __autoload($className) {
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
-if(!empty($_POST['pass1']) && !empty($_POST['pass2'])) {
+if (!empty($_POST['pass1']) && !empty($_POST['pass2'])) {
 
     $pass1 = $_POST['pass1'];
     $pass2 = $_POST['pass2'];
 
-    if(!($pass1 == $pass2)) {
-        header("Location: ../../view/user/newPass?match");
+    if (!($pass1 == $pass2)) {
+        header("Location: ../../view/user/newPass?errorPassMatch");
     }
 
-    $user = new model\User;
+    if (strlen($pass1) >= 4 && strlen($pass1) <= 20) {
 
-    $userDao = model\database\UserDao::getInstance();
+        $user = new model\User;
 
-    $user->setPassword(sha1($pass1));
-    $user->setEmail($_SESSION['passReset']['email']);
+        $userDao = model\database\UserDao::getInstance();
 
-    $userDao->resetPassword($user);
+        $user->setPassword(sha1($pass1));
+        $user->setEmail($_SESSION['passReset']['email']);
 
-    header("Location: ../../view/user/login.php");
+        $userDao->resetPassword($user);
+
+        session_destroy();
+        header("Location: ../../view/user/login.php");
+        die();
+    } else {
+        header('Location: ../../view/user/newPass.php?errorPassSyntax');
+        die();
+    }
+} else {
+    header('Location: ../../view/user/newPass.php?errorPassSyntax');
 }

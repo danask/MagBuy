@@ -11,9 +11,21 @@ function __autoload($className)
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
+//When email is reset
 if(!empty($_POST['email'])) {
 
     $userEmail = $_POST['email'];
+
+    //Check if user exists
+    $user = new \model\User;
+    $userDao = \model\database\UserDao::getInstance();
+    $user->setEmail($userEmail);
+
+    if(!($userDao->checkUserExist($user))){
+
+        header('Location: ../../view/user/forgotten.php?error');
+        die();
+    }
 
     $tokken = sha1($userEmail . microtime());
 
@@ -26,6 +38,7 @@ if(!empty($_POST['email'])) {
     die();
 }
 
+//When tokken is received
 if (!empty($_POST['tokken'])) {
 
     $tokkenReceive = $_POST['tokken'];
