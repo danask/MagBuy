@@ -1,5 +1,8 @@
 <?php
 
+//Start Session
+session_start();
+
 //Autoload to require needed model files
 function __autoload($className)
 {
@@ -20,54 +23,58 @@ if (isset($_POST['submit'])) {
     $product->setQuantity(htmlentities($_POST['quantity']));
 
 
-    //product images
+    //Images Handling
     $images = array();
-//    for ($i = 1; $i < 4; $i++) {
-//
-//        $imagesDirectory = null;
-//        $imageName = "pic$i";
-//        $image = new \model\ProductImage();
-//
-//
-//        if (!empty($_FILES[$imageName]['tmp_name'])) {
-//
-//            $tmpName = $_FILES[$imageName]['tmp_name'];
-//
-//
-//            if (!is_uploaded_file($tmpName)) {
-//                //Redirect to Error page
-//                header('Location: ../../../view/error/admin_upload_error.php');
-//            }
-//
-//            //Get the uploaded file's type, extension and size
-//            $fileFormat = mime_content_type($tmpName);
-//            $type = explode("/", $fileFormat)[0];
-//            $extension = explode("/", $fileFormat)[1];
-//            $fileSize = filesize($tmpName);
-//
-//
-//            //Validate image file - image file below 2MB
-//            if ($type == "image" && $fileSize < 2048576) {
-//                $uploadTime = microtime();
-//                $imagesDirectory = "../../../web/uploads/productImages/$uploadTime.$extension";
-//
-//            } else {
-//                //Redirect to Error page
-//                header('Location: ../../../view/error/admin_upload_error.php');
-//            }
-//
-//            $image->setImageUrl($imagesDirectory);
-//
-//        } else {
-//            //Redirect to Error page
-//            header('Location: ../../../view/error/admin_upload_error.php');
-//        }
-//
-//        move_uploaded_file($tmpName, $imagesDirectory);
-//        cropImage($imagesDirectory, 450);
-//
-//        $images[] = $image;
-//    }
+  for ($i = 1; $i < 4; $i++) {
+
+      $imagesDirectoryMove = null;
+      $imagesDirectoryView = null;
+      $imageInput = "pic$i";
+      $tmpName = null;
+      $userId = $_SESSION['loggedUser'];
+
+        if (!empty($_FILES[$imageInput]['tmp_name'])) {
+
+            $tmpName = $_FILES[$imageInput]['tmp_name'];
+
+            if (!is_uploaded_file($tmpName)) {
+                //Redirect to Error page
+                header('Location: ../../../view/error/admin_upload_error.php');
+                die();
+            }
+
+            //Get the uploaded file's type, extension and size
+            $fileFormat = mime_content_type($tmpName);
+            $type = explode("/", $fileFormat)[0];
+            $extension = explode("/", $fileFormat)[1];
+            $fileSize = filesize($tmpName);
+
+
+            //Validate image file - image file below 5MB
+            if ($type == "image" && $fileSize < 5048576) {
+
+                $uploadTime = microtime();
+                $fileName = $userId.$uploadTime. "." . $extension;
+
+                $imagesDirectoryView = "../../web/uploads/productImages/$fileName";
+                $imagesDirectoryMove = "../../../web/uploads/productImages/$fileName";
+
+                move_uploaded_file($tmpName, $imagesDirectoryMove);
+                cropImage($imagesDirectoryMove, 400);
+                $images[] = $imagesDirectoryView;
+
+            } else {
+                //Redirect to Error page
+                header('Location: ../../../view/error/admin_upload_error.php');
+                die();
+            }
+        } else {
+            //Redirect to Error page
+            header('Location: ../../../view/error/admin_upload_error.php');
+            die();
+        }
+   }
+
 
     //product subcategory and specs
     $subcatId = $_POST['subcategory_id'];

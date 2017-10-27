@@ -60,7 +60,7 @@ require_once "../../../controller/admin/products_promotions_reviews/new_product_
 </head>
 <body>
 <div class="page">
-    <form action="../../../controller/admin/products_promotions_reviews/new_product_controller.php" method="post">
+    <form enctype="multipart/form-data" action="../../../controller/admin/products_promotions_reviews/new_product_controller.php" method="post">
         Title <input type="text" name="title" placeholder="Title" required/><br>
         Description <textarea name="description" placeholder="Description" required></textarea><br>
         Price <input type="number" name="price" step="0.01" placeholder="Price" min="0" required/><br>

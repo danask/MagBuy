@@ -112,8 +112,7 @@ class ProductsDao
 
             //product images
             foreach ($images as $image) {
-                $url = $image->getImageUrl();
-                $this->pdo->query("INSERT INTO images (image_url, product_id) VALUES ('$url', $productId)");
+                $this->pdo->query("INSERT INTO images (image_url, product_id) VALUES ('$image', $productId)");
             }
 
             //product specs

@@ -11,32 +11,35 @@ function cropImage($imagePath, $cropPX){
     list($width, $height) = getimagesize($imagePath);
 
     //Function for creating image for any format
-    function imageCreateFromAny($filepath){
+    if(!function_exists('imageCreateFromAny')) {
+        function imageCreateFromAny($filepath)
+        {
 
-        $im = null;
+            $im = null;
 
-        $type = exif_imagetype($filepath); // [] If you don't have exif you could use getImageSize()
-        $allowedTypes = array(
-            1,  // [] gif
-            2,  // [] jpg
-            3,  // [] png
-            6   // [] bmp
-        );
-        if (!in_array($type, $allowedTypes)) {
-            return false;
+            $type = exif_imagetype($filepath); // [] If you don't have exif you could use getImageSize()
+            $allowedTypes = array(
+                1,  // [] gif
+                2,  // [] jpg
+                3,  // [] png
+                6   // [] bmp
+            );
+            if (!in_array($type, $allowedTypes)) {
+                return false;
+            }
+            switch ($type) {
+                case 1 :
+                    $im = imageCreateFromGif($filepath);
+                    break;
+                case 2 :
+                    $im = imageCreateFromJpeg($filepath);
+                    break;
+                case 3 :
+                    $im = imageCreateFromPng($filepath);
+                    break;
+            }
+            return $im;
         }
-        switch ($type) {
-            case 1 :
-                $im = imageCreateFromGif($filepath);
-                break;
-            case 2 :
-                $im = imageCreateFromJpeg($filepath);
-                break;
-            case 3 :
-                $im = imageCreateFromPng($filepath);
-                break;
-        }
-        return $im;
     }
 
     //Saving the image into memory (for manipulation with GD Library)
@@ -62,5 +65,5 @@ function cropImage($imagePath, $cropPX){
 //Final output
     header('Content-type: image/jpeg');
     imagejpeg($thumb, $imagePath);
-
+    unset($myImage);
 }
