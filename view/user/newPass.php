@@ -4,6 +4,13 @@ require_once "../../utility/session_main.php";
 
 if(!isset($_SESSION['passReset'])) {
     header('Location: ../../view/user/login.php');
+    die();
+}
+
+if(abs(($_SESSION['passReset']['time'] - time())) > 600) {
+    session_destroy();
+    header('Location: ../../view/user/login.php');
+    die();
 }
 ?>
 

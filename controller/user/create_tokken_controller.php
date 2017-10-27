@@ -33,6 +33,7 @@ if(!empty($_POST['email'])) {
 
     $_SESSION['passReset']['email'] = $userEmail;
     $_SESSION['passReset']['tokken'] = $tokken;
+    $_SESSION['passReset']['time'] = time();
 
     header("Location: ../../view/user/forgotten.php?tokken");
     die();

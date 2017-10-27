@@ -22,7 +22,8 @@ require_once "../../utility/session_main.php";
     <div id="logo"><a href="../main/index.php"><img src="../../web/assets/images/logo.png"></a></div>
     <div class="form">
         <form class="login-form" action="../../controller/user/create_tokken_controller.php" method="POST">
-            <?php if(isset($_GET['tokken'])) { echo "<p id=\"resetPasswordMessage\">Check email for reset password tokken.</p>
+            <?php if(isset($_GET['tokken'])) {
+                echo "<p id=\"resetPasswordMessage\">Check email for reset password tokken. Expires in 10 minutes.</p>
             <input type=\"text\" name=\"tokken\" placeholder=\"Enter Tokken\"/><input type=\"hidden\" 
             name=\"emailHidden\" value='" . $_GET['tokken'] . "'>";}
             else {echo "<input type=\"email\" name=\"email\" placeholder=\"Enter Your Email\">";}?>
