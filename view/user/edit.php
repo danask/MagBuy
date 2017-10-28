@@ -1,6 +1,4 @@
 <?php
-//Include Error Handler
-require_once '../../utility/error_handler.php';
 //Require old user's info and check for session (checked in controller)
 require_once "../../controller/user/get_users_info_controller.php";
 ?>
