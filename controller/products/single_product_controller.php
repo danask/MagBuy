@@ -20,7 +20,7 @@ try {
 
     $product = $productsDao->getProductByID($productId);
     if ($product['visible'] == 0) {
-        header("Location: ../../view/main/index.php");
+        header("Location: ../../view/error/error_404.php");
         die();
     }
     $specifications = $specsDao->getAllSpecificationsForProduct($productId);

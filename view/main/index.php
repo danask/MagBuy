@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Include controller to display products
 require_once "../../controller/products/home_products_controller.php";
 //Include main Headers
