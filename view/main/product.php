@@ -11,16 +11,39 @@ require_once "../elements/headers.php";
         function filterProducts() {
             var xhttp = new XMLHttpRequest();
             var productsWindow = document.getElementById("productsWindow");
+            var mostSold = document.getElementById("mostSoldFilter").checked;
+            var mostReviewed = document.getElementById("mostReviewedFilter").checked;
+            var newest = document.getElementById("newestFilter").checked;
+            var highestRated = document.getElementById("highestRatedFilter").checked;
+
+            var msf = 0;
+            if (mostSold === true) {
+                msf = 1;
+            }
+
+            var mrf = 0;
+            if (mostReviewed === true) {
+                mrf = 1;
+            }
+
+            var newf = 0;
+            if (newest === true) {
+                newf = 1;
+            }
+
+            var hrf = 0;
+            if (highestRated === true) {
+                hrf = 1;
+            }
+
             xhttp.onreadystatechange = function () {
                 productsWindow.innerHTML = "<img src='../../web/assets/images/ajax-loader.gif' align='center'>";
                 if (this.status == 200 && this.readyState == 4) {
-                    var mostSold = document.getElementById("mostSoldFilter");
-                    var mostReviewed = document.getElementById("mostReviewedFilter");
-                    var newestSold = document.getElementById("newestFilter");
-                    var highestRated = document.getElementById("highestRatedFilter");
+
                 }
             };
-            xhttp.open("GET", "../../controller/products/products_by_category_filters_controller.php", true);
+            xhttp.open("GET", "../../controller/products/products_by_category_filters_controller.php?msf="
+                + msf + "&mrf=" + mrf + "&newf=" + newf + "&hrf=" + hrf + "&scid=" + <?= $_GET['subcid'] ?>, true);
             xhttp.send();
         }
     </script>
