@@ -1,6 +1,4 @@
 <?php
-//Include Error Handler
-require_once '../../utility/error_handler.php';
 //Include controller to show all results
 require_once "../../controller/search/search_controller.php";
 //Include main Headers
