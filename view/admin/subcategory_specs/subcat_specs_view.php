@@ -25,32 +25,34 @@ require_once "../../../controller/admin/subcategory_specs/view_subcat_specs_cont
         <button class="btn btn-primary">New Subcategory Specification</button>
     </a>
 </div>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Subcategory</th>
-        <th>Options</th>
-    </tr>
-    <?php
-    foreach ($specs as $spec) {
-        ?>
-        <tr id="delId-<?= $spec['id'] ?>">
-            <td><?= $spec['id'] ?></td>
-            <td><?= $spec['name'] ?></td>
-            <td><?= $spec['subcat_name'] ?></td>
-            <td>
-                <a href="subcat_spec_edit.php?ssid=<?= $spec['id'] ?>">
-                    <button class="btn btn-warning">
-                        Edit
-                    </button>
-                </a>,
-                <button class="btn btn-danger" onclick="deleteSpec(<?= $spec['id'] ?>)">Delete</button>
-            </td>
+<div class="adminMainWindow">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Subcategory</th>
+            <th>Options</th>
         </tr>
         <?php
-    }
-    ?>
-</table>
+        foreach ($specs as $spec) {
+            ?>
+            <tr id="delId-<?= $spec['id'] ?>">
+                <td><?= $spec['id'] ?></td>
+                <td><?= $spec['name'] ?></td>
+                <td><?= $spec['subcat_name'] ?></td>
+                <td>
+                    <a href="subcat_spec_edit.php?ssid=<?= $spec['id'] ?>">
+                        <button class="btn btn-warning">
+                            Edit
+                        </button>
+                    </a>,
+                    <button class="btn btn-danger" onclick="deleteSpec(<?= $spec['id'] ?>)">Delete</button>
+                </td>
+            </tr>
+            <?php
+        }
+        ?>
+    </table>
+</div>
 </body>
 </html>

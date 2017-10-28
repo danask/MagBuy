@@ -7,43 +7,24 @@ require_once "../elements/headers.php";
 
     <!-- Define Page Name -->
     <title>MagBuy | <?= $categoryName ?></title>
-    <script type="text/javascript">
-        function filterProducts() {
+    <script>
+        function infiniteScroll() {
             var xhttp = new XMLHttpRequest();
             var productsWindow = document.getElementById("productsWindow");
-            var mostSold = document.getElementById("mostSoldFilter").checked;
-            var mostReviewed = document.getElementById("mostReviewedFilter").checked;
-            var newest = document.getElementById("newestFilter").checked;
-            var highestRated = document.getElementById("highestRatedFilter").checked;
-
-            var msf = 0;
-            if (mostSold === true) {
-                msf = 1;
-            }
-
-            var mrf = 0;
-            if (mostReviewed === true) {
-                mrf = 1;
-            }
-
-            var newf = 0;
-            if (newest === true) {
-                newf = 1;
-            }
-
-            var hrf = 0;
-            if (highestRated === true) {
-                hrf = 1;
-            }
-
             xhttp.onreadystatechange = function () {
-                productsWindow.innerHTML = "<img src='../../web/assets/images/ajax-loader.gif' align='center'>";
+                //loading animation
                 if (this.status == 200 && this.readyState == 4) {
 
+                    var products = JSON.parse(this.responseText);
+
+                    for (var key in products) {
+                        if (products.hasOwnProperty(key)) {
+
+                        }
+                    }
                 }
             };
-            xhttp.open("GET", "../../controller/products/products_by_category_filters_controller.php?msf="
-                + msf + "&mrf=" + mrf + "&newf=" + newf + "&hrf=" + hrf + "&scid=" + <?= $_GET['subcid'] ?>, true);
+            xhttp.open("GET", "../../../controller/products/infinite_scroll_controller.php?offset=" offset, true);
             xhttp.send();
         }
     </script>

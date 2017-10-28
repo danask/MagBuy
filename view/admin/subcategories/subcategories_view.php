@@ -25,32 +25,34 @@ require_once "../../../controller/admin/subcategories/view_subcategories_control
         <button class="btn btn-primary">New SubCategory</button>
     </a>
 </div>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Options</th>
-    </tr>
-    <?php
-    foreach ($subCats as $subCat) {
-        ?>
-        <tr id="delId-<?= $subCat['id'] ?>">
-            <td><?= $subCat['id'] ?></td>
-            <td><?= $subCat['name'] ?></td>
-            <td><?= $subCat['catname'] ?></td>
-            <td>
-                <a href="subcategories_edit.php?scid=<?= $subCat['id'] ?>">
-                    <button class="btn btn-warning">
-                        Edit
-                    </button>
-                </a>,
-                <button class="btn btn-danger" onclick="deleteSubCat(<?= $subCat['id'] ?>)">Delete</button>
-            </td>
+<div class="adminMainWindow">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Options</th>
         </tr>
         <?php
-    }
-    ?>
-</table>
+        foreach ($subCats as $subCat) {
+            ?>
+            <tr id="delId-<?= $subCat['id'] ?>">
+                <td><?= $subCat['id'] ?></td>
+                <td><a href="../../../view/main/product.php?subcid=<?= $subCat['id'] ?>"><?= $subCat['name'] ?></a></td>
+                <td><?= $subCat['catname'] ?></td>
+                <td>
+                    <a href="subcategories_edit.php?scid=<?= $subCat['id'] ?>">
+                        <button class="btn btn-warning">
+                            Edit
+                        </button>
+                    </a>,
+                    <button class="btn btn-danger" onclick="deleteSubCat(<?= $subCat['id'] ?>)">Delete</button>
+                </td>
+            </tr>
+            <?php
+        }
+        ?>
+    </table>
+</div>
 </body>
 </html>

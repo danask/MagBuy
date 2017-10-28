@@ -25,45 +25,48 @@ require_once "../../../controller/admin/products_promotions_reviews/view_product
         <button class="btn btn-primary">New Product</button>
     </a>
 </div>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Title</th>
-        <th>Description</th>
-        <th>Price</th>
-        <th>Quantity</th>
-        <th>Visible</th>
-        <th>Created_at</th>
-        <th>Subcat Name</th>
-        <th>Options</th>
-    </tr>
-    <?php
-    foreach ($products as $product) {
-        ?>
+<div class="adminMainWindow">
+    <table>
         <tr>
-            <td><?= $product['id'] ?></td>
-            <td><?= $product['title'] ?></td>
-            <td style="font-size: 80%"><?= $product['description'] ?></td>
-            <td><?= $product['price'] ?></td>
-            <td><?= $product['quantity'] ?></td>
-            <td id="togId-<?= $product['id'] ?>"><?= $product['visible'] ?></td>
-            <td><?= $product['created_at'] ?></td>
-            <td><?= $product['subcat_name'] ?></td>
-            <td>
-                <a href="product_edit.php?cid=<?= $product['id'] ?>">
-                    <button class="btn btn-warning">
-                        Edit
-                    </button>
-                </a>
-                <button class="btn btn-danger"
-                        onclick="toggleVisibility(<?= $product['id'] . ", " . $product['visible'] ?>)">Toggle visibility
-                </button>
-                <button class="btn btn-success">Promotions</button>
-            </td>
+            <th>Id</th>
+            <th>Title</th>
+            <th>Description</th>
+            <th>Price</th>
+            <th>Quantity</th>
+            <th>Visible</th>
+            <th>Created_at</th>
+            <th>Subcat Name</th>
+            <th>Options</th>
         </tr>
         <?php
-    }
-    ?>
-</table>
+        foreach ($products as $product) {
+            ?>
+            <tr>
+                <td><?= $product['id'] ?></td>
+                <td><a href="../../../view/main/single.php?pid=<?= $product['id'] ?>"><?= $product['title'] ?></a></td>
+                <td style="font-size: 80%"><?= $product['description'] ?></td>
+                <td><?= $product['price'] ?></td>
+                <td><?= $product['quantity'] ?></td>
+                <td id="togId-<?= $product['id'] ?>"><?= $product['visible'] ?></td>
+                <td><?= $product['created_at'] ?></td>
+                <td><?= $product['subcat_name'] ?></td>
+                <td>
+                    <a href="product_edit.php?cid=<?= $product['id'] ?>">
+                        <button class="btn btn-warning">
+                            Edit
+                        </button>
+                    </a>
+                    <button class="btn btn-danger"
+                            onclick="toggleVisibility(<?= $product['id'] . ", " . $product['visible'] ?>)">Toggle
+                        visibility
+                    </button>
+                    <button class="btn btn-success">Promotions</button>
+                </td>
+            </tr>
+            <?php
+        }
+        ?>
+    </table>
+</div>
 </body>
 </html>

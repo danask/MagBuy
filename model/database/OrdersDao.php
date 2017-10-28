@@ -17,8 +17,14 @@ class OrdersDao
     const ADD_NEW_ORDER = "INSERT INTO orders (user_id, created_at, status) VALUES (?, ?, ?)";
     const ADD_ORDER_PRODUCT = "INSERT INTO order_products (order_id, product_id, quantity) VALUES (?, ?, ?)";
     const GET_ALL_ORDERS_ADMIN = "SELECT o.id, u.email AS email, o.created_at, o.status FROM orders o
-                                LEFT JOIN users u ON o.user_id = u.id";
+                                INNER JOIN users u ON o.user_id = u.id";
     const CHANGE_ORDER_STATUS = "UPDATE orders SET status = ? WHERE id = ?";
+    const GET_ORDER_DETAILS = "SELECT o.id, u.email AS email, o.created_at, o.status, p.title AS product, op.quantity 
+                              AS quantity, p.id AS product_id, u.id AS user_id FROM orders o
+                              INNER JOIN users u ON o.user_id = u.id
+                              INNER JOIN order_products op ON op.order_id = o.id
+                              INNER JOIN products p ON op.product_id = p.id
+                              WHERE o.id = ?";
 
     //Get connection in construct
     private function __construct()
@@ -84,5 +90,14 @@ class OrdersDao
         $statement->execute(array($newStatus, $orderId));
 
         return true;
+    }
+
+    function getOrderDetails($orderId)
+    {
+        $statement = $this->pdo->prepare(self::GET_ORDER_DETAILS);
+        $statement->execute(array($orderId));
+
+        $order = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $order;
     }
 }

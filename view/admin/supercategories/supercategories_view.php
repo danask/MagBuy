@@ -25,30 +25,32 @@ require_once "../../../controller/admin/supercategories/view_supercategories_con
         <button class="btn btn-primary">New Supercategory</button>
     </a>
 </div>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Options</th>
-    </tr>
-    <?php
-    foreach ($superCats as $superCat) {
-        ?>
-        <tr id="delId-<?= $superCat['id'] ?>">
-            <td><?= $superCat['id'] ?></td>
-            <td><?= $superCat['name'] ?></td>
-            <td>
-                <a href="supercategories_edit.php?scid=<?= $superCat['id'] ?>">
-                    <button class="btn btn-warning">
-                        Edit
-                    </button>
-                </a>,
-                <button class="btn btn-danger" onclick="deleteSuperCat(<?= $superCat['id'] ?>)">Delete</button>
-            </td>
+<div class="adminMainWindow">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Options</th>
         </tr>
         <?php
-    }
-    ?>
-</table>
+        foreach ($superCats as $superCat) {
+            ?>
+            <tr id="delId-<?= $superCat['id'] ?>">
+                <td><?= $superCat['id'] ?></td>
+                <td><?= $superCat['name'] ?></td>
+                <td>
+                    <a href="supercategories_edit.php?scid=<?= $superCat['id'] ?>">
+                        <button class="btn btn-warning">
+                            Edit
+                        </button>
+                    </a>,
+                    <button class="btn btn-danger" onclick="deleteSuperCat(<?= $superCat['id'] ?>)">Delete</button>
+                </td>
+            </tr>
+            <?php
+        }
+        ?>
+    </table>
+</div>
 </body>
 </html>

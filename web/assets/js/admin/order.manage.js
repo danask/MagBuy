@@ -1,10 +1,10 @@
 function changeStatus(orderId) {
     var xhttp = new XMLHttpRequest();
-    var newStatus = document.getElementById("newStatusId-" + orderId).value;
+    var newStatus = document.getElementById("newStatus").value;
 
     xhttp.onreadystatechange = function () {
         if (this.status == 200 && this.readyState == 4) {
-            var status = document.getElementById("statusId-" + orderId);
+            var status = document.getElementById("status");
             status.innerHTML = newStatus;
         }
     };
