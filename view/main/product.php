@@ -8,25 +8,69 @@ require_once "../elements/headers.php";
     <!-- Define Page Name -->
     <title>MagBuy | <?= $categoryName ?></title>
     <script>
-        function infiniteScroll() {
-            var xhttp = new XMLHttpRequest();
-            var productsWindow = document.getElementById("productsWindow");
-            xhttp.onreadystatechange = function () {
-                //loading animation
-                if (this.status == 200 && this.readyState == 4) {
+        var loadedProducts = 0;
 
-                    var products = JSON.parse(this.responseText);
-
-                    for (var key in products) {
-                        if (products.hasOwnProperty(key)) {
-
-                        }
+        $(window).scroll(function () {
+                if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+                    loadedProducts += 6;
+                    var xhttp = new XMLHttpRequest();
+                    var productsWindow = document.getElementById("productsWindow");
+                    var loading = document.createElement("img");
+                    var loaderDiv = document.getElementById("loader");
+                    loading.setAttribute("src", "../../web/assets/images/ajax-loader.gif");
+                    if (loaderDiv.children.length < 1) {
+                        loaderDiv.appendChild(loading);
                     }
+                    xhttp.onreadystatechange = function () {
+                        if (this.status == 200 && this.readyState == 4) {
+                            loaderDiv.removeChild(loading);
+                            var products = JSON.parse(this.responseText);
+
+                            var i = 0;
+                            for (var key in products) {
+                                if (products.hasOwnProperty(key)) {
+                                    var content;
+                                    if (i % 3 == 1) {
+                                        content +=
+                                            '</div>' +
+                                            '<div class="clearfix"></div>' +
+                                            '<div class="products-grid-lft">';
+                                    }
+
+                                    content +=
+                                        '<div class="products-grid-lft">' +
+                                        '<div class="products-grd">' +
+                                        '<div class="p-one simpleCart_shelfItem prd">' +
+                                        '<a href="single.php?pid=' + products[key]['id'] + '">' +
+                                        '<img src="' + products[key]['image_url'] + '"' +
+                                        'alt="Product Image" class="img-responsive"/>' +
+                                        '</a>' +
+                                        '<h4>' + products[key]['title'] + '</h4>' +
+                                        '<p><a class="btn btn-default btn-sm"' +
+                                        'onclick="addToCart()">' +
+                                        '<i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd' +
+                                        '</a>&nbsp&nbsp' +
+                                        '<span class="item_price valsa">$' + products[key]['price'] + '</span>' +
+                                        '</p>' +
+                                        '<div class="pro-grd">' +
+                                        '<a href="single.php?pid=' + products[key]['id'] + '">View</a>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>' +
+                                        '</div>';
+
+                                    $('#productsWindow').append(content);
+                                    content = '';
+                                }
+                            }
+                        }
+                    };
+                    xhttp.open("GET", "../../controller/products/infinite_scroll_controller.php?lp="
+                        + loadedProducts + "&subcid=" + <?= $_GET['subcid'] ?>, true);
+                    xhttp.send();
                 }
-            };
-            xhttp.open("GET", "../../../controller/products/infinite_scroll_controller.php?offset=" offset, true);
-            xhttp.send();
-        }
+            }
+        );
     </script>
 <?php
 //Include Header
@@ -93,6 +137,7 @@ require_once "../elements/navigation.php";
                             <?php
                         }
                         ?>
+                        <div id="loader"></div>
                         <div class="clearfix"></div>
                     </div>
                 </div>

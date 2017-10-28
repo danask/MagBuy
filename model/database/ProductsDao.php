@@ -27,7 +27,7 @@ class ProductsDao
     const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
-                                    BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC";
+                                    BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC LIMIT 6";
 
     const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, pr.start_date, pr.end_date,
                                      (SELECT AVG(rating) 
@@ -79,6 +79,12 @@ class ProductsDao
 
     const CREATE_PRODUCT_SPECS = "INSERT INTO subcat_specification_value (value, subcat_spec_id, product_id)
                                             VALUES (?, ?, ?)";
+
+    const GET_PRODUCTS_BY_SUBCAT_INFISCROLL = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
+                                    p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
+                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
+                                    BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC 
+                                    LIMIT 6 OFFSET 6";
 
     //Get connection in construct
     private function __construct()
@@ -165,7 +171,20 @@ class ProductsDao
     {
         $statement = $this->pdo->prepare(self::GET_PRODUCTS_BY_SUBCAT);
         $statement->execute(array($subcatId));
-        $products = $statement->fetchAll();
+        $products = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $products;
+    }
+
+    function getProductsBySubcategoryInfiScroll($subcatId, $offset)
+    {
+        $statement = $this->pdo->prepare("SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
+                                    p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
+                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
+                                    BY P.id HAVING p.subcategory_id = $subcatId AND p.visible = 1 ORDER BY p.created_at DESC 
+                                    LIMIT 6 OFFSET $offset");
+        $statement->execute();
+        $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $products;
     }
