@@ -65,8 +65,7 @@ function cropImage($imagePath, $cropPX){
 //Final output
     header('Content-type: image/jpeg');
     imagejpeg($thumb, $imagePath);
-    unset($myImage);
 }
 
-cropImage('1.jpeg', 20);
-cropImage('2.jpeg', 50);
+cropImage('1.jpeg', 10);
+cropImage('2.jpeg', 40);
