@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 
 //Check for Session
 require_once "../../utility/no_session_main.php";
@@ -28,8 +30,13 @@ if (isset($_SESSION['loggedUser']) && isset($_GET['product_id'])) {
 
 
     } catch (PDOException $e) {
-
+        $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+        error_log($message, 3, 'errors.log');
         header("Location: ../../view/error/error_500.php");
+        die();
     }
 
+} else {
+    header("Location: ../../view/error/error_400.php");
+    die();
 }

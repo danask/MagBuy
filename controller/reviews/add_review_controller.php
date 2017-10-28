@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 
 session_start();
 
@@ -31,14 +33,18 @@ if (isset($_SESSION['loggedUser'])) {
             $reviewDao->addNewReview($review);
 
             header("Location: ../../view/main/single.php?pid=" . $_GET['pid']);
+            die();
 
         } catch (PDOException $e) {
-
+            $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+            error_log($message, 3, 'errors.log');
             header("Location: ../../view/error/error_500.php");
+            die();
         }
     } else {
 
-        header ("Location: ../../view/error/review_error.php");
+        header ("Location: ../../view/error/error_400.php");
+        die();
     }
 
 

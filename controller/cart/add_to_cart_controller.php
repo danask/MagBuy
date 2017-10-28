@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 
 session_start();
 //Autoload to require needed model files
@@ -9,9 +11,7 @@ function __autoload($className)
 }
 
 if (isset($_GET['pid'])) {
-//    if (!isset($_SESSION['loggedUser'])) {
-//        header('Location: ../../view/user/login.php');
-//    }
+
     $productId = $_GET['pid'];
     $quantity = $_GET['pqty'];
     try {
@@ -49,6 +49,8 @@ if (isset($_GET['pid'])) {
     }
 
     header("Location: ../../view/main/index.php");
+    die();
 } else {
-    // 404 page
+    header('Location: ../../view/error/error_404.php');
+    die();
 }

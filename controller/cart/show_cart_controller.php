@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 
 session_start();
 //Autoload to require needed model files
