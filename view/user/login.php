@@ -24,8 +24,9 @@ require_once "../../utility/session_main.php";
     <div id="logo"><a href="../main/index.php"><img src="../../web/assets/images/logo.png"></a></div>
     <div class="form">
         <form class="login-form" action="../../controller/user/login_controller.php" method="post">
-            <input type="email" name="email" placeholder="Enter Your Email"/>
-            <input type="password" name="password" placeholder="Enter Your Password"/>
+            <input type="email" name="email" placeholder="Enter Your Email" required/>
+            <input type="password" name="password" placeholder="Enter Your Password"
+                   pattern=".{4,20}" required title="Password 4 to 20 characters"/>
 
             <input id="login" type="submit" value="LOGIN">
 

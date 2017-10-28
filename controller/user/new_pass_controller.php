@@ -1,9 +1,12 @@
 <?php
-
-session_start();
+//Include Error Handler
+require_once '../../utility/error_handler.php';
+//Check for session
+require_once '../../utility/session_main.php';
 
 if(!isset($_SESSION['passReset'])) {
     header('Location: ../../view/user/login.php');
+    die();
 }
 
 if(abs(($_SESSION['passReset']['time'] - time())) > 600) {
@@ -11,9 +14,6 @@ if(abs(($_SESSION['passReset']['time'] - time())) > 600) {
     header('Location: ../../view/user/login.php');
     die();
 }
-
-//Check for Session
-require_once "../../utility/no_session_main.php";
 
 //Autoload to require needed model files
 function __autoload($className) {
@@ -35,16 +35,24 @@ if (!empty($_POST['pass1']) && !empty($_POST['pass2'])) {
 
         $user = new model\User;
 
-        $userDao = model\database\UserDao::getInstance();
+        try {
+            $userDao = model\database\UserDao::getInstance();
 
-        $user->setPassword(sha1($pass1));
-        $user->setEmail($_SESSION['passReset']['email']);
+            $user->setPassword(sha1($pass1));
+            $user->setEmail($_SESSION['passReset']['email']);
 
-        $userDao->resetPassword($user);
+            $userDao->resetPassword($user);
 
-        session_destroy();
-        header("Location: ../../view/user/login.php");
-        die();
+            session_destroy();
+            header("Location: ../../view/user/login.php");
+            die();
+
+        } catch (PDOException $e) {
+            $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+            error_log($message, 3, 'errors.log');
+            header("Location: ../../view/error/error_500.php");
+            die();
+        }
     } else {
         header('Location: ../../view/user/newPass.php?errorPassSyntax');
         die();

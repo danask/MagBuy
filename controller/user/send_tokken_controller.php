@@ -1,4 +1,7 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
+
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -29,9 +32,11 @@ try {
     $mail->Body    = 'Your reset tokken is: <b>' . $tokken . '<b/>';
 
     $mail->send();
-    echo 'Message has been sent';
 
 } catch (Exception $e) {
-    echo 'Message could not be sent.';
-    echo 'Mailer Error: ' . $mail->ErrorInfo;
+    //Redirect to error
+    $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+    error_log($message, 3, 'errors.log');
+    header('Location: ../../view/error/error_500.php');
+    die();
 }

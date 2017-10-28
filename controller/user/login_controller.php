@@ -59,7 +59,8 @@ if (!empty($_POST['email']) &&
 
 
         } catch (PDOException $e) {
-
+            $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+            error_log($message, 3, 'errors.log');
             header("Location: ../../view/error/error_500.php");
             die();
         }
@@ -73,4 +74,5 @@ if (!empty($_POST['email']) &&
 
     //Locate to error Login Page
     header("Location: ../../view/user/login.php?error_400");
+    die();
 }
