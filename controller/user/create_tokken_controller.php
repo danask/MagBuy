@@ -13,31 +13,42 @@ function __autoload($className)
 }
 
 //When email is reset
-if(!empty($_POST['email'])) {
+if (!empty($_POST['email'])) {
 
     $userEmail = $_POST['email'];
 
     //Check if user exists
     $user = new \model\User;
-    $userDao = \model\database\UserDao::getInstance();
-    $user->setEmail($userEmail);
 
-    if(!($userDao->checkUserExist($user))){
+    try {
 
-        header('Location: ../../view/user/forgotten.php?error');
+        $userDao = \model\database\UserDao::getInstance();
+        $user->setEmail($userEmail);
+
+        if (!($userDao->checkUserExist($user))) {
+
+            header('Location: ../../view/user/forgotten.php?error');
+            die();
+        }
+
+
+        $tokken = sha1($userEmail . microtime());
+
+        require_once 'send_tokken_controller.php';
+
+        $_SESSION['passReset']['email'] = $userEmail;
+        $_SESSION['passReset']['tokken'] = $tokken;
+        $_SESSION['passReset']['time'] = time();
+
+        header("Location: ../../view/user/forgotten.php?tokken");
+        die();
+
+    } catch (PDOException $e) {
+        $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+        error_log($message, 3, 'errors.log');
+        header("Location: ../../view/error/error_500.php");
         die();
     }
-
-    $tokken = sha1($userEmail . microtime());
-
-    require_once 'send_tokken_controller.php';
-
-    $_SESSION['passReset']['email'] = $userEmail;
-    $_SESSION['passReset']['tokken'] = $tokken;
-    $_SESSION['passReset']['time'] = time();
-
-    header("Location: ../../view/user/forgotten.php?tokken");
-    die();
 }
 
 //When tokken is received
@@ -57,6 +68,7 @@ if (!empty($_POST['tokken'])) {
 
         session_destroy();
         header ('Location: ../../view/user/forgotten.php?errorTokken');
+        die();
     }
 
 }

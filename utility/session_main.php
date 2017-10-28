@@ -8,4 +8,5 @@ if (isset($_SESSION['loggedUser'])) {
 
     //Redirect to Main
     header('Location: ../../view/main/index.php');
+    die();
 }

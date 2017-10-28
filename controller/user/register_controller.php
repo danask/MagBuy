@@ -1,5 +1,6 @@
 <?php
-
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Check if user is logged
 require_once '../../utility/session_main.php';
 
@@ -29,7 +30,7 @@ if (!empty($_POST['email']) &&
     if (!(filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($email) > 3 && strlen($email) < 254)) {
 
         //Locate to error Register Page
-        header("Location: ../../view/error/registration_error.php");
+        header("Location: ../../view/error/error_400.php");
         die();
     }
 
@@ -99,7 +100,8 @@ if (!empty($_POST['email']) &&
         }
 
     } catch (PDOException $e) {
-
+        $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+        error_log($message, 3, 'errors.log');
         header("Location: ../../view/error/error_500.php");
         die();
     }
@@ -107,7 +109,7 @@ if (!empty($_POST['email']) &&
 } else {
 
     //Locate to error Register Page
-    header("Location: ../../view/error/registration_error.php");
+    header("Location: ../../view/error/error_400.php");
 }
 
 
