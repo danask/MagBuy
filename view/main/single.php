@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Include controller for showing product
 require_once "../../controller/products/single_product_controller.php";
 //Include controller for checking if product is in favourites and if user is logged

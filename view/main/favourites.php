@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Include all favourite products controller
 require_once "../../controller/favourites/all_favourites_user_controller.php";
 //Include main Headers

@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Check for autoloader
 require_once "../../utility/autoloader.php";
 //Check for session
