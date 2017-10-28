@@ -3,7 +3,7 @@
 session_start();
 
 //Include Error Handler
-require_once '../../../utility/error_handler.php';
+require_once '../../../utility/error_handler_dir_back.php';
 //Include cropping image function
 require_once '../../../utility/imageCrop.php';
 

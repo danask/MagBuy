@@ -61,7 +61,6 @@ if (!empty($_FILES['image']['tmp_name'])) {
 //END IMAGE FILE HANDLE
 
 
-
 //If password isn't set
 if (empty($_POST['password'])) {
     $_POST['password'] = false;
@@ -74,6 +73,8 @@ if (!empty($_POST['personal'])) {
         header('Location: ../../view/error/error_400.php');
         die();
     }
+} else {
+    $_POST['personal'] = 0;
 }
 
 if (!empty($_POST['address'])) {
@@ -82,6 +83,8 @@ if (!empty($_POST['address'])) {
         header("Location: ../../view/user/edit.php?errorAR");
         die();
     }
+} else {
+    $_POST['address'] = 0;
 }
 
 
@@ -133,7 +136,9 @@ if (!empty($_POST['email']) && (!empty($_POST['password']) || $_POST['password']
 
     //Try to accomplish connection with the database
     try {
+
         $userDao = \model\database\UserDao::getInstance();
+
         $user->setEmail(htmlentities($email));
         $user->setFirstName(htmlentities($firstName));
         $user->setLastName(htmlentities($lastName));
