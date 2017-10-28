@@ -28,7 +28,7 @@ require_once "../../../controller/admin/subcategory_specs/edit_subcat_spec_contr
             }
             ?>
         </select><br>
-        <input type="submit" value="Create" name="submit">
+        <input type="submit" value="Edit" name="submit">
     </form>
     <a href="subcat_specs_view.php">
         <button>Back to Subcat Specs</button>

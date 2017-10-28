@@ -25,32 +25,34 @@ require_once "../../../controller/admin/categories/view_categories_controller.ph
         <button class="btn btn-primary">New Category</button>
     </a>
 </div>
-<table>
-    <tr>
-        <th>Id</th>
-        <th>Name</th>
-        <th>Supercategory</th>
-        <th>Options</th>
-    </tr>
-    <?php
-    foreach ($cats as $cat) {
-        ?>
-        <tr id="delId-<?= $cat['id'] ?>">
-            <td><?= $cat['id'] ?></td>
-            <td><?= $cat['name'] ?></td>
-            <td><?= $cat['supercatname'] ?></td>
-            <td>
-                <a href="categories_edit.php?cid=<?= $cat['id'] ?>">
-                    <button class="btn btn-warning">
-                        Edit
-                    </button>
-                </a>,
-                <button class="btn btn-danger" onclick="deleteCat(<?= $cat['id'] ?>)">Delete</button>
-            </td>
+<div class="adminMainWindow">
+    <table>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Supercategory</th>
+            <th>Options</th>
         </tr>
         <?php
-    }
-    ?>
-</table>
+        foreach ($cats as $cat) {
+            ?>
+            <tr id="delId-<?= $cat['id'] ?>">
+                <td><?= $cat['id'] ?></td>
+                <td><?= $cat['name'] ?></td>
+                <td><?= $cat['supercatname'] ?></td>
+                <td>
+                    <a href="categories_edit.php?cid=<?= $cat['id'] ?>">
+                        <button class="btn btn-warning">
+                            Edit
+                        </button>
+                    </a>,
+                    <button class="btn btn-danger" onclick="deleteCat(<?= $cat['id'] ?>)">Delete</button>
+                </td>
+            </tr>
+            <?php
+        }
+        ?>
+    </table>
+</div>
 </body>
 </html>

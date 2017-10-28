@@ -19,19 +19,20 @@ require_once "../elements/header.php";
 <div align="center">
     <h3>Welcome, boss! What would you like to check?</h3>
     <a href="supercategories/supercategories_view.php">
-        <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Super<br>Categories
+        <button class="btn btn-sq-lg btn-primary"><i class="fa fa-th-large fa-4x" aria-hidden="true"></i><br>Super<br>Categories
         </button>
     </a>
     <a href="categories/categories_view.php">
-        <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Categories
+        <button class="btn btn-sq-lg btn-primary"><i class="fa fa-th fa-4x" aria-hidden="true"></i><br>Categories
         </button>
     </a>
     <a href="subcategories/subcategories_view.php">
-        <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Sub Categories
+        <button class="btn btn-sq-lg btn-primary"><i class="fa fa-th-list fa-4x" aria-hidden="true"></i><br>Sub
+            Categories
         </button>
     </a>
     <a href="subcategory_specs/subcat_specs_view.php">
-        <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Subcategory<br>Specifications
+        <button class="btn btn-sq-lg btn-primary"><i class="fa fa-info fa-4x" aria-hidden="true"></i><br>Subcategory<br>Specifications
         </button>
     </a><br>
     <a href="products_promotions_reviews/products_view.php">
