@@ -27,7 +27,8 @@ if (!empty($_POST['pass1']) && !empty($_POST['pass2'])) {
     $pass2 = $_POST['pass2'];
 
     if (!($pass1 == $pass2)) {
-        header("Location: ../../view/user/newPass?errorPassMatch");
+        header("Location: ../../view/user/newPass.php?errorPassMatch");
+        die();
     }
 
     if (strlen($pass1) >= 4 && strlen($pass1) <= 20) {

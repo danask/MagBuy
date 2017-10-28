@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Check for Session
 require_once "../../utility/session_main.php";
 ?>

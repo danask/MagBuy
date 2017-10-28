@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Require old user's info and check for session (checked in controller)
 require_once "../../controller/user/get_users_info_controller.php";
 ?>
@@ -25,39 +27,40 @@ require_once "../../controller/user/get_users_info_controller.php";
               method="post">
 
             <input type="email" name="email" value="<?= $userArr["email"] ?>" required/>
-            <p class="wrongInput" <?= ($_GET['errorEmail']) ?:"style='display: block;'"?>>
+            <p class="wrongInput" <?= (!isset($_GET['errorEmail'])) ?:"style='display: block;'"?>>
                 Email already exists!</p>
 
             <input type="password" name="passwordOld" placeholder="Your Current Password"
                    pattern=".{4,20}" required title="Password 4 to 20 characters"/>
-            <p class="wrongInput" <?= ($_GET['errorPassMatch']) ?:"style='display: block;'"?>>
+            <p class="wrongInput" <?= (!isset($_GET['errorPassMatch'])) ?:"style='display: block;'"?>>
                 Wrong Password!</p>
 
             <input type="password" name="password" placeholder="New Password (Optional)"
                    pattern=".{4,20}" title="Password 4 to 20 characters"/>
-            <p class="wrongInput" <?= ($_GET['errorPassSyntax']) ?:"style='display: block;'"?>>
+            <p class="wrongInput" <?= (!isset($_GET['errorPassSyntax'])) ?:"style='display: block;'"?>>
                 Passwords must be between 4 and 12 symbols!</p>
 
             <input type="text" name="firstName" value="<?= $userArr["first_name"] ?>"
                    pattern=".{4,20}" required title="First Name 4 to 20 characters"/>
-            <p class="wrongInput"  <?= ($_GET['errorFN']) ?:"style='display: block;'"?>>
+            <p class="wrongInput"  <?= (!isset($_GET['errorFN'])) ?:"style='display: block;'"?>>
                 First Name should be between 4 and 20 symbols!</p>
 
             <input type="text" name="lastName" value="<?= $userArr["last_name"] ?>"
                    pattern=".{4,20}" required title="Last Name 4 to 20 characters"/>
-            <p class="wrongInput"  <?= ($_GET['errorLN']) ?:"style='display: block;'"?>>
+            <p class="wrongInput"  <?= (!isset($_GET['errorLN'])) ?:"style='display: block;'"?>>
                 Last Name should be between 4 and 20 symbols!</p>
 
             <input type="tel" name="mobilePhone" value="<?= $userArr["mobile_phone"] ?>"
                    pattern="[0-9]{10}" required title="Number must be 10 digits"/>
-            <p class="wrongInput"  <?= ($_GET['errorMN']) ?:"style='display: block;'"?>>
+            <p class="wrongInput"  <?= (!isset($_GET['errorMN'])) ?:"style='display: block;'"?>>
                 Mobile Number should be 10 digits!</p>
 
             <input type="text" name="address" <?php if ($userArr['full_adress']) {
                 echo "value=\"" . $userArr['full_adress'] . "\"";
             } else {
-                echo "placeholder=\"Enter Address\"";
-            } ?> pattern=".{4,200}" title="Password 4 to 200 characters" ><p class="wrongInput"  <?= ($_GET['errorAR']) ?:"style='display: block;'"?>>
+                echo "placeholder=\"Enter Delivery Address\"";
+            } ?> pattern=".{4,200}" title="Address 4 to 200 characters" ><p class="wrongInput"
+                <?= (!isset($_GET['errorAR'])) ?:"style='display: block;'"?>>
                 Address must be between 4 and 200 symbols!</p>
             <div id="fileupload">
 
@@ -73,7 +76,7 @@ require_once "../../controller/user/get_users_info_controller.php";
                 <p id="fileuploadMessage">Profile picture</p>
                 <input type="file" name="image"/>
             </div>
-            <p class="wrongInput"  <?= ($_GET['errorUL']) ?:"style='display: block;'"?>>
+            <p class="wrongInput"  <?= (!isset($_GET['errorUL'])) ?:"style='display: block;'"?>>
                 Please upload image file below 5MB (jpg/jpeg/png/gif)</p>
 
             <input id="login" type="submit" value="UPDATE">

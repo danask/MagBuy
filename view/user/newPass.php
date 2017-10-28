@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Check for Session
 require_once "../../utility/session_main.php";
 
@@ -38,9 +40,9 @@ if(abs(($_SESSION['passReset']['time'] - time())) > 600) {
             <input type="password" name="pass2" placeholder="Repeat New Password"
                    pattern=".{4,20}" required title="Password 4 to 20 characters"/>
 
-            <p class="wrongInput" <?= ($_GET['errorPassSyntax']) ?:"style='display: block;'"?>>
+            <p class="wrongInput" <?= (!isset($_GET['errorPassSyntax'])) ?:"style='display: block;'"?>>
                 Passwords must be between 4 and 12 symbols!</p>
-            <p class="wrongInput" <?= ($_GET['errorPassMatch']) ?:"style='display: block;'"?>>
+            <p class="wrongInput" <?= (!isset($_GET['errorPassMatch'])) ?:"style='display: block;'"?>>
                 Passwords doesn't match!</p>
 
             <input id="login" type="submit" value="UPDATE">

@@ -1,5 +1,6 @@
 <?php
-
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Check if user is logged
 require_once '../../utility/session_main.php';
 
@@ -59,7 +60,7 @@ if (!empty($_POST['email']) &&
 
         } catch (PDOException $e) {
 
-            header("Location: ../../view/error/pdo_error.php");
+            header("Location: ../../view/error/error_500.php");
             die();
         }
     } else {
@@ -71,5 +72,5 @@ if (!empty($_POST['email']) &&
 } else {
 
     //Locate to error Login Page
-    header("Location: ../../view/user/login.php?error");
+    header("Location: ../../view/user/login.php?error_400");
 }

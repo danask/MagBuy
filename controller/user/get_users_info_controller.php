@@ -1,5 +1,6 @@
 <?php
-
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Check for Session
 require_once "../../utility/no_session_main.php";
 
@@ -25,5 +26,5 @@ try {
 
 } catch (PDOException $e) {
 
-    header("Location: ../../view/error/pdo_error.php");
+    header("Location: ../../view/error/error_500.php");
 }

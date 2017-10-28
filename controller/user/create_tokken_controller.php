@@ -1,5 +1,6 @@
 <?php
-
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Check if user is logged
 require_once '../../utility/session_main.php';
 

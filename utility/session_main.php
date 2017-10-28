@@ -7,5 +7,5 @@ session_start();
 if (isset($_SESSION['loggedUser'])) {
 
     //Redirect to Main
-    header('Location: ../main/index.php');
+    header('Location: ../../view/main/index.php');
 }

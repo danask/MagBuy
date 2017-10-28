@@ -3,7 +3,7 @@
 //Error handler function for error 500
 if(!function_exists('Error500')) {
     function Error500($errno, $errmsg){
-        $message = "$errno $errmsg \n";
+        $message = $_SERVER['SCRIPT_NAME'] . " $errno $errmsg  \n";
         error_log($message, 3, 'errors.log');
         header('Location: ../error/error_500.php');
         die();

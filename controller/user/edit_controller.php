@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 //Check for Session
 require_once "../../utility/no_session_main.php";
 //Include custom imageCrop Function
@@ -28,7 +30,7 @@ if (!empty($_FILES['image']['tmp_name'])) {
     //Check if file is uploaded successfully
     if (!is_uploaded_file($tmpName)) {
         //Redirect to Error page
-        header('Location: ../../view/error/edit_error.php');
+        header('Location: ../../view/error/error_400.php');
         die();
     }
 
@@ -69,7 +71,7 @@ if (empty($_POST['password'])) {
 if (!empty($_POST['personal'])) {
     if (!($_POST['personal'] == 1 || $_POST['personal'] == 2)) {
         //Locate to error Register Page
-        header('Location: ../../view/error/edit_error.php');
+        header('Location: ../../view/error/error_400.php');
         die();
     }
 }
@@ -98,7 +100,7 @@ if (!empty($_POST['email']) && (!empty($_POST['password']) || $_POST['password']
     //Validate Email input
     if (!(filter_var($email, FILTER_VALIDATE_EMAIL) && strlen($email) > 3 && strlen($email) < 254)) {
         //Redirect to Error page
-        header('Location: ../../view/error/edit_error.php');
+        header('Location: ../../view/error/error_400.php');
         die();
     }
 
@@ -197,10 +199,10 @@ if (!empty($_POST['email']) && (!empty($_POST['password']) || $_POST['password']
             die();
         }
     } catch (PDOException $e) {
-        header("Location: ../../view/error/pdo_error.php");
+        header("Location: ../../view/error/error_500.php");
         die();
     }
 } else {
     //Redirect to Error page
-    header('Location: ../../view/error/input_error.php');
+    header('Location: ../../view/error/error_400.php');
 }
