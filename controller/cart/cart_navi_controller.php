@@ -18,6 +18,8 @@ if (isset($_SESSION['cart'])) {
         $cartTotalPrice += $cartProduct->getPrice() * $cartProduct->getQuantity();
     }
 
+
+
 } else {
     $cartItems = "0";
     $cartTotalPrice = "0.00";
