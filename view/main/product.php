@@ -7,7 +7,23 @@ require_once "../elements/headers.php";
 
     <!-- Define Page Name -->
     <title>MagBuy | <?= $categoryName ?></title>
-
+    <script type="text/javascript">
+        function filterProducts() {
+            var xhttp = new XMLHttpRequest();
+            var productsWindow = document.getElementById("productsWindow");
+            xhttp.onreadystatechange = function () {
+                productsWindow.innerHTML = "<img src='../../web/assets/images/ajax-loader.gif' align='center'>";
+                if (this.status == 200 && this.readyState == 4) {
+                    var mostSold = document.getElementById("mostSoldFilter");
+                    var mostReviewed = document.getElementById("mostReviewedFilter");
+                    var newestSold = document.getElementById("newestFilter");
+                    var highestRated = document.getElementById("highestRatedFilter");
+                }
+            };
+            xhttp.open("GET", "../../controller/products/products_by_category_filters_controller.php", true);
+            xhttp.send();
+        }
+    </script>
 <?php
 //Include Header
 require_once "../elements/header.php";
@@ -19,7 +35,7 @@ require_once "../elements/navigation.php";
     <div class="products">
         <div class="container">
             <div class="products-grids">
-                <div class="col-md-8 products-grid-left">
+                <div class="col-md-8 products-grid-left" id="productsWindow">
                     <div class="products-grid-lft">
                         <?php
                         $counter = 0;
@@ -82,16 +98,20 @@ require_once "../elements/navigation.php";
                             <h4>Filters</h4>
                             <ul>
                                 <li>
-                                    <button>Most/least sold</button>
+                                    Most sold
+                                    <input id="mostSoldFilter" type="checkbox" onclick="filterProducts()">
                                 </li>
                                 <li>
-                                    <button>Most/least reviewed</button>
+                                    Most reviewed
+                                    <input id="mostReviewedFilter" type="checkbox" onclick="filterProducts()">
                                 </li>
                                 <li>
-                                    <button>Date added</button>
+                                    Newest
+                                    <input id="newestFilter" type="checkbox" onclick="filterProducts()">
                                 </li>
                                 <li>
-                                    <button>Highest/lowest rated</button>
+                                    Highest rated
+                                    <input id="highestRatedFilter" type="checkbox" onclick="filterProducts()">
                                 </li>
                             </ul>
                         </div>
