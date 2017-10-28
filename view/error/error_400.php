@@ -35,7 +35,7 @@
     <link href='//fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
 
     <!-- Define Page Name -->
-    <title>MagBuy | ERROR 500</title>
+    <title>MagBuy | ERROR 400</title>
 </head>
 
 <div id="header_bg">
