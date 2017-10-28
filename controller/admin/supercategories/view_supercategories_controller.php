@@ -12,6 +12,8 @@ try {
     $superCatDao = \model\database\SuperCategoriesDao::getInstance();
     $superCats = $superCatDao->getAllSuperCategories();
 } catch (PDOException $e) {
+    $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+    error_log($message, 3, 'errors.log');
     header("Location: ../../../view/error/error_500.php");
     die();
 }

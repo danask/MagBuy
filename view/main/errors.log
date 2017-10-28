@@ -9,3 +9,108 @@
 /MagBuy/view/main/index.php 8 Undefined variable: supercatsegories  
 /MagBuy/view/main/index.php 8 Undefined variable: supercsategory  
 /MagBuy/view/main/index.php 8 Undefined variable: supercategsories  
+/MagBuy/view/main/index.php PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php:18
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(18): PDO->__construct('mysql:host=127....', 'root', '')
+#1 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(27): model\database\Connect\Connection->__construct()
+#2 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(32): model\database\Connect\Connection::getInstance()
+#3 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(38): model\database\SuperCategoriesDao->__construct()
+#4 C:\xampp\htdocs\MagBuy\controller\navigation\navigation_controller.php(15): model\database\SuperCategoriesDao::getInstance()
+#5 C:\xampp\htdocs\MagBuy\view\elements\navigation.php(3): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\MagBuy\view\main\index.php(15): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+
+Next PDOException: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php:18
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(18): PDO->__construct('mysql:host=127....', 'root', '')
+#1 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(27): model\database\Connect\Connection->__construct()
+#2 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(32): model\database\Connect\Connection::getInstance()
+#3 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(38): model\database\SuperCategoriesDao->__construct()
+#4 C:\xampp\htdocs\MagBuy\controller\navigation\navigation_controller.php(15): model\database\SuperCategoriesDao::getInstance()
+#5 C:\xampp\htdocs\MagBuy\view\elements\navigation.php(3): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\MagBuy\view\main\index.php(15): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+/MagBuy/view/main/index.php PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php:18
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(18): PDO->__construct('mysql:host=127....', 'root', '')
+#1 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(27): model\database\Connect\Connection->__construct()
+#2 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(32): model\database\Connect\Connection::getInstance()
+#3 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(38): model\database\SuperCategoriesDao->__construct()
+#4 C:\xampp\htdocs\MagBuy\controller\navigation\navigation_controller.php(15): model\database\SuperCategoriesDao::getInstance()
+#5 C:\xampp\htdocs\MagBuy\view\elements\navigation.php(3): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\MagBuy\view\main\index.php(15): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+
+Next PDOException: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php:18
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(18): PDO->__construct('mysql:host=127....', 'root', '')
+#1 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(27): model\database\Connect\Connection->__construct()
+#2 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(32): model\database\Connect\Connection::getInstance()
+#3 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(38): model\database\SuperCategoriesDao->__construct()
+#4 C:\xampp\htdocs\MagBuy\controller\navigation\navigation_controller.php(15): model\database\SuperCategoriesDao::getInstance()
+#5 C:\xampp\htdocs\MagBuy\view\elements\navigation.php(3): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\MagBuy\view\main\index.php(15): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+/MagBuy/view/main/index.php PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php:18
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(18): PDO->__construct('mysql:host=127....', 'root', '')
+#1 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(27): model\database\Connect\Connection->__construct()
+#2 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(32): model\database\Connect\Connection::getInstance()
+#3 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(38): model\database\SuperCategoriesDao->__construct()
+#4 C:\xampp\htdocs\MagBuy\controller\navigation\navigation_controller.php(15): model\database\SuperCategoriesDao::getInstance()
+#5 C:\xampp\htdocs\MagBuy\view\elements\navigation.php(3): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\MagBuy\view\main\index.php(15): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+
+Next PDOException: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php:18
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(18): PDO->__construct('mysql:host=127....', 'root', '')
+#1 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(27): model\database\Connect\Connection->__construct()
+#2 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(32): model\database\Connect\Connection::getInstance()
+#3 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(38): model\database\SuperCategoriesDao->__construct()
+#4 C:\xampp\htdocs\MagBuy\controller\navigation\navigation_controller.php(15): model\database\SuperCategoriesDao::getInstance()
+#5 C:\xampp\htdocs\MagBuy\view\elements\navigation.php(3): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\MagBuy\view\main\index.php(15): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+/MagBuy/view/main/index.php PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php:18
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(18): PDO->__construct('mysql:host=127....', 'root', '')
+#1 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(27): model\database\Connect\Connection->__construct()
+#2 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(32): model\database\Connect\Connection::getInstance()
+#3 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(38): model\database\SuperCategoriesDao->__construct()
+#4 C:\xampp\htdocs\MagBuy\controller\navigation\navigation_controller.php(15): model\database\SuperCategoriesDao::getInstance()
+#5 C:\xampp\htdocs\MagBuy\view\elements\navigation.php(3): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\MagBuy\view\main\index.php(15): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+
+Next PDOException: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php:18
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(18): PDO->__construct('mysql:host=127....', 'root', '')
+#1 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(27): model\database\Connect\Connection->__construct()
+#2 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(32): model\database\Connect\Connection::getInstance()
+#3 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(38): model\database\SuperCategoriesDao->__construct()
+#4 C:\xampp\htdocs\MagBuy\controller\navigation\navigation_controller.php(15): model\database\SuperCategoriesDao::getInstance()
+#5 C:\xampp\htdocs\MagBuy\view\elements\navigation.php(3): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\MagBuy\view\main\index.php(15): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+/MagBuy/view/main/index.php PDOException: PDO::__construct(): php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php:18
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(18): PDO->__construct('mysql:host=127....', 'root', '')
+#1 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(27): model\database\Connect\Connection->__construct()
+#2 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(32): model\database\Connect\Connection::getInstance()
+#3 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(38): model\database\SuperCategoriesDao->__construct()
+#4 C:\xampp\htdocs\MagBuy\controller\navigation\navigation_controller.php(15): model\database\SuperCategoriesDao::getInstance()
+#5 C:\xampp\htdocs\MagBuy\view\elements\navigation.php(3): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\MagBuy\view\main\index.php(15): require_once('C:\\xampp\\htdocs...')
+#7 {main}
+
+Next PDOException: SQLSTATE[HY000] [2002] php_network_getaddresses: getaddrinfo failed: No such host is known.  in C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php:18
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(18): PDO->__construct('mysql:host=127....', 'root', '')
+#1 C:\xampp\htdocs\MagBuy\model\database\Connect\Connection.php(27): model\database\Connect\Connection->__construct()
+#2 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(32): model\database\Connect\Connection::getInstance()
+#3 C:\xampp\htdocs\MagBuy\model\database\SuperCategoriesDao.php(38): model\database\SuperCategoriesDao->__construct()
+#4 C:\xampp\htdocs\MagBuy\controller\navigation\navigation_controller.php(15): model\database\SuperCategoriesDao::getInstance()
+#5 C:\xampp\htdocs\MagBuy\view\elements\navigation.php(3): require_once('C:\\xampp\\htdocs...')
+#6 C:\xampp\htdocs\MagBuy\view\main\index.php(15): require_once('C:\\xampp\\htdocs...')
+#7 {main}

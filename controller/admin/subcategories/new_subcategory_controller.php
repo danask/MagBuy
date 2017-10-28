@@ -25,8 +25,10 @@ if (isset($_POST['submit'])) {
 
 
     } catch (PDOException $e) {
-
+        $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+        error_log($message, 3, 'errors.log');
         header("Location: ../../../view/error/error_500.php");
+        die();
     }
 
 } else {
@@ -34,7 +36,9 @@ if (isset($_POST['submit'])) {
         $catDao = \model\database\CategoriesDao::getInstance();
         $categories = $catDao->getAllCategories();
     } catch (PDOException $e) {
-
+        $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+        error_log($message, 3, 'errors.log');
         header("Location: ../../../view/error/error_500.php");
+        die();
     }
 }

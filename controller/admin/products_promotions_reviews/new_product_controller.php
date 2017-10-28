@@ -1,7 +1,11 @@
 <?php
-
 //Start Session
 session_start();
+
+//Include Error Handler
+require_once '../../../utility/error_handler.php';
+//Include cropping image function
+require_once '../../../utility/imageCrop.php';
 
 //Autoload to require needed model files
 function __autoload($className)
@@ -10,8 +14,6 @@ function __autoload($className)
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
-//Include cropping image function
-require_once '../../../utility/imageCrop.php';
 
 if (isset($_POST['submit'])) {
     $product = new \model\Product();
@@ -39,7 +41,7 @@ if (isset($_POST['submit'])) {
 
             if (!is_uploaded_file($tmpName)) {
                 //Redirect to Error page
-                header('Location: ../../../view/error/admin_upload_error.php');
+                header('Location: ../../../view/error/error_400.php');
                 die();
             }
 
@@ -65,12 +67,12 @@ if (isset($_POST['submit'])) {
 
             } else {
                 //Redirect to Error page
-                header('Location: ../../../view/error/admin_upload_error.php');
+                header('Location: ../../../view/error/error_400.php');
                 die();
             }
         } else {
             //Redirect to Error page
-            header('Location: ../../../view/error/admin_upload_error.php');
+            header('Location: ../../../view/error/error_400.php');
             die();
         }
    }
@@ -103,6 +105,8 @@ if (isset($_POST['submit'])) {
         header("Location: ../../../view/admin/products_promotions_reviews/products_view.php");
 
     } catch (PDOException $e) {
+        $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+        error_log($message, 3, 'errors.log');
         header("Location: ../../../view/error/error_500.php");
         die();
     }

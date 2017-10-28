@@ -15,4 +15,7 @@ if (isset($_GET['scid'])) {
 
     header('Content-Type: application/json');
     echo json_encode($specs);
+} else {
+    header("Location: ../../../view/error/error_400.php");
+    die();
 }

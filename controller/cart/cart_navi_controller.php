@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 
 //Autoload to require needed model files
 if (!function_exists("__autoload")) {

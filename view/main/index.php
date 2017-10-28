@@ -7,7 +7,6 @@ require_once "../elements/headers.php";
 
     <!-- Define Page Name -->
     <title>MagBuy | Home</title>
-    </head>
 
 <?php
 //Include Header

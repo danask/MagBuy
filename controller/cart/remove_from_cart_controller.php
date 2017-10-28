@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 
 session_start();
 //Autoload to require needed model files
@@ -25,9 +27,11 @@ if (isset($_SESSION['cart']) && isset($_GET['pid'])) {
             unset($cart[$productId]);
             $_SESSION['cart'] = $cart;
         } else {
-            // 404 page
+            header("Location: ../../view/error/error_404.php");
+            die();
         }
     }
 } else {
-    // 404 page
+    header("Location: ../../view/error/error_404.php");
+    die();
 }

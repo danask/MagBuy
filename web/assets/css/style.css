@@ -3248,3 +3248,8 @@ ul.qty li p {
 #addCartButtonSingle {
     display: block;
 }
+
+#errorImg {
+    width: 100%;
+    height: auto;
+}
