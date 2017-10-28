@@ -26,6 +26,8 @@ if (isset($_POST['submit'])) {
 
 
     } catch (PDOException $e) {
+        $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+        error_log($message, 3, 'errors.log');
         header("Location: ../../../view/error/error_500.php");
         die();
     }
@@ -38,7 +40,9 @@ if (isset($_POST['submit'])) {
         $subcategories = $subcatDao->getAllSubCategories();
         $spec = $specDao->getSubcatSpecById($specId);
     } catch (PDOException $e) {
-
+        $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+        error_log($message, 3, 'errors.log');
         header("Location: ../../../view/error/error_500.php");
+        die();
     }
 }
