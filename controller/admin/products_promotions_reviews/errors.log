@@ -1,0 +1,72 @@
+2017-10-28 21:29:59 /MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'images (image_url, product_id) VALUES ('../../web/uploads/productImages/30.66955' at line 1 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:133
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(133): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\MagBuy\controller\admin\products_promotions_reviews\new_product_controller.php(99): model\database\ProductsDao->createNewProduct(Object(model\Product), Array, Array)
+#2 {main}
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+2017-10-28 21:38:40 /MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'products(title, description, price, quantity, visible, created_at,
+        subc' at line 1 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:127
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(127): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\MagBuy\controller\admin\products_promotions_reviews\new_product_controller.php(99): model\database\ProductsDao->createNewProduct(Object(model\Product), Array, Array)
+#2 {main}
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+2017-10-28 21:41:02 /MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'products(title, description, price, quantity, visible, created_at,
+        subc' at line 1 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:127
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(127): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\MagBuy\controller\admin\products_promotions_reviews\new_product_controller.php(99): model\database\ProductsDao->createNewProduct(Object(model\Product), Array, Array)
+#2 {main}
+2017-10-28 21:44:15 /MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'products(title, description, price, quantity, visible, created_at,
+        subc' at line 1 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:127
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(127): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\MagBuy\controller\admin\products_promotions_reviews\new_product_controller.php(98): model\database\ProductsDao->createNewProduct(Object(model\Product), Array, Array)
+#2 {main}
+2017-10-28 21:44:49 /MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INSEsdRT INTO products(title, description, price, quantity, visible, created_at,' at line 1 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:127
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(127): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\MagBuy\controller\admin\products_promotions_reviews\new_product_controller.php(99): model\database\ProductsDao->createNewProduct(Object(model\Product), Array, Array)
+#2 {main}
+2017-10-28 21:45:34 /MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INSsERT INTO images (image_url, product_id) VALUES ('../../web/uploads/productIm' at line 1 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:133
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(133): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\MagBuy\controller\admin\products_promotions_reviews\new_product_controller.php(99): model\database\ProductsDao->createNewProduct(Object(model\Product), Array, Array)
+#2 {main}
+2017-10-28 21:46:12 /MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INSsERT INTO images (image_url, product_id) VALUES ('../../web/uploads/productIm' at line 1 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:133
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(133): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\MagBuy\controller\admin\products_promotions_reviews\new_product_controller.php(99): model\database\ProductsDao->createNewProduct(Object(model\Product), Array, Array)
+#2 {main}
+2017-10-28 21:47:06 /MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INSsERT INTO images (image_url, product_id) VALUES ('../../web/uploads/productIm' at line 1 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:133
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(133): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\MagBuy\controller\admin\products_promotions_reviews\new_product_controller.php(99): model\database\ProductsDao->createNewProduct(Object(model\Product), Array, Array)
+#2 {main}
+2017-10-28 21:47:48 /MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INSERsT INTO products(title, description, price, quantity, visible, created_at,' at line 1 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:127
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(127): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\MagBuy\controller\admin\products_promotions_reviews\new_product_controller.php(99): model\database\ProductsDao->createNewProduct(Object(model\Product), Array, Array)
+#2 {main}
+2017-10-28 21:49:07 /MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'INSERsT INTO products(title, description, price, quantity, visible, created_at,' at line 1 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:127
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(127): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\MagBuy\controller\admin\products_promotions_reviews\new_product_controller.php(99): model\database\ProductsDao->createNewProduct(Object(model\Product), Array, Array)
+#2 {main}
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: subcategory_id  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 2 unlink(../../web/uploads/productImages/30.85315400 1509220730.jpeg): No such file or directory  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 2 unlink(../../web/uploads/productImages/30.39987900 1509220869.jpeg): No such file or directory  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 2 unlink(../../web/uploads/productImages/30.90121500 1509220916.jpeg): No such file or directory  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 8 Undefined index: specsCount  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 2 unlink(../../web/uploads/productImages/30.16693900 1509220945.jpeg): No such file or directory  
+/MagBuy/controller/admin/products_promotions_reviews/new_product_controller.php 2 unlink(../../web/uploads/productImages/30.93545500 1509221026.jpeg): No such file or directory  

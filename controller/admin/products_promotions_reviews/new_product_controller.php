@@ -63,6 +63,7 @@ if (isset($_POST['submit'])) {
 
                 move_uploaded_file($tmpName, $imagesDirectoryMove);
                 cropImage($imagesDirectoryMove, 400);
+                $imagesCatch[] = $imagesDirectoryMove;
                 $images[] = $imagesDirectoryView;
 
             } else {
@@ -97,7 +98,13 @@ if (isset($_POST['submit'])) {
 
         $id = $productDao->createNewProduct($product, $images, $specs);
         if ($id === false) {
+
+            foreach ($imagesCatch as $dir) {
+                unlink($dir);
+            }
+
             header("Location: ../../../view/error/error_500.php");
+            die();
         } else {
             echo $id;
         }
@@ -105,6 +112,8 @@ if (isset($_POST['submit'])) {
         header("Location: ../../../view/admin/products_promotions_reviews/products_view.php");
 
     } catch (PDOException $e) {
+
+
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
         error_log($message, 3, 'errors.log');
         header("Location: ../../../view/error/error_500.php");
@@ -112,6 +121,14 @@ if (isset($_POST['submit'])) {
     }
 
 } else {
-    $subcatDao = \model\database\SubCategoriesDao::getInstance();
-    $subcategories = $subcatDao->getAllSubCategories();
+
+    try {
+        $subcatDao = \model\database\SubCategoriesDao::getInstance();
+        $subcategories = $subcatDao->getAllSubCategories();
+    } catch (PDOException $e) {
+        $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
+        error_log($message, 3, 'errors.log');
+        header("Location: ../../../view/error/error_500.php");
+        die();
+    }
 }

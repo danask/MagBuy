@@ -6,6 +6,7 @@ namespace model\database;
 use model\database\Connect\Connection;
 use model\Product;
 use PDO;
+use PDOException;
 
 
 class ProductsDao
@@ -145,13 +146,9 @@ class ProductsDao
             $this->pdo->commit();
 
             return $productId;
-        } catch (\PDOException $e) {
+        } catch (PDOException $e) {
             $this->pdo->rollBack();
-
-                $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
-                error_log($message, 3, 'errors.log');
-                header("Location: ../../view/error/error_500.php");
-                die();
+            return false;
         }
     }
 
