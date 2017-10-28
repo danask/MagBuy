@@ -23,7 +23,7 @@ if (isset($_GET['pid'])) {
         header("Location: ../../../view/admin/products_promotions_reviews/products_view.php");
 
     } catch (PDOException $e) {
-        header("Location: ../../../view/error/pdo_error.php");
+        header("Location: ../../../view/error/error_500.php");
         die();
     }
 } else {

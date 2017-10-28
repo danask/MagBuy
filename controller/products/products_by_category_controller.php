@@ -21,5 +21,5 @@ try {
 
 } catch (PDOException $e) {
 
-    header("Location: ../../view/error/pdo_error.php");
+    header("Location: ../../view/error/error_500.php");
 }

@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 
 
     } catch (PDOException $e) {
-        header("Location: ../../../view/error/pdo_error.php");
+        header("Location: ../../../view/error/error_500.php");
         die();
     }
 
@@ -35,6 +35,6 @@ if (isset($_POST['submit'])) {
         $supercategories = $supercatDao->getAllSuperCategories();
     } catch (PDOException $e) {
 
-        header("Location: ../../../view/error/pdo_error.php");
+        header("Location: ../../../view/error/error_500.php");
     }
 }

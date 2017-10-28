@@ -17,7 +17,7 @@ if (isset($_GET['ssid'])) {
         header("Location: ../../../view/admin/subcategory_specs/subcat_spec_view.php");
 
     } catch (PDOException $e) {
-        header("Location: ../../../view/error/pdo_error.php");
+        header("Location: ../../../view/error/error_500.php");
         die();
     }
 } else {

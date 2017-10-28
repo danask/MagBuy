@@ -17,7 +17,7 @@ if (isset($_GET['scid'])) {
         header("Location: ../../../view/admin/supercategories/supercategories_view.php");
 
     } catch (PDOException $e) {
-        header("Location: ../../../view/error/pdo_error.php");
+        header("Location: ../../../view/error/error_500.php");
         die();
     }
 } else {

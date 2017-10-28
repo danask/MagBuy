@@ -20,7 +20,7 @@ if (isset($_GET['pid'])) {
         $productDetails = $productsDao->getProductByID($productId);
         $productImage = $productImagesDao->getFirstProductImage($productId);
     } catch (PDOException $e) {
-        header("Location: ../../view/error/pdo_error.php");
+        header("Location: ../../view/error/error_500.php");
     }
     $cartProduct = new \model\CartProduct();
     $cartProduct->setId($productId);

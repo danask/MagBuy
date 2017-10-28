@@ -95,7 +95,7 @@ if (isset($_POST['submit'])) {
 
         $id = $productDao->createNewProduct($product, $images, $specs);
         if ($id === false) {
-            header("Location: ../../../view/error/pdo_error.php");
+            header("Location: ../../../view/error/error_500.php");
         } else {
             echo $id;
         }
@@ -103,7 +103,7 @@ if (isset($_POST['submit'])) {
         header("Location: ../../../view/admin/products_promotions_reviews/products_view.php");
 
     } catch (PDOException $e) {
-        header("Location: ../../../view/error/pdo_error.php");
+        header("Location: ../../../view/error/error_500.php");
         die();
     }
 

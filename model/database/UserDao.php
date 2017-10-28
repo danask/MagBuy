@@ -141,7 +141,7 @@ class UserDao {
         } catch (PDOException $e) {
 
             $this->pdo->rollBack();
-            header("Location: ../../view/error/pdo_error.php");
+            header("Location: ../../view/error/error_500.php");
         }
     }
 
@@ -180,7 +180,7 @@ class UserDao {
         } catch (PDOException $e) {
 
             $this->pdo->rollBack();
-            header("Location: ../../view/error/pdo_error.php");
+            header("Location: ../../view/error/error_500.php");
         }
     }
 
