@@ -35,7 +35,7 @@
     <link href='//fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
 
     <!-- Define Page Name -->
-    <title>MagBuy | ERROR 500</title>
+    <title>MagBuy | ERROR 403</title>
 </head>
 
 <div id="header_bg">
@@ -47,7 +47,7 @@
                 <a href="/MagBuy/view/main/index.php"><h1>Mag<span>Buy</span></h1></a>
             </div>
             <a href="/MagBuy/view/main/index.php">
-                <img id="errorImg" src="/MagBuy/web/assets/images/error_500.jpg">
+                <img id="errorImg" src="/MagBuy/web/assets/images/error_403.jpg">
             </a>
 
 
@@ -62,21 +62,21 @@
             <div class="nbs-flexisel-inner">
                 <ul class="flexiselDemo3 nbs-flexisel-ul">
                     <li onclick="location.href='http://upnetix.com/';" class="nbs-flexisel-item"><img
-                                src="/MagBuy/web/assets/images/c3.png" alt=""/></li>
+                            src="/MagBuy/web/assets/images/c3.png" alt=""/></li>
                     <li onclick="location.href='https://www.trader.bg/';" class="nbs-flexisel-item"><img
-                                src="/MagBuy/web/assets/images/c4.png" alt=""/></li>
+                            src="/MagBuy/web/assets/images/c4.png" alt=""/></li>
                     <li onclick="location.href='http://ittalents.bg/home';" class="nbs-flexisel-item"><img
-                                src="/MagBuy/web/assets/images/c1.png" alt=""/></li>
+                            src="/MagBuy/web/assets/images/c1.png" alt=""/></li>
                     <li onclick="location.href='http://imperiaonline.org';" class="nbs-flexisel-item"><img
-                                src="/MagBuy/web/assets/images/c2.png" alt=""/></li>
+                            src="/MagBuy/web/assets/images/c2.png" alt=""/></li>
                     <li onclick="location.href='http://upnetix.com/';" class="nbs-flexisel-item"><img
-                                src="/MagBuy/web/assets/images/c3.png" alt=""/></li>
+                            src="/MagBuy/web/assets/images/c3.png" alt=""/></li>
                     <li onclick="location.href='https://www.trader.bg/';" class="nbs-flexisel-item"><img
-                                src="/MagBuy/web/assets/images/c4.png" alt=""/></li>
+                            src="/MagBuy/web/assets/images/c4.png" alt=""/></li>
                     <li onclick="location.href='http://ittalents.bg/home';" class="nbs-flexisel-item"><img
-                                src="/MagBuy/web/assets/images/c1.png" alt=""/></li>
+                            src="/MagBuy/web/assets/images/c1.png" alt=""/></li>
                     <li onclick="location.href='http://imperiaonline.org';" class="nbs-flexisel-item"><img
-                                src="/MagBuy/web/assets/images/c2.png" alt=""/></li>
+                            src="/MagBuy/web/assets/images/c2.png" alt=""/></li>
                 </ul>
             </div>
         </div>

@@ -17,3 +17,4 @@
 /MagBuy/controller/user/edit_controller.php 8 Undefined index: personal  
 /MagBuy/controller/user/edit_controller.php 8 Undefined index: personal  
 /MagBuy/controller/user/edit_controller.php 8 Undefined index: personal  
+/MagBuy/controller/user/send_tokken_controller.php 8 Undefined variable: userEmail  

@@ -2,3 +2,6 @@ php_value upload_max_filesize 100M
 php_value post_max_size 100M
 
 ErrorDocument 404 /MagBuy/view/error/error_404.php
+ErrorDocument 403 /MagBuy/view/error/error_403.php
+
+Options -Indexes
