@@ -7,7 +7,8 @@ use model\database\Connect\Connection;
 use model\SubcatSpecification;
 use PDO;
 
-class SubcatSpecificationsDao {
+class SubcatSpecificationsDao
+{
 
     //Make Singleton
     private static $instance;
@@ -18,14 +19,25 @@ class SubcatSpecificationsDao {
 
     const GET_ALL_SPEC_FOR_SUBCAT = "SELECT * FROM subcat_specifications WHERE subcategory_id = ?";
 
+    const GET_ALL_SPECS_ADMIN = "SELECT scs.id, scs.name, sc.name AS subcat_name FROM subcat_specifications scs
+                                LEFT JOIN subcategories sc ON scs.subcategory_id = sc.id";
+
+    const GET_SPEC_BY_ID = "SELECT * FROM subcat_specifications WHERE id = ?";
+
+    const EDIT_SPEC = "UPDATE subcat_specifications SET name = ?, subcategory_id = ? WHERE id = ?";
+
+    const DELETE_SPEC = "DELETE FROM subcat_specifications WHERE id = ?";
+
 
     //Get connection in construct
-    private function __construct() {
+    private function __construct()
+    {
 
         $this->pdo = Connection::getInstance()->getConnection();
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
 
         if (self::$instance === null) {
             self::$instance = new SubcatSpecificationsDao();
@@ -35,13 +47,13 @@ class SubcatSpecificationsDao {
     }
 
 
-
     /**
      * Function for creating specifications.
      * @param SubcatSpecification $specification - Receives specifications name and ID as object.
      * @return string - Returns specifications ID.
      */
-    function createSpecification(SubcatSpecification $specification) {
+    function createSpecification(SubcatSpecification $specification)
+    {
 
         $statement = $this->pdo->prepare(self::CREATE_SPEC);
         $statement->execute(array(
@@ -57,7 +69,8 @@ class SubcatSpecificationsDao {
      * @param $subcatId - Receives subcategory ID.
      * @return array - Returns specifications as associative array.
      */
-    function getAllSpecificationsForSubcategory($subcatId) {
+    function getAllSpecificationsForSubcategory($subcatId)
+    {
 
         $statement = $this->pdo->prepare(self::GET_ALL_SPEC_FOR_SUBCAT);
         $statement->execute(array($subcatId));
@@ -65,5 +78,40 @@ class SubcatSpecificationsDao {
         $specs = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $specs;
+    }
+
+    function getAllSubcategorySpecificationsAdmin()
+    {
+        $statement = $this->pdo->prepare(self::GET_ALL_SPECS_ADMIN);
+        $statement->execute();
+
+        $specs = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $specs;
+    }
+
+    function getSubcatSpecById($specId)
+    {
+        $statement = $this->pdo->prepare(self::GET_SPEC_BY_ID);
+        $statement->execute(array($specId));
+        $category = $statement->fetch();
+
+        return $category;
+    }
+
+    function editSubcatSpec(SubcatSpecification $spec)
+    {
+        $statement = $this->pdo->prepare(self::EDIT_SPEC);
+        $statement->execute(array($spec->getName(), $spec->getSubcategoryId(), $spec->getId()));
+
+        return true;
+    }
+
+    function deleteSubcatSpec($specId)
+    {
+        $statement = $this->pdo->prepare(self::DELETE_SPEC);
+        $statement->execute(array($specId));
+
+        return true;
     }
 }

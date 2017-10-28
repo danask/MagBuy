@@ -11,6 +11,14 @@ class SubcatSpecification
     private $subcategory_id;
 
     /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
+    }
+
+    /**
      * @return mixed
      */
     public function getId()

@@ -30,7 +30,7 @@ require_once "../elements/header.php";
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Sub Categories
         </button>
     </a>
-    <a href="subcategory_specs/subcat_spec_create.php">
+    <a href="subcategory_specs/subcat_specs_view.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-code fa-4x" aria-hidden="true"></i><br>Subcategory<br>Specifications
         </button>
     </a><br>

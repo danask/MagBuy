@@ -40,6 +40,20 @@ function deleteSubCat(subcatId) {
     }
 }
 
+function deleteSpec(specId) {
+    if (confirm("Are you sure you want to delete SubCategory Specification with ID " + specId + " ? WARNING: " +
+            "This will also delete the product specification of any products that have this Subcat Spec!")) {
+        var xhttp = new XMLHttpRequest();
+        xhttp.onreadystatechange = function () {
+            if (this.status == 200 && this.readyState == 4) {
+                $('#delId-' + specId).remove();
+            }
+        };
+        xhttp.open("GET", "../../../controller/admin/subcategory_specs/delete_subcat_spec_controller.php?ssid=" + specId, true);
+        xhttp.send();
+    }
+}
+
 function toggleVisibility(productId, currentVis) {
     if (confirm("Are you sure you want to toggle visibility of Product with ID " + productId + " ?")) {
         var xhttp = new XMLHttpRequest();

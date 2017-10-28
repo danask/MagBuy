@@ -17,19 +17,28 @@ if (isset($_POST['submit'])) {
 
         $specification->setName(htmlentities($_POST['name']));
         $specification->setSubcategoryId(htmlentities($_POST['subcategory_id']));
+        $specification->setId($_POST['spec_id']);
 
 
-        $id = $specDao->createSpecification($specification);
+        $specDao->editSubcatSpec($specification);
 
         header("Location: ../../../view/admin/subcategory_specs/subcat_specs_view.php");
 
 
     } catch (PDOException $e) {
-
         header("Location: ../../../view/error/pdo_error.php");
+        die();
     }
 
 } else {
-    $subcatDao = \model\database\SubCategoriesDao::getInstance();
-    $subcategories = $subcatDao->getAllSubCategories();
+    try {
+        $specId = $_GET['ssid'];
+        $subcatDao = \model\database\SubCategoriesDao::getInstance();
+        $specDao = \model\database\SubcatSpecificationsDao::getInstance();
+        $subcategories = $subcatDao->getAllSubCategories();
+        $spec = $specDao->getSubcatSpecById($specId);
+    } catch (PDOException $e) {
+
+        header("Location: ../../../view/error/pdo_error.php");
+    }
 }
