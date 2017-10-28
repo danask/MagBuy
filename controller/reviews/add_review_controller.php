@@ -36,7 +36,7 @@ if (isset($_SESSION['loggedUser'])) {
             die();
 
         } catch (PDOException $e) {
-            $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+            $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
             error_log($message, 3, 'errors.log');
             header("Location: ../../view/error/error_500.php");
             die();
@@ -51,4 +51,5 @@ if (isset($_SESSION['loggedUser'])) {
 } else {
 
     header("Location: ../../view/main/index.php");
+    die();
 }

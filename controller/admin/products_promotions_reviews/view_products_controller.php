@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../../utility/error_handler.php';
 
 session_start();
 //Autoload to require needed model files
@@ -12,7 +14,7 @@ try {
     $productDao = \model\database\ProductsDao::getInstance();
     $products = $productDao->getAllProductsAdmin();
 } catch (PDOException $e) {
-    $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+    $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
     error_log($message, 3, 'errors.log');
     header("Location: ../../../view/error/error_500.php");
     die();

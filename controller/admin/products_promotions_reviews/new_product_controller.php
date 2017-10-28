@@ -105,7 +105,7 @@ if (isset($_POST['submit'])) {
         header("Location: ../../../view/admin/products_promotions_reviews/products_view.php");
 
     } catch (PDOException $e) {
-        $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+        $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
         error_log($message, 3, 'errors.log');
         header("Location: ../../../view/error/error_500.php");
         die();

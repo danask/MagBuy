@@ -1,4 +1,6 @@
 <?php
+//Include Error Handler
+require_once '../../utility/error_handler.php';
 
 //Autoload to require needed model files
 function __autoload($className)
@@ -14,6 +16,7 @@ $newest = $_GET['newf'];
 $highestRated = $_GET['hrf'];
 $subcatId = $_GET['scid'];
 $filters = array('msf' => $mostSold, 'mrf' => $mostReviewed, 'newf' => $newest, 'hrf' => $highestRated);
+
 
 $productsDao = \model\database\ProductsDao::getInstance();
 $products = $productsDao->getFilteredProductsWithSubCategory($filters, $subcatId);

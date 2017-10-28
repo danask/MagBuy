@@ -48,7 +48,7 @@ if (!empty($_POST['pass1']) && !empty($_POST['pass2'])) {
             die();
 
         } catch (PDOException $e) {
-            $message = $_SERVER['SCRIPT_NAME'] . " $e\n";
+            $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
             error_log($message, 3, 'errors.log');
             header("Location: ../../view/error/error_500.php");
             die();
