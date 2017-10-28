@@ -35,15 +35,15 @@ require_once "../elements/header.php";
         </button>
     </a><br>
     <a href="products_promotions_reviews/products_view.php">
-        <button class="btn btn-sq-lg btn-primary"><i class="fa fa-cubes fa-4x" aria-hidden="true"></i><br>Products,<br>
-            Reviews and<br>
+        <button class="btn btn-sq-lg btn-primary"><i class="fa fa-cubes fa-4x" aria-hidden="true"></i><br>Products
+            and<br>
             Promotions
         </button>
     </a>
     <a href="#">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-user fa-4x" aria-hidden="true"></i><br>Users</button>
     </a>
-    <a href="#">
+    <a href="orders/orders_view.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-plane fa-4x" aria-hidden="true"></i><br>Orders
         </button>
     </a>

@@ -5,6 +5,7 @@ namespace model\database;
 
 use model\database\Connect\Connection;
 use model\Order;
+use PDO;
 
 class OrdersDao
 {
@@ -15,6 +16,9 @@ class OrdersDao
     //Statements defined as constants
     const ADD_NEW_ORDER = "INSERT INTO orders (user_id, created_at, status) VALUES (?, ?, ?)";
     const ADD_ORDER_PRODUCT = "INSERT INTO order_products (order_id, product_id, quantity) VALUES (?, ?, ?)";
+    const GET_ALL_ORDERS_ADMIN = "SELECT o.id, u.email AS email, o.created_at, o.status FROM orders o
+                                LEFT JOIN users u ON o.user_id = u.id";
+    const CHANGE_ORDER_STATUS = "UPDATE orders SET status = ? WHERE id = ?";
 
     //Get connection in construct
     private function __construct()
@@ -62,5 +66,23 @@ class OrdersDao
             $this->pdo->rollBack();
             return false;
         }
+    }
+
+    function getAllOrdersAdmin()
+    {
+        $statement = $this->pdo->prepare(self::GET_ALL_ORDERS_ADMIN);
+        $statement->execute();
+
+        $orders = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $orders;
+    }
+
+    function changeOrderStatus($orderId, $newStatus)
+    {
+        $statement = $this->pdo->prepare(self::CHANGE_ORDER_STATUS);
+        $statement->execute(array($newStatus, $orderId));
+
+        return true;
     }
 }
