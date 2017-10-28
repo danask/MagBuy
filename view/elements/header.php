@@ -1,3 +1,4 @@
+</head>
 <body>
 <div class="top_bar">
     <div class="container">
