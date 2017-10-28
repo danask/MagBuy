@@ -33,21 +33,34 @@ class OrdersDao
         return self::$instance;
     }
 
-    function newOrder(Order $order)
+    function newOrder(Order $order, $cart)
     {
-        $statement = $this->pdo->prepare(self::ADD_NEW_ORDER);
-        $statement->execute(array($order->getUserId(), $order->getCreatedAt(), $order->getStatus()));
-        $orderId = $this->pdo->lastInsertId();
+        $this->pdo->beginTransaction();
 
-        return $orderId;
+        try {
+            //create new order and get id
+            $statement = $this->pdo->prepare(self::ADD_NEW_ORDER);
+            $statement->execute(array($order->getUserId(), $order->getCreatedAt(), $order->getStatus()));
+            $orderId = $this->pdo->lastInsertId();
+
+            //fill order with products and return the id, total price and quantity of the order as array
+            $totalPrice = 0;
+            $quantity = 0;
+            foreach ($cart as $cartProduct) {
+                $totalPrice += $cartProduct->getPrice() * $cartProduct->getQuantity();
+                $quantity += $cartProduct->getQuantity();
+
+                $statement = $this->pdo->prepare(self::ADD_ORDER_PRODUCT);
+                $statement->execute(array($orderId, $cartProduct->getId(), $cartProduct->getQuantity()));
+            }
+            $result = [$orderId, $totalPrice, $quantity];
+            $this->pdo->commit();
+
+            return $result;
+
+        } catch (\PDOException $e) {
+            $this->pdo->rollBack();
+            return false;
+        }
     }
-
-    function addOrderProduct($orderId, $productId, $quantity)
-    {
-        $statement = $this->pdo->prepare(self::ADD_ORDER_PRODUCT);
-        $statement->execute(array($orderId, $productId, $quantity));
-
-        return true;
-    }
-
 }

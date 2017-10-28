@@ -15,14 +15,16 @@ if (isset($_SESSION['cart'])) {
 
     try {
         $ordersDao = \model\database\OrdersDao::getInstance();
-        $orderId = $ordersDao->newOrder($order);
-        $totalPrice = 0;
-        $quantity = 0;
-        foreach ($cart as $cartProduct) {
-            $ordersDao->addOrderProduct($orderId, $cartProduct->getId(), $cartProduct->getQuantity());
-            $totalPrice += $cartProduct->getPrice() * $cartProduct->getQuantity();
-            $quantity += $cartProduct->getQuantity();
+
+        $result = $ordersDao->newOrder($order, $cart);
+        if ($result === false) {
+            header("Location: ../../view/error/error_500.php");
+            die();
         }
+        $orderId = $result[0];
+        $totalPrice = $result[1];
+        $quantity = $result[2];
+
         unset($_SESSION['cart']);
         $_SESSION['oid'] = $orderId;
         $_SESSION['oItems'] = $quantity;

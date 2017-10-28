@@ -16,8 +16,6 @@ class ProductsDao
     private $pdo;
 
     //Statements defined as constants
-    const CREATE_PRODUCT = "INSERT INTO products(title, description, price, quantity, visible, created_at,
-                            subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, pr.percent,
                                 pr.start_date, pr.end_date, p.visible,
@@ -25,8 +23,6 @@ class ProductsDao
                                 INNER JOIN images i ON p.id = i.product_id 
                                 LEFT JOIN promotions pr ON p.id = pr.product_id WHERE P.visible = 1 
                                 GROUP BY p.id HAVING p.id = ?";
-
-    const GET_MOST_REVIEWED = "SELECT * FROM products WHERE P.visible = 1 ORDER BY times_reviewed DESC";
 
     const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
@@ -69,6 +65,21 @@ class ProductsDao
 
     const TOGGLE_VISIBILITY = "UPDATE products SET visible = ? WHERE id = ?";
 
+    const GET_FILTERED_PRODUCTS_SUBCAT = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, pr.start_date, pr.end_date,
+                                     (SELECT AVG(rating) 
+                                     FROM reviews WHERE product_id = P.id) average FROM products P
+                                     JOIN images I ON P.id = I.product_id JOIN reviews R ON P.id = R.product_id
+                                     LEFT JOIN promotions pr ON P.id = pr.product_id
+                                     WHERE P.visible = 1 GROUP BY P.id ORDER BY average DESC";
+
+    const CREATE_PRODUCT_INFO = "INSERT INTO products(title, description, price, quantity, visible, created_at,
+        subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+
+    const CREATE_PRODUCT_IMAGES = "INSERT INTO images (image_url, product_id) VALUES (?, ?)";
+
+    const CREATE_PRODUCT_SPECS = "INSERT INTO subcat_specification_value (value, subcat_spec_id, product_id)
+                                            VALUES (?, ?, ?)";
+
     //Get connection in construct
     private function __construct()
     {
@@ -106,13 +117,14 @@ class ProductsDao
             $visible = $product->getVisible();
             $createdAt = $product->getCreatedAt();
             $subcatId = $product->getSubcategoryId();
-            $this->pdo->query("INSERT INTO products(title, description, price, quantity, visible, created_at,
-        subcategory_id) VALUES ('$title', '$description', '$price', '$quantity', '$visible', '$createdAt', '$subcatId')");
+            $statement = $this->pdo->prepare(self::CREATE_PRODUCT_INFO);
+            $statement->execute(array($title, $description, $price, $quantity, $visible, $createdAt, $subcatId));
             $productId = $this->pdo->lastInsertId();
 
             //product images
             foreach ($images as $image) {
-                $this->pdo->query("INSERT INTO images (image_url, product_id) VALUES ('$image', $productId)");
+                $statement = $this->pdo->prepare(self::CREATE_PRODUCT_IMAGES);
+                $statement->execute(array($image, $productId));
             }
 
             //product specs
@@ -120,8 +132,8 @@ class ProductsDao
                 $value = $spec->getValue();
                 $specId = $spec->getSubcatSpecId();;
 
-                $this->pdo->query("INSERT INTO subcat_specification_value (value, subcat_spec_id, product_id)
-                                            VALUES ('$value', $specId, $productId)");
+                $statement = $this->pdo->prepare(self::CREATE_PRODUCT_SPECS);
+                $statement->execute(array($value, $specId, $productId));
             }
 
             $this->pdo->commit();
@@ -148,29 +160,6 @@ class ProductsDao
         return $product;
     }
 
-
-    function getProductsFilteredByPrice($priceFilter)
-    {
-        if ($priceFilter === "mostExpensive") {
-            $filter = "DESC";
-        } elseif ($priceFilter === "leastExpensive") {
-            $filter = "ASC";
-        }
-        $statement = $this->pdo->prepare("SELECT * FROM products ORDER BY price $filter");
-        $statement->execute();
-        $products = $statement->fetchAll();
-
-        return $products;
-    }
-
-    function getMostReviewedProducts()
-    {
-        $statement = $this->pdo->prepare(self::GET_MOST_REVIEWED);
-        $statement->execute();
-        $products = $statement->fetchAll();
-
-        return $products;
-    }
 
     function getProductsBySubcategory($subcatId)
     {
@@ -276,5 +265,15 @@ class ProductsDao
         $statement->execute(array($toggleTo, $productId));
 
         return true;
+    }
+
+    function getFilteredProductsWithSubCategory($filters, $subCatId)
+    {
+        $statement = $this->pdo->prepare(self::GET_FILTERED_PRODUCTS_SUBCAT);
+        $statement->execute();
+
+        $products = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $products;
     }
 }
