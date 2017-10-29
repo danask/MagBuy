@@ -1,2 +1,4 @@
 /MagBuy/view/main/index.php 8 Undefined variable: cartHover  
 /MagBuy/view/main/index.php 8 Undefined variable: cart  
+/MagBuy/controller/cart/on_hover_cart.php 8 Undefined variable: _SESSION  
+/MagBuy/controller/cart/on_hover_cart.php 8 Undefined index: carts  
