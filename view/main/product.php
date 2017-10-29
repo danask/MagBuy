@@ -2,7 +2,6 @@
 //Include main Headers
 require_once "../elements/headers.php";
 ?>
-
     <!-- Define Page Name -->
     <title>MagBuy | Category</title>
     <script src="../../web/assets/js/products/products.by.category.js"></script>

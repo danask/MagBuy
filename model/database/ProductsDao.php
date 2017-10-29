@@ -28,31 +28,31 @@ class ProductsDao
     const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
-                                    BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC LIMIT 6";
+                                    BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC LIMIT 8";
 
     const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, pr.start_date, pr.end_date,
                                      (SELECT AVG(rating) 
                                      FROM reviews WHERE product_id = P.id) average FROM products P
                                      JOIN images I ON P.id = I.product_id JOIN reviews R ON P.id = R.product_id
                                      LEFT JOIN promotions pr ON P.id = pr.product_id
-                                     WHERE P.visible = 1 GROUP BY P.id ORDER BY average DESC LIMIT 3";
+                                     WHERE P.visible = 1 GROUP BY P.id ORDER BY average DESC LIMIT 4";
 
     const GET_RELATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.subcategory_id, P.price, pr.percent, pr.start_date,
                                   pr.end_date FROM products P LEFT JOIN promotions pr ON P.id = pr.product_id
                                   JOIN images I ON P.id = I.product_id WHERE P.visible = 1 AND NOT P.id = ?
-                                  GROUP BY P.id HAVING P.subcategory_id = ? ORDER BY P.created_at DESC LIMIT 3";
+                                  GROUP BY P.id HAVING P.subcategory_id = ? ORDER BY P.created_at DESC LIMIT 4";
 
     const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, p.title, i.image_url, p.price, pr.percent, pr.start_date, pr.end_date 
                                       FROM products p 
                                       JOIN images i ON p.id = i.product_id LEFT JOIN promotions pr
                                       ON P.id = pr.product_id WHERE p.visible = 1 GROUP BY p.id 
-                                      ORDER BY p.created_at DESC LIMIT 3";
+                                      ORDER BY p.created_at DESC LIMIT 4";
 
     const GET_MOST_SOLD = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, pr.start_date, pr.end_date,
                           (SELECT SUM(OP.quantity) FROM order_products OP JOIN orders O ON OP.order_id = O.id
                           WHERE O.status = 3 AND OP.product_id = P.id) ordered FROM products P JOIN
                           images I ON P.id = I.product_id LEFT JOIN promotions pr ON P.id = pr.product_id
-                          WHERE P.visible = 1 GROUP BY P.id ORDER BY ordered DESC LIMIT 3";
+                          WHERE P.visible = 1 GROUP BY P.id ORDER BY ordered DESC LIMIT 4";
 
     const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
                               ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ? LIMIT 3";
