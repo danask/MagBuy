@@ -1,4 +1,5 @@
 $(document).ready(function () {
+    var now = new Date().toISOString().slice(0, 19).replace('T', ' ');
     var xhttp = new XMLHttpRequest();
     var productsWindow = document.getElementById("productsWindow");
     var loading = document.createElement("img");
@@ -17,10 +18,9 @@ $(document).ready(function () {
             for (var key in products) {
                 if (products.hasOwnProperty(key)) {
 
-                    if (products[key]['percent'] != null) {
-                        // && $product['start_date'] < date("Y-m-d H:i:s")
-                        //&& $product['end_date'] > date("Y-m-d H:i:s")
-                        var promotedPrice = math.round((products[key]['price'] -
+                    if (products[key]['percent'] != null && products[key]['start_date'] <= now
+                        && products[key]['end_date'] >= now) {
+                        var promotedPrice = Math.round((products[key]['price'] -
                                     ((products[key]['price'] * products[key]['percent']) / 100)
                                 ) * 100) / 100;
                     } else {
@@ -112,10 +112,9 @@ $(window).scroll(function () {
                     for (var key in products) {
                         if (products.hasOwnProperty(key)) {
 
-                            if (products[key]['percent'] != null) {
-                                // && $product['start_date'] < date("Y-m-d H:i:s")
-                                //&& $product['end_date'] > date("Y-m-d H:i:s")
-                                var promotedPrice = math.round((products[key]['price'] -
+                            if (products[key]['percent'] != null && products[key]['start_date'] <= now
+                                && products[key]['end_date'] >= now) {
+                                var promotedPrice = Math.round((products[key]['price'] -
                                             ((products[key]['price'] * products[key]['percent']) / 100)
                                         ) * 100) / 100;
                             } else {
