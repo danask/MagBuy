@@ -182,9 +182,9 @@ class ProductsDao
         $statement = $this->pdo->prepare("SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
-                                    BY P.id HAVING p.subcategory_id = $subcatId AND p.visible = 1 ORDER BY p.created_at DESC 
+                                    BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC 
                                     LIMIT 6 OFFSET $offset");
-        $statement->execute();
+        $statement->execute(array($subcatId));
         $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $products;

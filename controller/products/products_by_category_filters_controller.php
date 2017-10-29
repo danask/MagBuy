@@ -17,9 +17,15 @@ $highestRated = $_GET['hrf'];
 $subcatId = $_GET['scid'];
 $filters = array('msf' => $mostSold, 'mrf' => $mostReviewed, 'newf' => $newest, 'hrf' => $highestRated);
 
-
-$productsDao = \model\database\ProductsDao::getInstance();
-$products = $productsDao->getFilteredProductsWithSubCategory($filters, $subcatId);
+try {
+    $productsDao = \model\database\ProductsDao::getInstance();
+    $products = $productsDao->getFilteredProductsWithSubCategory($filters, $subcatId);
+} catch (PDOException $e) {
+    $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
+    error_log($message, 3, '../../errors.log');
+    header("Location: ../../view/error/error_500.php");
+    die();
+}
 
 header('Content-Type: application/json');
 echo json_encode($products);

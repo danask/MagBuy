@@ -1,7 +1,0 @@
-2017-10-28 22:31:40 /MagBuy/view/main/index.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'SELsECT P.id, P.title, I.image_url, P.price, pr.percent, pr.start_date, pr.end_d' at line 1 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:265
-Stack trace:
-#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(265): PDOStatement->execute()
-#1 C:\xampp\htdocs\MagBuy\controller\products\home_products_controller.php(20): model\database\ProductsDao->mostSoldProducts()
-#2 C:\xampp\htdocs\MagBuy\view\main\index.php(3): require_once('C:\\xampp\\htdocs...')
-#3 {main}
-/MagBuy/view/main/favourites.php 8 Undefined variable: _SESSIOsN  

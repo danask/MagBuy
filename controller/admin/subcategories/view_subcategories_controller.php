@@ -15,7 +15,7 @@ try {
     $subCats = $subcatDao->getAllSubCategoriesAdmin();
 } catch (PDOException $e) {
     $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
-    error_log($message, 3, 'errors.log');
+    error_log($message, 3, '../../../errors.log');
     header("Location: ../../../view/error/error_500.php");
     die();
 }
