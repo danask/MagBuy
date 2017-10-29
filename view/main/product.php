@@ -16,64 +16,10 @@ require_once "../elements/navigation.php";
 ?>
 
     <!-- Products by category -->
-    <div class="products">
+    <div class="products" onload="loadFirstProducts()">
         <div class="container">
             <div class="products-grids">
                 <div class="col-md-8 products-grid-left" id="productsWindow">
-                    <div class="products-grid-lft">
-                        <?php
-                        $counter = 0;
-                        foreach ($products as $product) {
-                            if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
-                                && $product['end_date'] > date("Y-m-d H:i:s")
-                            ) {
-                                $promotedPrice = round($product['price'] - (($product['price'] *
-                                            $product['percent']) / 100), 2);
-                            } else {
-                                unset($promotedPrice);
-                            }
-                            $counter++;
-                            if ($counter > 3) {
-                                echo '<div class="clearfix"></div></div>';
-                                echo '<div class="products-grid-lft">';
-                                $counter = 0;
-                            }
-                            ?>
-                            <div class="products-grd">
-                                <div class="p-one simpleCart_shelfItem prd">
-                                    <a href="single.php?pid=<?= $product['id']; ?>">
-                                        <img src="<?= $product['image_url'] ?>"
-                                             alt="Product Image" class="img-responsive"/>
-                                    </a>
-                                    <h4><?= $product['title']; ?></h4>
-                                    <p><a class="btn btn-default btn-sm"
-                                          onclick="addToCart(<?= $product['id'] . "," .
-                                          (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)">
-                                            <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
-                                        </a>&nbsp&nbsp
-                                        <?php
-                                        if (isset($promotedPrice)) {
-                                            ?>
-                                            <span class="item_price valsa"
-                                                  style="color: red;">$<?= $promotedPrice; ?></span>
-                                            <span class="item_price promoValsa">$<?= $product['price']; ?></span>
-                                            <?php
-                                        } else {
-                                            ?>
-                                            <span class="item_price valsa">$<?= $product['price']; ?></span>
-                                            <?php
-                                        }
-                                        ?></p>
-                                    <div class="pro-grd">
-                                        <a href="single.php?pid=<?= $product['id']; ?>">View</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <?php
-                        }
-                        ?>
-                        <div class="clearfix"></div>
-                    </div>
                 </div>
                 <div id="loader"></div>
                 <div class="col-md-4 products-grid-right">
