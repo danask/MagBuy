@@ -22,8 +22,8 @@ function loadProducts(offset) {
     var xhttp = new XMLHttpRequest();
     var productsWindow = document.getElementById("productsWindow");
     var loading = document.createElement("img");
-    var loaderDiv = document.getElementById("loader");
     loading.setAttribute("src", "../../web/assets/images/ajax-loader.gif");
+    var loaderDiv = document.getElementById("loader");
     if (loaderDiv.children.length < 1) {
         loaderDiv.appendChild(loading);
     }
