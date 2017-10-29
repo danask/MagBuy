@@ -1,9 +1,10 @@
 <?php
+require_once "../../controller/products/products_by_category_controller.php";
 //Include main Headers
 require_once "../elements/headers.php";
 ?>
     <!-- Define Page Name -->
-    <title>MagBuy | Category</title>
+    <title>MagBuy | <?= $subcatName ?></title>
     <script src="../../web/assets/js/products/products.by.category.js"></script>
     <script src="../../web/assets/js/products/price.range.js"></script>
 <?php
