@@ -3211,6 +3211,7 @@ ul.qty li p {
     border-radius: 10%;
     display: inline-block;
     width: 70px;
+    margin-bottom: 10px;
 }
 
 .search-result-p {
@@ -3257,21 +3258,21 @@ ul.qty li p {
 #cartDivHover{
     position: absolute;
     z-index: 80;
-    background-color: #FFFFFF;
-    margin: 14px 0 0 0;
+    background-color: transparent;
+    margin: 14px 0 0 20px;
     padding: 10px;
     display: none;
 }
 
 #cartDivHover:hover{
     display: block;
-    overflow-y: scroll;
+    overflow: auto;
     height: 230px;
 }
 
 #cartToHover:hover + #cartDivHover {
     display:block;
-    overflow-y: scroll;
+    overflow: auto;
     height: 230px;
 }
 
