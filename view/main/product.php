@@ -39,7 +39,7 @@ require_once "../elements/navigation.php";
                 <div class="clearfix"></div>
                 <div class="col-md-12 products-grid-left" id="productsWindow">
                 </div>
-                <div id="loader"></div>
+                <div id="loader" style="display: block" class="center-block"></div>
             </div>
         </div>
     </div>

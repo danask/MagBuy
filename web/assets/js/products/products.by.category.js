@@ -5,16 +5,23 @@ $(document).ready(function () {
 });
 
 $(window).scroll(function () {
-        if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
-            offset += 8;
-            loadProducts(offset);
-        }
+        onScrollToBottom();
     }
 );
 
 function filteredProducts() {
+    $(window).bind('scroll', function () {
+        onScrollToBottom();
+    });
     offset = 0;
     loadProducts(offset);
+}
+
+function onScrollToBottom() {
+    if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+        offset += 8;
+        loadProducts(offset);
+    }
 }
 
 function loadProducts(offset) {
@@ -23,6 +30,7 @@ function loadProducts(offset) {
     var productsWindow = document.getElementById("productsWindow");
     var loading = document.createElement("img");
     loading.setAttribute("src", "../../web/assets/images/ajax-loader.gif");
+    loading.setAttribute("class", "center-block");
     var loaderDiv = document.getElementById("loader");
     if (loaderDiv.children.length < 1) {
         loaderDiv.appendChild(loading);
@@ -34,7 +42,9 @@ function loadProducts(offset) {
                 productsWindow.innerHTML = "";
             }
             var products = JSON.parse(this.responseText);
-
+            if (products.length == 0) {
+                $(window).unbind('scroll');
+            }
             var i = 0;
             var content = '';
             for (var key in products) {
