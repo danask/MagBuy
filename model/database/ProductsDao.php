@@ -86,6 +86,12 @@ class ProductsDao
                                     BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC 
                                     LIMIT 6 OFFSET 6";
 
+    const INFINITY_SCROLL_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
+                                    p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
+                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
+                                    BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY p.created_at DESC 
+                                    LIMIT 6 OFFSET :off";
+
     //Get connection in construct
     private function __construct()
     {
@@ -178,12 +184,12 @@ class ProductsDao
 
     function getProductsBySubcategoryInfiScroll($subcatId, $offset)
     {
-        $statement = $this->pdo->prepare("SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
-                                    p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
-                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
-                                    BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC 
-                                    LIMIT 6 OFFSET $offset");
-        $statement->execute(array($subcatId));
+        $statement = $this->pdo->prepare(self::INFINITY_SCROLL_BY_SUBCAT);
+
+        $statement->bindValue(':sub', (int)$subcatId, PDO::PARAM_INT);
+        $statement->bindValue(':off', (int)$offset, PDO::PARAM_INT);
+
+        $statement->execute();
         $products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $products;
