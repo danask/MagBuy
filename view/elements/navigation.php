@@ -38,6 +38,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
 
                     <div class="clearfix"></div>
                 </div>
+                <div id="cartDivHover" class="pre-scrollable"></div>
             </div>
             <div class="clearfix"></div>
         </div>

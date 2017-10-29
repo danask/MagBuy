@@ -31,7 +31,6 @@ if (isset($_SESSION['cart'])) {
         require_once 'send_order_confirm.php';
 
 
-
         unset($_SESSION['cart']);
         $_SESSION['oid'] = $orderId;
         $_SESSION['oItems'] = $quantity;
