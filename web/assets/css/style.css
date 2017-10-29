@@ -1098,7 +1098,7 @@ span.valsa {
     float: right;
 }
 
-.products-grid-lft:nth-child(2) {
+.products-grid-lft {
     margin: 1em 0;
 }
 

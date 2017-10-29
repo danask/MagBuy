@@ -27,18 +27,37 @@ require_once "../elements/headers.php";
                             var products = JSON.parse(this.responseText);
 
                             var i = 0;
+                            var content = '';
                             for (var key in products) {
                                 if (products.hasOwnProperty(key)) {
-                                    var content;
-                                    if (i % 3 == 1) {
+
+                                    if (products[key]['percent'] != null) {
+                                        // && $product['start_date'] < date("Y-m-d H:i:s")
+                                        //&& $product['end_date'] > date("Y-m-d H:i:s")
+                                        var promotedPrice = math.round((products[key]['price'] -
+                                                    ((products[key]['price'] * products[key]['percent']) / 100)
+                                                ) * 100) / 100;
+                                    } else {
+                                        promotedPrice = null;
+                                    }
+
+                                    if (key == 0) {
+                                        content += '<div class="products-grid-lft">';
+                                    }
+
+                                    if (i == 3) {
                                         content +=
-                                            '</div>' +
-                                            '<div class="clearfix"></div>' +
+                                            '<div class="clearfix"></div></div>';
+                                        if (key != products.length - 1) {
+                                            $('#productsWindow').append(content);
+                                        }
+                                        content +=
                                             '<div class="products-grid-lft">';
+
+                                        i = 0;
                                     }
 
                                     content +=
-                                        '<div class="products-grid-lft">' +
                                         '<div class="products-grd">' +
                                         '<div class="p-one simpleCart_shelfItem prd">' +
                                         '<a href="single.php?pid=' + products[key]['id'] + '">' +
@@ -47,20 +66,36 @@ require_once "../elements/headers.php";
                                         '</a>' +
                                         '<h4>' + products[key]['title'] + '</h4>' +
                                         '<p><a class="btn btn-default btn-sm"' +
-                                        'onclick="addToCart()">' +
+                                        'onclick="addToCart(' + products[key]['id'] +
+                                        ',' + (promotedPrice != null ? promotedPrice : products[key]['price']) + ')">' +
                                         '<i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd' +
-                                        '</a>&nbsp&nbsp' +
-                                        '<span class="item_price valsa">$' + products[key]['price'] + '</span>' +
+                                        '</a>&nbsp&nbsp';
+                                    if (promotedPrice != null) {
+                                        content +=
+                                            '<span class="item_price valsa"' +
+                                            'style="color: red;">$' + promotedPrice + '</span>' +
+                                            '<span class="item_price promoValsa">$' + products[key]['price'] + '</span>';
+                                    }
+                                    else {
+                                        content +=
+                                            '<span class="item_price valsa">$' + products[key]['price'] + '</span>';
+                                    }
+
+                                    content +=
                                         '</p>' +
                                         '<div class="pro-grd">' +
                                         '<a href="single.php?pid=' + products[key]['id'] + '">View</a>' +
                                         '</div>' +
                                         '</div>' +
-                                        '</div>' +
                                         '</div>';
 
-                                    $('#productsWindow').append(content);
-                                    content = '';
+                                    if (key == products.length - 1) {
+                                        content +=
+                                            '<div class="clearfix"></div></div>';
+                                        $('#productsWindow').append(content);
+                                    }
+
+                                    i++;
                                 }
                             }
                         }
@@ -98,8 +133,7 @@ require_once "../elements/navigation.php";
                             }
                             $counter++;
                             if ($counter > 3) {
-                                echo '<div class="clearfix"></div>
-                </div>';
+                                echo '<div class="clearfix"></div></div>';
                                 echo '<div class="products-grid-lft">';
                                 $counter = 0;
                             }
@@ -137,10 +171,10 @@ require_once "../elements/navigation.php";
                             <?php
                         }
                         ?>
-                        <div id="loader"></div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
+                <div id="loader"></div>
                 <div class="col-md-4 products-grid-right">
                     <div class="w_sidebar">
                         <div class="w_nav1">
