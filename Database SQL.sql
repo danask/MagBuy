@@ -299,7 +299,8 @@ CREATE TABLE IF NOT EXISTS `magbuy`.`subcat_specification_value` (
   INDEX `subcat_spec_val_ibfk_2` (`product_id` ASC),
   CONSTRAINT `subcat_spec_val_ibfk_1`
     FOREIGN KEY (`subcat_spec_id`)
-    REFERENCES `magbuy`.`subcat_specifications` (`id`),
+    REFERENCES `magbuy`.`subcat_specifications` (`id`)
+    ON DELETE CASCADE,
   CONSTRAINT `subcat_spec_val_ibfk_2`
     FOREIGN KEY (`product_id`)
     REFERENCES `magbuy`.`products` (`id`))
