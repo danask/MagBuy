@@ -49,11 +49,10 @@ class ProductsDao
                                       ORDER BY p.created_at DESC LIMIT 3";
 
     const GET_MOST_SOLD = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, pr.start_date, pr.end_date,
-                           (SELECT count(product_id) 
-                           FROM order_products WHERE product_id = P.id) ordered FROM products P
-                           JOIN images I ON P.id = I.product_id JOIN reviews R ON P.id = R.product_id
-                           LEFT JOIN promotions pr ON P.id = pr.product_id WHERE P.visible = 1 GROUP BY P.id 
-                           ORDER BY ordered DESC LIMIT 3";
+                          (SELECT SUM(OP.quantity) FROM order_products OP JOIN orders O ON OP.order_id = O.id
+                          WHERE O.status = 3 AND OP.product_id = P.id) ordered FROM products P JOIN
+                          images I ON P.id = I.product_id LEFT JOIN promotions pr ON P.id = pr.product_id
+                          WHERE P.visible = 1 GROUP BY P.id ORDER BY ordered DESC LIMIT 3";
 
     const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
                               ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ? LIMIT 3";
