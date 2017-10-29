@@ -23,6 +23,10 @@ require_once "../../controller/cart/cart_navi_controller.php"
                                     class="glyphicon glyphicon-heart"></span> Favourites
                         </button>
                     </a>&nbsp&nbsp&nbsp&nbsp
+                <?php } else { ?>
+                    <div class="btn btn-primary btn-info" id='invisible'><span
+                                class="glyphicon glyphicon-heart"></span>
+                    </div>&nbsp&nbsp&nbsp&nbsp
                 <?php } ?>
 
                 <!-- Cart page button -->
@@ -38,7 +42,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
 
                     <div class="clearfix"></div>
                 </div>
-                <div class="pre-scrollable" id="cartDivHover"></div>
+                <div id="cartDivHover"></div>
             </div>
             <div class="clearfix"></div>
         </div>

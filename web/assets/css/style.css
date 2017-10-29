@@ -3269,6 +3269,8 @@ ul.qty li p {
     margin: 14px 0 0 20px;
     padding: 10px;
     display: none;
+    overflow-y: auto;
+    height: 230px;
 }
 
 #cartToHover:hover + #cartDivHover {
@@ -3277,4 +3279,13 @@ ul.qty li p {
 
 #cartDivHover:hover {
     display: block;
+}
+
+#invisible {
+    display: inline-block;
+    background: transparent;
+    border: none !important;
+    font-size:0;
+    width: 100px;
+    height: 40px;
 }
