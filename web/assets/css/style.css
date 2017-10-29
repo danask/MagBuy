@@ -3255,14 +3255,26 @@ ul.qty li p {
 }
 
 #cartDivHover{
-    width: 220px;
-    height: 200px;
     position: absolute;
     z-index: 80;
-    border: solid thin #0AA5E2;
-    border-radius: 4%;
     background-color: #FFFFFF;
     margin: 14px 0 0 0;
     padding: 10px;
-    display:none;
+    display: none;
+}
+
+#cartDivHover:hover{
+    display: block;
+    overflow-y: scroll;
+    height: 230px;
+}
+
+#cartToHover:hover + #cartDivHover {
+    display:block;
+    overflow-y: scroll;
+    height: 230px;
+}
+
+#cartToHover {
+    height: 70px;
 }
