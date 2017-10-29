@@ -2,26 +2,27 @@
 
 require_once '../../utility/error_handler.php';
 
+//Autoload to require needed model files
+if (!function_exists("__autoload")) {
+    function __autoload($className)
+    {
+        $className = '..\\..\\' . $className;
+        require_once str_replace("\\", "/", $className) . '.php';
+    }
+}
+
 session_start();
 $cart = $_SESSION['cart'];
 
-foreach ($cart as $value) {
+$products = array();
+
+foreach ($cart as $key => $value) {
+    $products[$key]['id'] = $value->getId();
+    $products[$key]['image_url'] = $value->getImage();
+    $products[$key]['title'] = $value->getTitle();
+    $products[$key]['price'] = $value->getPrice();
+    $products[$key]['quantity'] = $value->getQuantity();
 
 }
 
-
-function object_to_array($data)
-{
-    if(is_array($data) || is_object($data))
-    {
-        $result = array();
-
-        foreach($data as $key => $value) {
-            $result[$key] = $this->object_to_array($value);
-        }
-
-        return $result;
-    }
-
-    return $data;
-}
+echo json_encode($products, JSON_UNESCAPED_SLASHES);

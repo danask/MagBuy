@@ -3264,21 +3264,4 @@ ul.qty li p {
     background-color: transparent;
     margin: 14px 0 0 20px;
     padding: 10px;
-    display: none;
-}
-
-#cartDivHover:hover {
-    display: block;
-    overflow: auto;
-    height: 230px;
-}
-
-#cartToHover:hover + #cartDivHover {
-    display: block;
-    overflow: auto;
-    height: 230px;
-}
-
-#cartToHover {
-    height: 70px;
 }
