@@ -36,8 +36,9 @@ require_once "../elements/navigation.php";
                                      alt="Product Image" class="img-responsive"/></a>
                             <h4><?= $product['title']; ?></h4>
                             <p><a class="btn btn-default btn-sm"
-                                  onclick="addToCart(<?= $product['id'] . "," .
-                                  (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)">
+                                  onclick="addToCart(<?= $product['id'] . ", " .
+                                  (isset($promotedPrice) ? $promotedPrice : $product['price']) . ", '" .
+                                  "<strong>" . $product['title'] . "</strong>" . "', '" . $product['image_url'] . "'"?>)">
                                     <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
                                 </a>&nbsp&nbsp
                                 <?php

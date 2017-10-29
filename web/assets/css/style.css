@@ -3256,7 +3256,7 @@ ul.qty li p {
 
 #cartDivHover{
     width: 220px;
-    height: 200px;
+    height: 240px;
     position: absolute;
     z-index: 80;
     border: solid thin #0AA5E2;
@@ -3264,5 +3264,17 @@ ul.qty li p {
     background-color: #FFFFFF;
     margin: 14px 0 0 0;
     padding: 10px;
-    display:none;
+    display: none;
+}
+
+#cartDivHover:hover{
+    display: block;
+}
+
+#cartToHover:hover + #cartDivHover {
+    display:block;
+}
+
+#cartToHover {
+    height: 70px;
 }

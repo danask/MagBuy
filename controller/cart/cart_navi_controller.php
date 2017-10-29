@@ -20,7 +20,7 @@ if (isset($_SESSION['cart'])) {
         $cartTotalPrice += $cartProduct->getPrice() * $cartProduct->getQuantity();
     }
 
-    $cartHover = json_encode($cart, true);
+
 
 } else {
     $cartItems = "0";
