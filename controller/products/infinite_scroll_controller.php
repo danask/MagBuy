@@ -12,14 +12,14 @@ function __autoload($className)
 
 if (isset($_GET['lp'])) {
     $loadedProducts = $_GET['lp'];
-    $subcatId = $_GET['subcid'];
+    $subcatId = explode("=", $_GET['subcid']);
 
     try {
 
         $productsDao = \model\database\ProductsDao::getInstance();
-        $products = $productsDao->getProductsBySubcategoryInfiScroll($subcatId, $loadedProducts);
+        $products = $productsDao->getProductsBySubcategoryInfiScroll($subcatId[1], $loadedProducts);
 
-    }catch (PDOException $e) {
+    } catch (PDOException $e) {
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
         error_log($message, 3, '../../errors.log');
         header("Location: ../../view/error/error_500.php");
