@@ -129,9 +129,8 @@ require_once "../elements/navigation.php";
                                 <?php for($i = 1; $i <= 50; $i++) { echo "<option value=\"$i\">$i</option>"; } ?>
                             </select>
                             <button id ='addCartButtonSingle' type="submit" class="btn btn-default"
-                                    onclick="addToCartSingle(<?= $product['id'] . ", " .
-                                    (isset($promotedPrice) ? $promotedPrice : $product['price']) . ", '" .
-                                    $product['title'] . "', '" . $product['image_url'] . "'"?>)"><span
+                                    onclick="addToCartSingle(<?= $product['id'] . "," .
+                                    (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)"><span
                                         class="glyphicon glyphicon-shopping-cart"></span> Add to cart
                             </button>
                             <br/>
@@ -289,9 +288,7 @@ require_once "../elements/navigation.php";
                                     </a>
                                     <h4><?= $product['title']; ?></h4>
                                     <p><a class="btn btn-default btn-sm"
-                                          onclick="addToCart(<?= $product['id'] . ", " .
-                                          (isset($promotedPrice) ? $promotedPrice : $product['price']) . ", '" .
-                                          $product['title'] . "', '" . $product['image_url'] . "'"?>)">
+                                          onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
                                             <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
                                         </a>&nbsp&nbsp
                                         <?php
