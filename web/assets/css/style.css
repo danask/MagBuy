@@ -1075,9 +1075,13 @@ h3.title.con {
     color: #fff;
     font-size: 15px;
     margin: 0;
-    background: rgba(24, 201, 210, 0.7);
+    background: rgba(24, 201, 210, 0.3);
     text-decoration: none;
     padding: 0.5em 1em;
+}
+
+.pro-grd a:hover {
+    background: rgba(24, 201, 210, 0.9);
 }
 
 span.valsa {
