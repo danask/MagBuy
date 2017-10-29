@@ -8,6 +8,8 @@ function searchSuggest() {
     xhttp.onreadystatechange = function () {
         if (this.readyState == 4 && this.status == 200) {
 
+            var flag = true;
+
             var products = JSON.parse(this.responseText);
 
             var container = document.getElementById('result');
@@ -16,6 +18,8 @@ function searchSuggest() {
             container.innerHTML = "";
 
             for (var pid in products) {
+
+                flag = false;
 
                 var result = "<a href=\"single.php?pid=" + products[pid]["id"] + "\">" +
                     "<div class='search-result'>" + "<img class='search-result-img'" +
@@ -26,6 +30,11 @@ function searchSuggest() {
                 productDiv.innerHTML = result;
                 container.appendChild(productDiv);
             }
+
+            if(flag) {
+                container.style.display = "none";
+            }
+
         }
     };
 
