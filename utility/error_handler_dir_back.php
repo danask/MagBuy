@@ -4,7 +4,7 @@
 if(!function_exists('Error500')) {
     function Error500($errno, $errmsg){
         $message = $_SERVER['SCRIPT_NAME'] . " $errno $errmsg  \n";
-        error_log($message, 3, 'errors.log');
+        error_log($message, 3, '../../../errors.log');
         header('Location: ../../../view/error/error_500.php');
         die();
     }

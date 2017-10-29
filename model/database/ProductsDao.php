@@ -73,7 +73,7 @@ class ProductsDao
                                      WHERE P.visible = 1 GROUP BY P.id ORDER BY average DESC";
 
     const CREATE_PRODUCT_INFO = "INSERT INTO products(title, description, price, quantity, visible, created_at,
-        subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
+                                  subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
     const CREATE_PRODUCT_IMAGES = "INSERT INTO images (image_url, product_id) VALUES (?, ?)";
 

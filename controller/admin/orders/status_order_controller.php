@@ -15,7 +15,19 @@ if (isset($_GET['oid'])) {
         $orderId = $_GET['oid'];
         $newStatus = $_GET['ns'];
         $orderDao = \model\database\OrdersDao::getInstance();
-        $specs = $orderDao->changeOrderStatus($orderId, $newStatus);
+        $userEmail = $orderDao->changeOrderStatus($orderId, $newStatus);
+
+        if ($newStatus == 2) {
+            $status = "has been send!";
+        } elseif ($newStatus == 3) {
+            $status = "has been delivered!";
+        } elseif ($newStatus == 4) {
+            $status = "has been canceled";
+        }
+
+        require_once 'send_status_change.php';
+
+
 
     } catch (PDOException $e) {
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";

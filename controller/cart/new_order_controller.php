@@ -26,6 +26,11 @@ if (isset($_SESSION['cart'])) {
         $orderId = $result[0];
         $totalPrice = $result[1];
         $quantity = $result[2];
+        $userEmail = $result[3];
+
+        require_once 'send_order_confirm.php';
+
+
 
         unset($_SESSION['cart']);
         $_SESSION['oid'] = $orderId;

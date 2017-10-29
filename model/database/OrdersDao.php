@@ -15,10 +15,16 @@ class OrdersDao
 
     //Statements defined as constants
     const ADD_NEW_ORDER = "INSERT INTO orders (user_id, created_at, status) VALUES (?, ?, ?)";
+
     const ADD_ORDER_PRODUCT = "INSERT INTO order_products (order_id, product_id, quantity) VALUES (?, ?, ?)";
+
     const GET_ALL_ORDERS_ADMIN = "SELECT o.id, u.email AS email, o.created_at, o.status FROM orders o
                                 INNER JOIN users u ON o.user_id = u.id";
+
     const CHANGE_ORDER_STATUS = "UPDATE orders SET status = ? WHERE id = ?";
+
+    const GET_USER_EMAIL_BY_ORDER = "SELECT U.email FROM users U JOIN orders O ON U.id = O.user_id WHERE O.id = ?";
+
     const GET_ORDER_DETAILS = "SELECT o.id, u.email AS email, o.created_at, o.status, p.title AS product, op.quantity 
                               AS quantity, p.id AS product_id, u.id AS user_id FROM orders o
                               INNER JOIN users u ON o.user_id = u.id
@@ -63,7 +69,13 @@ class OrdersDao
                 $statement = $this->pdo->prepare(self::ADD_ORDER_PRODUCT);
                 $statement->execute(array($orderId, $cartProduct->getId(), $cartProduct->getQuantity()));
             }
-            $result = [$orderId, $totalPrice, $quantity];
+
+            $statement = $this->pdo->prepare(self::GET_USER_EMAIL_BY_ORDER);
+            $statement->execute(array($orderId));
+
+            $email = $statement->fetch();
+
+            $result = [$orderId, $totalPrice, $quantity, $email[0]];
             $this->pdo->commit();
 
             return $result;
@@ -92,7 +104,12 @@ class OrdersDao
         $statement = $this->pdo->prepare(self::CHANGE_ORDER_STATUS);
         $statement->execute(array($newStatus, $orderId));
 
-        return true;
+        $statement = $this->pdo->prepare(self::GET_USER_EMAIL_BY_ORDER);
+        $statement->execute(array($orderId));
+
+        $email = $statement->fetch();
+
+        return $email[0];
     }
 
     function getOrderDetails($orderId)
