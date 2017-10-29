@@ -35,6 +35,8 @@ if (session_status() == PHP_SESSION_NONE) {
     <script type="text/javascript" src="../../web/assets/js/cart/add.cart.js"></script>
     <!-- Footer slider JS -->
     <script type="text/javascript" src="../../web/assets/js/jquery.footer.slider.js"></script>
+    <!-- Cart Hover JS -->
+    <script type="text/javascript" src="../../web/assets/js/cart/cart.hover.js"></script>
 
     <!-- Web fonts -->
     <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,400italic,300italic,600,700' rel='stylesheet'

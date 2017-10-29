@@ -26,7 +26,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
                 <?php } ?>
 
                 <!-- Cart page button -->
-                <div id='cartToHover' class="cart box_1">
+                <div onmouseover="cartHover()" class="cart box_1">
                     <a href="checkout.php">
                         <div class="total">$
                             <div id="cartTotalPrice"><?= $cartTotalPrice ?></div>
@@ -38,17 +38,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
 
                     <div class="clearfix"></div>
                 </div>
-                <span id="cartDivHover">
-
-                    <?php if(!empty($cart)) {
-                    foreach ($cart as $cartProduct) {
-                        for ($i = 1; $i <= $cartProduct->getQuantity(); $i++) {?>
-                    <a href="single.php?pid=<?= $cartProduct->getId()?>"><div class='search-result'>
-                            <img class='search-result-img'src='<?= $cartProduct->getImage() ?>'>
-                            <p class='search-result-p'><?= $cartProduct->getTitle() ?><br/>
-                                $<?= $cartProduct->getPrice() ?></p></div></a>
-                    <?php }}} ?>
-                </span>
+                <span id="cartDivHover"></span>
             </div>
             <div class="clearfix"></div>
         </div>
