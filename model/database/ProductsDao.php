@@ -77,7 +77,7 @@ class ProductsDao
                                     p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
                                     BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY p.created_at DESC 
-                                    LIMIT 6 OFFSET :off";
+                                    LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_MOST_SOLD = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, pr.percent, pr.start_date, pr.end_date, (SELECT SUM(op.quantity)
@@ -85,21 +85,21 @@ class ProductsDao
                                     WHERE o.status = 3 AND op.product_id = p.id) ordered FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
                                     BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY ordered DESC 
-                                    LIMIT 6 OFFSET :off";
+                                    LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_MOST_REVIEWED = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, pr.percent, pr.start_date, pr.end_date, (SELECT COUNT(product_id) 
                                      FROM reviews WHERE product_id = P.id) average FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
                                     BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY average DESC 
-                                    LIMIT 6 OFFSET :off";
+                                    LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_HIGHEST_RATED = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, pr.percent, pr.start_date, pr.end_date, (SELECT AVG(rating) 
                                      FROM reviews WHERE product_id = P.id) average FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
                                     BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY average DESC 
-                                    LIMIT 6 OFFSET :off";
+                                    LIMIT 8 OFFSET :off";
 
     //Get connection in construct
     private function __construct()

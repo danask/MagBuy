@@ -169,8 +169,7 @@ label {
     }
 }
 
-
-    .header_right {
+.header_right {
     position: relative;
 }
 
@@ -1051,13 +1050,13 @@ h3.title.con {
 
 .products-grd {
     float: left;
-    width: 31.9%;
+    width: 20.9%;
     text-align: center;
     position: relative;
 }
 
-.products-grd:nth-child(2) {
-    margin: 0 1em;
+.products-grd {
+    margin: 0.6em 1.4em;
 }
 
 .products-grd:hover div.pro-grd {
@@ -1099,7 +1098,7 @@ span.valsa {
 
 .products-grid-left {
     padding: 0 !important;
-    float: right;
+    float: left;
 }
 
 .products-grid-lft {
@@ -1111,7 +1110,7 @@ span.valsa {
     padding: 1.5em 0 0;
 }
 
-.p-one:hover{
+.p-one:hover {
     box-shadow: 3px 2px 30px #CCCBCB;
 }
 
@@ -2401,7 +2400,7 @@ ul.qty li p {
 
     .products-grd {
         float: left;
-        width: 30.9%;
+        width: 23.9%;
     }
 
     .products-single {
@@ -3259,7 +3258,7 @@ ul.qty li p {
     height: auto;
 }
 
-#cartDivHover{
+#cartDivHover {
     position: absolute;
     z-index: 80;
     background-color: transparent;
@@ -3268,14 +3267,14 @@ ul.qty li p {
     display: none;
 }
 
-#cartDivHover:hover{
+#cartDivHover:hover {
     display: block;
     overflow: auto;
     height: 230px;
 }
 
 #cartToHover:hover + #cartDivHover {
-    display:block;
+    display: block;
     overflow: auto;
     height: 230px;
 }

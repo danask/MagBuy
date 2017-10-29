@@ -6,6 +6,7 @@ require_once "../elements/headers.php";
     <!-- Define Page Name -->
     <title>MagBuy | Category</title>
     <script src="../../web/assets/js/products/products.by.category.js"></script>
+    <script src="../../web/assets/js/products/price.range.js"></script>
 <?php
 //Include Header
 require_once "../elements/header.php";
@@ -17,9 +18,6 @@ require_once "../elements/navigation.php";
     <div class="products">
         <div class="container">
             <div class="products-grids">
-                <div class="col-md-8 products-grid-left" id="productsWindow">
-                </div>
-                <div id="loader"></div>
                 <div class="col-md-4 products-grid-right">
                     <div class="w_sidebar">
                         <div class="w_nav1">
@@ -34,12 +32,14 @@ require_once "../elements/navigation.php";
                         </div>
                         <section class="sky-form">
                             <h4>Price filter</h4>
-                            <input type="text" id="amount" readonly style="border:0; color:#f6931f; font-weight:bold;">
-                            <div id="slider-range"></div>
+
                         </section>
                     </div>
                 </div>
                 <div class="clearfix"></div>
+                <div class="col-md-12 products-grid-left" id="productsWindow">
+                </div>
+                <div id="loader" class="col-md-5"></div>
             </div>
         </div>
     </div>

@@ -6,7 +6,7 @@ $(document).ready(function () {
 
 $(window).scroll(function () {
         if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
-            offset += 6;
+            offset += 8;
             loadProducts(offset);
         }
     }
@@ -53,7 +53,7 @@ function loadProducts(offset) {
                         content += '<div class="products-grid-lft">';
                     }
 
-                    if (i == 3) {
+                    if (i == 4) {
                         content +=
                             '<div class="clearfix"></div></div>' +
                             '<div class="products-grid-lft">';
@@ -71,8 +71,7 @@ function loadProducts(offset) {
                         '<h4>' + products[key]['title'] + '</h4>' +
                         '<p><a class="btn btn-default btn-sm"' +
                         'onclick="addToCart(' + products[key]['id'] +
-                        ',' + (promotedPrice != null ? promotedPrice : products[key]['price']) + ',' +
-                        products[key]['title'] + ',' + products[key]['image_url'] + ')">' +
+                        ',' + (promotedPrice != null ? promotedPrice : products[key]['price']) + ')">' +
                         '<i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd' +
                         '</a>&nbsp&nbsp';
                     if (promotedPrice != null) {
