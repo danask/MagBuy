@@ -9,19 +9,15 @@ function __autoload($className)
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
-$products = null;
 
-//Try to accomplish connection with the database
+$offset = $_GET['offset'];
+$subcatId = explode("=", $_GET['subcid']);
+$filter = $_GET['filter'];
+
 try {
-    $subcatId = $_GET['subcid'];
-
 
     $productsDao = \model\database\ProductsDao::getInstance();
-    $subCat = \model\database\SubCategoriesDao::getInstance();
-
-    $products = $productsDao->getProductsBySubcategory($subcatId);
-    $categoryName = $subCat->getSubCategoryName($subcatId);
-
+    $products = $productsDao->getSubCatProducts($subcatId[1], $offset, $filter);
 
 } catch (PDOException $e) {
     $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
@@ -29,3 +25,6 @@ try {
     header("Location: ../../view/error/error_500.php");
     die();
 }
+
+header('Content-Type: application/json');
+echo json_encode($products);

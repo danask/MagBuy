@@ -65,13 +65,6 @@ class ProductsDao
 
     const TOGGLE_VISIBILITY = "UPDATE products SET visible = ? WHERE id = ?";
 
-    const GET_FILTERED_PRODUCTS_SUBCAT = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, pr.start_date, pr.end_date,
-                                     (SELECT AVG(rating) 
-                                     FROM reviews WHERE product_id = P.id) average FROM products P
-                                     JOIN images I ON P.id = I.product_id JOIN reviews R ON P.id = R.product_id
-                                     LEFT JOIN promotions pr ON P.id = pr.product_id
-                                     WHERE P.visible = 1 GROUP BY P.id ORDER BY average DESC";
-
     const CREATE_PRODUCT_INFO = "INSERT INTO products(title, description, price, quantity, visible, created_at,
                                   subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -80,16 +73,32 @@ class ProductsDao
     const CREATE_PRODUCT_SPECS = "INSERT INTO subcat_specification_value (value, subcat_spec_id, product_id)
                                             VALUES (?, ?, ?)";
 
-    const GET_PRODUCTS_BY_SUBCAT_INFISCROLL = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
-                                    p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
-                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
-                                    BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC 
-                                    LIMIT 6 OFFSET 6";
-
-    const INFINITY_SCROLL_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
+    const GET_SUBCAT_PRODUCTS_NEWEST = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
                                     BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY p.created_at DESC 
+                                    LIMIT 6 OFFSET :off";
+
+    const GET_SUBCAT_PRODUCTS_MOST_SOLD = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
+                                    p.visible, pr.percent, pr.start_date, pr.end_date, (SELECT SUM(op.quantity)
+                                    FROM order_products op JOIN orders o ON op.order_id = o.id
+                                    WHERE o.status = 3 AND op.product_id = p.id) ordered FROM products p INNER JOIN images i 
+                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
+                                    BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY ordered DESC 
+                                    LIMIT 6 OFFSET :off";
+
+    const GET_SUBCAT_PRODUCTS_MOST_REVIEWED = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
+                                    p.visible, pr.percent, pr.start_date, pr.end_date, (SELECT COUNT(product_id) 
+                                     FROM reviews WHERE product_id = P.id) average FROM products p INNER JOIN images i 
+                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
+                                    BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY average DESC 
+                                    LIMIT 6 OFFSET :off";
+
+    const GET_SUBCAT_PRODUCTS_HIGHEST_RATED = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
+                                    p.visible, pr.percent, pr.start_date, pr.end_date, (SELECT AVG(rating) 
+                                     FROM reviews WHERE product_id = P.id) average FROM products p INNER JOIN images i 
+                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
+                                    BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY average DESC 
                                     LIMIT 6 OFFSET :off";
 
     //Get connection in construct
@@ -182,9 +191,22 @@ class ProductsDao
         return $products;
     }
 
-    function getProductsBySubcategoryInfiScroll($subcatId, $offset)
+    function getSubCatProducts($subcatId, $offset, $filter)
     {
-        $statement = $this->pdo->prepare(self::INFINITY_SCROLL_BY_SUBCAT);
+        switch ($filter) {
+            case 1:
+                $statement = $this->pdo->prepare(self::GET_SUBCAT_PRODUCTS_NEWEST);
+                break;
+            case 2:
+                $statement = $this->pdo->prepare(self::GET_SUBCAT_PRODUCTS_MOST_SOLD);
+                break;
+            case 3:
+                $statement = $this->pdo->prepare(self::GET_SUBCAT_PRODUCTS_MOST_REVIEWED);
+                break;
+            case 4:
+                $statement = $this->pdo->prepare(self::GET_SUBCAT_PRODUCTS_HIGHEST_RATED);
+                break;
+        }
 
         $statement->bindValue(':sub', (int)$subcatId, PDO::PARAM_INT);
         $statement->bindValue(':off', (int)$offset, PDO::PARAM_INT);
@@ -290,15 +312,5 @@ class ProductsDao
         $statement->execute(array($toggleTo, $productId));
 
         return true;
-    }
-
-    function getFilteredProductsWithSubCategory($filters, $subCatId)
-    {
-        $statement = $this->pdo->prepare(self::GET_FILTERED_PRODUCTS_SUBCAT);
-        $statement->execute();
-
-        $products = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $products;
     }
 }

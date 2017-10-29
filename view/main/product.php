@@ -1,13 +1,11 @@
 <?php
-//Include products by category controller
-require_once "../../controller/products/products_by_category_controller.php";
 //Include main Headers
 require_once "../elements/headers.php";
 ?>
 
     <!-- Define Page Name -->
-    <title>MagBuy | <?= $categoryName ?></title>
-    <script src="../../web/assets/js/products/product.infinite.scroll.js"></script>
+    <title>MagBuy | Category</title>
+    <script src="../../web/assets/js/products/products.by.category.js"></script>
 <?php
 //Include Header
 require_once "../elements/header.php";
@@ -16,7 +14,7 @@ require_once "../elements/navigation.php";
 ?>
 
     <!-- Products by category -->
-    <div class="products" onload="loadFirstProducts()">
+    <div class="products">
         <div class="container">
             <div class="products-grids">
                 <div class="col-md-8 products-grid-left" id="productsWindow">
@@ -26,24 +24,13 @@ require_once "../elements/navigation.php";
                     <div class="w_sidebar">
                         <div class="w_nav1">
                             <h4>Filters</h4>
-                            <ul>
-                                <li>
-                                    Most sold
-                                    <input id="mostSoldFilter" type="checkbox" onclick="filterProducts()">
-                                </li>
-                                <li>
-                                    Most reviewed
-                                    <input id="mostReviewedFilter" type="checkbox" onclick="filterProducts()">
-                                </li>
-                                <li>
-                                    Newest
-                                    <input id="newestFilter" type="checkbox" onclick="filterProducts()">
-                                </li>
-                                <li>
-                                    Highest rated
-                                    <input id="highestRatedFilter" type="checkbox" onclick="filterProducts()">
-                                </li>
-                            </ul>
+                            Order by:
+                            <select id="filter" onchange="filteredProducts()">
+                                <option value="1" selected>Newest</option>
+                                <option value="2">Most sold</option>
+                                <option value="3">Most reviewed</option>
+                                <option value="4">Highest rated</option>
+                            </select>
                         </div>
                         <section class="sky-form">
                             <h4>Price filter</h4>
