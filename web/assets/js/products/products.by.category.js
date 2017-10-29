@@ -5,16 +5,23 @@ $(document).ready(function () {
 });
 
 $(window).scroll(function () {
-        if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
-            offset += 8;
-            loadProducts(offset);
-        }
+        onScrollToBottom();
     }
 );
 
 function filteredProducts() {
+    $(window).bind('scroll', function () {
+        onScrollToBottom();
+    });
     offset = 0;
     loadProducts(offset);
+}
+
+function onScrollToBottom() {
+    if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
+        offset += 8;
+        loadProducts(offset);
+    }
 }
 
 function loadProducts(offset) {
