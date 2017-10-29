@@ -26,7 +26,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
                 <?php } ?>
 
                 <!-- Cart page button -->
-                <div onmouseover="cartHover()" onmouseout="cartOut()" class="cart box_1">
+                <div onmouseover="cartHover()" id="cartToHover" class="cart box_1">
                     <a href="checkout.php">
                         <div class="total">$
                             <div id="cartTotalPrice"><?= $cartTotalPrice ?></div>
@@ -38,7 +38,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
 
                     <div class="clearfix"></div>
                 </div>
-                <div id="cartDivHover"></div>
+                <div class="pre-scrollable" id="cartDivHover"></div>
             </div>
             <div class="clearfix"></div>
         </div>
