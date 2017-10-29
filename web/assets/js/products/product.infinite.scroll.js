@@ -49,7 +49,8 @@ $(document).ready(function () {
                         '<h4>' + products[key]['title'] + '</h4>' +
                         '<p><a class="btn btn-default btn-sm"' +
                         'onclick="addToCart(' + products[key]['id'] +
-                        ',' + (promotedPrice != null ? promotedPrice : products[key]['price']) + ')">' +
+                        ',' + (promotedPrice != null ? promotedPrice : products[key]['price']) + ',' +
+                        products[key]['title'] + ',' + products[key]['image_url'] + ')">' +
                         '<i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd' +
                         '</a>&nbsp&nbsp';
                     if (promotedPrice != null) {
@@ -143,7 +144,8 @@ $(window).scroll(function () {
                                 '<h4>' + products[key]['title'] + '</h4>' +
                                 '<p><a class="btn btn-default btn-sm"' +
                                 'onclick="addToCart(' + products[key]['id'] +
-                                ',' + (promotedPrice != null ? promotedPrice : products[key]['price']) + ')">' +
+                                ',' + (promotedPrice != null ? promotedPrice : products[key]['price']) + ',' +
+                                products[key]['title'] + ',' + products[key]['image_url'] + ')">' +
                                 '<i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd' +
                                 '</a>&nbsp&nbsp';
                             if (promotedPrice != null) {
