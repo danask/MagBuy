@@ -288,7 +288,9 @@ require_once "../elements/navigation.php";
                                     </a>
                                     <h4><?= $product['title']; ?></h4>
                                     <p><a class="btn btn-default btn-sm"
-                                          onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
+                                          onclick="addToCart(<?= $product['id'] . ", " .
+                                          (isset($promotedPrice) ? $promotedPrice : $product['price']) . ", '" .
+                                          $product['title'] . "', '" . $product['image_url'] . "'"?>)">
                                             <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
                                         </a>&nbsp&nbsp
                                         <?php

@@ -9,7 +9,6 @@ function addToCart(productId, productPrice, productTitle, productImg) {
 
 
             var container = document.getElementById('cartDivHover');
-            container.style.display = 'block';
 
             var result = "<a href=\"single.php?pid=" + productId + "\">" +
                 "<div class='search-result'>" + "<img class='search-result-img'" +
