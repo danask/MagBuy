@@ -38,7 +38,7 @@ require_once "../../controller/cart/cart_navi_controller.php"
 
                     <div class="clearfix"></div>
                 </div>
-                <span id="cartDivHover" >
+                <span id="cartDivHover">
 
                     <?php if(!empty($cart)) {
                     foreach ($cart as $cartProduct) {

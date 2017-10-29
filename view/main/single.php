@@ -129,8 +129,9 @@ require_once "../elements/navigation.php";
                                 <?php for($i = 1; $i <= 50; $i++) { echo "<option value=\"$i\">$i</option>"; } ?>
                             </select>
                             <button id ='addCartButtonSingle' type="submit" class="btn btn-default"
-                                    onclick="addToCartSingle(<?= $product['id'] . "," .
-                                    (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)"><span
+                                    onclick="addToCartSingle(<?= $product['id'] . ", " .
+                                    (isset($promotedPrice) ? $promotedPrice : $product['price']) . ", '" .
+                                    $product['title'] . "', '" . $product['image_url'] . "'"?>)"><span
                                         class="glyphicon glyphicon-shopping-cart"></span> Add to cart
                             </button>
                             <br/>
