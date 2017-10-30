@@ -183,6 +183,13 @@ class ProductsDao
         }
     }
 
+    /**
+     * Function for editing products.
+     * @param Product $product
+     * @param $images
+     * @param $specs
+     * @return bool|mixed
+     */
     function editProduct(Product $product, $images, $specs)
     {
         $this->pdo->beginTransaction();
@@ -198,6 +205,8 @@ class ProductsDao
             $statement->execute(array($title, $description, $price, $quantity, $subcatId, $productId));
 
             //product images
+            //if images are received it will delete the old ones and insert the new ones
+            //else it wont affect images
             if (!empty($images)) {
                 $statement = $this->pdo->prepare(self::DELETE_PRODUCT_IMAGES);
                 $statement->execute(array($productId));
@@ -209,6 +218,7 @@ class ProductsDao
 
             //product specs
             if ($specs[0]['newSubcat'] == 1) {
+                //if subcategory is changed delete old specs and insert new ones
                 $statement = $this->pdo->prepare(self::DELETE_PRODUCT_SPECS);
                 $statement->execute(array($productId));
 
@@ -220,8 +230,8 @@ class ProductsDao
                     $statement->execute(array($value, $specId, $productId));
                 }
             } else {
+                //if subcategory is not changed update the old specs
                 foreach ($specs[1] as $spec) {
-
                     $specId = $spec->getId();
                     $value = $spec->getValue();
 
@@ -240,7 +250,6 @@ class ProductsDao
         }
     }
 
-
     /**
      * Function for getting product by ID.
      * @param $productId - Receives product's ID.
@@ -255,6 +264,11 @@ class ProductsDao
         return $product;
     }
 
+    /**
+     * Function for getting all product info by ID. it is used for the admin operations
+     * @param $productId
+     * @return mixed
+     */
     function getProductByIDAdmin($productId)
     {
         $statement = $this->pdo->prepare(self::GET_PRODUCT_BY_ID_ADMIN);
@@ -264,16 +278,13 @@ class ProductsDao
         return $product;
     }
 
-
-    function getProductsBySubcategory($subcatId)
-    {
-        $statement = $this->pdo->prepare(self::GET_PRODUCTS_BY_SUBCAT);
-        $statement->execute(array($subcatId));
-        $products = $statement->fetchAll(PDO::FETCH_ASSOC);
-
-        return $products;
-    }
-
+    /**
+     * Function for loading the category view - including filters and infinity scroll
+     * @param $subcatId
+     * @param $offset
+     * @param $filter
+     * @return array
+     */
     function getSubCatProducts($subcatId, $offset, $filter)
     {
         switch ($filter) {
@@ -300,6 +311,11 @@ class ProductsDao
         return $products;
     }
 
+    /**
+     * Function for quickly getting the price of a product
+     * @param $productId
+     * @return mixed
+     */
     function getProductPrice($productId)
     {
         $statement = $this->pdo->prepare(self::GET_PRODUCT_BY_ID);
@@ -309,7 +325,10 @@ class ProductsDao
         return $product['price'];
     }
 
-    //Function for getting top 3 rated products for main page
+    /**
+     * Function for getting top 3 rated products for main page
+     * @return array
+     */
     function getTopRated()
     {
 
@@ -320,7 +339,12 @@ class ProductsDao
         return $products;
     }
 
-    //Function for getting related products
+    /**
+     * Function for getting related products
+     * @param $subCat
+     * @param $product
+     * @return array
+     */
     function getRelated($subCat, $product)
     {
 
@@ -331,7 +355,10 @@ class ProductsDao
         return $products;
     }
 
-    //Function for getting most recent products
+    /**
+     * Function for getting most recent products
+     * @return array
+     */
     function getMostRecent()
     {
 
@@ -342,8 +369,11 @@ class ProductsDao
         return $products;
     }
 
-
-    //Function for searching products
+    /**
+     * Function for searching products
+     * @param $needle
+     * @return array
+     */
     function searchProduct($needle)
     {
 
@@ -355,7 +385,11 @@ class ProductsDao
         return $result;
     }
 
-    //Function for searching products without limit
+    /**
+     * Function for searching products without limit
+     * @param $needle
+     * @return array
+     */
     function searchProductNoLimit($needle)
     {
 
@@ -367,7 +401,10 @@ class ProductsDao
         return $result;
     }
 
-    //Function for getting most sold
+    /**
+     * Function for getting most sold
+     * @return array
+     */
     function mostSoldProducts()
     {
 
@@ -379,6 +416,10 @@ class ProductsDao
         return $result;
     }
 
+    /**
+     * Function for getting all products. it is used for the admin operations
+     * @return array
+     */
     function getAllProductsAdmin()
     {
         $statement = $this->pdo->prepare(self::GET_ALL_PRODUCTS_ADMIN);
@@ -389,6 +430,12 @@ class ProductsDao
         return $products;
     }
 
+    /**
+     * Function for toggling the visibility of products
+     * @param $productId
+     * @param $toggleTo
+     * @return bool
+     */
     function toggleVisibility($productId, $toggleTo)
     {
         $statement = $this->pdo->prepare(self::TOGGLE_VISIBILITY);
