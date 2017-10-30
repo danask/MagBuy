@@ -65,7 +65,6 @@ function loadProducts(offset) {
 
                     if (i == 4) {
                         content +=
-                            '<div class="clearfix"></div></div>' +
                             '<div class="products-grid-lft">';
 
                         i = 0;
@@ -105,7 +104,7 @@ function loadProducts(offset) {
 
                     if (key == products.length - 1) {
                         content +=
-                            '<div class="clearfix"></div></div>';
+                            '</div>';
                         $('#productsWindow').append(content);
                     }
 
