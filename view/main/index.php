@@ -29,7 +29,7 @@ require_once "../elements/navigation.php";
                     } else {
                         unset($promotedPrice);
                     } ?>
-                    <div class="products-grd" id='hideUnder1200'>
+                    <div class="products-grd" id='responsiveProductsDiv'>
                         <div class="p-one">
                             <a href="single.php?pid=<?= $product['id']; ?>">
                                 <img src="<?= $product['image_url'] ?>"
@@ -79,7 +79,7 @@ require_once "../elements/navigation.php";
                     } else {
                         unset($promotedPrice);
                     } ?>
-                    <div class="products-grd" id='hideUnder1200'>
+                    <div class="products-grd" id='responsiveProductsDiv'>
                         <div class="p-one simpleCart_shelfItem prd">
                             <a href="single.php?pid=<?= $product['id']; ?>">
                                 <img src="<?= $product['image_url'] ?>"
@@ -130,7 +130,7 @@ require_once "../elements/navigation.php";
                         unset($promotedPrice);
                     }
                     ?>
-                    <div class="products-grd" id='hideUnder1200'>
+                    <div class="products-grd" id='responsiveProductsDiv'>
                         <div class="p-one simpleCart_shelfItem prd" >
                             <a href="single.php?pid=<?= $product['id']; ?>">
                                 <img src="<?= $product['image_url'] ?>"

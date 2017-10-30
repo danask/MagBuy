@@ -3304,19 +3304,38 @@ ul.qty li p {
     height: 40px;
 }
 
-@media (max-width: 1200px) {
-    #hideUnder1200:nth-child(4) {
-        display: none;
-    }
-}
-
-@media (max-width: 525px) {
-    #hideUnder1200:nth-child(3) {
-        display: none;
-    }
-}
 
 h4 {
     white-space: nowrap;
     overflow: hidden;
+}
+
+@media (max-width: 1200px) {
+    #responsiveProductsDiv{
+        width: 20%;
+    }
+}
+
+@media (max-width: 991px) {
+    #responsiveProductsDiv{
+        width: 18%;
+    }
+}
+
+@media (max-width: 769px) {
+    #responsiveProductsDiv{
+        width: 40%;
+    }
+}
+
+@media (max-width: 606px) {
+    #responsiveProductsDiv{
+        width: 40%;
+    }
+}
+
+@media (max-width: 495px) {
+    #responsiveProductsDiv{
+        width: 65%;
+    }
 }
