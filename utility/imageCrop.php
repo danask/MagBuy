@@ -63,6 +63,5 @@ function cropImage($imagePath, $cropPX){
     imagecopyresampled($thumb, $myImage, 0, 0, $x, $y, $thumbSize, $thumbSize, $smallestSide, $smallestSide);
 
 //Final output
-    header('Content-type: image/jpeg');
     imagejpeg($thumb, $imagePath);
 }

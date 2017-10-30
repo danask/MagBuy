@@ -46,7 +46,7 @@ require_once "../elements/navigation.php";
 
             <label id='labelTextArea' for="reviewArea">Review</label>
             <textarea class="form-control" rows="5" name="review" id="reviewArea"
-                      maxlength="255" minlength="10" required></textarea><br/>
+                      maxlength="255" minlength="3" required></textarea><br/>
 
             <button id='addReviewButton' type="submit" class="btn btn-primary btn-warning">
                 <span class="glyphicon glyphicon-tag"></span> Add Review
