@@ -10,16 +10,11 @@ function __autoload($className)
 }
 
 
-if (isset($_GET['scid'])) {
-    $subCatId = $_GET['scid'];
+if (isset($_GET['pid'])) {
     $productId = $_GET['pid'];
     try {
-        $specsDao = \model\database\SubcatSpecificationsDao::getInstance();
-        $specs = $specsDao->getAllSpecificationsForSubcategory($subCatId);
-        $specValueDao = \model\database\ProductSpecificationsDao::getInstance();
-        $specValues = $specValueDao->getAllSpecificationsForProduct($productId);
-        $spec[] = $specs;
-        $spec[] = $specValues;
+        $productSpecsDao = \model\database\ProductSpecificationsDao::getInstance();
+        $specs = $productSpecsDao->getAllSpecificationsForProductAdmin($productId);
     } catch (PDOException $e) {
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
         error_log($message, 3, '../../../errors.log');
@@ -28,7 +23,8 @@ if (isset($_GET['scid'])) {
     }
 
     header('Content-Type: application/json');
-    echo json_encode($spec);
+
+    echo json_encode($specs);
 } else {
     header("Location: ../../../view/error/error_400.php");
     die();

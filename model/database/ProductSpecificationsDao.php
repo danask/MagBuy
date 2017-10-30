@@ -22,6 +22,9 @@ class ProductSpecificationsDao
                                    INNER JOIN subcat_specifications s 
                                    ON v.subcat_spec_id = s.id WHERE v.product_id = ?";
 
+    const GET_SPECS_FOR_PRODUCT_ADMIN_WITH_VALUE = "SELECT v.value, s.name FROM subcat_specification_value v
+                                   LEFT JOIN subcat_specifications s 
+                                   ON v.subcat_spec_id = s.id WHERE v.product_id = ?";
 
     //Get connection in construct
     private function __construct()
@@ -65,6 +68,22 @@ class ProductSpecificationsDao
      * @return array - Returns product's specifications.
      */
     function getAllSpecificationsForProduct($productId)
+    {
+
+        $statement = $this->pdo->prepare(self::GET_SPECS_FOR_PRODUCT);
+        $statement->execute(array($productId));
+
+        $specifications = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $specifications;
+    }
+
+    /**
+     * Function for getting specifications for product.
+     * @param $productId - Receives product's ID.
+     * @return array - Returns product's specifications.
+     */
+    function getAllSpecificationsForProductAdmin($productId)
     {
 
         $statement = $this->pdo->prepare(self::GET_SPECS_FOR_PRODUCT);

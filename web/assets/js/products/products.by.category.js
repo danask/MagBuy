@@ -115,7 +115,7 @@ function loadProducts(offset) {
     };
     var filter = document.getElementById('filter').value;
     var subcid = location.search;
-    xhttp.open("GET", "../../controller/products/products_by_category_controller.php?offset="
+    xhttp.open("GET", "../../../controller/products/products_by_category_controller.php?offset="
         + offset + "&filter=" + filter + "&subcid=" + subcid, true);
     xhttp.send();
 }

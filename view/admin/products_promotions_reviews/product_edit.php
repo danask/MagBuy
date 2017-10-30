@@ -12,15 +12,9 @@ require_once "../../../controller/admin/products_promotions_reviews/edit_product
     <title>Document</title>
     <link rel="stylesheet" href="../../../web/assets/css/adminPanel.css">
     <script src="../../../web/assets/js/jquery-1.11.1.min.js"></script>
-    <script src="../../../web/assets/js/admin/product.specs.edit.js"></script>
     <script src="../../../web/assets/js/admin/product.specs.js"></script>
-    <script>
-        $(document).ready(function () {
-            loadFilledSpecs();
-        });
-    </script>
 </head>
-<body>
+<body onload="loadFilledSpecs()">
 <div class="page">
     <form enctype="multipart/form-data"
           action="../../../controller/admin/products_promotions_reviews/new_product_controller.php" method="post">
@@ -61,5 +55,6 @@ require_once "../../../controller/admin/products_promotions_reviews/edit_product
         <button>Back to Products</button>
     </a>
 </div>
+<script src="../../../web/assets/js/admin/product.specs.edit.js"></script>
 </body>
 </html>
