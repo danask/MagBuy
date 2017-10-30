@@ -19,7 +19,6 @@ function loadFilledSpecs() {
                     specId.setAttribute("name", "specValueId-" + i);
                     specId.setAttribute("value", specs[key]["id"]);
 
-
                     window.append(specs[key]['name'] + ": ");
                     window.appendChild(specInput);
                     window.appendChild(specId);

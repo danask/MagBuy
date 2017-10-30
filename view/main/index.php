@@ -30,7 +30,7 @@ require_once "../elements/navigation.php";
                         unset($promotedPrice);
                     } ?>
                     <div class="products-grd" id='hideUnder1200'>
-                        <div class="p-one simpleCart_shelfItem prd">
+                        <div class="p-one">
                             <a href="single.php?pid=<?= $product['id']; ?>">
                                 <img src="<?= $product['image_url'] ?>"
                                      alt="Product Image" class="img-responsive"/></a>

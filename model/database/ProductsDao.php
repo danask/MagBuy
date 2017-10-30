@@ -63,6 +63,7 @@ class ProductsDao
 
     const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
                               ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ? LIMIT 3";
+
     const SEARCH_PRODUCTS_NO_LIMIT = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
                               ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ?";
 
@@ -75,10 +76,19 @@ class ProductsDao
     const CREATE_PRODUCT_INFO = "INSERT INTO products(title, description, price, quantity, visible, created_at,
                                   subcategory_id) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
-    const CREATE_PRODUCT_IMAGES = "INSERT INTO images (image_url, product_id) VALUES (?, ?)";
+    const CREATE_PRODUCT_IMAGE = "INSERT INTO images (image_url, product_id) VALUES (?, ?)";
 
-    const CREATE_PRODUCT_SPECS = "INSERT INTO subcat_specification_value (value, subcat_spec_id, product_id)
+    const CREATE_PRODUCT_SPEC = "INSERT INTO subcat_specification_value (value, subcat_spec_id, product_id)
                                             VALUES (?, ?, ?)";
+
+    const EDIT_PRODUCT_INFO = "UPDATE products SET title = ?, description = ?, price = ?, quantity = ?, 
+                                subcategory_id = ? WHERE id = ?";
+
+    const EDIT_PRODUCT_SPEC = "UPDATE subcat_specification_value SET value = ? WHERE id = ?";
+
+    const DELETE_PRODUCT_IMAGES = "DELETE FROM images WHERE product_id = ?";
+
+    const DELETE_PRODUCT_SPECS = "DELETE FROM subcat_specification_value WHERE product_id = ?";
 
     const GET_SUBCAT_PRODUCTS_NEWEST = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
@@ -151,17 +161,74 @@ class ProductsDao
 
             //product images
             foreach ($images as $image) {
-                $statement = $this->pdo->prepare(self::CREATE_PRODUCT_IMAGES);
+                $statement = $this->pdo->prepare(self::CREATE_PRODUCT_IMAGE);
                 $statement->execute(array($image, $productId));
             }
 
             //product specs
             foreach ($specs as $spec) {
                 $value = $spec->getValue();
-                $specId = $spec->getSubcatSpecId();;
+                $specId = $spec->getSubcatSpecId();
 
-                $statement = $this->pdo->prepare(self::CREATE_PRODUCT_SPECS);
+                $statement = $this->pdo->prepare(self::CREATE_PRODUCT_SPEC);
                 $statement->execute(array($value, $specId, $productId));
+            }
+
+            $this->pdo->commit();
+
+            return $productId;
+        } catch (PDOException $e) {
+            $this->pdo->rollBack();
+            return false;
+        }
+    }
+
+    function editProduct(Product $product, $images, $specs)
+    {
+        $this->pdo->beginTransaction();
+        try {
+            //product info
+            $productId = $product->getId();
+            $title = $product->getTitle();
+            $description = $product->getDescription();
+            $price = $product->getPrice();
+            $quantity = $product->getQuantity();
+            $subcatId = $product->getSubcategoryId();
+            $statement = $this->pdo->prepare(self::EDIT_PRODUCT_INFO);
+            $statement->execute(array($title, $description, $price, $quantity, $subcatId, $productId));
+
+            //product images
+            if (!empty($images)) {
+                $statement = $this->pdo->prepare(self::DELETE_PRODUCT_IMAGES);
+                $statement->execute(array($productId));
+                foreach ($images as $image) {
+                    $statement = $this->pdo->prepare(self::CREATE_PRODUCT_IMAGE);
+                    $statement->execute(array($image, $productId));
+                }
+            }
+
+            //product specs
+            if ($specs[0]['newSubcat'] == 1) {
+                $statement = $this->pdo->prepare(self::DELETE_PRODUCT_SPECS);
+                $statement->execute(array($productId));
+
+                foreach ($specs[1] as $spec) {
+                    $value = $spec->getValue();
+                    $specId = $spec->getSubcatSpecId();
+
+                    $statement = $this->pdo->prepare(self::CREATE_PRODUCT_SPEC);
+                    $statement->execute(array($value, $specId, $productId));
+                }
+            } else {
+                foreach ($specs[1] as $spec) {
+
+                    $specId = $spec->getId();
+                    $value = $spec->getValue();
+
+                    $statement = $this->pdo->prepare(self::EDIT_PRODUCT_SPEC);
+                    $statement->execute(array($value, $specId));
+
+                }
             }
 
             $this->pdo->commit();

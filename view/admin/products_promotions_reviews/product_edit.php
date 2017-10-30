@@ -13,11 +13,14 @@ require_once "../../../controller/admin/products_promotions_reviews/edit_product
     <link rel="stylesheet" href="../../../web/assets/css/adminPanel.css">
     <script src="../../../web/assets/js/jquery-1.11.1.min.js"></script>
     <script src="../../../web/assets/js/admin/product.specs.js"></script>
+    <script src="../../../web/assets/js/admin/product.specs.edit.js"></script>
 </head>
 <body onload="loadFilledSpecs()">
 <div class="page">
     <form enctype="multipart/form-data"
-          action="../../../controller/admin/products_promotions_reviews/new_product_controller.php" method="post">
+          action="../../../controller/admin/products_promotions_reviews/edit_product_controller.php" method="post">
+        <input type="hidden" name="pid" value="<?= $product['id'] ?>">
+        <input type="hidden" name="scid" value="<?= $product['subcategory_id'] ?>">
         Title <input type="text" name="title" placeholder="Title" value="<?= $product['title'] ?>" required/><br>
         Description <textarea name="description" placeholder="Description"
                               required><?= $product['description'] ?></textarea><br>
@@ -49,12 +52,11 @@ require_once "../../../controller/admin/products_promotions_reviews/edit_product
         </select><br>
         <div id="specsWindow"></div>
         <br><br><br><br>
-        <input type="submit" value="Create Product" name="submit">
+        <input type="submit" value="Edit Product" name="submit">
     </form>
     <a href="products_view.php">
         <button>Back to Products</button>
     </a>
 </div>
-<script src="../../../web/assets/js/admin/product.specs.edit.js"></script>
 </body>
 </html>

@@ -12,22 +12,19 @@ class ProductSpecification
     private $productId;
 
     /**
-     * ProductSpecification constructor.
-     * @param $value
-     * @param $subcatSpecId
-     */
-    public function __construct($value, $subcatSpecId)
-    {
-        $this->value = $value;
-        $this->subcatSpecId = $subcatSpecId;
-    }
-
-    /**
      * @return mixed
      */
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * @param mixed $id
+     */
+    public function setId($id)
+    {
+        $this->id = $id;
     }
 
     /**

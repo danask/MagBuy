@@ -95,70 +95,71 @@ require_once "../elements/navigation.php";
 
                     <!-- Product information -->
                     <div class="col-md-7 single-text">
-                        <div class="details-left-info simpleCart_shelfItem">
-                            <h3><?= $product['title']; ?></h3>
-                            <p class="availability">Availability: <span class="color">In stock</span></p>
-                            <div class="price_single">
-                                <?php
-                                if (isset($promotedPrice)) {
-                                    ?>
-                                    <span class="reducedfrom">$<?= $product['price']; ?></span>
-                                    <span class="actual item_price">$<?= $promotedPrice; ?></span>
-                                    <?php
-                                } else {
-                                    ?>
-                                    <span class="actual item_price">$<?= $product['price']; ?></span>
-                                    <?php
-                                }
+                        <h3><?= $product['title']; ?></h3>
+                        <p class="availability">Availability: <span class="color">In stock</span></p>
+                        <div class="price_single">
+                            <?php
+                            if (isset($promotedPrice)) {
                                 ?>
-                            </div>
-                            <?php
-                            // if is authenticated admin
-                            ?>
-                            <a href="../admin/products_promotions_reviews/promotion_create.php?pid=<?= $product['id'] ?>">Add promotion</a>
-                            <?php
-                            // endif
-                            ?>
-                            <img id="averageRating" class="media-object img"
-                                 src="../../web/assets/images/rating<?= $product['average'] ?>.png"><br/>
-                            <div class="clearfix"></div>
-
-                            <!-- Buttons for Add Cart, Add Favourites & Review -->
-                            <span id="quantityTextSingle" class="label label-default">Quantity:</span>
-                            <select id="buyQuantity" class="form-control">
-                                <?php for($i = 1; $i <= 50; $i++) { echo "<option value=\"$i\">$i</option>"; } ?>
-                            </select>
-                            <button id ='addCartButtonSingle' type="submit" class="btn btn-default"
-                                    onclick="addToCartSingle(<?= $product['id'] . "," .
-                                    (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)"><span
-                                        class="glyphicon glyphicon-shopping-cart"></span> Add to cart
-                            </button>
-                            <br/>
-                            <?php if (!($isFavourite == 3)) {
-                                if ($isFavourite == 2) { ?>
-                                    <div id="favourite">
-                                        <button style="display: inline-block;" class="btn btn-primary"
-                                                onclick="addFavourite(<?= $product['id'] ?>)"><span
-                                                    class="glyphicon glyphicon-heart"></span> Add to favourites
-                                        </button>
-                                    </div>
-                                <?php } else { ?>
-                                    <div id="favourite">
-                                        <button style="display: inline-block;" class="btn btn-danger"
-                                                onclick="removeFavourite(<?= $product['id'] ?>)"><span
-                                                    class="glyphicon glyphicon-heart-empty"></span> Remove from
-                                            Favourites
-                                        </button>
-                                    </div>
-                                <?php }
+                                <span class="reducedfrom">$<?= $product['price']; ?></span>
+                                <span class="actual item_price">$<?= $promotedPrice; ?></span>
+                                <?php
+                            } else {
+                                ?>
+                                <span class="actual item_price">$<?= $product['price']; ?></span>
+                                <?php
                             }
-                            if (isset($_SESSION['loggedUser'])) { ?>
-                                <br/>
-                                <a href="review.php?pid=<?= $product['id'] ?>" style="display: inline-block;"
-                                   class="btn btn-primary btn-warning">
-                                    <span class="glyphicon glyphicon-tag"></span> Add Review</a>
-                            <?php } ?>
+                            ?>
                         </div>
+                        <?php
+                        // if is authenticated admin
+                        ?>
+                        <a href="../admin/products_promotions_reviews/promotion_create.php?pid=<?= $product['id'] ?>">Add
+                            promotion</a>
+                        <?php
+                        // endif
+                        ?>
+                        <img id="averageRating" class="media-object img"
+                             src="../../web/assets/images/rating<?= $product['average'] ?>.png"><br/>
+                        <div class="clearfix"></div>
+
+                        <!-- Buttons for Add Cart, Add Favourites & Review -->
+                        <span id="quantityTextSingle" class="label label-default">Quantity:</span>
+                        <select id="buyQuantity" class="form-control">
+                            <?php for ($i = 1; $i <= 50; $i++) {
+                                echo "<option value=\"$i\">$i</option>";
+                            } ?>
+                        </select>
+                        <button id='addCartButtonSingle' type="submit" class="btn btn-default"
+                                onclick="addToCartSingle(<?= $product['id'] . "," .
+                                (isset($promotedPrice) ? $promotedPrice : $product['price']) ?>)"><span
+                                    class="glyphicon glyphicon-shopping-cart"></span> Add to cart
+                        </button>
+                        <br/>
+                        <?php if (!($isFavourite == 3)) {
+                            if ($isFavourite == 2) { ?>
+                                <div id="favourite">
+                                    <button style="display: inline-block;" class="btn btn-primary"
+                                            onclick="addFavourite(<?= $product['id'] ?>)"><span
+                                                class="glyphicon glyphicon-heart"></span> Add to favourites
+                                    </button>
+                                </div>
+                            <?php } else { ?>
+                                <div id="favourite">
+                                    <button style="display: inline-block;" class="btn btn-danger"
+                                            onclick="removeFavourite(<?= $product['id'] ?>)"><span
+                                                class="glyphicon glyphicon-heart-empty"></span> Remove from
+                                        Favourites
+                                    </button>
+                                </div>
+                            <?php }
+                        }
+                        if (isset($_SESSION['loggedUser'])) { ?>
+                            <br/>
+                            <a href="review.php?pid=<?= $product['id'] ?>" style="display: inline-block;"
+                               class="btn btn-primary btn-warning">
+                                <span class="glyphicon glyphicon-tag"></span> Add Review</a>
+                        <?php } ?>
                     </div>
                     <div class="clearfix"></div>
                 </div>

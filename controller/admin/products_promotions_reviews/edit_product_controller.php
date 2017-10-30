@@ -19,6 +19,7 @@ if (isset($_POST['submit'])) {
     $product = new \model\Product();
 
     //product info
+    $product->setId($_POST['pid']);
     $product->setTitle(htmlentities($_POST['title']));
     $product->setDescription(htmlentities($_POST['description']));
     $product->setPrice(htmlentities($_POST['price']));
@@ -82,21 +83,30 @@ if (isset($_POST['submit'])) {
     //product subcategory and specs
     $subcatId = $_POST['subcategory_id'];
     $product->setSubcategoryId(htmlentities($subcatId));
+    $oldSubcatId = $_POST['scid'];
     $specs = array();
     $specsCount = $_POST['specsCount'];
-
     for ($i = 0; $i < $specsCount; $i++) {
         $specValue = $_POST['specValue-' . $i];
         $specId = $_POST['specValueId-' . $i];
-        $specObj = new \model\ProductSpecification($specValue, $specId);
-        $specs[] = $specObj;
+        $specObj = new \model\ProductSpecification();
+        $specObj->setValue($specValue);
+        // if category is the same as before, set the Id of the spec, else set the new subcategory spec id
+        if ($subcatId === $oldSubcatId) {
+            $specObj->setId($specId);
+            $specs[0]['newSubcat'] = 0;
+        } else {
+            $specObj->setSubcatSpecId($specId);
+            $specs[0]['newSubcat'] = 1;
+        }
+        $specs[1][] = $specObj;
     }
     //Try to accomplish connection with the database
     try {
 
         $productDao = \model\database\ProductsDao::getInstance();
 
-        $id = $productDao->createNewProduct($product, $images, $specs);
+        $id = $productDao->editProduct($product, $images, $specs);
         if ($id === false) {
 
             foreach ($imagesCatch as $dir) {

@@ -72,7 +72,7 @@ function loadProducts(offset) {
 
                     content +=
                         '<div class="products-grd">' +
-                        '<div class="p-one simpleCart_shelfItem prd">' +
+                        '<div class="p-one">' +
                         '<a href="single.php?pid=' + products[key]['id'] + '">' +
                         '<img src="' + products[key]['image_url'] + '"' +
                         'alt="Product Image" class="img-responsive"/>' +
@@ -115,7 +115,7 @@ function loadProducts(offset) {
     };
     var filter = document.getElementById('filter').value;
     var subcid = location.search;
-    xhttp.open("GET", "../../../controller/products/products_by_category_controller.php?offset="
-        + offset + "&filter=" + filter + "&subcid=" + subcid, true);
+    xhttp.open("GET", "../../controller/products/products_by_category_controller.php" + subcid + "&offset="
+        + offset + "&filter=" + filter, true);
     xhttp.send();
 }

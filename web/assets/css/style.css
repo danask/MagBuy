@@ -1053,9 +1053,6 @@ h3.title.con {
     width: 20.9%;
     text-align: center;
     position: relative;
-}
-
-.products-grd {
     margin: 0.6em 1.4em;
 }
 
@@ -2887,7 +2884,7 @@ ul.qty li p {
 
     .products-grd {
         float: left;
-        width: 29.9%;
+        width: 38%;
         padding: 0;
     }
 
@@ -2996,7 +2993,7 @@ ul.qty li p {
     }
 }
 
-@media (max-width: 320px) {
+@media (max-width: 380px) {
     .top_left {
         float: none;
         text-align: center;
@@ -3112,13 +3109,9 @@ ul.qty li p {
 
     .products-grd {
         float: left;
-        width: 100%;
+        width: 85%;
         padding: 0;
-        margin: 0;
-    }
-
-    .products-grd:nth-child(2) {
-        margin: 1em 0;
+        margin: 2em 1.4em;
     }
 
     .products-grid-right {
@@ -3285,7 +3278,7 @@ ul.qty li p {
     display: inline-block;
     background: transparent;
     border: none !important;
-    font-size:0;
+    font-size: 0;
     width: 100px;
     height: 40px;
 }
