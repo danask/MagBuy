@@ -19,7 +19,7 @@ class OrdersDao
     const ADD_ORDER_PRODUCT = "INSERT INTO order_products (order_id, product_id, quantity) VALUES (?, ?, ?)";
 
     const GET_ALL_ORDERS_ADMIN = "SELECT o.id, u.email AS email, o.created_at, o.status FROM orders o
-                                INNER JOIN users u ON o.user_id = u.id";
+                                INNER JOIN users u ON o.user_id = u.id ORDER BY o.created_at DESC";
 
     const CHANGE_ORDER_STATUS = "UPDATE orders SET status = ? WHERE id = ?";
 

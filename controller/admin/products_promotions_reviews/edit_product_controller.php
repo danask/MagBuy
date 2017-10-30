@@ -3,7 +3,7 @@
 session_start();
 
 //Include Error Handler
-//require_once '../../../utility/error_handler_dir_back.php';
+require_once '../../../utility/error_handler_dir_back.php';
 //Include cropping image function
 require_once '../../../utility/imageCrop.php';
 
@@ -27,13 +27,13 @@ if (isset($_POST['submit'])) {
 
     //Images Handling
     $images = array();
-  for ($i = 1; $i < 4; $i++) {
+    for ($i = 1; $i < 4; $i++) {
 
-      $imagesDirectoryMove = null;
-      $imagesDirectoryView = null;
-      $imageInput = "pic$i";
-      $tmpName = null;
-      $userId = $_SESSION['loggedUser'];
+        $imagesDirectoryMove = null;
+        $imagesDirectoryView = null;
+        $imageInput = "pic$i";
+        $tmpName = null;
+        $userId = $_SESSION['loggedUser'];
 
         if (!empty($_FILES[$imageInput]['tmp_name'])) {
 
@@ -56,7 +56,7 @@ if (isset($_POST['submit'])) {
             if ($type == "image" && $fileSize < 5048576) {
 
                 $uploadTime = microtime();
-                $fileName = $userId.$uploadTime. "." . $extension;
+                $fileName = $userId . $uploadTime . "." . $extension;
 
                 $imagesDirectoryView = "../../web/uploads/productImages/$fileName";
                 $imagesDirectoryMove = "../../../web/uploads/productImages/$fileName";
@@ -76,7 +76,7 @@ if (isset($_POST['submit'])) {
             header('Location: ../../../view/error/error_400.php');
             die();
         }
-   }
+    }
 
 
     //product subcategory and specs
@@ -112,8 +112,6 @@ if (isset($_POST['submit'])) {
         header("Location: ../../../view/admin/products_promotions_reviews/products_view.php");
 
     } catch (PDOException $e) {
-
-
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
         error_log($message, 3, '../../../errors.log');
         header("Location: ../../../view/error/error_500.php");
@@ -121,10 +119,11 @@ if (isset($_POST['submit'])) {
     }
 
 } else {
-
     try {
         $subcatDao = \model\database\SubCategoriesDao::getInstance();
         $subcategories = $subcatDao->getAllSubCategories();
+        $productDao = \model\database\ProductsDao::getInstance();
+        $product = $productDao->getProductByIDAdmin($_GET['pid']);
     } catch (PDOException $e) {
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
         error_log($message, 3, '../../../errors.log');

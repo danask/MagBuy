@@ -19,10 +19,17 @@ class ProductsDao
     //Statements defined as constants
 
     const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, pr.percent,
-                                pr.start_date, pr.end_date, p.visible,
+                                pr.start_date, pr.end_date, p.visible, p.quantity, 
                                (SELECT AVG(rating) FROM reviews WHERE product_id = ?) average FROM products p 
                                 INNER JOIN images i ON p.id = i.product_id 
                                 LEFT JOIN promotions pr ON p.id = pr.product_id WHERE P.visible = 1 
+                                GROUP BY p.id HAVING p.id = ?";
+
+    const GET_PRODUCT_BY_ID_ADMIN = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, pr.percent,
+                                pr.start_date, pr.end_date, p.visible, p.quantity, 
+                               (SELECT AVG(rating) FROM reviews WHERE product_id = ?) average FROM products p 
+                                INNER JOIN images i ON p.id = i.product_id 
+                                LEFT JOIN promotions pr ON p.id = pr.product_id
                                 GROUP BY p.id HAVING p.id = ?";
 
     const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
@@ -61,7 +68,7 @@ class ProductsDao
 
     const GET_ALL_PRODUCTS_ADMIN = "SELECT p.id, p.title, p.description, p.price, p.quantity, p.visible, 
                                     p.created_at, sc.name AS subcat_name FROM products p LEFT JOIN subcategories sc
-                                    ON p.subcategory_id = sc.id";
+                                    ON p.subcategory_id = sc.id ORDER BY p.created_at DESC";
 
     const TOGGLE_VISIBILITY = "UPDATE products SET visible = ? WHERE id = ?";
 
@@ -175,6 +182,15 @@ class ProductsDao
     function getProductByID($productId)
     {
         $statement = $this->pdo->prepare(self::GET_PRODUCT_BY_ID);
+        $statement->execute(array($productId, $productId));
+        $product = $statement->fetch(PDO::FETCH_ASSOC);
+
+        return $product;
+    }
+
+    function getProductByIDAdmin($productId)
+    {
+        $statement = $this->pdo->prepare(self::GET_PRODUCT_BY_ID_ADMIN);
         $statement->execute(array($productId, $productId));
         $product = $statement->fetch(PDO::FETCH_ASSOC);
 

@@ -51,7 +51,7 @@ require_once "../../../controller/admin/products_promotions_reviews/view_product
                 <td><?= $product['created_at'] ?></td>
                 <td><?= $product['subcat_name'] ?></td>
                 <td>
-                    <a href="product_edit.php?cid=<?= $product['id'] ?>">
+                    <a href="product_edit.php?pid=<?= $product['id'] ?>">
                         <button class="btn btn-warning">
                             Edit
                         </button>

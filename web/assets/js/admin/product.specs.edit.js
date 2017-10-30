@@ -1,8 +1,9 @@
-function loadSpecs() {
+function loadFilledSpecs() {
     var xhttp = new XMLHttpRequest();
     var subCatId = document.getElementById("selectSubCatId").value;
     xhttp.onreadystatechange = function () {
         if (this.status == 200 && this.readyState == 4) {
+            alert("hi");
             var window = document.getElementById("specsWindow");
             window.innerHTML = "";
             var specs = JSON.parse(this.responseText);
@@ -12,7 +13,8 @@ function loadSpecs() {
                     var specInput = document.createElement("input");
                     specInput.type = "text";
                     specInput.setAttribute("name", "specValue-" + i);
-                    specInput.setAttribute("placeholder", specs[key]['name']);
+                    specInput.setAttribute("placeholder", specs[0][key]['name']);
+                    // specInput.setAttribute("value", specs[1][key]['value']);
 
                     var specId = document.createElement("input");
                     specId.type = "hidden";
@@ -37,6 +39,8 @@ function loadSpecs() {
             window.appendChild(specCount);
         }
     };
-    xhttp.open("GET", "../../../controller/admin/products_promotions_reviews/new_product_fill_specs_controller.php?scid=" + subCatId, true);
+    var productId = location.search;
+    xhttp.open("GET", "../../../controller/admin/products_promotions_reviews/edit_product_fill_specs_controller.php?scid="
+        + subCatId + "&pid=" + productId, true);
     xhttp.send();
 }

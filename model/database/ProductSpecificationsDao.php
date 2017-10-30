@@ -5,8 +5,10 @@ namespace model\database;
 
 use model\database\Connect\Connection;
 use model\ProductSpecification;
+use PDO;
 
-class ProductSpecificationsDao {
+class ProductSpecificationsDao
+{
 
     //Make Singleton
     private static $instance;
@@ -21,14 +23,15 @@ class ProductSpecificationsDao {
                                    ON v.subcat_spec_id = s.id WHERE v.product_id = ?";
 
 
-
     //Get connection in construct
-    private function __construct() {
+    private function __construct()
+    {
 
         $this->pdo = Connection::getInstance()->getConnection();
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
 
         if (self::$instance === null) {
             self::$instance = new ProductSpecificationsDao();
@@ -43,7 +46,8 @@ class ProductSpecificationsDao {
      * @param ProductSpecification $specification - Receives object with specifications information and product ID.
      * @return bool
      */
-    function fillSpecification(ProductSpecification $specification) {
+    function fillSpecification(ProductSpecification $specification)
+    {
 
         $statement = $this->pdo->prepare(self::FILL_SPEC);
         $statement->execute(array(
@@ -60,12 +64,13 @@ class ProductSpecificationsDao {
      * @param $productId - Receives product's ID.
      * @return array - Returns product's specifications.
      */
-    function getAllSpecificationsForProduct($productId) {
+    function getAllSpecificationsForProduct($productId)
+    {
 
         $statement = $this->pdo->prepare(self::GET_SPECS_FOR_PRODUCT);
         $statement->execute(array($productId));
 
-        $specifications = $statement->fetchAll();
+        $specifications = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $specifications;
     }
