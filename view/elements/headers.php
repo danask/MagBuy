@@ -24,7 +24,7 @@ if (session_status() == PHP_SESSION_NONE) {
     <link href="../../web/assets/css/megaMenu.css" rel="stylesheet" type="text/css" media="all"/>
 
     <!-- JQuery Library -->
-    <script src="../../web/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="../../web/assets/js/jquery-3.2.1.js"></script>
     <!-- Bootstrap JS Library -->
     <script src="../../web/assets/js/bootstrap.js"></script>
     <!-- Search JS -->

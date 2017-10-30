@@ -11,7 +11,7 @@ require_once "../../../controller/admin/supercategories/view_supercategories_con
     <title>Admin | Supercategories</title>
     <link rel="stylesheet" href="../../../web/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../web/assets/css/adminPanel.css">
-    <script src="../../../web/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="../../../web/assets/js/jquery-3.2.1.js"></script>
     <script src="../../../web/assets/js/admin/remove.admin.js"></script>
 </head>
 <body>

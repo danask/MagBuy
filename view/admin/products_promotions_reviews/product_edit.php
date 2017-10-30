@@ -11,7 +11,7 @@ require_once "../../../controller/admin/products_promotions_reviews/edit_product
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../../../web/assets/css/adminPanel.css">
-    <script src="../../../web/assets/js/jquery-1.11.1.min.js"></script>
+    <script src="../../../web/assets/js/jquery-3.2.1.js"></script>
     <script src="../../../web/assets/js/admin/product.specs.js"></script>
     <script src="../../../web/assets/js/admin/product.specs.edit.js"></script>
 </head>
