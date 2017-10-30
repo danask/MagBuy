@@ -2357,6 +2357,13 @@ ul.qty li p {
 
 }
 
+@media (max-width: 1201px) {
+    .products-grd {
+        float: left;
+        width: 20%;
+    }
+}
+
 @media (max-width: 1024px) {
     h3.b-tittle {
         font-size: 1em;
@@ -2397,7 +2404,7 @@ ul.qty li p {
 
     .products-grd {
         float: left;
-        width: 23.9%;
+        width: 20%;
     }
 
     .products-single {
@@ -2413,6 +2420,13 @@ ul.qty li p {
 
     .grid-single {
         width: 51%;
+    }
+}
+
+@media (max-width: 993px) {
+    .products-grd {
+        float: left;
+        width: 18%;
     }
 }
 
@@ -2639,6 +2653,13 @@ ul.qty li p {
         padding: 0;
     }
 
+}
+
+@media (max-width: 700px) {
+    .products-grd {
+        float: left;
+        width: 30%;
+    }
 }
 
 @media (max-width: 640px) {
@@ -3293,4 +3314,9 @@ ul.qty li p {
     #hideUnder1200:nth-child(3) {
         display: none;
     }
+}
+
+h4 {
+    white-space: nowrap;
+    overflow: hidden;
 }
