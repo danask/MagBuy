@@ -3289,3 +3289,15 @@ ul.qty li p {
     width: 100px;
     height: 40px;
 }
+
+@media (max-width: 1200px) {
+    #hideUnder1200:nth-child(4) {
+        display: none;
+    }
+}
+
+@media (max-width: 525px) {
+    #hideUnder1200:nth-child(3) {
+        display: none;
+    }
+}
