@@ -4,7 +4,6 @@
 namespace model\database;
 
 use model\database\Connect\Connection;
-use model\ProductImage;
 use PDO;
 
 class ProductImagesDao {
@@ -83,3 +82,4 @@ class ProductImagesDao {
         return $image['image_url'];
     }
 }
+
