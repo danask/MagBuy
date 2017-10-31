@@ -23,9 +23,7 @@ require_once "../elements/navigation.php";
                 <?php if (count($result)) {
                     $counter = 0;
                     foreach ($result as $product) {
-                        if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
-                            && $product['end_date'] > date("Y-m-d H:i:s")
-                        ) {
+                        if ($product['percent'] != null) {
                             $promotedPrice = round($product['price'] - (($product['price'] *
                                         $product['percent']) / 100), 2);
                         } else {
@@ -44,11 +42,11 @@ require_once "../elements/navigation.php";
                                     $product['average'] = round($product['average'], 0);
                                 } ?>
 
-                                <img class="ratingCatDiv" class="media-object img"
+                                <img class="ratingCatDiv media-object img"
                                      src="../../web/assets/images/rating<?= $product['average'] ?>.png">
-                                (<?= $product['reviewsCount'] ?>)
+                                <span>(<?= $product['reviewsCount'] ?>)</span>
                                 <br/><br/>
-                                <p><a class="btn btn-default btn-sm"
+                                <p><a id="addButtonBlock" class="btn btn-default btn-sm"
                                       onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
                                         <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
                                     </a>&nbsp&nbsp

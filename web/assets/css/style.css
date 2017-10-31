@@ -3342,8 +3342,17 @@ h4 {
 
 .ratingCatDiv {
     width: 70%;
+    margin-left: 10%;
+    float:left;
+
 }
 
 #reviewRating {
     margin-bottom: 2px;
+}
+
+@media (max-width: 991px) {
+    #addButtonBlock{
+        display: block;
+    }
 }
