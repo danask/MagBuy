@@ -1,4 +1,18 @@
 <?php
+
+// Start Session
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+
+// Check if user have session (if user is logged)
+if (isset($_SESSION['role']) && $_SESSION['role'] != 3 && $_SESSION['role'] != 2) {
+
+    //Redirect to Error
+    header("Location: ../../view/error/error_400.php");
+    die();
+}
+
 require_once "../elements/headers.php";
 ?>
 <meta charset="UTF-8">
@@ -17,7 +31,8 @@ require_once "../elements/header.php";
     <button class="btn btn-primary">Back to homepage</button>
 </a>
 <div align="center">
-    <h3>Welcome, boss! What would you like to check?</h3>
+    <h3>Welcome! What would you like to check?</h3>
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 3) { ?>
     <a href="supercategories/supercategories_view.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-th-large fa-4x" aria-hidden="true"></i><br>Super<br>Categories
         </button>
@@ -35,15 +50,18 @@ require_once "../elements/header.php";
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-info fa-4x" aria-hidden="true"></i><br>Subcategory<br>Specifications
         </button>
     </a><br>
+    <?php } ?>
     <a href="products_promotions_reviews/products_view.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-cubes fa-4x" aria-hidden="true"></i><br>Products
             and<br>
             Promotions
         </button>
     </a>
+    <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 3) { ?>
     <a href="#">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-user fa-4x" aria-hidden="true"></i><br>Users</button>
     </a>
+    <?php } ?>
     <a href="orders/orders_view.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-plane fa-4x" aria-hidden="true"></i><br>Orders
         </button>

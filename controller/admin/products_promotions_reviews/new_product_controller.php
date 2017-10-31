@@ -4,6 +4,10 @@ session_start();
 
 //Include Error Handler
 require_once '../../../utility/error_handler_dir_back.php';
+
+//Include Admin/Mod check
+require_once '../../../utility/admin_mod_session.php';
+
 //Include cropping image function
 require_once '../../../utility/imageCrop.php';
 

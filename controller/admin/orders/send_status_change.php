@@ -2,6 +2,9 @@
 //Include Error Handler
 require_once '../../../utility/error_handler.php';
 
+//Include Admin/Mod check
+require_once '../../../utility/admin_mod_session.php';
+
 // Import PHPMailer classes into the global namespace
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;

@@ -35,7 +35,7 @@ class UserDao {
 
     const IS_FIRST_USER = "SELECT id FROM users";
 
-    const IS_ADMIN = "SELECT role FROM users WHERE email = ? AND password = ?";
+    const ROLE = "SELECT role FROM users WHERE email = ? AND password = ?";
 
     const RESET_PASS = "UPDATE users SET password = ? WHERE email = ?";
 
@@ -261,7 +261,7 @@ class UserDao {
 
     function checkIfLoggedUserIsAdmin(User $user) {
 
-        $statement = $this->pdo->prepare(self::IS_ADMIN);
+        $statement = $this->pdo->prepare(self::ROLE);
         $statement->execute(array(
             $user->getEmail(),
             $user->getPassword()));
@@ -269,6 +269,7 @@ class UserDao {
             $userRole = $statement->fetch();
             return (int)$userRole['role'];
     }
+
 
     function resetPassword (User $user) {
 

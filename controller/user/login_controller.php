@@ -47,6 +47,10 @@ if (!empty($_POST['email']) &&
                 //Check if user is admin (role = 3)
                 if($userDao->checkIfLoggedUserIsAdmin($user) == 3) {
                     $_SESSION['role'] = 3;
+                } elseif ($userDao->checkIfLoggedUserIsAdmin($user) == 2) {
+                    $_SESSION['role'] = 2;
+                } else {
+                    $_SESSION['role'] = 1;
                 }
 
                 header("Location: ../../view/main/index.php");

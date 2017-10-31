@@ -16,7 +16,9 @@
                         echo '<li><a href="../user/login.php">Login</a></li>';
                     }
                     ?>
+                    <?php if(isset($_SESSION['role']) && ($_SESSION['role'] == 3 || $_SESSION['role'] == 2)) { ?>
                     <li><a href="../admin/admin_panel.php">Admin Panel</a></li>
+                    <?php } ?>
                 </ul>
             </div>
             <?php

@@ -1,1 +1,15 @@
 2017-10-31 11:57:41 /MagBuy/view/main/single.php 8 Undefined index: role  
+2017-10-31 12:56:24 /MagBuy/view/admin/orders/orders_view.php 8 A session had already been started - ignoring session_start()  
+2017-10-31 12:57:55 /MagBuy/view/admin/orders/orders_view.php 8 A session had already been started - ignoring session_start()  
+2017-10-31 13:00:05 /MagBuy/view/admin/orders/orders_view.php 8 A session had already been started - ignoring session_start()  
+2017-10-31 13:00:07 /MagBuy/view/admin/products_promotions_reviews/products_view.php 8 A session had already been started - ignoring session_start()  
+2017-10-31 13:00:12 /MagBuy/view/admin/subcategory_specs/subcat_specs_view.php 8 A session had already been started - ignoring session_start()  
+2017-10-31 13:07:20 /MagBuy/view/main/index.php 8 Undefined index: role  
+2017-10-31 13:07:28 /MagBuy/view/main/index.php 8 Undefined index: role  
+2017-10-31 13:08:25 /MagBuy/view/main/index.php 8 Undefined index: role  
+2017-10-31 13:09:15 /MagBuy/view/main/index.php 8 Undefined index: role  
+2017-10-31 13:09:45 /MagBuy/view/main/index.php 8 Undefined index: role  
+2017-10-31 13:10:02 /MagBuy/view/main/index.php 8 Undefined index: role  
+2017-10-31 13:13:02 /MagBuy/view/main/index.php 8 Undefined index: role  
+2017-10-31 13:13:09 /MagBuy/view/main/index.php 8 Undefined index: role  
+2017-10-31 13:13:49 /MagBuy/view/main/index.php 8 Undefined index: role  
