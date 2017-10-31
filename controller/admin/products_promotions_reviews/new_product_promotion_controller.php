@@ -23,10 +23,29 @@ if (isset($_POST['submit'])) {
     try {
 
         $promoDao = \model\database\PromotionsDao::getInstance();
+        $favDao = \model\database\FavouritesDao::getInstance();
+        $productsDao = \model\database\ProductsDao::getInstance();
 
         $id = $promoDao->createPromotion($promotion);
 
+        $productInfo = $productsDao->getProductByID($productId);
+        $subscribedUsers = $favDao->subscribedUsersForProduct($productId);
+
+
+        //Send mails
+
+        $msgBody = "Dear customer, there will be promotion for " . $productInfo['title'] . " with " . $percent .
+            " discount, starting from  " . $startDate . " to " . $endDate . ". Thank you for visiting our site!";
+
+        foreach ($subscribedUsers as $userEmail) {
+            $userEmail = $userEmail['email'];
+
+            require_once 'send_promotion_controller.php';
+        }
+
         header("Location: ../../../view/admin/products_promotions_reviews/promotions_product_view.php?pid=" . $productId);
+
+
 
 
     } catch (PDOException $e) {

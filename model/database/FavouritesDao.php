@@ -23,6 +23,8 @@ class FavouritesDao {
     const ALL_FAVOURITES_BY_USER_ID = "SELECT P.id, P.title, P.description, P.price, I.image_url, F.user_id, P.visible FROM products P 
                                       JOIN favourites F ON P.id = F.product_id JOIN images I ON P.id = I.product_id 
                                       GROUP BY F.id HAVING F.user_id = ? AND P.visible = 1";
+    const SUBSCRIBED_USERS_BY_PRODUCT_ID = "SELECT U.email FROM users U LEFT JOIN favourites F ON U.id = F.user_id 
+                                            WHERE F.product_id = ?";
 
 
     //Get connection in construct
@@ -87,7 +89,6 @@ class FavouritesDao {
     }
 
 
-
     /**
      * Function for getting all products for user from favourites.
      * @param Favourites $favourites - Receives user's ID.
@@ -102,4 +103,19 @@ class FavouritesDao {
         $favouritesUser = $statement->fetchAll(PDO::FETCH_ASSOC);
         return $favouritesUser;
     }
+
+    /**
+     * Function for getting subscribed users for product.
+     * @param ID $productId - Receives product ID
+     * @return array - Returns all favourite products in associative array.
+     */
+    function subscribedUsersForProduct ( $proudctId) {
+
+        $statement = $this->pdo->prepare(self::SUBSCRIBED_USERS_BY_PRODUCT_ID);
+        $statement->execute(array($proudctId));
+
+        $subscribedUsers = $statement->fetchAll(PDO::FETCH_ASSOC);
+        return $subscribedUsers;
+    }
+
 }
