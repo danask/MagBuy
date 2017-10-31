@@ -56,7 +56,8 @@
 
 - Executionable SQL script /Database SQL.sql to create MagBuy's database.
 - The first registered user is Administrator - Role 3 in the database.
-- Adminsitrator can make other users to moderator - from role 1 to role 2.
+- Adminsitrator can change other users into moderators - from role 1 to role 2.
+- Moderators can only manage products and orders.
 - Every other user is with role 1.
 - The forgotten password system uses tokken verification.
 - Uploaded images must be below 5MB and one of these types - jpg, jpeg, gif, png. Images are cropped.
