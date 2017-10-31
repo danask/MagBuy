@@ -34,9 +34,14 @@ try {
 
     //Recipients
     $mail->setFrom('magbuy@outlook.com', 'MagBuy');
-    $mail->addAddress($userEmail, 'User');     // Add a recipient
+    foreach ($subscribedUsers as $userEmail) {
+        
+        $mail->addAddress($userEmail['email'], 'User');     // Add a recipient
+    }
 
     //Content
+    $msgBody = "Dear customer, there will be promotion for " . $productInfo['title'] . " with " . $percent .
+        "% discount, starting from  " . $startDate . " to " . $endDate . ". Thank you for visiting our site!";
     $mail->isHTML(true);                                  // Set email format to HTML
     $mail->Subject = 'MagBay Order Status!';
     $mail->Body    = $msgBody;
