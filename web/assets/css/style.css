@@ -3343,3 +3343,7 @@ h4 {
 .ratingCatDiv {
     width: 70%;
 }
+
+#reviewRating {
+    margin-bottom: 2px;
+}

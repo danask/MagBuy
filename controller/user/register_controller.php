@@ -82,6 +82,8 @@ if (!empty($_POST['email']) &&
         //Check if it's first user and make it admin (role = 3)
         if($userDao->checkIfUserFirst()) {
             $user->setRole(3);
+        } else {
+            $user->setRole(1);
         }
 
         //Check if user exists
