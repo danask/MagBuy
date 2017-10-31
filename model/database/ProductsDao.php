@@ -18,68 +18,81 @@ class ProductsDao
 
     //Statements defined as constants
 
-    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, pr.percent,
-                                pr.start_date, pr.end_date, p.visible, p.quantity, 
-                               (SELECT AVG(rating) FROM reviews WHERE product_id = ?) average FROM products p 
+    const GET_PRODUCT_BY_ID = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, p.visible, 
+                                p.quantity, 
+                                (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                ORDER BY percent DESC LIMIT 1) 
+                                AS percent,
+                               (SELECT AVG(rating) FROM reviews WHERE product_id = p.id) average FROM products p 
                                 INNER JOIN images i ON p.id = i.product_id 
-                                LEFT JOIN promotions pr ON p.id = pr.product_id WHERE P.visible = 1 
-                                GROUP BY p.id HAVING p.id = ?";
+                                WHERE P.visible = 1 GROUP BY p.id HAVING p.id = ?";
 
-    const GET_PRODUCT_BY_ID_ADMIN = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, pr.percent,
-                                pr.start_date, pr.end_date, p.visible, p.quantity, 
-                               (SELECT AVG(rating) FROM reviews WHERE product_id = ?) average FROM products p 
+    const GET_PRODUCT_BY_ID_ADMIN = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, p.visible, p.quantity, 
+                                (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                 ORDER BY percent DESC LIMIT 1) AS percent,
+                                (SELECT AVG(rating) FROM reviews WHERE product_id = p.id) average FROM products p 
                                 INNER JOIN images i ON p.id = i.product_id 
-                                LEFT JOIN promotions pr ON p.id = pr.product_id
                                 GROUP BY p.id HAVING p.id = ?";
 
     const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
-                                    p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
-                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
+                                    p.visible, 
+                                    (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                     ORDER BY percent DESC LIMIT 1) 
+                                    AS percent FROM products p INNER JOIN images i ON p.id = i.product_id GROUP 
                                     BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC LIMIT 8";
 
-    const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, pr.start_date, pr.end_date,
+    const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price,
+                                     (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                      ORDER BY percent DESC LIMIT 1) 
+                                     AS percent,
                                      (SELECT AVG(rating) 
                                      FROM reviews WHERE product_id = P.id) average, 
                                      (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount FROM products P
                                      JOIN images I ON P.id = I.product_id JOIN reviews R ON P.id = R.product_id
-                                     LEFT JOIN promotions pr ON P.id = pr.product_id
                                      WHERE P.visible = 1 GROUP BY P.id ORDER BY average DESC LIMIT 4";
 
-    const GET_RELATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.subcategory_id, P.price, pr.percent, pr.start_date,
-                                  pr.end_date, (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average, 
+    const GET_RELATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.subcategory_id, P.price, 
+                                  (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average,
+                                  (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                   ORDER BY percent DESC LIMIT 1) AS percent,
                                   (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount FROM products P 
-                                  LEFT JOIN promotions pr ON P.id = pr.product_id
                                   JOIN images I ON P.id = I.product_id WHERE P.visible = 1 AND NOT P.id = ?
                                   GROUP BY P.id HAVING P.subcategory_id = ? ORDER BY P.created_at DESC LIMIT 4";
 
-    const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, p.title, i.image_url, p.price, pr.percent, pr.start_date,
-                                      pr.end_date, (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average,
+    const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, p.title, i.image_url, p.price,
+                                      (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average,
+                                      (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                       ORDER BY percent DESC LIMIT 1) AS percent,
                                       (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount
                                       FROM products p 
-                                      JOIN images i ON p.id = i.product_id LEFT JOIN promotions pr
-                                      ON P.id = pr.product_id WHERE p.visible = 1 GROUP BY p.id 
+                                      JOIN images i ON p.id = i.product_id WHERE p.visible = 1 GROUP BY p.id 
                                       ORDER BY p.created_at DESC LIMIT 4";
 
-    const GET_MOST_SOLD = "SELECT P.id, P.title, I.image_url, P.price, pr.percent, pr.start_date, pr.end_date,
+    const GET_MOST_SOLD = "SELECT P.id, P.title, I.image_url, P.price,
                           (SELECT SUM(OP.quantity) FROM order_products OP JOIN orders O ON OP.order_id = O.id
                           WHERE O.status = 3 AND OP.product_id = P.id) ordered,
+                          (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                           ORDER BY percent DESC LIMIT 1) AS percent,
                            (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average, 
                            (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount FROM products P JOIN
-                          images I ON P.id = I.product_id LEFT JOIN promotions pr ON P.id = pr.product_id
-                          WHERE P.visible = 1 GROUP BY P.id ORDER BY ordered DESC LIMIT 4";
+                          images I ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id ORDER BY ordered DESC LIMIT 4";
 
     const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
                               ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ? LIMIT 3";
 
-    const SEARCH_PRODUCTS_NO_LIMIT = "SELECT P.id, P.title, P.price, I.image_url, pr.percent, pr.start_date,
-                                      pr.end_date, (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average,
+    const SEARCH_PRODUCTS_NO_LIMIT = "SELECT P.id, P.title, P.price, I.image_url, 
+                                      (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                       ORDER BY percent DESC LIMIT 1) AS percent,
+                                      (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average,
                                       (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount 
-                                      FROM products P JOIN images I 
-                                      ON P.id = I.product_id LEFT JOIN promotions pr ON P.id = pr.product_id 
+                                      FROM products P JOIN images I ON P.id = I.product_id
                                       WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ?";
 
     const GET_ALL_PRODUCTS_ADMIN = "SELECT p.id, p.title, p.description, p.price, p.quantity, p.visible, 
-                                    p.created_at, sc.name AS subcat_name FROM products p LEFT JOIN subcategories sc
+                                    p.created_at, sc.name AS subcat_name,
+                                    (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                     ORDER BY percent DESC LIMIT 1) AS percent
+                                    FROM products p LEFT JOIN subcategories sc
                                     ON p.subcategory_id = sc.id ORDER BY p.created_at DESC";
 
     const TOGGLE_VISIBILITY = "UPDATE products SET visible = ? WHERE id = ?";
@@ -102,31 +115,43 @@ class ProductsDao
     const DELETE_PRODUCT_SPECS = "DELETE FROM subcat_specification_value WHERE product_id = ?";
 
     const GET_SUBCAT_PRODUCTS_NEWEST = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
-                                    p.visible, pr.percent, pr.start_date, pr.end_date FROM products p INNER JOIN images i 
-                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
-                                    BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY p.created_at DESC 
+                                    p.visible,
+                                    (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                     ORDER BY percent DESC LIMIT 1) AS percent
+                                    FROM products p INNER JOIN images i 
+                                    ON p.id = i.product_id GROUP BY P.id 
+                                    HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY p.created_at DESC 
                                     LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_MOST_SOLD = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
-                                    p.visible, pr.percent, pr.start_date, pr.end_date, (SELECT SUM(op.quantity)
+                                    p.visible, 
+                                    (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                     ORDER BY percent DESC LIMIT 1) AS percent, 
+                                    (SELECT SUM(op.quantity)
                                     FROM order_products op JOIN orders o ON op.order_id = o.id
                                     WHERE o.status = 3 AND op.product_id = p.id) ordered FROM products p INNER JOIN images i 
-                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
-                                    BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY ordered DESC 
+                                    ON p.id = i.product_id GROUP BY P.id 
+                                    HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY ordered DESC 
                                     LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_MOST_REVIEWED = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
-                                    p.visible, pr.percent, pr.start_date, pr.end_date, (SELECT COUNT(product_id) 
-                                     FROM reviews WHERE product_id = P.id) average FROM products p INNER JOIN images i 
-                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
-                                    BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY average DESC 
+                                    p.visible, 
+                                    (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                     ORDER BY percent DESC LIMIT 1) AS percent, 
+                                    (SELECT COUNT(product_id) 
+                                    FROM reviews WHERE product_id = P.id) average FROM products p INNER JOIN images i 
+                                    ON p.id = i.product_id GROUP BY P.id 
+                                    HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY average DESC 
                                     LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_HIGHEST_RATED = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
-                                    p.visible, pr.percent, pr.start_date, pr.end_date, (SELECT AVG(rating) 
-                                     FROM reviews WHERE product_id = P.id) average FROM products p INNER JOIN images i 
-                                    ON p.id = i.product_id LEFT JOIN promotions pr ON p.id = pr.product_id GROUP 
-                                    BY P.id HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY average DESC 
+                                    p.visible, 
+                                    (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
+                                     ORDER BY percent DESC LIMIT 1) AS percent, 
+                                    (SELECT AVG(rating) 
+                                    FROM reviews WHERE product_id = P.id) average FROM products p INNER JOIN images i 
+                                    ON p.id = i.product_id GROUP BY P.id 
+                                    HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY average DESC 
                                     LIMIT 8 OFFSET :off";
 
     //Get connection in construct
@@ -234,10 +259,10 @@ class ProductsDao
                 $statement->execute(array($productId));
 
                 foreach ($specs[1] as $spec) {
-                    if (!empty(trim($spec))) {
+                    if (!empty($spec)) {
                         $value = $spec->getValue();
                     } else {
-                        $value = "Not Specified";
+                        $value = "Not specified";
                     }
                     $specId = $spec->getSubcatSpecId();
 
@@ -248,10 +273,10 @@ class ProductsDao
                 //if subcategory is not changed update the old specs
                 foreach ($specs[1] as $spec) {
                     $specId = $spec->getId();
-                    if (!empty(trim($spec))) {
+                    if (!empty($spec)) {
                         $value = $spec->getValue();
                     } else {
-                        $value = "Not Specified";
+                        $value = "Not specified";
                     }
 
                     $statement = $this->pdo->prepare(self::EDIT_PRODUCT_SPEC);
@@ -277,7 +302,7 @@ class ProductsDao
     function getProductByID($productId)
     {
         $statement = $this->pdo->prepare(self::GET_PRODUCT_BY_ID);
-        $statement->execute(array($productId, $productId));
+        $statement->execute(array($productId));
         $product = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $product;
@@ -291,7 +316,7 @@ class ProductsDao
     function getProductByIDAdmin($productId)
     {
         $statement = $this->pdo->prepare(self::GET_PRODUCT_BY_ID_ADMIN);
-        $statement->execute(array($productId, $productId));
+        $statement->execute(array($productId));
         $product = $statement->fetch(PDO::FETCH_ASSOC);
 
         return $product;

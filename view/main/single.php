@@ -29,7 +29,6 @@ require_once "../elements/headers.php";
 
     <!-- Define Page Name -->
     <title>MagBuy | <?= $product['title'] ?></title>
-    </head>
 
 
 <?php
@@ -104,7 +103,7 @@ require_once "../elements/navigation.php";
                                 } ?>In stock</span></p>
                         <div class="price_single">
                             <?php
-                            if (isset($promotedPrice)) {
+                            if ($promotedPrice !== null) {
                                 ?>
                                 <span class="reducedfrom">$<?= $product['price']; ?></span>
                                 <span class="actual item_price">$<?= $promotedPrice; ?></span>
