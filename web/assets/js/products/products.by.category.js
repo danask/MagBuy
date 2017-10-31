@@ -76,7 +76,7 @@ function loadProducts(offset) {
                         'alt="Product Image" class="img-responsive"/>' +
                         '</a>' +
                         '<h4>' + products[key]['title'] + '</h4>' +
-                        '<p><a class="btn btn-default btn-sm"' +
+                        '<p><a id="addButtonBlock" class="btn btn-default btn-sm"' +
                         'onclick="addToCart(' + products[key]['id'] +
                         ',' + (promotedPrice != null ? promotedPrice : products[key]['price']) + ')">' +
                         '<i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd' +
@@ -85,7 +85,7 @@ function loadProducts(offset) {
                         content +=
                             '<span class="item_price valsa"' +
                             'style="color: red;">$' + promotedPrice + '</span>' +
-                            '<span class="item_price promoValsa">$' + products[key]['price'] + '</span>';
+                            ' <span class="item_price promoValsa">$' + products[key]['price'] + '</span>';
                     }
                     else {
                         content +=
