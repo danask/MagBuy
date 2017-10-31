@@ -6,7 +6,8 @@ namespace model\database;
 use model\database\Connect\Connection;
 use model\SubCategory;
 
-class SubCategoriesDao {
+class SubCategoriesDao
+{
 
     //Make Singletonn
     private static $instance;
@@ -23,6 +24,10 @@ class SubCategoriesDao {
     const GET_ALL_SUBCATS_ADMIN = "SELECT sc.id, sc.name, c.name AS catname FROM subcategories sc 
                                     LEFT JOIN categories c ON sc.category_id = c.id";
 
+    const GET_ALL_SUBCATS_WITHOUT_PRODUCTS = "SELECT sc.* FROM subcategories sc 
+                                          WHERE NOT EXISTS(SELECT * FROM products p 
+                                          WHERE p.subcategory_id = sc.id)";
+
     const GET_SUBCAT_BY_ID = "SELECT * FROM subcategories WHERE id = ?";
 
     const EDIT_SUBCAT = "UPDATE subcategories SET name = ?, category_id = ? WHERE id = ?";
@@ -31,12 +36,14 @@ class SubCategoriesDao {
 
 
     //Get connection in construct
-    private function __construct() {
+    private function __construct()
+    {
 
         $this->pdo = Connection::getInstance()->getConnection();
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
 
         if (self::$instance === null) {
             self::$instance = new SubCategoriesDao();
@@ -51,7 +58,8 @@ class SubCategoriesDao {
      * @param SubCategory $subCategory - Receives new subcategory name and ID.
      * @return string - Returns subcategory's ID.
      */
-    function createSubCategory(SubCategory $subCategory) {
+    function createSubCategory(SubCategory $subCategory)
+    {
 
         $statement = $this->pdo->prepare(self::CREATE_SUBCAT);
         $statement->execute(array(
@@ -66,7 +74,8 @@ class SubCategoriesDao {
      * Function for getting all subcategories.
      * @return array - Returns array with subcategories.
      */
-    function getAllSubCategories() {
+    function getAllSubCategories()
+    {
 
         $statement = $this->pdo->prepare(self::GET_ALL_SUBCATS);
         $statement->execute();
@@ -75,7 +84,18 @@ class SubCategoriesDao {
         return $subcategories;
     }
 
-    function getAllSubCategoriesAdmin() {
+    function getAllSubCategoriesWithoutProducts()
+    {
+
+        $statement = $this->pdo->prepare(self::GET_ALL_SUBCATS_WITHOUT_PRODUCTS);
+        $statement->execute();
+        $subcategories = $statement->fetchAll();
+
+        return $subcategories;
+    }
+
+    function getAllSubCategoriesAdmin()
+    {
 
         $statement = $this->pdo->prepare(self::GET_ALL_SUBCATS_ADMIN);
         $statement->execute();
@@ -84,7 +104,8 @@ class SubCategoriesDao {
         return $subcategories;
     }
 
-    function getSubCategoryName($subId) {
+    function getSubCategoryName($subId)
+    {
 
         $statement = $this->pdo->prepare(self::GET_SUBCAT_NAME);
         $statement->execute(array($subId));

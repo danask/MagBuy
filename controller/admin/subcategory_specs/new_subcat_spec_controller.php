@@ -38,5 +38,5 @@ if (isset($_POST['submit'])) {
 
 } else {
     $subcatDao = \model\database\SubCategoriesDao::getInstance();
-    $subcategories = $subcatDao->getAllSubCategories();
+    $subcategories = $subcatDao->getAllSubCategoriesWithoutProducts();
 }
