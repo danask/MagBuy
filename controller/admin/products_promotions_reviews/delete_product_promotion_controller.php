@@ -20,7 +20,6 @@ if (isset($_GET['prid'])) {
         $promoDao->deletePromotion($promoId);
 
 
-
     } catch (PDOException $e) {
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
         error_log($message, 3, '../../../errors.log');
