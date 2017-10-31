@@ -3334,6 +3334,12 @@ h4 {
     }
 }
 
+@media (max-width: 495px) {
+    #responsiveProductsDiv{
+        width: 90%;
+    }
+}
+
 .ratingCatDiv {
     width: 70%;
 }
