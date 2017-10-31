@@ -24,6 +24,8 @@ require_once "../elements/headers.php";
     <script type="text/javascript" defer src="../../web/assets/js/jquery.flexslider.js"></script>
     <!-- Image Zoom JS -->
     <script type="text/javascript" src="../../web/assets/js/image.zoom.js"></script>
+    <!-- Deleting Review with AJAX JS -->
+    <script type="text/javascript" src="../../web/assets/js/delReview.js"></script>
 
     <!-- Define Page Name -->
     <title>MagBuy | <?= $product['title'] ?></title>
@@ -228,11 +230,12 @@ require_once "../elements/navigation.php";
                              aria-labelledby="headingThree">
 
                             <?php foreach ($reviews as $review) { ?>
-
+                                <div id="rev-<?= $review['id'] ?>">
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="comments-logout">
                                         <ul class="media-list">
                                             <li class="media">
+
                                                 <div class="pull-left" href="#">
                                                     <img class="media-object img-circle"
                                                          src="<?= $review['image_url'] ?>"
@@ -247,6 +250,10 @@ require_once "../elements/navigation.php";
                                                                  src="../../web/assets/images/rating<?=
                                                                  $review['rating'] ?>.png">
                                                         </h4>
+                                                        <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == 3
+                                                            || $_SESSION['role'] == 2)){ ?>
+                                                        <div onclick="delReview(<?= $review['id'] ?>)" class="close1"
+                                                        ></div> <?php  } ?>
                                                         <ul class="media-date text-uppercase reviews list-inline">
                                                             <li class="dd"> <?= $review['created_at'] ?></li>
 
@@ -259,6 +266,7 @@ require_once "../elements/navigation.php";
                                             </li>
                                         </ul>
                                     </div>
+                                </div>
                                 </div>
                             <?php } ?>
                         </div>

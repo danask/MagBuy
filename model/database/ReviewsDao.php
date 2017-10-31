@@ -23,6 +23,8 @@ class ReviewsDao
                                       U.image_url, U.first_name FROM reviews R JOIN users U ON U.id = R.user_id 
                                       WHERE product_id = ? ORDER BY R.created_at DESC";
 
+    const REMOVE_REVIEW = "DELETE FROM reviews WHERE id = ?";
+
 
     //Get connection in construct
     private function __construct()
@@ -77,5 +79,17 @@ class ReviewsDao
         $reviewsReceived = $statement->fetchAll(PDO::FETCH_ASSOC);
 
         return $reviewsReceived;
+    }
+
+
+    /**
+     * Function for deleting reviews.
+     * @param $productId - Receives product's ID.
+     */
+    function removeReview($productId)
+    {
+
+        $statement = $this->pdo->prepare(self::REMOVE_REVIEW);
+        $statement->execute(array($productId));
     }
 }
