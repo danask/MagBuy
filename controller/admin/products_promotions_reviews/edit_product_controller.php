@@ -28,54 +28,64 @@ if (isset($_POST['submit'])) {
 
     //Images Handling
     $images = array();
-    for ($i = 1; $i < 4; $i++) {
+    $pictureFlag = false;
 
-        $imagesDirectoryMove = null;
-        $imagesDirectoryView = null;
-        $imageInput = "pic$i";
-        $tmpName = null;
-        $userId = $_SESSION['loggedUser'];
+        if(!empty($_FILES['pic1']['tmp_name']) &&
+            !empty($_FILES['pic2']['tmp_name']) &&
+            !empty($_FILES['pic3']['tmp_name'])) {
 
-        if (!empty($_FILES[$imageInput]['tmp_name'])) {
+            $pictureFlag = true;
 
-            $tmpName = $_FILES[$imageInput]['tmp_name'];
-
-            if (!is_uploaded_file($tmpName)) {
-                //Redirect to Error page
-                header('Location: ../../../view/error/error_400.php');
-                die();
-            }
-
-            //Get the uploaded file's type, extension and size
-            $fileFormat = mime_content_type($tmpName);
-            $type = explode("/", $fileFormat)[0];
-            $extension = explode("/", $fileFormat)[1];
-            $fileSize = filesize($tmpName);
+        for ($i = 1; $i < 4; $i++) {
 
 
-            //Validate image file - image file below 5MB
-            if ($type == "image" && $fileSize < 5048576) {
+            $imagesDirectoryMove = null;
+            $imagesDirectoryView = null;
+            $imageInput = "pic$i";
+            $tmpName = null;
+            $userId = $_SESSION['loggedUser'];
 
-                $uploadTime = microtime();
-                $fileName = $userId . $uploadTime . "." . $extension;
+            if (!empty($_FILES[$imageInput]['tmp_name'])) {
 
-                $imagesDirectoryView = "../../web/uploads/productImages/$fileName";
-                $imagesDirectoryMove = "../../../web/uploads/productImages/$fileName";
+                $tmpName = $_FILES[$imageInput]['tmp_name'];
 
-                move_uploaded_file($tmpName, $imagesDirectoryMove);
-                cropImage($imagesDirectoryMove, 400);
-                $imagesCatch[] = $imagesDirectoryMove;
-                $images[] = $imagesDirectoryView;
+                if (!is_uploaded_file($tmpName)) {
+                    //Redirect to Error page
+                    header('Location: ../../../view/error/error_400.php');
+                    die();
+                }
 
+                //Get the uploaded file's type, extension and size
+                $fileFormat = mime_content_type($tmpName);
+                $type = explode("/", $fileFormat)[0];
+                $extension = explode("/", $fileFormat)[1];
+                $fileSize = filesize($tmpName);
+
+
+                //Validate image file - image file below 5MB
+                if ($type == "image" && $fileSize < 5048576) {
+
+                    $uploadTime = microtime();
+                    $fileName = $userId . $uploadTime . "." . $extension;
+
+                    $imagesDirectoryView = "../../web/uploads/productImages/$fileName";
+                    $imagesDirectoryMove = "../../../web/uploads/productImages/$fileName";
+
+                    move_uploaded_file($tmpName, $imagesDirectoryMove);
+                    cropImage($imagesDirectoryMove, 400);
+                    $imagesCatch[] = $imagesDirectoryMove;
+                    $images[] = $imagesDirectoryView;
+
+                } else {
+                    //Redirect to Error page
+                    header('Location: ../../../view/error/error_400.php');
+                    die();
+                }
             } else {
                 //Redirect to Error page
                 header('Location: ../../../view/error/error_400.php');
                 die();
             }
-        } else {
-            //Redirect to Error page
-            header('Location: ../../../view/error/error_400.php');
-            die();
         }
     }
 
@@ -105,19 +115,27 @@ if (isset($_POST['submit'])) {
     try {
 
         $productDao = \model\database\ProductsDao::getInstance();
+        $productImagesDao = \model\database\ProductImagesDao::getInstance();
 
+        $oldImgArr = $productImagesDao->getAllProductImages($_POST['pid']);
         $id = $productDao->editProduct($product, $images, $specs);
         if ($id === false) {
-
             foreach ($imagesCatch as $dir) {
                 unlink($dir);
             }
 
             header("Location: ../../../view/error/error_500.php");
             die();
-        } else {
-            echo $id;
         }
+
+            //Delete old images
+            if($pictureFlag) {
+                foreach ($oldImgArr as $img) {
+                    unlink("../" . $img['image_url']);
+                }
+            }
+
+
 
         header("Location: ../../../view/admin/products_promotions_reviews/products_view.php");
 
