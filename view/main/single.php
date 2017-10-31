@@ -277,9 +277,7 @@ require_once "../elements/navigation.php";
                     } ?>
                     <div class="main_filtered_product-info">
                         <?php foreach ($relatedProducts as $product) {
-                            if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
-                                && $product['end_date'] > date("Y-m-d H:i:s")
-                            ) {
+                            if ($product['percent'] != null) {
                                 $promotedPrice = round($product['price'] - (($product['price'] *
                                             $product['percent']) / 100), 2);
                             } else {

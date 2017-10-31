@@ -21,9 +21,7 @@ require_once "../elements/navigation.php";
             <div class="main_filtered_product-info">
 
                 <?php foreach ($mostSold as $product) {
-                    if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
-                        && $product['end_date'] > date("Y-m-d H:i:s")
-                    ) {
+                    if ($product['percent'] != null) {
                         $promotedPrice = round($product['price'] - (($product['price'] *
                                     $product['percent']) / 100), 2);
                     } else {
@@ -43,7 +41,7 @@ require_once "../elements/navigation.php";
                             } ?>
 
                             <img class="ratingCatDiv media-object img"
-                                                           src="../../web/assets/images/rating<?= $product['average'] ?>.png">
+                                 src="../../web/assets/images/rating<?= $product['average'] ?>.png">
                             (<?= $product['reviewsCount'] ?>)
                             <br/><br/>
                             <p><a class="btn btn-default btn-sm"
@@ -82,9 +80,7 @@ require_once "../elements/navigation.php";
             <div class="main_filtered_product-info">
 
                 <?php foreach ($topRated as $product) {
-                    if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
-                        && $product['end_date'] > date("Y-m-d H:i:s")
-                    ) {
+                    if ($product['percent'] != null) {
                         $promotedPrice = round($product['price'] - (($product['price'] *
                                     $product['percent']) / 100), 2);
                     } else {
@@ -143,9 +139,7 @@ require_once "../elements/navigation.php";
             <div class="main_filtered_product-info">
 
                 <?php foreach ($mostRecent as $product) {
-                    if ($product['percent'] != null && $product['start_date'] < date("Y-m-d H:i:s")
-                        && $product['end_date'] > date("Y-m-d H:i:s")
-                    ) {
+                    if ($product['percent'] != null) {
                         $promotedPrice = round($product['price'] - (($product['price'] *
                                     $product['percent']) / 100), 2);
                     } else {

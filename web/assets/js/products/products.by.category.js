@@ -25,7 +25,6 @@ function onScrollToBottom() {
 }
 
 function loadProducts(offset) {
-    var now = new Date().toISOString().slice(0, 19).replace('T', ' ');
     var xhttp = new XMLHttpRequest();
     var productsWindow = document.getElementById("productsWindow");
     var loading = document.createElement("img");
@@ -50,8 +49,7 @@ function loadProducts(offset) {
             for (var key in products) {
                 if (products.hasOwnProperty(key)) {
 
-                    if (products[key]['percent'] != null && products[key]['start_date'] <= now
-                        && products[key]['end_date'] >= now) {
+                    if (products[key]['percent'] !== null) {
                         var promotedPrice = Math.round((products[key]['price'] -
                                     ((products[key]['price'] * products[key]['percent']) / 100)
                                 ) * 100) / 100;
