@@ -3,7 +3,7 @@
 require_once '../../../utility/error_handler_dir_back.php';
 
 //Include Admin/Mod check
-require_once '../../../utility/admin_session.php';
+require_once '../../../utility/admin_mod_session.php';
 
 //Autoload to require needed model files
 function __autoload($className)

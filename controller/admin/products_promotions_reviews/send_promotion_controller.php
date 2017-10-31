@@ -35,7 +35,7 @@ try {
     //Recipients
     $mail->setFrom('magbuy@outlook.com', 'MagBuy');
     foreach ($subscribedUsers as $userEmail) {
-        
+
         $mail->addAddress($userEmail['email'], 'User');     // Add a recipient
     }
 
