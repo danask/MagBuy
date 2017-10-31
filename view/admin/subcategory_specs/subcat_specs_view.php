@@ -11,7 +11,7 @@ require_once "../../../controller/admin/subcategory_specs/view_subcat_specs_cont
     <title>Admin | Categories</title>
     <link rel="stylesheet" href="../../../web/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../web/assets/css/adminPanel.css">
-    <script src="../../../web/assets/js/jquery-3.2.1.js"></script>
+    <script src="../../../web/assets/js/jquery-1.11.1.min.js"></script>
     <script src="../../../web/assets/js/admin/remove.admin.js"></script>
 </head>
 <body>

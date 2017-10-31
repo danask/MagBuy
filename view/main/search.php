@@ -24,7 +24,7 @@ require_once "../elements/navigation.php";
                     $counter = 0;
                     foreach ($result as $product) {
                         $counter++;
-                        if ($counter > 3) {
+                        if ($counter > 4) {
                             echo '<div class="clearfix"></div></div>';
                             echo '<div class="products-grid-lft">';
                             $counter = 0;
