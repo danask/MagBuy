@@ -60,6 +60,9 @@ require_once "../../controller/user/get_users_info_controller.php";
             } ?> pattern=".{4,200}" title="Address 4 to 200 characters" ><p class="wrongInput"
                 <?= (!isset($_GET['errorAR'])) ?:"style='display: block;'"?>>
                 Address must be between 4 and 200 symbols!</p>
+            <p id='address' class="wrongInput"
+                <?= (!isset($_GET['addAddress'])) ?:"style='display: block;'"?>>
+                Enter Address to checkout!</p>
             <div id="fileupload">
 
                 <input class="radio" type="radio" name="personal" value="1" <?php if ($userArr['is_personal'] == 1) {

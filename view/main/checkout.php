@@ -41,29 +41,36 @@ require_once "../elements/navigation.php";
             <br>
             <?php
             if ($cartIsEmpty === 0) {
+
+            if (!empty($_SESSION['loggedUser'])) {
                 ?>
                 <a href="../../controller/cart/new_order_controller.php">
                     <button class="btn btn-danger btn-lg btn-block" id="checkOutButton">Checkout</button>
                 </a>
-
+            <?php } else { ?>
+                <a href="../../view/user/login.php">
+                    <button class="btn btn-danger btn-lg btn-block" id="checkOutButton">Login to Checkout</button>
+                </a> <?php } ?>
                 <!-- Show products in cart -->
                 <?php foreach ($cart as $cartProduct) { ?>
                     <div id="product-<?= $cartProduct->getId() ?>">
                         <div class="cart-header">
                             <div id="button-<?= $cartProduct->getId() ?>" class="close1"
-                                 onclick="removeFromCart(<?= $cartProduct->getId() . "," . $cartProduct->getPrice() ?>)"></div>
+                                 onclick="removeFromCart(<?= $cartProduct->getId() .
+                                 "," . $cartProduct->getPrice() ?>)"></div>
                             <div class="cart-sec simpleCart_shelfItem">
                                 <div class="cart-item cyc">
                                     <a href="single.php?pid=<?= $cartProduct->getId() ?>"><img
-                                                src="<?= $cartProduct->getImage() ?>" class="img-responsive" alt=""></a>
-                                </div>
+                                                src="<?= $cartProduct->getImage() ?>" class="img-responsive" alt="">
+                                    </a></div>
                                 <div class="cart-item-info">
                                     <h3>
                                         <a href="single.php?pid=<?= $cartProduct->getId() ?>">
                                             <?= $cartProduct->getTitle() ?>
                                         </a>
                                     </h3>
-                                    <p><div id="quantityText">Quantity:<span id="quantityNumber">
+                                    <p>
+                                    <div id="quantityText">Quantity:<span id="quantityNumber">
                                             <span id="product-<?= $cartProduct->getId() ?>-quantity">
                                         <?= $cartProduct->getQuantity() ?>
                                     </span></span></div>

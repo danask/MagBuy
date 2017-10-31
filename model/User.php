@@ -27,7 +27,7 @@ class User
         $this->imageUrl = "../../web/assets/images/default.jpg";
         $this->lastLogin = date("Y-m-d H:i:s");
         $this->address = 0;
-        $this->personal = 0;
+        $this->personal = 1;
         $this->firstName = "User";
     }
 

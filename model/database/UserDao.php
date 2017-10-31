@@ -25,7 +25,7 @@ class UserDao {
 
     const UPDATE_ADDRESS = "UPDATE adresses SET full_adress = ?, is_personal = ? WHERE user_id = ?";
 
-    const CHECK_ADDRESS_SET = "SELECT id FROM adresses WHERE user_id = ?";
+    const CHECK_ADDRESS_SET = "SELECT id FROM adresses WHERE NOT full_adress = '0' AND user_id = ?";
 
     const GET_USER_INFO = "SELECT U.id, U.email, U.enabled, U.first_name, U.last_name, U.mobile_phone, U.image_url, 
                                   U.password, U.last_login, U.role, A.full_adress, A.is_personal  FROM users AS U 
@@ -38,6 +38,7 @@ class UserDao {
     const ROLE = "SELECT role FROM users WHERE email = ? AND password = ?";
 
     const RESET_PASS = "UPDATE users SET password = ? WHERE email = ?";
+
 
 
 

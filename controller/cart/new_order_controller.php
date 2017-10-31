@@ -12,7 +12,28 @@ function __autoload($className)
 
 if (isset($_SESSION['cart'])) {
     $cart = $_SESSION['cart'];
-    $userId = $_SESSION['loggedUser'];
+
+    //Validation for logged user
+    if(!empty($_SESSION['loggedUser'])) {
+        $userId = $_SESSION['loggedUser'];
+
+    } else {
+        header('Location: ../../view/user/login.php');
+        die();
+    }
+
+    //Validation for added address
+    $userDao = \model\database\UserDao::getInstance();
+    $user = new \model\User();
+    $user->setId($userId);
+
+    if(!($userDao->checkAddressSet($user))) {
+        header('Location: ../../view/user/edit.php?addAddress#address');
+        die();
+    }
+
+
+
     $order = new \model\Order($userId, $cart);
 
     try {
