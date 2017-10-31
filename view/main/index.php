@@ -42,7 +42,7 @@ require_once "../elements/navigation.php";
                                 $product['average'] = round($product['average'], 0);
                             } ?>
 
-                            <img class="ratingCatDiv" class="media-object img"
+                            <img class="ratingCatDiv media-object img"
                                                            src="../../web/assets/images/rating<?= $product['average'] ?>.png">
                             (<?= $product['reviewsCount'] ?>)
                             <br/><br/>

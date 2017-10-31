@@ -234,7 +234,11 @@ class ProductsDao
                 $statement->execute(array($productId));
 
                 foreach ($specs[1] as $spec) {
-                    $value = $spec->getValue();
+                    if (!empty(trim($spec))) {
+                        $value = $spec->getValue();
+                    } else {
+                        $value = "Not Specified";
+                    }
                     $specId = $spec->getSubcatSpecId();
 
                     $statement = $this->pdo->prepare(self::CREATE_PRODUCT_SPEC);
@@ -244,7 +248,11 @@ class ProductsDao
                 //if subcategory is not changed update the old specs
                 foreach ($specs[1] as $spec) {
                     $specId = $spec->getId();
-                    $value = $spec->getValue();
+                    if (!empty(trim($spec))) {
+                        $value = $spec->getValue();
+                    } else {
+                        $value = "Not Specified";
+                    }
 
                     $statement = $this->pdo->prepare(self::EDIT_PRODUCT_SPEC);
                     $statement->execute(array($value, $specId));
