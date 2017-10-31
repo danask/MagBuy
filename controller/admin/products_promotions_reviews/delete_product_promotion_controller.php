@@ -19,8 +19,7 @@ if (isset($_GET['prid'])) {
         $promoDao = \model\database\PromotionsDao::getInstance();
         $promoDao->deletePromotion($promoId);
 
-        header("Location: ../../../view/admin/products_promotions_reviews/promotions_product_view.php");
-        die();
+
 
     } catch (PDOException $e) {
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";

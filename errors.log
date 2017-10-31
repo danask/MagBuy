@@ -1,2 +1,7 @@
-2017-10-31 15:36:31 /MagBuy/view/admin/products_promotions_reviews/promotions_product_view.php 8 Undefined index: pid  
-2017-10-31 16:03:22 /MagBuy/view/admin/products_promotions_reviews/promotions_product_view.php 8 Undefined index: pid  
+2017-10-31 16:28:53 /MagBuy/view/admin/products_promotions_reviews/promotions_product_view.php 8 Undefined index: pid  
+2017-10-31 16:29:56 /MagBuy/controller/admin/products_promotions_reviews/new_product_promotion_controller.php PDOException: SQLSTATE[23000]: Integrity constraint violation: 1452 Cannot add or update a child row: a foreign key constraint fails (`magbuy`.`promotions`, CONSTRAINT `promotions_ibfk_1` FOREIGN KEY (`product_id`) REFERENCES `products` (`id`)) in C:\xampp\htdocs\MagBuy\model\database\PromotionsDao.php:48
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\PromotionsDao.php(48): PDOStatement->execute(Array)
+#1 C:\xampp\htdocs\MagBuy\controller\admin\products_promotions_reviews\new_product_promotion_controller.php(29): model\database\PromotionsDao->createPromotion(Object(model\Promotion))
+#2 {main}
+2017-10-31 16:33:17 /MagBuy/view/admin/products_promotions_reviews/promotions_product_view.php 8 Undefined index: pid  
