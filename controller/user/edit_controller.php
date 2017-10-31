@@ -187,6 +187,9 @@ if (!empty($_POST['email']) && (!empty($_POST['password']) || $_POST['password']
                 header("Location: ../../view/user/edit.php?errorEmail");
                 die();
             } else {
+
+                $user->setRole($userArr['role']);
+
                 $userDao->editUser($user);
 
                 //Move file to permanent directory
