@@ -98,7 +98,10 @@ require_once "../elements/navigation.php";
                     <!-- Product information -->
                     <div class="col-md-7 single-text">
                         <h3><?= $product['title']; ?></h3>
-                        <p class="availability">Availability: <span class="color">In stock</span></p>
+                        <p class="availability">Availability: <span class="color">
+                                <?php if ($product['quantity'] == 0) {
+                                    echo "NOT ";
+                                } ?>In stock</span></p>
                         <div class="price_single">
                             <?php
                             if (isset($promotedPrice)) {
