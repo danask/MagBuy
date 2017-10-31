@@ -23,7 +23,7 @@ require_once "../elements/navigation.php";
                         <div class="w_nav1">
                             <h4>Filters</h4>
                             Order by:
-                            <select id="filter" onchange="filteredProducts()">
+                            <select class="form-control" id="filter" onchange="filteredProducts()">
                                 <option value="1" selected>Newest</option>
                                 <option value="2">Most sold</option>
                                 <option value="3">Most reviewed</option>
