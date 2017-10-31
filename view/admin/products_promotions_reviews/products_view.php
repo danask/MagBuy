@@ -60,7 +60,9 @@ require_once "../../../controller/admin/products_promotions_reviews/view_product
                             onclick="toggleVisibility(<?= $product['id'] . ", " . $product['visible'] ?>)">Toggle
                         visibility
                     </button>
-                    <button class="btn btn-success">Promotions</button>
+                    <a href="promotions_product_view.php?pid=<?= $product['id'] ?>">
+                        <button class="btn btn-success">Promotions</button>
+                    </a>
                 </td>
             </tr>
             <?php

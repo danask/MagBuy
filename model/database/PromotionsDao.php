@@ -5,6 +5,7 @@ namespace model\database;
 
 use model\database\Connect\Connection;
 use model\Promotion;
+use PDO;
 
 class PromotionsDao
 {
@@ -16,6 +17,8 @@ class PromotionsDao
     const CREATE_PROMOTION = "INSERT INTO promotions (percent, start_date, end_date, product_id) VALUES (?, ?, ?, ?)";
     const BIGGEST_ACTIVE_BY_PRODUCT_ID = "SELECT percent, start_date, end_date FROM promotions 
                                           WHERE product_id = ? ORDER BY percent DESC LIMIT 1";
+    const GET_ALL_PROMOS_FOR_PRODUCT_ADMIN = "SELECT * FROM promotions WHERE product_id = ?";
+    const DELETE_PROMOTION = "DELETE FROM promotions WHERE id = ?";
 
     //Get connection in construct
     private function __construct()
@@ -57,4 +60,20 @@ class PromotionsDao
         return $promotion;
     }
 
+    function getAllPromotionsForProduct($productId)
+    {
+        $statement = $this->pdo->prepare(self::GET_ALL_PROMOS_FOR_PRODUCT_ADMIN);
+        $statement->execute(array($productId));
+        $promotions = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $promotions;
+    }
+
+    function deletePromotion($promoId)
+    {
+        $statement = $this->pdo->prepare(self::DELETE_PROMOTION);
+        $statement->execute(array($promoId));
+
+        return true;
+    }
 }

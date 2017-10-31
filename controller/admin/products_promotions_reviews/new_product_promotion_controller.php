@@ -26,7 +26,7 @@ if (isset($_POST['submit'])) {
 
         $id = $promoDao->createPromotion($promotion);
 
-        header("Location: ../../../view/main/single.php?pid=" . $productId);
+        header("Location: ../../../view/admin/products_promotions_reviews/promotions_product_view.php?pid=" . $productId);
 
 
     } catch (PDOException $e) {

@@ -116,14 +116,6 @@ require_once "../elements/navigation.php";
                             }
                             ?>
                         </div>
-                        <?php
-                        // if is authenticated admin
-                        ?>
-                        <a href="../admin/products_promotions_reviews/promotion_create.php?pid=<?= $product['id'] ?>">Add
-                            promotion</a>
-                        <?php
-                        // endif
-                        ?>
                         <img id="averageRating" class="media-object img"
                              src="../../web/assets/images/rating<?= $product['average'] ?>.png"><br/>
                         <div class="clearfix"></div>
@@ -234,42 +226,44 @@ require_once "../elements/navigation.php";
 
                             <?php foreach ($reviews as $review) { ?>
                                 <div id="rev-<?= $review['id'] ?>">
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="comments-logout">
-                                        <ul class="media-list">
-                                            <li class="media">
+                                    <div class="tab-content">
+                                        <div class="tab-pane active" id="comments-logout">
+                                            <ul class="media-list">
+                                                <li class="media">
 
-                                                <div class="pull-left" href="#">
-                                                    <img class="media-object img-circle"
-                                                         src="<?= $review['image_url'] ?>"
-                                                         alt="profile">
-                                                </div>
-                                                <div class="media-body">
-                                                    <div class="well well-lg">
-                                                        <h4 class="media-heading text-uppercase reviews">
-                                                            <?= $review['title'] . "<small>" . "&nbsp by " .
-                                                            $review['first_name'] . "</small>" ?>
-                                                            <img id="reviewRating" class="media-object img"
-                                                                 src="../../web/assets/images/rating<?=
-                                                                 $review['rating'] ?>.png">
-                                                        </h4>
-                                                        <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == 3
-                                                            || $_SESSION['role'] == 2)){ ?>
-                                                        <div onclick="delReview(<?= $review['id'] ?>)" class="close1"
-                                                        ></div> <?php  } ?>
-                                                        <ul class="media-date text-uppercase reviews list-inline">
-                                                            <li class="dd"> <?= $review['created_at'] ?></li>
-
-                                                        </ul>
-                                                        <p class="media-comment" id="reviewComment">
-                                                            <?= $review['comment'] ?>
-                                                        </p>
+                                                    <div class="pull-left" href="#">
+                                                        <img class="media-object img-circle"
+                                                             src="<?= $review['image_url'] ?>"
+                                                             alt="profile">
                                                     </div>
-                                                </div>
-                                            </li>
-                                        </ul>
+                                                    <div class="media-body">
+                                                        <div class="well well-lg">
+                                                            <h4 class="media-heading text-uppercase reviews">
+                                                                <?= $review['title'] . "<small>" . "&nbsp by " .
+                                                                $review['first_name'] . "</small>" ?>
+                                                                <img id="reviewRating" class="media-object img"
+                                                                     src="../../web/assets/images/rating<?=
+                                                                     $review['rating'] ?>.png">
+                                                            </h4>
+                                                            <?php if (isset($_SESSION['role']) && ($_SESSION['role'] == 3
+                                                                    || $_SESSION['role'] == 2)
+                                                            ) { ?>
+                                                                <div onclick="delReview(<?= $review['id'] ?>)"
+                                                                     class="close1"
+                                                                ></div> <?php } ?>
+                                                            <ul class="media-date text-uppercase reviews list-inline">
+                                                                <li class="dd"> <?= $review['created_at'] ?></li>
+
+                                                            </ul>
+                                                            <p class="media-comment" id="reviewComment">
+                                                                <?= $review['comment'] ?>
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            </ul>
+                                        </div>
                                     </div>
-                                </div>
                                 </div>
                             <?php } ?>
                         </div>

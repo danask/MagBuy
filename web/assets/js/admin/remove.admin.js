@@ -54,6 +54,18 @@ function deleteSpec(specId) {
     }
 }
 
+function deletePromo(promoId) {
+    var xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.status == 200 && this.readyState == 4) {
+            $('#delId-' + promoId).remove();
+        }
+    };
+    xhttp.open("GET", "../../../controller/admin/products_promotions_reviews/delete_product_promotion_controller.php?prid="
+        + promoId, true);
+    xhttp.send();
+}
+
 function toggleVisibility(productId, currentVis) {
     if (confirm("Are you sure you want to toggle visibility of Product with ID " + productId + " ?")) {
         var xhttp = new XMLHttpRequest();
