@@ -70,7 +70,7 @@ function loadProducts(offset) {
 
                     content +=
                         '<div class="products-grd">' +
-                        '<div class="p-one">' +
+                        '<div id="categoryMarginUnderButton" class="p-one">' +
                         '<a href="single.php?pid=' + products[key]['id'] + '">' +
                         '<img src="' + products[key]['image_url'] + '"' +
                         'alt="Product Image" class="img-responsive"/>' +

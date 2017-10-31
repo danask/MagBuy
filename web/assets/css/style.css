@@ -3356,3 +3356,7 @@ h4 {
         display: block;
     }
 }
+
+#categoryMarginUnderButton {
+    padding-bottom: 16px;
+}
