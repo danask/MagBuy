@@ -35,6 +35,17 @@ require_once "../elements/navigation.php";
                                 <img src="<?= $product['image_url'] ?>"
                                      alt="Product Image" class="img-responsive"/></a>
                             <h4><?= $product['title']; ?></h4>
+
+                            <?php if ($product['average'] === null) {
+                                $product['average'] = 0;
+                            } else {
+                                $product['average'] = round($product['average'], 0);
+                            } ?>
+
+                            <img class="ratingCatDiv" class="media-object img"
+                                                           src="../../web/assets/images/rating<?= $product['average'] ?>.png">
+                            (<?= $product['reviewsCount'] ?>)
+                            <br/><br/>
                             <p><a class="btn btn-default btn-sm"
                                   onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
                                     <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
@@ -51,7 +62,7 @@ require_once "../elements/navigation.php";
                                     <span class="item_price valsa">$<?= $product['price']; ?></span>
                                     <?php
                                 }
-                                ?></p>
+                                ?></p><br/>
                             <div class="pro-grd">
                                 <a href="single.php?pid=<?= $product['id']; ?>">View</a>
                             </div>
@@ -80,11 +91,22 @@ require_once "../elements/navigation.php";
                         unset($promotedPrice);
                     } ?>
                     <div class="products-grd" id='responsiveProductsDiv'>
-                        <div class="p-one simpleCart_shelfItem prd">
+                        <div class="p-one">
                             <a href="single.php?pid=<?= $product['id']; ?>">
                                 <img src="<?= $product['image_url'] ?>"
                                      alt="Product Image" class="img-responsive"/></a>
                             <h4><?= $product['title']; ?></h4>
+
+                            <?php if ($product['average'] === null) {
+                                $product['average'] = 0;
+                            } else {
+                                $product['average'] = round($product['average'], 0);
+                            } ?>
+
+                            <img class="ratingCatDiv" class="media-object img"
+                                 src="../../web/assets/images/rating<?= $product['average'] ?>.png">
+                            (<?= $product['reviewsCount'] ?>)
+                            <br/><br/>
                             <p><a class="btn btn-default btn-sm"
                                   onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
                                     <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
@@ -101,7 +123,7 @@ require_once "../elements/navigation.php";
                                     <span class="item_price valsa">$<?= $product['price']; ?></span>
                                     <?php
                                 }
-                                ?></p>
+                                ?></p><br/>
                             <div class="pro-grd">
                                 <a href="single.php?pid=<?= $product['id']; ?>">View</a>
                             </div>
@@ -128,14 +150,24 @@ require_once "../elements/navigation.php";
                                     $product['percent']) / 100), 2);
                     } else {
                         unset($promotedPrice);
-                    }
-                    ?>
+                    } ?>
                     <div class="products-grd" id='responsiveProductsDiv'>
-                        <div class="p-one simpleCart_shelfItem prd" >
+                        <div class="p-one">
                             <a href="single.php?pid=<?= $product['id']; ?>">
                                 <img src="<?= $product['image_url'] ?>"
                                      alt="Product Image" class="img-responsive"/></a>
                             <h4><?= $product['title']; ?></h4>
+
+                            <?php if ($product['average'] === null) {
+                                $product['average'] = 0;
+                            } else {
+                                $product['average'] = round($product['average'], 0);
+                            } ?>
+
+                            <img class="ratingCatDiv" class="media-object img"
+                                 src="../../web/assets/images/rating<?= $product['average'] ?>.png">
+                            (<?= $product['reviewsCount'] ?>)
+                            <br/><br/>
                             <p><a class="btn btn-default btn-sm"
                                   onclick="addToCart(<?= $product['id'] . "," . $product['price'] ?>)">
                                     <i class="glyphicon glyphicon-shopping-cart"></i>&nbspAdd
@@ -152,13 +184,12 @@ require_once "../elements/navigation.php";
                                     <span class="item_price valsa">$<?= $product['price']; ?></span>
                                     <?php
                                 }
-                                ?></p>
+                                ?></p><br/>
                             <div class="pro-grd">
                                 <a href="single.php?pid=<?= $product['id']; ?>">View</a>
                             </div>
                         </div>
                     </div>
-
                 <?php } ?>
                 <div class="clearfix"></div>
             </div>
