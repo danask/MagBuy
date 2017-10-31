@@ -23,7 +23,7 @@ if (isset($_POST['submit'])) {
 
         $id = $subcatDao->createSubCategory($subcategory);
 
-        header("Location: ../../../view/main/index.php");
+        header("Location: ../../../view/admin/subcategories/subcategories_view.php");
 
 
     } catch (PDOException $e) {
