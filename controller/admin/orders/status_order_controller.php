@@ -14,11 +14,18 @@ function __autoload($className)
 
 
 if (isset($_GET['oid'])) {
+
+
     try {
         $orderId = $_GET['oid'];
         $newStatus = $_GET['ns'];
         $orderDao = \model\database\OrdersDao::getInstance();
         $userEmail = $orderDao->changeOrderStatus($orderId, $newStatus);
+
+        if (!($newStatus == 1 || $newStatus == 2 || $newStatus == 3 || $newStatus == 4)) {
+            header('Location: ../../../view/error/error_400.php');
+            die();
+        }
 
         if ($newStatus == 2) {
             $status = "has been send!";
@@ -28,7 +35,9 @@ if (isset($_GET['oid'])) {
             $status = "has been canceled";
         }
 
-        require_once 'send_status_change.php';
+        if ($newStatus != 1) {
+            require_once 'send_status_change.php';
+        }
 
 
 

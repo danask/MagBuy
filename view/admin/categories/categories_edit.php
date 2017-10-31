@@ -16,7 +16,8 @@ require_once "../../../controller/admin/categories/edit_category_controller.php"
 <div class="page">
     <form action="../../../controller/admin/categories/edit_category_controller.php" method="post">
         <input type="hidden" name="cat_id" value="<?= $cat['id'] ?>">
-        <input type="text" name="name" placeholder="Category name" value="<?= $cat['name'] ?>" required/><br>
+        <input type="text" name="name" placeholder="Category name" value="<?= $cat['name'] ?>" maxlength="40" required/>
+        <br>
         <select name="supercategory_id">
             <?php
             foreach ($supercategories as $supercategory) {

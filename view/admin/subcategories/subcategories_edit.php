@@ -14,9 +14,10 @@ require_once "../../../controller/admin/subcategories/edit_subcategory_controlle
 </head>
 <body>
 <div class="page">
-    <form action="../../../controller/admin/categories/edit_category_controller.php" method="post">
+    <form action="../../../controller/admin/subcategories/edit_subcategory_controller.php" method="post">
         <input type="hidden" name="subcat_id" value="<?= $subcat['id'] ?>">
-        <input type="text" name="name" placeholder="SubCategory name" value="<?= $subcat['name'] ?>" required/><br>
+        <input type="text" name="name" placeholder="SubCategory name" value="<?= $subcat['name'] ?>" maxlength="40"
+               required/><br>
         <select name="category_id">
             <?php
             foreach ($categories as $category) {

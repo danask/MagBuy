@@ -15,7 +15,7 @@ require_once "../../../controller/admin/subcategory_specs/new_subcat_spec_contro
 <body>
 <div class="page">
     <form action="../../../controller/admin/subcategory_specs/new_subcat_spec_controller.php" method="post">
-        <input type="text" name="name" placeholder="Title" required/><br>
+        <input type="text" name="name" placeholder="Title" maxlength="40" required/><br>
         <select name="subcategory_id">
             <?php
             foreach ($subcategories as $subcategory) {

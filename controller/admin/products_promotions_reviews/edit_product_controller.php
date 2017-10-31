@@ -22,7 +22,20 @@ function __autoload($className)
 if (isset($_POST['submit'])) {
     $product = new \model\Product();
 
-    //product info
+    //Validation
+    if (empty($_POST['pid']) ||
+        strlen($_POST['title']) >= 50 ||
+        strlen($_POST['description']) >= 150000 ||
+        $_POST['price'] < 0 ||
+        $_POST['price'] >= 100000000 ||
+        $_POST['quantity'] < 0 ||
+        $_POST['quantity'] >= 1000000000) {
+
+        header('Location: ../../../view/error/error_400.php');
+        die();
+    }
+
+    //Product info
     $product->setId($_POST['pid']);
     $product->setTitle(htmlentities($_POST['title']));
     $product->setDescription(htmlentities($_POST['description']));

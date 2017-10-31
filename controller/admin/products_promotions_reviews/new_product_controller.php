@@ -28,6 +28,17 @@ if (isset($_POST['submit'])) {
     $product->setPrice(htmlentities($_POST['price']));
     $product->setQuantity(htmlentities($_POST['quantity']));
 
+    //Validation
+    if (strlen($_POST['title']) >= 50 ||
+        strlen($_POST['description']) >= 150000 ||
+        $_POST['price'] < 0 ||
+        $_POST['price'] >= 100000000 ||
+        $_POST['quantity'] < 0 ||
+        $_POST['quantity'] >= 1000000000) {
+
+        header('Location: ../../../view/error/error_400.php');
+        die();
+    }
 
     //Images Handling
     $images = array();

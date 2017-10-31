@@ -21,14 +21,15 @@ require_once "../../../controller/admin/products_promotions_reviews/edit_product
           action="../../../controller/admin/products_promotions_reviews/edit_product_controller.php" method="post">
         <input type="hidden" name="pid" value="<?= $product['id'] ?>">
         <input type="hidden" name="scid" value="<?= $product['subcategory_id'] ?>">
-        Title <input type="text" name="title" placeholder="Title" value="<?= $product['title'] ?>" required/><br>
+        Title <input type="text" name="title" placeholder="Title" value="<?= $product['title'] ?>"
+                     maxlength="50" required/><br>
         Description <textarea name="description" placeholder="Description"
-                              required><?= $product['description'] ?></textarea><br>
+                              maxlength="150000" required><?= $product['description'] ?></textarea><br>
         Price <input type="number" name="price" step="0.01" placeholder="Price" value="<?= $product['price'] ?>" min="0"
-                     required/><br>
+                     maxlength="10000000" required/><br>
         Quantity <input type="number" name="quantity" placeholder="Quantity" value="<?= $product['quantity'] ?>" min="0"
-                        required/><br><br><br>
-        Images:<br>
+                        maxlength="1000000000" required/><br><br><br>
+        Images (All or none):<br>
         <input type="file" name="pic1"><br>
         <input type="file" name="pic2"><br>
         <input type="file" name="pic3"><br><br><br>

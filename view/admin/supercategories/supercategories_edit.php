@@ -16,7 +16,8 @@ require_once "../../../controller/admin/supercategories/edit_supercategory_contr
     <form action="../../../controller/admin/supercategories/edit_supercategory_controller.php" method="post">
         <input type="hidden" name="supercat_id" value="<?= $superCat['id'] ?>">
         Name:<br>
-        <input type="text" name="name" placeholder="Supercategory name" value="<?= $superCat['name'] ?>" required
+        <input type="text" name="name" placeholder="Supercategory name" value="<?= $superCat['name'] ?>" maxlength="40"
+               required
                style="width: 300px"/><br>
         <input type="submit" value="Edit" name="submit">
     </form>

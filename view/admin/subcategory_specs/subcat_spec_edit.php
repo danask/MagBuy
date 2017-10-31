@@ -16,7 +16,7 @@ require_once "../../../controller/admin/subcategory_specs/edit_subcat_spec_contr
 <div class="page">
     <form action="../../../controller/admin/subcategory_specs/edit_subcat_spec_controller.php" method="post">
         <input type="hidden" name="spec_id" value="<?= $spec['id'] ?>">
-        <input type="text" name="name" placeholder="Title" required value="<?= $spec['name'] ?>"/><br>
+        <input type="text" name="name" placeholder="Title" maxlength="40" required value="<?= $spec['name'] ?>"/><br>
         <select name="subcategory_id">
             <?php
             foreach ($subcategories as $subcategory) {

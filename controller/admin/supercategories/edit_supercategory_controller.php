@@ -15,6 +15,12 @@ function __autoload($className)
 if (isset($_POST['submit'])) {
     $supercategory = new \model\SuperCategory();
 
+    //Validation for input
+    if (empty($_POST['name']) || strlen($_POST['name']) > 40 ){
+        header('Location: ../../../view/error/error_400.php');
+        die();
+    }
+
     //Try to accomplish connection with the database
     try {
 

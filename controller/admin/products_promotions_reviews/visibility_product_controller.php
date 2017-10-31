@@ -13,6 +13,19 @@ function __autoload($className)
 }
 
 if (isset($_GET['pid'])) {
+
+    //Validation
+    if (empty($_GET['vis'])) {
+
+        header('Location: ../../../view/error/error_400.php');
+        die();
+    }
+
+    if (!($_GET['vis'] == 1 || $_GET['vis'] == 0)) {
+        header('Location: ../../../view/error/error_400.php');
+        die();
+    }
+
     //Try to accomplish connection with the database
     try {
         $productId = $_GET['pid'];

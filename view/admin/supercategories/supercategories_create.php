@@ -15,7 +15,7 @@
 <body>
 <div class="page">
     <form action="../../../controller/admin/supercategories/new_supercategory_controller.php" method="post">
-        <input type="text" name="name" placeholder="Supercategory name" required/><br>
+        <input type="text" name="name" placeholder="Supercategory name" maxlength="40" required/><br>
         <input type="submit" value="Create" name="submit">
     </form>
     <a href="supercategories_view.php">

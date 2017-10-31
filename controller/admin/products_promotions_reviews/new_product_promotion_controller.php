@@ -13,11 +13,26 @@ function __autoload($className)
 }
 
 if (isset($_POST['submit'])) {
+
+    //Validation
+    if (empty($_POST['percent']) ||
+        empty($_POST['start_date']) ||
+        empty($_POST['end_date']) ||
+        empty($_POST['product_id']) ) {
+
+        header('Location: ../../../view/error/error_400.php');
+        die();
+    }
+
+
     $percent = $_POST['percent'];
     $startDate = $_POST['start_date'];
     $endDate = $_POST['end_date'];
     $productId = $_POST['product_id'];
+
     $promotion = new \model\Promotion($percent, $startDate, $endDate, $productId);
+
+
 
     //Try to accomplish connection with the database
     try {
@@ -32,8 +47,11 @@ if (isset($_POST['submit'])) {
         $subscribedUsers = $favDao->subscribedUsersForProduct($productId);
 
 
-        //Send mails
-        require_once 'send_promotion_controller.php';
+        //Check for no subscribers
+        if (!empty($subscribedUsers)) {
+            //Send mails
+            require_once 'send_promotion_controller.php';
+        }
 
 
         header("Location: ../../../view/admin/products_promotions_reviews/promotions_product_view.php?pid=" . $productId);

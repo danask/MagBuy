@@ -61,6 +61,8 @@
 - Every other user is with role 1.
 - The forgotten password system uses tokken verification.
 - Uploaded images must be below 5MB and one of these types - jpg, jpeg, gif, png. Images are cropped.
+- Adding new product, 3 images must be defined.
+- Editing product, 3 images must be defined or none.
 
 
 

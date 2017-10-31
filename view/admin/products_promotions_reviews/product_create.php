@@ -16,15 +16,18 @@ require_once "../../../controller/admin/products_promotions_reviews/new_product_
 </head>
 <body>
 <div class="page">
-    <form enctype="multipart/form-data" action="../../../controller/admin/products_promotions_reviews/new_product_controller.php" method="post">
-        Title <input type="text" name="title" placeholder="Title" required/><br>
-        Description <textarea name="description" placeholder="Description" required></textarea><br>
-        Price <input type="number" name="price" step="0.01" placeholder="Price" min="0" required/><br>
-        Quantity <input type="number" name="quantity" placeholder="Quantity" min="0" required/><br><br><br>
+    <form enctype="multipart/form-data"
+          action="../../../controller/admin/products_promotions_reviews/new_product_controller.php" method="post">
+        Title <input type="text" name="title" placeholder="Title" maxlength="50" required/><br>
+        Description <textarea name="description" placeholder="Description" maxlength="150000" required></textarea><br>
+        Price <input type="number" name="price" step="0.01" placeholder="Price" min="0" maxlength="100000000"
+                     required/><br>
+        Quantity <input type="number" name="quantity" placeholder="Quantity" min="0" maxlength="1000000000"
+                        required/><br><br><br>
         Images:<br>
-        <input type="file" name="pic1"><br>
-        <input type="file" name="pic2"><br>
-        <input type="file" name="pic3"><br><br><br>
+        <input type="file" name="pic1" required><br>
+        <input type="file" name="pic2" required><br>
+        <input type="file" name="pic3" required><br><br><br>
         Subcategory and specifications:<br><br>
         Choose subcategory
         <select id="selectSubCatId" onchange="loadSpecs()" name="subcategory_id">

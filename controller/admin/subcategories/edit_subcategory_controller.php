@@ -12,8 +12,15 @@ function __autoload($className)
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
+
 if (isset($_POST['submit'])) {
     $subCategory = new \model\SubCategory();
+
+    //Validation for input
+    if (empty($_POST['name']) || strlen($_POST['name']) > 40 ){
+        header('Location: ../../../view/error/error_400.php');
+        die();
+    }
 
     //Try to accomplish connection with the database
     try {
