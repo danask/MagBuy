@@ -108,27 +108,29 @@ class ProductsDao
     const DELETE_PRODUCT_SPECS = "DELETE FROM subcat_specification_value WHERE product_id = ?";
 
     const GET_SUBCAT_PRODUCTS_NEWEST = "SELECT p.id, i.image_url, p.title, p.description, p.price,
-                                        IF((SELECT percent FROM promotions WHERE product_id = p.id 
-                                        AND start_date <= NOW() AND end_date >= NOW()
-                                        ORDER BY percent DESC LIMIT 1) IS NULL, p.price, 
-                                        (p.price -((SELECT percent FROM promotions 
-                                     WHERE product_id = p.id) / 100) * p.price)) price_fin, p.subcategory_id, p.visible,
-                                    (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() 
-                                    AND end_date >= now() ORDER BY percent DESC LIMIT 1) AS percent, (SELECT AVG(rating) 
-                                    FROM reviews WHERE product_id = P.id) average, 
-                                    (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount
-                                    FROM products p INNER JOIN images i 
-                                    ON p.id = i.product_id GROUP BY P.id 
-                                    HAVING p.subcategory_id = :sub AND p.visible = 1
-                                    AND price_fin BETWEEN :minP AND :maxP
-                                    ORDER BY p.created_at DESC 
-                                    LIMIT 8 OFFSET :off";
+                                IF((SELECT percent FROM promotions WHERE product_id = p.id 
+                                AND start_date <= NOW() AND end_date >= NOW()
+                                ORDER BY percent DESC LIMIT 1) IS NULL, p.price, 
+                                (p.price -((SELECT percent FROM promotions 
+                               WHERE product_id = p.id AND start_date <= NOW() AND end_date >= NOW() 
+                               ORDER BY percent DESC LIMIT 1) / 100) * p.price)) price_fin, p.subcategory_id, p.visible,
+                               (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() 
+                               AND end_date >= now() ORDER BY percent DESC LIMIT 1) AS percent, (SELECT AVG(rating) 
+                               FROM reviews WHERE product_id = P.id) average, 
+                               (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount
+                                FROM products p INNER JOIN images i 
+                                ON p.id = i.product_id GROUP BY P.id 
+                                HAVING p.subcategory_id = :sub AND p.visible = 1
+                                AND price_fin BETWEEN :minP AND :maxP
+                                ORDER BY p.created_at DESC 
+                                LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_MOST_SOLD = "SELECT p.id, i.image_url, p.title, p.description, p.price,
                                     IF((SELECT percent FROM promotions WHERE product_id = p.id AND start_date <= NOW() 
                                     AND end_date >= NOW() ORDER BY percent DESC LIMIT 1) IS NULL, p.price, 
                                     (p.price -((SELECT percent FROM promotions 
-                                    WHERE product_id = p.id) / 100) * p.price)) price_fin, p.subcategory_id, p.visible, 
+                                     WHERE product_id = p.id AND start_date <= NOW() AND end_date >= NOW() 
+                                     ORDER BY percent DESC LIMIT 1) / 100) * p.price)) price_fin, p.subcategory_id, p.visible, 
                                     (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() 
                                     AND end_date >= now() ORDER BY percent DESC LIMIT 1) AS percent, 
                                     (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average, 
@@ -145,7 +147,8 @@ class ProductsDao
                                     IF((SELECT percent FROM promotions WHERE product_id = p.id AND start_date <= NOW()
                                      AND end_date >= NOW() ORDER BY percent DESC LIMIT 1) IS NULL, p.price, 
                                      (p.price -((SELECT percent FROM promotions 
-                                     WHERE product_id = p.id) / 100) * p.price)) price_fin, p.subcategory_id, p.visible, 
+                                     WHERE product_id = p.id AND start_date <= NOW() AND end_date >= NOW() 
+                                     ORDER BY percent DESC LIMIT 1) / 100) * p.price)) price_fin, p.subcategory_id, p.visible, 
                                     (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() 
                                     AND end_date >= now() ORDER BY percent DESC LIMIT 1) AS percent, 
                                     (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average, 
@@ -163,7 +166,8 @@ class ProductsDao
                                               AND start_date <= NOW() AND end_date >= NOW()
                                               ORDER BY percent DESC LIMIT 1) IS NULL, p.price, 
                                               (p.price -((SELECT percent FROM promotions 
-                                              WHERE product_id = p.id) / 100) * p.price)) price_fin,
+                                              WHERE product_id = p.id AND start_date <= NOW() AND end_date >= NOW() 
+                                              ORDER BY percent DESC LIMIT 1) / 100) * p.price)) price_fin,
                                               p.subcategory_id, p.visible, (SELECT percent FROM promotions 
                                               WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
                                               ORDER BY percent DESC LIMIT 1) AS percent, (SELECT AVG(rating) 
@@ -171,8 +175,8 @@ class ProductsDao
                                              (SELECT COUNT(*) FROM reviews WHERE product_id = P.id) reviewsCount, 
                                              (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average 
                                               FROM products p INNER JOIN images i ON p.id = i.product_id GROUP BY P.id
-                                              HAVING p.subcategory_id = :sub AND p.visible = 1 AND price_fin 
-                                              BETWEEN :minP AND :maxP ORDER BY average DESC LIMIT 8 OFFSET :off";
+                                              HAVING p.subcategory_id = 5 AND p.visible = 1 AND price_fin 
+                                              BETWEEN 1 AND 10000 ORDER BY average DESC LIMIT 8 OFFSET 1";
 
     //Get connection in construct
     private function __construct()
