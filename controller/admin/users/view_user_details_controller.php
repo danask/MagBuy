@@ -13,9 +13,10 @@ function __autoload($className)
 }
 
 try {
-    $orderId = $_GET['oid'];
-    $orderDao = \model\database\OrdersDao::getInstance();
-    $userDetails = $orderDao->getOrderDetails($orderId);
+    $userId = $_GET['uid'];
+    $userDao = \model\database\UserDao::getInstance();
+    $userDetails = $userDao->getUserDetailsAdmin($userId);
+    $userOrders = $userDao->getUserOrdersAdmin($userId);
 } catch (PDOException $e) {
     $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
     error_log($message, 3, '../../../errors.log');

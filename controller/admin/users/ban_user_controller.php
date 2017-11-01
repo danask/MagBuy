@@ -1,6 +1,6 @@
 <?php
 //Include Error Handler
-require_once '../../../utility/error_handler_dir_back.php';
+//require_once '../../../utility/error_handler_dir_back.php';
 
 //Include Admin/Mod check
 require_once '../../../utility/admin_mod_session.php';
@@ -12,27 +12,23 @@ function __autoload($className)
     require_once str_replace("\\", "/", $className) . '.php';
 }
 
-if (isset($_GET['pid'])) {
+if (isset($_GET['uid'])) {
 
     //Validation
-    if (!($_GET['vis'] == 1 || $_GET['vis'] == 0)) {
+    if (!($_GET['stat'] == 1 || $_GET['stat'] == 0)) {
         header('Location: ../../../view/error/error_400.php');
         die();
     }
 
     //Try to accomplish connection with the database
     try {
-        $productId = $_GET['pid'];
-        $currentVis = $_GET['vis'];
-        if ($currentVis == 1) {
-            $toggleTo = 0;
-        } else {
-            $toggleTo = 1;
-        }
-        $productDao = \model\database\ProductsDao::getInstance();
-        $productDao->toggleVisibility($productId, $toggleTo);
+        $userId = $_GET['uid'];
+        $newStatus = $_GET['stat'];
 
-        header("Location: ../../../view/admin/products_promotions_reviews/products_view.php");
+        $userDao = \model\database\UserDao::getInstance();
+        $userDao->banUnbanUser($userId, $newStatus);
+
+        header("Location: ../../../view/admin/users/users_view.php");
 
     } catch (PDOException $e) {
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";

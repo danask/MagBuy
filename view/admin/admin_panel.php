@@ -58,7 +58,7 @@ require_once "../elements/header.php";
         </button>
     </a>
     <?php if (isset($_SESSION['role']) && $_SESSION['role'] == 3) { ?>
-    <a href="#">
+    <a href="users/users_view.php">
         <button class="btn btn-sq-lg btn-primary"><i class="fa fa-user fa-4x" aria-hidden="true"></i><br>Users</button>
     </a>
     <?php } ?>

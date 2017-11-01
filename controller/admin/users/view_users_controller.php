@@ -3,7 +3,8 @@
 require_once '../../../utility/error_handler_dir_back.php';
 
 //Include Admin/Mod check
-require_once '../../../utility/admin_mod_session.php';
+require_once '../../../utility/admin_session.php';
+
 
 //Autoload to require needed model files
 function __autoload($className)
@@ -13,9 +14,8 @@ function __autoload($className)
 }
 
 try {
-    $orderId = $_GET['oid'];
-    $orderDao = \model\database\OrdersDao::getInstance();
-    $userDetails = $orderDao->getOrderDetails($orderId);
+    $userDao = \model\database\UserDao::getInstance();
+    $users = $userDao->getAllUsersAdmin();
 } catch (PDOException $e) {
     $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
     error_log($message, 3, '../../../errors.log');

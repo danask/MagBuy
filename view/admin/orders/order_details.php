@@ -16,31 +16,31 @@ require_once "../../../controller/admin/orders/view_order_details_controller.php
 </head>
 <body>
 <div align="center">
-    <h2>Order N<?= $orderDetails[0]['id'] ?></h2>
+    <h2>Order N<?= $userDetails[0]['id'] ?></h2>
     <a href="orders_view.php">
         <button class="btn btn-primary">Back to Orders Panel</button>
     </a>
 </div>
 <div class="adminMainWindow">
-    User: <a href="<?= $orderDetails[0]['user_id'] ?>"><?= $orderDetails[0]['email'] ?></a><br>
+    User: <a href="<?= $userDetails[0]['user_id'] ?>"><?= $userDetails[0]['email'] ?></a><br>
     Status:
-    <div id="status" style="display: inline;"><?= $orderDetails[0]['status'] ?></div>
+    <div id="status" style="display: inline;"><?= $userDetails[0]['status'] ?></div>
     <br>
     Change status:
-    <select id="newStatus" onchange="changeStatus(<?= $orderDetails[0]['id'] ?>)">
+    <select id="newStatus" onchange="changeStatus(<?= $userDetails[0]['id'] ?>)">
         <option value="1">1 - processing</option>
         <option value="2">2 - sent</option>
         <option value="3">3 - completed</option>
         <option value="4">4 - cancelled</option>
     </select><br>
-    Date made: <?= $orderDetails[0]['created_at'] ?><br><br>
+    Date made: <?= $userDetails[0]['created_at'] ?><br><br>
     <table>
         <tr>
             <th>Product</th>
             <th>Quantity</th>
         </tr>
         <?php
-        foreach ($orderDetails as $detail) {
+        foreach ($userDetails as $detail) {
             ?>
             <tr>
                 <td><a href="../../main/single.php?pid=<?= $detail['product_id'] ?>"><?= $detail['product'] ?></a></td>

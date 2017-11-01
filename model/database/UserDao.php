@@ -1,9 +1,14 @@
 <?php
+
 namespace model\database;
+
 use model\database\Connect\Connection;
 use model\User;
+use PDO;
 use PDOException;
-class UserDao {
+
+class UserDao
+{
 
     //Make Singleton
     private static $instance;
@@ -39,17 +44,24 @@ class UserDao {
 
     const RESET_PASS = "UPDATE users SET password = ? WHERE email = ?";
 
+    const GET_ALL_USERS_ADMIN = "SELECT * FROM users";
 
+    const GET_USER_DETAILS_ADMIN = "SELECT * FROM users WHERE id = ?";
 
+    const GET_USER_ORDERS_ADMIN = "SELECT * FROM orders WHERE user_id = ?";
+
+    const BAN_UNBAN_USER = "UPDATE users SET enabled = ? WHERE id = ?";
 
 
     //Get connection in construct
-    private function __construct() {
+    private function __construct()
+    {
 
         $this->pdo = Connection::getInstance()->getConnection();
     }
 
-    public static function getInstance() {
+    public static function getInstance()
+    {
 
         if (self::$instance === null) {
             self::$instance = new UserDao();
@@ -58,14 +70,13 @@ class UserDao {
     }
 
 
-
-
     /**
      * Function for checking if login is correct.
      * @param User $user - Receive user object with information about it.
      * @return bool|int - Returns user's ID.
      */
-    function checkLogin(User $user) {
+    function checkLogin(User $user)
+    {
 
         $statement = $this->pdo->prepare(self::CHECK_LOGIN);
         $statement->execute(array(
@@ -83,13 +94,13 @@ class UserDao {
     }
 
 
-
     /**
      * Function for checking if user exists.
      * @param User $user - Receives user's email as object.
      * @return bool - Returns if user exists.
      */
-    function checkUserExist(User $user) {
+    function checkUserExist(User $user)
+    {
 
         $statement = $this->pdo->prepare(self::CHECK_USER_EXIST);
         $statement->execute(array($user->getEmail()));
@@ -103,13 +114,13 @@ class UserDao {
     }
 
 
-
     /**
      * Function for registering user.
      * @param User $user - Receives user's information as object.
      * @return string - Returns registered user's ID.
      */
-    function registerUser(User $user) {
+    function registerUser(User $user)
+    {
 
         //Use try catch, to have transaction
         try {
@@ -142,21 +153,20 @@ class UserDao {
         } catch (PDOException $e) {
 
             $this->pdo->rollBack();
-                $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
-                error_log($message, 3, 'errors.log');
-                header("Location: ../../view/error/error_500.php");
-                die();
+            $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
+            error_log($message, 3, 'errors.log');
+            header("Location: ../../view/error/error_500.php");
+            die();
         }
     }
-
-
 
 
     /**
      * Function for editing users.
      * @param User $user - Receives new information about user as object.
      */
-    function editUser(User $user) {
+    function editUser(User $user)
+    {
 
         //Use try catch, to have transaction
         try {
@@ -189,13 +199,13 @@ class UserDao {
     }
 
 
-
     /**
      * Function for checking existing address.
      * @param User $user - Receive user's ID as object.
      * @return bool - Returns true or false if exists.
      */
-    function checkAddressSet(User $user) {
+    function checkAddressSet(User $user)
+    {
 
         $statement = $this->pdo->prepare(self::CHECK_ADDRESS_SET);
         $statement->execute(array(
@@ -211,13 +221,13 @@ class UserDao {
     }
 
 
-
     /**
      * Function for getting user's info.
      * @param User $user - Receives user's ID as object.
      * @return mixed - Returns user's info as array.
      */
-    function getUserInfo(User $user) {
+    function getUserInfo(User $user)
+    {
 
         $statement = $this->pdo->prepare(self::GET_USER_INFO);
         $statement->execute(array(
@@ -233,7 +243,8 @@ class UserDao {
      * Function for setting last login.
      * @param User $user - Receives user's login time and email.
      */
-    function setLastLogin(User $user) {
+    function setLastLogin(User $user)
+    {
 
         $statement = $this->pdo->prepare(self::SET_LAST_LOGIN);
         $user->setLastLogin();
@@ -246,7 +257,8 @@ class UserDao {
      *
      * @return bool - Returns true if user is admin (first registered)
      */
-    function checkIfUserFirst() {
+    function checkIfUserFirst()
+    {
 
         $statement = $this->pdo->prepare(self::IS_FIRST_USER);
         $statement->execute();
@@ -260,23 +272,60 @@ class UserDao {
         }
     }
 
-    function checkIfLoggedUserIsAdmin(User $user) {
+    function checkIfLoggedUserIsAdmin(User $user)
+    {
 
         $statement = $this->pdo->prepare(self::ROLE);
         $statement->execute(array(
             $user->getEmail(),
             $user->getPassword()));
 
-            $userRole = $statement->fetch();
-            return (int)$userRole['role'];
+        $userRole = $statement->fetch();
+        return (int)$userRole['role'];
     }
 
 
-    function resetPassword (User $user) {
+    function resetPassword(User $user)
+    {
 
         $statement = $this->pdo->prepare(self::RESET_PASS);
         $statement->execute(array(
             $user->getPassword(),
             $user->getEmail()));
+    }
+
+    function getAllUsersAdmin()
+    {
+        $statement = $this->pdo->prepare(self::GET_ALL_USERS_ADMIN);
+        $statement->execute();
+        $users = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $users;
+    }
+
+    function getUserDetailsAdmin($userId)
+    {
+        $statement = $this->pdo->prepare(self::GET_USER_DETAILS_ADMIN);
+        $statement->execute(array($userId));
+        $user = $statement->fetch();
+
+        return $user;
+    }
+
+    function getUserOrdersAdmin($userId)
+    {
+        $statement = $this->pdo->prepare(self::GET_USER_ORDERS_ADMIN);
+        $statement->execute(array($userId));
+        $orders = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+        return $orders;
+    }
+
+    function banUnbanUser($userId, $newStatus)
+    {
+        $statement = $this->pdo->prepare(self::BAN_UNBAN_USER);
+        $statement->execute(array($newStatus, $userId));
+
+        return true;
     }
 }
