@@ -52,6 +52,8 @@ class UserDao
 
     const BAN_UNBAN_USER = "UPDATE users SET enabled = ? WHERE id = ?";
 
+    const MAKE_UNMAKE_MODERATOR_USER = "UPDATE users SET role = ? WHERE id = ?";
+
 
     //Get connection in construct
     private function __construct()
@@ -325,6 +327,14 @@ class UserDao
     {
         $statement = $this->pdo->prepare(self::BAN_UNBAN_USER);
         $statement->execute(array($newStatus, $userId));
+
+        return true;
+    }
+
+    function makeUnmakeModUser($userId, $newRole)
+    {
+        $statement = $this->pdo->prepare(self::MAKE_UNMAKE_MODERATOR_USER);
+        $statement->execute(array($newRole, $userId));
 
         return true;
     }

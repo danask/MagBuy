@@ -15,7 +15,7 @@ function __autoload($className)
 if (isset($_GET['uid'])) {
 
     //Validation
-    if (!($_GET['stat'] == 1 || $_GET['stat'] == 0)) {
+    if (!($_GET['nrole'] == 1 || $_GET['nrole'] == 2)) {
         header('Location: ../../../view/error/error_400.php');
         die();
     }
@@ -23,10 +23,10 @@ if (isset($_GET['uid'])) {
     //Try to accomplish connection with the database
     try {
         $userId = $_GET['uid'];
-        $newStatus = $_GET['stat'];
+        $newRole = $_GET['nrole'];
 
         $userDao = \model\database\UserDao::getInstance();
-        $userDao->banUnbanUser($userId, $newStatus);
+        $userDao->makeUnmakeModUser($userId, $newRole);
 
         header("Location: ../../../view/admin/users/users_view.php");
 
