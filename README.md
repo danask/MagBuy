@@ -60,12 +60,17 @@
 - Moderators can only manage products and orders.
 - Every other user is with role 1.
 - The forgotten password system uses tokken verification.
+- Tokken expires after 10 minutes.
+- Email notification for checking out, changing order status and promotions for users who added the
+promoted product in favourites.
 - Uploaded images must be below 5MB and one of these types - jpg, jpeg, gif, png. Images are cropped.
 - Adding new product, 3 images must be defined.
 - Editing product, 3 images must be defined or none.
 - You must first create Super category, Category, Subcategory and specifications
 before creating new product or the server will response with Error 500
 - Have to create specifications for subcategory, before adding product.
-
-
-
+- After adding product in certain subcategory, you can not add new specifications for it.
+- You can create product for category without specifications for it.
+- Responsive design - flexslider goes to simpler slider on lower resolution.
+- Most sold filter is by products that have order status 3 (Completed), multiplied by the quantity of
+ordered products.
