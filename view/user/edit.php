@@ -23,7 +23,8 @@ require_once "../../controller/user/get_users_info_controller.php";
 <div class="login-page">
     <div id="logo"><a href="../main/index.php"><img src="../../web/assets/images/logo.png"></a></div>
     <div class="form">
-        <form enctype="multipart/form-data" class="login-form" action="../../controller/user/edit_controller.php"
+        <form enctype="multipart/form-data" class="login-form"
+              action="../../controller/user/edit_controller.php<?php if(isset($_GET['addAddress'])){ echo "?addAddress" ;}?>"
               method="post">
 
             <input type="email" name="email" value="<?= $userArr["email"] ?>" required/>

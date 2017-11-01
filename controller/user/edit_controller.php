@@ -198,8 +198,14 @@ if (!empty($_POST['email']) && (!empty($_POST['password']) || $_POST['password']
                     cropImage($imagesDirectory, 200);
                 }
 
-                header("Location: ../../view/main/index.php");
-                die();
+
+                if(isset($_GET['addAddress'])) {
+                    header("Location: ../../view/main/checkout.php");
+                    die();
+                } else {
+                    header("Location: ../../view/main/index.php");
+                    die();
+                }
             }
         } else {
             //Locate to error Register Page
