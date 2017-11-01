@@ -2,7 +2,7 @@
 require_once "../../../controller/admin/products_promotions_reviews/edit_product_controller.php";
 
 //Check if user is blocked
-require_once "../../../utility/blocked_user.php";
+require_once "../../../utility/blocked_user_dir_back.php";
 ?>
 
 <!doctype html>

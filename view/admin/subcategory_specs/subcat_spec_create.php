@@ -2,7 +2,7 @@
 require_once "../../../controller/admin/subcategory_specs/new_subcat_spec_controller.php";
 
 //Check if user is blocked
-require_once "../../../utility/blocked_user.php";
+require_once "../../../utility/blocked_user_dir_back.php";
 ?>
 
 <!doctype html>
