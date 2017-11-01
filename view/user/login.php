@@ -31,6 +31,7 @@ require_once "../../utility/session_main.php";
             <input id="login" type="submit" value="LOGIN">
 
             <?php if(isset($_GET['error'])){ echo "<p id=\"wrongLogin\">User not found!</p>"; };?>
+            <?php if(isset($_GET['blocked'])){ echo "<p id=\"wrongLogin\">User is Blocked!</p>"; };?>
             <p class="message">Forgotten password? <a href="forgotten.php">Reset password</a></p>
             <p class="message">Not registered? <a href="register.php">Create an account</a></p>
 

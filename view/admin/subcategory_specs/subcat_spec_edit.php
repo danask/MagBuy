@@ -1,5 +1,8 @@
 <?php
 require_once "../../../controller/admin/subcategory_specs/edit_subcat_spec_controller.php";
+
+//Check if user is blocked
+require_once "../../../utility/blocked_user.php";
 ?>
 
 <!doctype html>

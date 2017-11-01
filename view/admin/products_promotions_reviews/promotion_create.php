@@ -1,6 +1,9 @@
 <?php
 //Include Admin check
 require_once '../../../utility/admin_mod_session.php';
+
+//Check if user is blocked
+require_once "../../../utility/blocked_user.php";
 ?>
 
 <!doctype html>

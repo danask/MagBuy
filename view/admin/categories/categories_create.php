@@ -1,5 +1,9 @@
 <?php
 require_once "../../../controller/admin/categories/new_category_controller.php";
+
+//Check if user is blocked
+require_once "../../../utility/blocked_user.php";
+
 ?>
 
 <!doctype html>

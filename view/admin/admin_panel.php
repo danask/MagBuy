@@ -13,6 +13,9 @@ if (isset($_SESSION['role']) && $_SESSION['role'] != 3 && $_SESSION['role'] != 2
     die();
 }
 
+//Check if user is blocked
+require_once "../../utility/blocked_user.php";
+
 require_once "../elements/headers.php";
 ?>
 <meta charset="UTF-8">

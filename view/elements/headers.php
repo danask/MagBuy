@@ -3,7 +3,13 @@
 if (session_status() == PHP_SESSION_NONE) {
     session_start();
 }
+
+//Check if user is blocked
+require_once "../../utility/blocked_user.php";
+
 ?>
+
+
 
 <!doctype html>
 <html lang="en">

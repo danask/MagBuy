@@ -88,6 +88,9 @@ if (!empty($_POST['email']) &&
             $_SESSION['role'] = 1;
         }
 
+        //Enabled role
+        $_SESSION['enabled'] = 1;
+
         //Check if user exists
         if ($userDao->checkUserExist($user)) {
 

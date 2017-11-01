@@ -54,6 +54,8 @@ class UserDao
 
     const MAKE_UNMAKE_MODERATOR_USER = "UPDATE users SET role = ? WHERE id = ?";
 
+    const CHECK_ENABLED = "SELECT id FROM users WHERE id = ? AND enabled = 1";
+
 
     //Get connection in construct
     private function __construct()
@@ -91,6 +93,24 @@ class UserDao
             return (int)$userId['id'];
         } else {
 
+            return false;
+        }
+    }
+
+    /**
+     * Function for checking if user is enabled
+     * @param $id - Receive user object with information about it.
+     * @return bool - If user is enabled
+     */
+    function checkEnabled($id)
+    {
+
+        $statement = $this->pdo->prepare(self::CHECK_ENABLED);
+        $statement->execute(array($id));
+
+        if ($statement->rowCount()) {
+            return true;
+        } else {
             return false;
         }
     }

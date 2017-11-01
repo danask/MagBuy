@@ -39,6 +39,14 @@ if (!empty($_POST['email']) &&
 
             if ($result) {
 
+                //Check for enabled user
+                if (!$userDao->checkEnabled($result)) {
+
+                    header("Location: ../../view/user/login.php?blocked");
+                    die();
+                }
+
+
                 $_SESSION['loggedUser'] = $result;
                 $_SESSION['role'] = 1;
                 $userDao->setLastLogin($user);
@@ -52,6 +60,7 @@ if (!empty($_POST['email']) &&
                 } else {
                     $_SESSION['role'] = 1;
                 }
+
 
                 header("Location: ../../view/main/index.php");
                 die();

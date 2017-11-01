@@ -1,5 +1,8 @@
 <?php
 require_once "../../../controller/admin/orders/view_orders_controller.php";
+
+//Check if user is blocked
+require_once "../../../utility/blocked_user.php";
 ?>
 <!doctype html>
 <html lang="en">

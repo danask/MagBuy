@@ -1,6 +1,10 @@
 <?php
 //Require old user's info and check for session (checked in controller)
 require_once "../../controller/user/get_users_info_controller.php";
+
+//Check if user is blocked
+require_once "../../utility/blocked_user.php";
+
 ?>
 
 <!doctype html>
