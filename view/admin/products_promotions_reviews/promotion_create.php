@@ -1,3 +1,8 @@
+<?php
+//Include Admin check
+require_once '../../../utility/admin_mod_session.php';
+?>
+
 <!doctype html>
 <html lang="en">
 <head>

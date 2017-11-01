@@ -2,7 +2,7 @@
 //Include Error Handler
 require_once '../../../utility/error_handler_dir_back.php';
 
-//Include Admin/Mod check
+//Include Admin check
 require_once '../../../utility/admin_session.php';
 
 

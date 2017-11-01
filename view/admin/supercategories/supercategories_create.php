@@ -1,5 +1,8 @@
 <?php
 
+//Include Admin check
+require_once '../../../utility/admin_session.php';
+
 ?>
 
 <!doctype html>
