@@ -80,3 +80,4 @@ before creating new product.
 - Responsive design - flexslider goes to simpler slider on lower resolution.
 - Most sold filter is by products that have order status 3 (Completed), multiplied by the quantity of
 ordered products.
+- Restricted directory browsing by .htaccess. 
