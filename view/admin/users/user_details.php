@@ -17,9 +17,16 @@ require_once "../../../controller/admin/users/view_user_details_controller.php";
 <body>
 <div align="center">
     <h2>User ID <?= $userDetails['id'] ?></h2>
+    <?php if ($_SESSION['role'] == 3) { ?>
     <a href="users_view.php">
         <button class="btn btn-primary">Back to Users Panel</button>
     </a>
+    <?php } elseif ($_SESSION['role'] == 2) {?>
+    <a href="../orders/orders_view.php">
+        <button class="btn btn-primary">Back to Orders</button>
+    </a>
+    <?php } ?>
+
 </div>
 <div class="adminMainWindow">
     <img src="../<?= $userDetails['image_url'] ?>"><br>

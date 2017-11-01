@@ -22,7 +22,7 @@ require_once "../../../controller/admin/orders/view_order_details_controller.php
     </a>
 </div>
 <div class="adminMainWindow">
-    User: <a href="<?= $userDetails[0]['user_id'] ?>"><?= $userDetails[0]['email'] ?></a><br>
+    User: <a href="../users/user_details.php?uid=<?= $userDetails[0]['user_id'] ?>"><?= $userDetails[0]['email'] ?></a><br>
     Status:
     <div id="status" style="display: inline;"><?= $userDetails[0]['status'] ?></div>
     <br>
