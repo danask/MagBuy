@@ -34,13 +34,6 @@ class ProductsDao
                                 INNER JOIN images i ON p.id = i.product_id 
                                 GROUP BY p.id HAVING p.id = ?";
 
-    const GET_PRODUCTS_BY_SUBCAT = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
-                                    p.visible, 
-                                    (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
-                                     ORDER BY percent DESC LIMIT 1) 
-                                    AS percent FROM products p INNER JOIN images i ON p.id = i.product_id GROUP 
-                                    BY P.id HAVING p.subcategory_id = ? AND p.visible = 1 ORDER BY p.created_at DESC LIMIT 8";
-
     const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price,
                                      (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
                                       ORDER BY percent DESC LIMIT 1) 
@@ -117,7 +110,10 @@ class ProductsDao
     const GET_SUBCAT_PRODUCTS_NEWEST = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible,
                                     (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
-                                     ORDER BY percent DESC LIMIT 1) AS percent
+                                    ORDER BY percent DESC LIMIT 1) AS percent,
+                                    (SELECT AVG(rating) 
+                                    FROM reviews WHERE product_id = P.id) average, 
+                                    (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount
                                     FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id GROUP BY P.id 
                                     HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY p.created_at DESC 
@@ -126,7 +122,10 @@ class ProductsDao
     const GET_SUBCAT_PRODUCTS_MOST_SOLD = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, 
                                     (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
-                                     ORDER BY percent DESC LIMIT 1) AS percent, 
+                                    ORDER BY percent DESC LIMIT 1) AS percent, 
+                                    (SELECT AVG(rating) 
+                                    FROM reviews WHERE product_id = P.id) average, 
+                                    (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount,
                                     (SELECT SUM(op.quantity)
                                     FROM order_products op JOIN orders o ON op.order_id = o.id
                                     WHERE o.status = 3 AND op.product_id = p.id) ordered FROM products p INNER JOIN images i 
@@ -137,17 +136,23 @@ class ProductsDao
     const GET_SUBCAT_PRODUCTS_MOST_REVIEWED = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, 
                                     (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
-                                     ORDER BY percent DESC LIMIT 1) AS percent, 
+                                    ORDER BY percent DESC LIMIT 1) AS percent, 
+                                    (SELECT AVG(rating) 
+                                    FROM reviews WHERE product_id = P.id) average, 
+                                    (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount,
                                     (SELECT COUNT(product_id) 
-                                    FROM reviews WHERE product_id = P.id) average FROM products p INNER JOIN images i 
+                                    FROM reviews WHERE product_id = P.id) reviews FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id GROUP BY P.id 
-                                    HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY average DESC 
+                                    HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY reviews DESC 
                                     LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_HIGHEST_RATED = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
                                     p.visible, 
                                     (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
-                                     ORDER BY percent DESC LIMIT 1) AS percent, 
+                                    ORDER BY percent DESC LIMIT 1) AS percent, 
+                                    (SELECT AVG(rating) 
+                                    FROM reviews WHERE product_id = P.id) average, 
+                                    (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount,
                                     (SELECT AVG(rating) 
                                     FROM reviews WHERE product_id = P.id) average FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id GROUP BY P.id 

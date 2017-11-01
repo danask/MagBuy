@@ -56,6 +56,11 @@ function loadProducts(offset) {
                     } else {
                         promotedPrice = null;
                     }
+                    if (products[key]['average'] === null) {
+                        var productAverage = 0;
+                    } else {
+                        productAverage = Math.round(products[key]['average']);
+                    }
 
                     if (key == 0) {
                         content += '<div class="products-grid-lft">';
@@ -76,6 +81,9 @@ function loadProducts(offset) {
                         'alt="Product Image" class="img-responsive"/>' +
                         '</a>' +
                         '<h4>' + products[key]['title'] + '</h4>' +
+                        '<img class="ratingCatDiv media-object img"' +
+                        ' src="../../web/assets/images/rating' + productAverage + '.png">' +
+                        '<span>(' + products[key]['reviewsCount'] + ')</span>' +
                         '<p><a id="addButtonBlock" class="btn btn-default btn-sm"' +
                         'onclick="addToCart(' + products[key]['id'] +
                         ',' + (promotedPrice != null ? promotedPrice : products[key]['price']) + ')">' +

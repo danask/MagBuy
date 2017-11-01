@@ -31,11 +31,12 @@ function deleteSubCat(subcatId) {
             "This will also unset the category of any products that go under this SubCategory!")) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
+            alert(this.status);
             if (this.status == 200 && this.readyState == 4) {
                 $('#delId-' + subcatId).remove();
             }
         };
-        xhttp.open("GET", "../../../controller/admin/categories/delete_category_controller.php?cid=" + subcatId, true);
+        xhttp.open("GET", "../../../controller/admin/subcategories/delete_subcategory_controller.php?scid=" + subcatId, true);
         xhttp.send();
     }
 }
