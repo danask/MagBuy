@@ -18,8 +18,7 @@ require_once "../../../controller/admin/products_promotions_reviews/new_product_
 <div class="page">
     <form enctype="multipart/form-data"
           action="../../../controller/admin/products_promotions_reviews/new_product_controller.php" method="post">
-        Title <input type="text" name="title" placeholder="Title" pattern=".{1,40}"
-                     required title="Title 1 to 40 characters"/><br>
+        Title <input type="text" name="title" placeholder="Title" maxlength="40" required/><br>
         Description <textarea name="description" placeholder="Description" maxlength="150000" required></textarea><br>
         Price <input type="number" name="price" step="0.01" placeholder="Price" min="0" maxlength="100000000"
                      required/><br>

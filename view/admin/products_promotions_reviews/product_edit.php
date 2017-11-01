@@ -22,7 +22,7 @@ require_once "../../../controller/admin/products_promotions_reviews/edit_product
         <input type="hidden" name="pid" value="<?= $product['id'] ?>">
         <input type="hidden" name="scid" value="<?= $product['subcategory_id'] ?>">
         Title <input type="text" name="title" placeholder="Title" value="<?= $product['title'] ?>"
-                     pattern=".{1,40}" required title="Title 1 to 40 characters"/><br>
+                     maxlength="40" required/><br>
         Description <textarea name="description" placeholder="Description"
                               maxlength="150000" required><?= $product['description'] ?></textarea><br>
         Price <input type="number" name="price" step="0.01" placeholder="Price" value="<?= $product['price'] ?>" min="0"

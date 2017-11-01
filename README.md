@@ -65,8 +65,7 @@
 - Editing product, 3 images must be defined or none.
 - You must first create Super category, Category, Subcategory and specifications
 before creating new product or the server will response with Error 500
-
-
+- Have to create specifications for subcategory, before adding product.
 
 
 
