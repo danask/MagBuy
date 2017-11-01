@@ -80,6 +80,7 @@ before creating new product.
 - After adding product in certain subcategory, you can not add new specifications for it.
 - You can create product for category without specifications for it.
 - Responsive design - flexslider goes to simpler slider on lower resolution.
+- In stock or not functionality when quantity is 0.
 - Most sold filter is by products that have order status 3 (Completed), multiplied by the quantity of
 ordered products.
 - Restricted directory browsing by .htaccess. 
