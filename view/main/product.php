@@ -18,12 +18,11 @@ require_once "../elements/headers.php";
                 max: 1000,
                 values: [50, 500],
                 slide: function (event, ui) {
-                    $("#amountMin").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                    $("#amountMax").val("$" + ui.values[0] + " - $" + ui.values[1]);
-//                    loadProducts(0);
+                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+                    loadProducts(0);
                 }
             });
-            $("#amountMin").val("$" + $("#slider-range").slider("values", 0) +
+            $("#amount").val("$" + $("#slider-range").slider("values", 0) +
                 " - $" + $("#slider-range").slider("values", 1));
         });
     </script>
@@ -55,9 +54,7 @@ require_once "../elements/navigation.php";
                             <h4>Price filter</h4>
                             <p>
                                 <label for="amount">Price range:</label>
-                                <input type="text" id="amountMin" readonly
-                                       style="border:0; color:#f6931f; font-weight:bold;">
-                                <input type="text" id="amountMax" readonly
+                                <input type="text" id="amount" readonly
                                        style="border:0; color:#f6931f; font-weight:bold;">
                             </p>
 

@@ -119,12 +119,10 @@ function loadProducts(offset) {
             }
         }
     };
-    // alert(document.getElementById("amount").value);
-    // var minPrice =;
-    // var maxPrice =;
+    var priceFilter = document.getElementById("amount").value;
     var filter = document.getElementById('filter').value;
     var subcid = location.search;
     xhttp.open("GET", "../../controller/products/products_by_category_controller.php" + subcid + "&offset="
-        + offset + "&filter=" + filter, true);
+        + offset + "&filter=" + filter + "&pf=" + priceFilter, true);
     xhttp.send();
 }

@@ -116,7 +116,9 @@ class ProductsDao
                                     (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount
                                     FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id GROUP BY P.id 
-                                    HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY p.created_at DESC 
+                                    HAVING p.subcategory_id = :sub AND p.visible = 1
+                                    AND p.price BETWEEN :minP AND :maxP
+                                    ORDER BY p.created_at DESC 
                                     LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_MOST_SOLD = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
@@ -130,7 +132,9 @@ class ProductsDao
                                     FROM order_products op JOIN orders o ON op.order_id = o.id
                                     WHERE o.status = 3 AND op.product_id = p.id) ordered FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id GROUP BY P.id 
-                                    HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY ordered DESC 
+                                    HAVING p.subcategory_id = :sub AND p.visible = 1 
+                                    AND p.price BETWEEN :minP AND :maxP
+                                    ORDER BY ordered DESC 
                                     LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_MOST_REVIEWED = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
@@ -143,7 +147,9 @@ class ProductsDao
                                     (SELECT COUNT(product_id) 
                                     FROM reviews WHERE product_id = P.id) reviews FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id GROUP BY P.id 
-                                    HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY reviews DESC 
+                                    HAVING p.subcategory_id = :sub AND p.visible = 1 
+                                    AND p.price BETWEEN :minP AND :maxP
+                                    ORDER BY reviews DESC 
                                     LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_HIGHEST_RATED = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id,  
@@ -151,12 +157,14 @@ class ProductsDao
                                     (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
                                     ORDER BY percent DESC LIMIT 1) AS percent, 
                                     (SELECT AVG(rating) 
-                                    FROM reviews WHERE product_id = P.id) average, 
+                                    FROM reviews WHERE product_id = P.id) reviews, 
                                     (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount,
                                     (SELECT AVG(rating) 
                                     FROM reviews WHERE product_id = P.id) average FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id GROUP BY P.id 
-                                    HAVING p.subcategory_id = :sub AND p.visible = 1 ORDER BY average DESC 
+                                    HAVING p.subcategory_id = :sub AND p.visible = 1 
+                                    AND p.price BETWEEN :minP AND :maxP
+                                    ORDER BY average DESC 
                                     LIMIT 8 OFFSET :off";
 
     //Get connection in construct
@@ -334,7 +342,7 @@ class ProductsDao
      * @param $filter
      * @return array
      */
-    function getSubCatProducts($subcatId, $offset, $filter)
+    function getSubCatProducts($subcatId, $offset, $filter, $minPrice, $maxPrice)
     {
         switch ($filter) {
             case 1:
@@ -353,6 +361,8 @@ class ProductsDao
 
         $statement->bindValue(':sub', (int)$subcatId, PDO::PARAM_INT);
         $statement->bindValue(':off', (int)$offset, PDO::PARAM_INT);
+        $statement->bindValue(':minP', (int)$minPrice, PDO::PARAM_INT);
+        $statement->bindValue(':maxP', (int)$maxPrice, PDO::PARAM_INT);
 
         $statement->execute();
         $products = $statement->fetchAll(PDO::FETCH_ASSOC);

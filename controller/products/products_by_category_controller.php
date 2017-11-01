@@ -13,11 +13,14 @@ if (isset ($_GET['filter'])) {
     $offset = $_GET['offset'];
     $subcatId = $_GET['subcid'];
     $filter = $_GET['filter'];
+    $priceFilter = explode(" - ", $_GET['pf']);
+    $minPrice = ltrim($priceFilter[0], "$");
+    $maxPrice = ltrim($priceFilter[1], "$");
 
     try {
 
         $productsDao = \model\database\ProductsDao::getInstance();
-        $products = $productsDao->getSubCatProducts($subcatId, $offset, $filter);
+        $products = $productsDao->getSubCatProducts($subcatId, $offset, $filter, $minPrice, $maxPrice);
 
     } catch (PDOException $e) {
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
