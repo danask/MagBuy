@@ -5,17 +5,18 @@ require_once "../elements/headers.php";
 ?>
     <!-- Define Page Name -->
     <title>MagBuy | <?= $subcatName ?></title>
+
     <script src="../../web/assets/js/products/products.by.category.js"></script>
-<!--    <script src="../../web/assets/js/products/price.range.js"></script>-->
-    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-    <link rel="stylesheet" href="/resources/demos/style.css">
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+    <!-- Price Slider CSS and JS -->
+    <link rel="stylesheet" href="../../web/assets/css/jquery-ui.css">
+    <script src="../../web/assets/js/jquery-ui.js"></script>
     <script>
         $(function () {
             $("#slider-range").slider({
                 range: true,
                 min: 0,
-                max: 1000,
+                max: 4000,
                 values: [50, 500],
                 slide: function (event, ui) {
                     $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
