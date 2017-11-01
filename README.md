@@ -68,7 +68,7 @@
 promoted product in favourites.
 - Uploaded images must be below 5MB and one of these types - jpg, jpeg, gif, png. 
 - Friendly user validation for type and size of image.
-- Error 400 Bad Request for adding/editing product for Admin/Moderators/
+- Error 400 Bad Request for adding/editing invalid product image for Admin/Moderators.
 - Automatic custom function base on PHP for images are cropping.
 - Adding new product, 3 images must be defined.
 - Editing product, 3 images must be defined or none.
