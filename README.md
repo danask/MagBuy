@@ -59,6 +59,7 @@
 - Adminsitrator can change other users into moderators - from role 1 to role 2.
 - Moderators can only manage products and orders.
 - Every other user is with role 1.
+- Administrator can block users.
 - Profile editing on optional fields, including profile picture.
 - Redirection to address field on checking out without filled address.
 - Login redirection on checking out without being logged.
