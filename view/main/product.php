@@ -17,7 +17,7 @@ require_once "../elements/headers.php";
                 range: true,
                 min: 0,
                 max: 4000,
-                values: [50, 500],
+                values: [1, 1500],
                 slide: function (event, ui) {
                     $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
                     loadProducts(0);

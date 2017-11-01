@@ -175,8 +175,8 @@ class ProductsDao
                                              (SELECT COUNT(*) FROM reviews WHERE product_id = P.id) reviewsCount, 
                                              (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average 
                                               FROM products p INNER JOIN images i ON p.id = i.product_id GROUP BY P.id
-                                              HAVING p.subcategory_id = 5 AND p.visible = 1 AND price_fin 
-                                              BETWEEN 1 AND 10000 ORDER BY average DESC LIMIT 8 OFFSET 1";
+                                              HAVING p.subcategory_id = :sub AND p.visible = 1 AND price_fin 
+                                              BETWEEN :minP AND :maxP ORDER BY average DESC LIMIT 8 OFFSET :off";
 
     //Get connection in construct
     private function __construct()
