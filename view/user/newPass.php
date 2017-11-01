@@ -24,6 +24,8 @@ if(abs(($_SESSION['passReset']['time'] - time())) > 600) {
 
     <!-- CSS for login/register/edit form -->
     <link rel="stylesheet" href="../../web/assets/css/user.css" type="text/css">
+    <!-- Favicon path -->
+    <link rel="shortcut icon" href="../../web/assets/images/favicon.ico?v4" type="image/x-icon">
 
     <title>Login</title>
 </head>
