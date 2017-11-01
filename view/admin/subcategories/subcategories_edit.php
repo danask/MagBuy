@@ -18,7 +18,8 @@ require_once "../../../controller/admin/subcategories/edit_subcategory_controlle
         <input type="hidden" name="subcat_id" value="<?= $subcat['id'] ?>">
         <input type="text" name="name" placeholder="SubCategory name" value="<?= $subcat['name'] ?>" maxlength="40"
                required/><br>
-        <select name="category_id">
+        <select name="category_id" required>
+            <option disabled selected value="">Choose Category</option>
             <?php
             foreach ($categories as $category) {
                 echo "<option value=\"" . $category['id'] . "\"";

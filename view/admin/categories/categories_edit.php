@@ -18,7 +18,8 @@ require_once "../../../controller/admin/categories/edit_category_controller.php"
         <input type="hidden" name="cat_id" value="<?= $cat['id'] ?>">
         <input type="text" name="name" placeholder="Category name" value="<?= $cat['name'] ?>" maxlength="40" required/>
         <br>
-        <select name="supercategory_id">
+        <select name="supercategory_id" required>
+            <option disabled selected value="">Choose Supercategory</option>
             <?php
             foreach ($supercategories as $supercategory) {
                 echo "<option value=\"" . $supercategory['id'] . "\"";

@@ -35,8 +35,8 @@ require_once "../../../controller/admin/products_promotions_reviews/edit_product
         <input type="file" name="pic3"><br><br><br>
         Subcategory and specifications:<br><br>
         Choose subcategory
-        <select id="selectSubCatId" onchange="loadSpecs()" name="subcategory_id">
-            <option disabled selected>Choose Subcategory</option>
+        <select id="selectSubCatId" onchange="loadSpecs()" name="subcategory_id" required>
+            <option disabled selected value="">Choose Subcategory</option>
             <?php
             foreach ($subcategories as $subcategory) {
                 ?>

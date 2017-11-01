@@ -16,7 +16,8 @@ require_once "../../../controller/admin/subcategories/new_subcategory_controller
 <div class="page">
     <form action="../../../controller/admin/subcategories/new_subcategory_controller.php" method="post">
         <input type="text" name="name" placeholder="Subcategory name" maxlength="40" required/><br>
-        <select name="category_id">
+        <select name="category_id" required>
+            <option disabled selected value="">Choose Category</option>
             <?php
             foreach ($categories as $category) {
                 echo "<option value=\"" . $category['id'] . "\">" . $category['name'] . "</option>";
