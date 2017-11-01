@@ -36,7 +36,7 @@ function loadProducts(offset) {
     }
     xhttp.onreadystatechange = function () {
         if (this.status == 200 && this.readyState == 4) {
-            loaderDiv.removeChild(loading);
+            loaderDiv.innerHTML = "";
             if (offset == 0) {
                 productsWindow.innerHTML = "";
             }
@@ -119,6 +119,9 @@ function loadProducts(offset) {
             }
         }
     };
+    // alert(document.getElementById("amount").value);
+    // var minPrice =;
+    // var maxPrice =;
     var filter = document.getElementById('filter').value;
     var subcid = location.search;
     xhttp.open("GET", "../../controller/products/products_by_category_controller.php" + subcid + "&offset="

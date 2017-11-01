@@ -42,12 +42,24 @@ require_once "../../../controller/admin/users/view_users_controller.php";
                 <td><?= $user['email'] ?></td>
                 <td>
                     <div id="banId-<?= $user['id'] ?>"><?= $user['enabled'] ?></div>
-                    <button class="btn btn-danger" onclick="banUser(<?= $user['id'] ?>)">Ban/Unban</button>
+                    <?php
+                    if ($user['id'] != 1) {
+                        ?>
+                        <button class="btn btn-danger" onclick="banUser(<?= $user['id'] ?>)">Ban/Unban</button>
+                        <?php
+                    }
+                    ?>
                 </td>
                 <td>
                     <div id="roleId-<?= $user['id'] ?>"><?= $user['role'] ?></div>
-                    <button class="btn btn-warning" onclick="changeRole(<?= $user['id'] ?>)">Make/Unmake Moderator
-                    </button>
+                    <?php
+                    if ($user['id'] != 1) {
+                        ?>
+                        <button class="btn btn-warning" onclick="changeRole(<?= $user['id'] ?>)">Make/Unmake Moderator
+                        </button>
+                        <?php
+                    }
+                    ?>
                 </td>
             </tr>
             <?php
