@@ -83,7 +83,7 @@ function loadProducts(offset) {
                         '<h4>' + products[key]['title'] + '</h4>' +
                         '<img class="ratingCatDiv media-object img"' +
                         ' src="../../web/assets/images/rating' + productAverage + '.png">' +
-                        '<span>(' + products[key]['reviewsCount'] + ')</span>' +
+                        '<span>(' + products[key]['reviewsCount'] + ')</span>' + '<br/><br/>' +
                         '<p><a id="addButtonBlock" class="btn btn-default btn-sm"' +
                         'onclick="addToCart(' + products[key]['id'] +
                         ',' + (promotedPrice != null ? promotedPrice : products[key]['price']) + ')">' +
