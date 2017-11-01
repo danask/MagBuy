@@ -63,6 +63,8 @@
 - Uploaded images must be below 5MB and one of these types - jpg, jpeg, gif, png. Images are cropped.
 - Adding new product, 3 images must be defined.
 - Editing product, 3 images must be defined or none.
+- You must first create Super category, Category, Subcategory and specifications
+before creating new product or the server will response with Error 500
 
 
 

@@ -24,12 +24,12 @@ if (isset($_POST['submit'])) {
 
     //Validation
     if (empty($_POST['pid']) ||
-        strlen($_POST['title']) >= 50 ||
-        strlen($_POST['description']) >= 150000 ||
+        strlen($_POST['title']) > 50 ||
+        strlen($_POST['description']) > 150000 ||
         $_POST['price'] < 0 ||
-        $_POST['price'] >= 100000000 ||
+        $_POST['price'] > 100000000 ||
         $_POST['quantity'] < 0 ||
-        $_POST['quantity'] >= 1000000000) {
+        $_POST['quantity'] > 1000000000) {
 
         header('Location: ../../../view/error/error_400.php');
         die();
