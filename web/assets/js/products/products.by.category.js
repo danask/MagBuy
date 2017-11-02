@@ -24,6 +24,25 @@ function onScrollToBottom() {
     }
 }
 
+$(function () {
+    $("#slider-range").slider({
+        range: true,
+        min: 0,
+        max: 4000,
+        values: [0, 1500],
+        slide: function (event, ui) {
+            $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+            $(window).bind('scroll', function () {
+                onScrollToBottom();
+            });
+            offset = 0;
+            loadProducts(offset);
+        }
+    });
+    $("#amount").val("$" + $("#slider-range").slider("values", 0) +
+        " - $" + $("#slider-range").slider("values", 1));
+});
+
 function loadProducts(offset) {
     var xhttp = new XMLHttpRequest();
     var productsWindow = document.getElementById("productsWindow");

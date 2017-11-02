@@ -6,31 +6,12 @@ require_once "../elements/headers.php";
     <!-- Define Page Name -->
     <title>MagBuy | <?= $subcatName ?></title>
 
-    <script src="../../web/assets/js/products/products.by.category.js"></script>
-
     <!-- Price Slider CSS and JS -->
     <link rel="stylesheet" href="../../web/assets/css/jquery-ui.css">
     <script src="../../web/assets/js/jquery-ui.js"></script>
-    <script>
-        $(function () {
-            $("#slider-range").slider({
-                range: true,
-                min: 0,
-                max: 4000,
-                values: [0, 1500],
-                slide: function (event, ui) {
-                    $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                    $(window).bind('scroll', function () {
-                        onScrollToBottom();
-                    });
-                    offset = 0;
-                    loadProducts(offset);
-                }
-            });
-            $("#amount").val("$" + $("#slider-range").slider("values", 0) +
-                " - $" + $("#slider-range").slider("values", 1));
-        });
-    </script>
+    <!-- Product Loader -->
+    <script src="../../web/assets/js/products/products.by.category.js"></script>
+
 
 <?php
 //Include Header
