@@ -61,6 +61,8 @@
 - Every other user is with role 1.
 - Administrator can block users.
 - Administrators and Moderators can delete reviews.
+- Administrators can delete supercategories, categories and subcategories, but doing that deletes
+all child categories and sets products subcategory to null which makes them invisible for users.
 - Profile editing on optional fields, including profile picture.
 - Redirection to address field on checking out without filled address.
 - Login redirection on checking out without being logged.
