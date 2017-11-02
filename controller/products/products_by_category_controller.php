@@ -19,8 +19,8 @@ if (isset ($_GET['filter'])) {
         $maxPrice = ltrim($priceFilter[1], "$");
         $minPrice = ltrim($priceFilter[0], "$");
     } else {
-        $maxPrice = ltrim(500, "$");
-        $minPrice = ltrim(50, "$");
+        $maxPrice = ltrim(1500, "$");
+        $minPrice = ltrim(100, "$");
     }
 
     try {
