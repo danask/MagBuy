@@ -25,7 +25,7 @@ class ProductsDao
                                 AS percent,
                                (SELECT AVG(rating) FROM reviews WHERE product_id = p.id) average FROM products p 
                                 INNER JOIN images i ON p.id = i.product_id 
-                                WHERE P.visible = 1 GROUP BY p.id HAVING p.id = ?";
+                                WHERE P.visible = 1 AND p.subcategory_id IS NOT NULL GROUP BY p.id HAVING p.id = ?";
 
     const GET_PRODUCT_BY_ID_ADMIN = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, p.visible, p.quantity, 
                                 (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
@@ -34,7 +34,7 @@ class ProductsDao
                                 INNER JOIN images i ON p.id = i.product_id 
                                 GROUP BY p.id HAVING p.id = ?";
 
-    const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price,
+    const GET_MOST_RATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.price, P.subcategory_id,
                                      (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
                                       ORDER BY percent DESC LIMIT 1) 
                                      AS percent,
@@ -42,44 +42,49 @@ class ProductsDao
                                      FROM reviews WHERE product_id = P.id) average, 
                                      (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount FROM products P
                                      JOIN images I ON P.id = I.product_id JOIN reviews R ON P.id = R.product_id
-                                     WHERE P.visible = 1 GROUP BY P.id ORDER BY average DESC LIMIT 4";
+                                     WHERE P.visible = 1 AND P.subcategory_id IS NOT NULL GROUP BY P.id ORDER BY average DESC LIMIT 4";
 
     const GET_RELATED_PRODUCTS = "SELECT P.id, P.title, I.image_url, P.subcategory_id, P.price, 
                                   (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average,
                                   (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
                                    ORDER BY percent DESC LIMIT 1) AS percent,
                                   (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount FROM products P 
-                                  JOIN images I ON P.id = I.product_id WHERE P.visible = 1 AND NOT P.id = ?
+                                  JOIN images I ON P.id = I.product_id WHERE P.visible = 1 AND P.subcategory_id IS NOT 
+                                  NULL AND NOT P.id = ?
                                   GROUP BY P.id HAVING P.subcategory_id = ? ORDER BY P.created_at DESC LIMIT 4";
 
-    const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, p.title, i.image_url, p.price,
+    const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, p.title, i.image_url, p.price, p.subcategory_id,
                                       (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average,
                                       (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
                                        ORDER BY percent DESC LIMIT 1) AS percent,
                                       (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount
                                       FROM products p 
-                                      JOIN images i ON p.id = i.product_id WHERE p.visible = 1 GROUP BY p.id 
+                                      JOIN images i ON p.id = i.product_id WHERE p.visible = 1 AND p.subcategory_id 
+                                      IS NOT NULL GROUP BY p.id 
                                       ORDER BY p.created_at DESC LIMIT 4";
 
-    const GET_MOST_SOLD = "SELECT P.id, P.title, I.image_url, P.price,
+    const GET_MOST_SOLD = "SELECT P.id, P.title, I.image_url, P.price, P.subcategory_id,
                           (SELECT SUM(OP.quantity) FROM order_products OP JOIN orders O ON OP.order_id = O.id
                           WHERE O.status = 3 AND OP.product_id = P.id) ordered,
                           (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
                            ORDER BY percent DESC LIMIT 1) AS percent,
                            (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average, 
                            (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount FROM products P JOIN
-                          images I ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id ORDER BY ordered DESC LIMIT 4";
+                          images I ON P.id = I.product_id WHERE P.visible = 1 AND P.subcategory_id IS NOT NULL 
+                          AND P.subcategory_id IS NOT NULL GROUP BY P.id ORDER BY ordered DESC LIMIT 4";
 
-    const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.price, I.image_url FROM products P JOIN images I 
-                              ON P.id = I.product_id WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ? LIMIT 3";
+    const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.price, I.image_url, P.subcategory_id FROM products P JOIN images I 
+                              ON P.id = I.product_id WHERE P.visible = 1 AND P.subcategory_id IS NOT NULL
+                               GROUP BY P.id HAVING title LIKE ? LIMIT 3";
 
-    const SEARCH_PRODUCTS_NO_LIMIT = "SELECT P.id, P.title, P.price, I.image_url, 
+    const SEARCH_PRODUCTS_NO_LIMIT = "SELECT P.id, P.title, P.price, I.image_url, P.subcategory_id,
                                       (SELECT percent FROM promotions WHERE product_id = P.id AND start_date <= now() AND end_date >= now() 
                                        ORDER BY percent DESC LIMIT 1) AS percent,
                                       (SELECT AVG(rating) FROM reviews WHERE product_id = P.id) average,
                                       (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount 
                                       FROM products P JOIN images I ON P.id = I.product_id
-                                      WHERE P.visible = 1 GROUP BY P.id HAVING title LIKE ?";
+                                      WHERE P.visible = 1 AND P.subcategory_id IS NOT NULL 
+                                      GROUP BY P.id HAVING title LIKE ?";
 
     const GET_ALL_PRODUCTS_ADMIN = "SELECT p.id, p.title, p.description, p.price, p.quantity, p.visible, 
                                     p.created_at, sc.name AS subcat_name,
@@ -120,7 +125,7 @@ class ProductsDao
                                (SELECT count(*) FROM reviews WHERE product_id = P.id) reviewsCount
                                 FROM products p INNER JOIN images i 
                                 ON p.id = i.product_id GROUP BY P.id 
-                                HAVING p.subcategory_id = :sub AND p.visible = 1
+                                HAVING p.subcategory_id = :sub AND p.visible = 1 AND p.subcategory_id IS NOT NULL
                                 AND price_fin BETWEEN :minP AND :maxP
                                 ORDER BY p.created_at DESC 
                                 LIMIT 8 OFFSET :off";
@@ -138,7 +143,7 @@ class ProductsDao
                                     (SELECT SUM(op.quantity) FROM order_products op JOIN orders o ON op.order_id = o.id
                                     WHERE o.status = 3 AND op.product_id = p.id) ordered FROM products p 
                                     INNER JOIN images i  ON p.id = i.product_id GROUP BY P.id 
-                                    HAVING p.subcategory_id = :sub AND p.visible = 1 
+                                    HAVING p.subcategory_id = :sub AND p.visible = 1 AND p.subcategory_id IS NOT NULL
                                     AND price_fin BETWEEN :minP AND :maxP
                                     ORDER BY ordered DESC 
                                     LIMIT 8 OFFSET :off";
@@ -156,7 +161,7 @@ class ProductsDao
                                     (SELECT COUNT(product_id) 
                                     FROM reviews WHERE product_id = P.id) reviews FROM products p INNER JOIN images i 
                                     ON p.id = i.product_id GROUP BY P.id 
-                                    HAVING p.subcategory_id = :sub AND p.visible = 1 
+                                    HAVING p.subcategory_id = :sub AND p.visible = 1 AND p.subcategory_id IS NOT NULL
                                     AND price_fin BETWEEN :minP AND :maxP
                                     ORDER BY reviews DESC 
                                     LIMIT 8 OFFSET :off";
