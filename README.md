@@ -24,6 +24,7 @@
 - Adding profile picture for reviews.
 - Automatic image cropping.
 - Restoring forgotten password by email.
+- Indexing in database for fast search
 
 ## Basic Administrator Functionality
 
