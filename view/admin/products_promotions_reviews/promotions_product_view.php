@@ -14,8 +14,11 @@ require_once "../../../utility/blocked_user_dir_back.php";
     <title>Admin | Categories</title>
     <link rel="stylesheet" href="../../../web/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../web/assets/css/adminPanel.css">
+    <!-- Add Favicon -->
+    <link rel="shortcut icon" href="../../../web/assets/images/favicon.ico?v4" type="image/x-icon">
     <script src="../../../web/assets/js/jquery-1.11.1.min.js"></script>
     <script src="../../../web/assets/js/admin/remove.admin.js"></script>
+
 </head>
 <body>
 <div align="center">

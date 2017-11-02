@@ -11,6 +11,9 @@ require_once "../../../utility/blocked_user_dir_back.php";
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Admin | Categories</title>
+
+    <!-- Add Favicon -->
+    <link rel="shortcut icon" href="../../../web/assets/images/favicon.ico?v4" type="image/x-icon">
     <link rel="stylesheet" href="../../../web/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="../../../web/assets/css/adminPanel.css">
     <script src="../../../web/assets/js/jquery-1.11.1.min.js"></script>
@@ -46,7 +49,9 @@ require_once "../../../utility/blocked_user_dir_back.php";
             <tr>
                 <td><?= $product['id'] ?></td>
                 <td><a href="../../../view/main/single.php?pid=<?= $product['id'] ?>"><?= $product['title'] ?></a></td>
-                <td style="font-size: 80%"><?= $product['description'] ?></td>
+                <td style="font-size: 80%; max-width: 150px;
+                overflow: hidden; text-overflow: ellipsis;
+                white-space: nowrap;"><?= $product['description'] ?></td>
                 <td><?= $product['price'] ?></td>
                 <td><?= $product['quantity'] ?></td>
                 <td id="togId-<?= $product['id'] ?>"><?= $product['visible'] ?></td>

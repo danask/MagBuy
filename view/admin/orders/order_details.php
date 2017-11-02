@@ -16,6 +16,8 @@ require_once "../../../utility/blocked_user_dir_back.php";
     <link rel="stylesheet" href="../../../web/assets/css/adminPanel.css">
     <script src="../../../web/assets/js/jquery-1.11.1.min.js"></script>
     <script src="../../../web/assets/js/admin/order.manage.js"></script>
+    <!-- Add Favicon -->
+    <link rel="shortcut icon" href="../../../web/assets/images/favicon.ico?v4" type="image/x-icon">
 </head>
 <body>
 <div align="center">

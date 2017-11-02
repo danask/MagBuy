@@ -17,6 +17,8 @@ require_once "../../../utility/blocked_user_dir_back.php";
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="../../../web/assets/css/adminPanel.css">
+    <!-- Add Favicon -->
+    <link rel="shortcut icon" href="../../../web/assets/images/favicon.ico?v4" type="image/x-icon">
 </head>
 <body>
 <div class="page">
