@@ -86,3 +86,4 @@ before creating new product.
 - Most sold filter is by products that have order status 3 (Completed), multiplied by the quantity of
 ordered products.
 - Restricted directory browsing by .htaccess. 
+- Can not add promotion to invisible product.
