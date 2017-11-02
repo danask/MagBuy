@@ -20,10 +20,11 @@ class FavouritesDao {
 
     const CHECK_IF_IN_FAVOURITES = "SELECT id FROM favourites WHERE user_id = ? AND product_id = ?";
 
-    const ALL_FAVOURITES_BY_USER_ID = "SELECT P.id, P.title, P.description, P.price, I.image_url, F.user_id, P.visible 
-                                      FROM products P 
+    const ALL_FAVOURITES_BY_USER_ID = "SELECT P.id, P.title, P.description, P.price, I.image_url, F.user_id, P.visible,
+                                      P.subcategory_id FROM products P 
                                       JOIN favourites F ON P.id = F.product_id JOIN images I ON P.id = I.product_id 
-                                      GROUP BY F.id HAVING F.user_id = ? AND P.visible = 1";
+                                      GROUP BY F.id HAVING F.user_id = ? AND P.visible = 1 AND P.subcategory_id
+                                       IS NOT NULL";
 
     const SUBSCRIBED_USERS_BY_PRODUCT_ID = "SELECT U.email FROM users U LEFT JOIN favourites F ON U.id = F.user_id 
                                             WHERE F.product_id = ?";
