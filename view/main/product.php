@@ -20,7 +20,11 @@ require_once "../elements/headers.php";
                 values: [100, 1500],
                 slide: function (event, ui) {
                     $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-                    loadProducts(0);
+                    $(window).bind('scroll', function () {
+                        onScrollToBottom();
+                    });
+                    offset = 0;
+                    loadProducts(offset);
                 }
             });
             $("#amount").val("$" + $("#slider-range").slider("values", 0) +
