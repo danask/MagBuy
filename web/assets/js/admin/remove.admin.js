@@ -96,10 +96,10 @@ function toggleVisibility(productId, currentVis) {
                 window.location.replace("../error/error_400.php");
             } else if (this.status == 200 && this.readyState == 4) {
                 var visibility = document.getElementById("togId-" + productId);
-                if (visibility.innerHTML == 1) {
-                    visibility.innerHTML = 0;
+                if (visibility.innerHTML == "Yes") {
+                    visibility.innerHTML = "No";
                 } else {
-                    visibility.innerHTML = 1;
+                    visibility.innerHTML = "Yes";
                 }
             }
         };

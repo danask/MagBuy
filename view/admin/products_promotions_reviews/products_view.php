@@ -54,7 +54,7 @@ require_once "../../../utility/blocked_user_dir_back.php";
                 white-space: nowrap;"><?= $product['description'] ?></td>
                 <td><?= $product['price'] ?></td>
                 <td><?= $product['quantity'] ?></td>
-                <td id="togId-<?= $product['id'] ?>"><?= $product['visible'] ?></td>
+                <td id="togId-<?= $product['id'] ?>"><?= ($product['visible'] == 1 ? "Yes" : "No") ?></td>
                 <td><?= $product['created_at'] ?></td>
                 <td><?= $product['subcat_name'] ?></td>
                 <td>

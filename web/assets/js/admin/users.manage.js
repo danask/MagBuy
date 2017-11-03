@@ -1,11 +1,11 @@
 function banUser(userId) {
     var banId = document.getElementById("banId-" + userId);
-    if (banId.innerHTML == 1) {
-        var action = "ban";
-        var newStatus = 0;
+    if (banId.innerHTML == "BANNED") {
+        var action = "unban";
+        var newStatus = 1;
     } else {
-        action = "unban";
-        newStatus = 1;
+        action = "ban";
+        newStatus = 0;
     }
     if (confirm("Are you sure you want to " + action + " User with ID " + userId + " ?")) {
         var xhttp = new XMLHttpRequest();
@@ -16,9 +16,9 @@ function banUser(userId) {
                 window.location.replace("../error/error_400.php");
             } else if (this.status == 200 && this.readyState == 4) {
                 if (newStatus == 0) {
-                    banId.innerHTML = 0;
+                    banId.innerHTML = "BANNED";
                 } else {
-                    banId.innerHTML = 1;
+                    banId.innerHTML = "Enabled";
                 }
             }
         };
@@ -30,13 +30,13 @@ function banUser(userId) {
 
 function changeRole(userId) {
     var roleId = document.getElementById("roleId-" + userId);
-    if (roleId.innerHTML == 1) {
+    if (roleId.innerHTML == "User") {
         var action = "make";
         var newRole = 2;
-    } else if (roleId.innerHTML == 2) {
+    } else if (roleId.innerHTML == "Moderator") {
         action = "unmake";
         newRole = 1;
-    } else {
+    } else if (roleId.innerHTML == "Admin") {
         alert("You cannot change the role of admin");
         throw "";
     }
@@ -49,9 +49,9 @@ function changeRole(userId) {
                 window.location.replace("../error/error_400.php");
             } else if (this.status == 200 && this.readyState == 4) {
                 if (newRole == 2) {
-                    roleId.innerHTML = 2;
+                    roleId.innerHTML = "Moderator";
                 } else {
-                    roleId.innerHTML = 1;
+                    roleId.innerHTML = "User";
                 }
             }
         };

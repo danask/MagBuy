@@ -42,7 +42,20 @@ require_once "../../../utility/blocked_user_dir_back.php";
                 <td><?= $order['id'] ?></td>
                 <td><?= $order['email'] ?></td>
                 <td><?= $order['created_at'] ?></td>
-                <td><?= $order['status'] ?></td>
+                <td><?php switch ($order['status']) {
+                        case 1:
+                            echo "Processing";
+                            break;
+                        case 2:
+                            echo "Sent";
+                            break;
+                        case 3:
+                            echo "Completed";
+                            break;
+                        case 4:
+                            echo "Cancelled";
+                            break;
+                    } ?></td>
                 <td>
                     <a href="order_details.php?oid=<?= $order['id'] ?>">
                         <button class="btn btn-warning">

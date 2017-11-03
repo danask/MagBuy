@@ -46,7 +46,7 @@ require_once "../../../utility/blocked_user_dir_back.php";
                 </td>
                 <td><?= $user['email'] ?></td>
                 <td>
-                    <div id="banId-<?= $user['id'] ?>"><?= $user['enabled'] ?></div>
+                    <div id="banId-<?= $user['id'] ?>"><?= ($user['enabled'] == 1 ? "Enabled" : "BANNED") ?></div>
                     <?php
                     if ($user['id'] != 1) {
                         ?>
@@ -56,7 +56,17 @@ require_once "../../../utility/blocked_user_dir_back.php";
                     ?>
                 </td>
                 <td>
-                    <div id="roleId-<?= $user['id'] ?>"><?= $user['role'] ?></div>
+                    <div id="roleId-<?= $user['id'] ?>"><?php switch ($user['role']) {
+                            case 1:
+                                echo "User";
+                                break;
+                            case 2:
+                                echo "Moderator";
+                                break;
+                            case 3:
+                                echo "Admin";
+                                break;
+                        } ?></div>
                     <?php
                     if ($user['id'] != 1) {
                         ?>
