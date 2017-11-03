@@ -1,9 +1,11 @@
 var offset = 0;
 
+//first load
 $(document).ready(function () {
     loadProducts(offset);
 });
 
+//call to infinity scroll
 $(window).scroll(function () {
         onScrollToBottom();
     }
@@ -18,15 +20,16 @@ function filteredProducts() {
     loadProducts(offset);
 }
 
-//infinity scroll
+//infinity scroll function (is separate to be called from multiple places)
 function onScrollToBottom() {
     if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
-        offset += 8;
-        loadProducts(offset);
+        loadProducts(offset += 8);
     }
 }
 
 //price range filter
+var minPrice = 0;
+var maxPrice = 1500;
 $(function () {
     $("#slider-range").slider({
         range: true,
@@ -35,17 +38,23 @@ $(function () {
         values: [0, 1500],
         slide: function (event, ui) {
             $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
-            $(window).bind('scroll', function () {
-                onScrollToBottom();
-            });
-            offset = 0;
-            loadProducts(offset);
+            minPrice = ui.values[0];
+            maxPrice = ui.values[1];
         }
     });
     $("#amount").val("$" + $("#slider-range").slider("values", 0) +
         " - $" + $("#slider-range").slider("values", 1));
 });
 
+function onPriceRangeChange() {
+    $(window).bind('scroll', function () {
+        onScrollToBottom();
+    });
+    offset = 0;
+    loadProducts(offset);
+}
+
+//mixed load products function called by everything
 function loadProducts(offset) {
     var xhttp = new XMLHttpRequest();
     var productsWindow = document.getElementById("productsWindow");
@@ -144,10 +153,9 @@ function loadProducts(offset) {
             }
         }
     };
-    var priceFilter = document.getElementById("amount").value;
     var filter = document.getElementById('filter').value;
     var subcid = location.search;
     xhttp.open("GET", "../../controller/products/products_by_category_controller.php" + subcid + "&offset="
-        + offset + "&filter=" + filter + "&pf=" + priceFilter, true);
+        + offset + "&filter=" + filter + "&minP=" + minPrice + "&maxP=" + maxPrice, true);
     xhttp.send();
 }

@@ -13,15 +13,8 @@ if (isset ($_GET['filter'])) {
     $offset = $_GET['offset'];
     $subcatId = $_GET['subcid'];
     $filter = $_GET['filter'];
-    $priceFilter = explode(" - ", $_GET['pf']);
-
-    if(isset($priceFilter[1])) {
-        $maxPrice = ltrim($priceFilter[1], "$");
-        $minPrice = ltrim($priceFilter[0], "$");
-    } else {
-        $maxPrice = ltrim(1500, "$");
-        $minPrice = ltrim(0, "$");
-    }
+    $minPrice = $_GET['minP'];
+    $maxPrice = $_GET['maxP'];
 
     try {
 

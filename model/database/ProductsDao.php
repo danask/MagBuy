@@ -112,7 +112,7 @@ class ProductsDao
 
     const DELETE_PRODUCT_SPECS = "DELETE FROM subcat_specification_value WHERE product_id = ?";
 
-    const GET_SUBCAT_PRODUCTS_NEWEST = "SELECT p.id, i.image_url, p.title, p.description, p.price,
+    const GET_SUBCAT_PRODUCTS_NEWEST = "SELECT p.id, i.image_url, p.title, p.price,
                                 IF((SELECT percent FROM promotions WHERE product_id = p.id 
                                 AND start_date <= NOW() AND end_date >= NOW()
                                 ORDER BY percent DESC LIMIT 1) IS NULL, p.price, 
@@ -130,7 +130,7 @@ class ProductsDao
                                 ORDER BY p.created_at DESC 
                                 LIMIT 8 OFFSET :off";
 
-    const GET_SUBCAT_PRODUCTS_MOST_SOLD = "SELECT p.id, i.image_url, p.title, p.description, p.price,
+    const GET_SUBCAT_PRODUCTS_MOST_SOLD = "SELECT p.id, i.image_url, p.title, p.price,
                                     IF((SELECT percent FROM promotions WHERE product_id = p.id AND start_date <= NOW() 
                                     AND end_date >= NOW() ORDER BY percent DESC LIMIT 1) IS NULL, p.price, 
                                     (p.price -((SELECT percent FROM promotions 
@@ -148,7 +148,7 @@ class ProductsDao
                                     ORDER BY ordered DESC 
                                     LIMIT 8 OFFSET :off";
 
-    const GET_SUBCAT_PRODUCTS_MOST_REVIEWED = "SELECT p.id, i.image_url, p.title, p.description, p.price,
+    const GET_SUBCAT_PRODUCTS_MOST_REVIEWED = "SELECT p.id, i.image_url, p.title, p.price,
                                     IF((SELECT percent FROM promotions WHERE product_id = p.id AND start_date <= NOW()
                                      AND end_date >= NOW() ORDER BY percent DESC LIMIT 1) IS NULL, p.price, 
                                      (p.price -((SELECT percent FROM promotions 
@@ -166,7 +166,7 @@ class ProductsDao
                                     ORDER BY reviews DESC 
                                     LIMIT 8 OFFSET :off";
 
-    const GET_SUBCAT_PRODUCTS_HIGHEST_RATED = "SELECT p.id, i.image_url, p.title, p.description, p.price, 
+    const GET_SUBCAT_PRODUCTS_HIGHEST_RATED = "SELECT p.id, i.image_url, p.title, p.price, 
                                               IF((SELECT percent FROM promotions WHERE product_id = p.id 
                                               AND start_date <= NOW() AND end_date >= NOW()
                                               ORDER BY percent DESC LIMIT 1) IS NULL, p.price, 
