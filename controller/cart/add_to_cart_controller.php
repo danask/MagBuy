@@ -22,7 +22,7 @@ if (isset($_GET['pid'])) {
     } catch (PDOException $e) {
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
         error_log($message, 3, '../../errors.log');
-        header("Location: ../../view/error/error_500.php");
+        header('HTTP/1.1 500 Internal Server Error', true, 500);
         die();
     }
     $cartProduct = new \model\CartProduct();
@@ -54,6 +54,6 @@ if (isset($_GET['pid'])) {
     header("Location: ../../view/main/index.php");
     die();
 } else {
-    header('Location: ../../view/error/error_404.php');
+    header('HTTP/1.1 404 Not Found', true, 404);
     die();
 }

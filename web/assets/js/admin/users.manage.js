@@ -10,7 +10,11 @@ function banUser(userId) {
     if (confirm("Are you sure you want to " + action + " User with ID " + userId + " ?")) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.status == 200 && this.readyState == 4) {
+            if (this.status == 500 && this.readyState == 4) {
+                window.location.replace("../error/error_500.php");
+            } else if (this.status == 400 && this.readyState == 4) {
+                window.location.replace("../error/error_400.php");
+            } else if (this.status == 200 && this.readyState == 4) {
                 if (newStatus == 0) {
                     banId.innerHTML = 0;
                 } else {
@@ -39,7 +43,11 @@ function changeRole(userId) {
     if (confirm("Are you sure you want to " + action + " moderator User with ID " + userId + " ?")) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.status == 200 && this.readyState == 4) {
+            if (this.status == 500 && this.readyState == 4) {
+                window.location.replace("../error/error_500.php");
+            } else if (this.status == 400 && this.readyState == 4) {
+                window.location.replace("../error/error_400.php");
+            } else if (this.status == 200 && this.readyState == 4) {
                 if (newRole == 2) {
                     roleId.innerHTML = 2;
                 } else {

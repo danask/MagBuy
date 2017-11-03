@@ -2,7 +2,9 @@ function removeFromCart(productId, productPrice) {
     $('#button-' + productId).remove();
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.status == 200 && this.readyState == 4) {
+        if (this.status == 404 && this.readyState == 4) {
+            window.location.replace("../error/error_404.php");
+        } else if (this.status == 200 && this.readyState == 4) {
             var currentQuantity = document.getElementById("product-" + productId + "-quantity");
             var items = document.getElementById("cartItems");
             items.innerHTML = parseInt(items.innerHTML) - parseInt(currentQuantity.innerHTML);

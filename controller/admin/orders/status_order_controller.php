@@ -23,7 +23,7 @@ if (isset($_GET['oid'])) {
         $userEmail = $orderDao->changeOrderStatus($orderId, $newStatus);
 
         if (!($newStatus == 1 || $newStatus == 2 || $newStatus == 3 || $newStatus == 4)) {
-            header('Location: ../../../view/error/error_400.php');
+            header('HTTP/1.1 400 Bad Request', true, 400);
             die();
         }
 
@@ -48,6 +48,6 @@ if (isset($_GET['oid'])) {
         die();
     }
 } else {
-    header("Location: ../../../view/error/error_400.php");
+    header('HTTP/1.1 400 Bad Request', true, 400);
     die();
 }

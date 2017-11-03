@@ -25,10 +25,10 @@ if (isset($_GET['scid'])) {
     } catch (PDOException $e) {
         $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
         error_log($message, 3, '../../../errors.log');
-        header("Location: ../../../view/error/error_500.php");
+        header('HTTP/1.1 500 Internal Server Error', true, 500);
         die();
     }
 } else {
-    header("Location: ../../../view/error/error_400.php");
+    header('HTTP/1.1 400 Bad Request', true, 400);
     die();
 }

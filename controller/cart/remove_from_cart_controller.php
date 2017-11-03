@@ -27,11 +27,11 @@ if (isset($_SESSION['cart']) && isset($_GET['pid'])) {
             unset($cart[$productId]);
             $_SESSION['cart'] = $cart;
         } else {
-            header("Location: ../../view/error/error_404.php");
+            header('HTTP/1.1 404 Not Found', true, 404);
             die();
         }
     }
 } else {
-    header("Location: ../../view/error/error_404.php");
+    header('HTTP/1.1 404 Not Found', true, 404);
     die();
 }

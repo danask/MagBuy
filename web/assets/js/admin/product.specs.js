@@ -2,9 +2,13 @@ function loadSpecs() {
     var xhttp = new XMLHttpRequest();
     var subCatId = document.getElementById("selectSubCatId").value;
     xhttp.onreadystatechange = function () {
-        if (this.status == 200 && this.readyState == 4) {
-            var window = document.getElementById("specsWindow");
-            window.innerHTML = "";
+        if (this.status == 500 && this.readyState == 4) {
+            window.location.replace("../error/error_500.php");
+        } else if (this.status == 400 && this.readyState == 4) {
+            window.location.replace("../error/error_400.php");
+        } else if (this.status == 200 && this.readyState == 4) {
+            var specWindow = document.getElementById("specsWindow");
+            specWindow.innerHTML = "";
             var specs = JSON.parse(this.responseText);
             var i = 0;
             for (var key in specs) {
@@ -20,10 +24,10 @@ function loadSpecs() {
                     specId.setAttribute("value", specs[key]["id"]);
 
 
-                    window.append(specs[key]['name'] + ": ");
-                    window.appendChild(specInput);
-                    window.appendChild(specId);
-                    window.innerHTML += "<br>";
+                    specWindow.append(specs[key]['name'] + ": ");
+                    specWindow.appendChild(specInput);
+                    specWindow.appendChild(specId);
+                    specWindow.innerHTML += "<br>";
 
                     i++;
                 }
@@ -34,7 +38,7 @@ function loadSpecs() {
             specCount.setAttribute("name", "specsCount");
             specCount.setAttribute("value", i);
 
-            window.appendChild(specCount);
+            specWindow.appendChild(specCount);
         }
     };
     xhttp.open("GET", "../../../controller/admin/products_promotions_reviews/new_product_fill_specs_controller.php?scid=" + subCatId, true);

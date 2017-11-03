@@ -9,6 +9,7 @@ $(window).scroll(function () {
     }
 );
 
+//on change of filter
 function filteredProducts() {
     $(window).bind('scroll', function () {
         onScrollToBottom();
@@ -17,6 +18,7 @@ function filteredProducts() {
     loadProducts(offset);
 }
 
+//infinity scroll
 function onScrollToBottom() {
     if ($(window).scrollTop() + $(window).height() > $(document).height() - 50) {
         offset += 8;
@@ -24,6 +26,7 @@ function onScrollToBottom() {
     }
 }
 
+//price range filter
 $(function () {
     $("#slider-range").slider({
         range: true,
@@ -54,6 +57,9 @@ function loadProducts(offset) {
         loaderDiv.appendChild(loading);
     }
     xhttp.onreadystatechange = function () {
+        if (this.status == 500 && this.readyState == 4) {
+            window.location.replace("../error/error_500.php");
+        }
         if (this.status == 200 && this.readyState == 4) {
             loaderDiv.innerHTML = "";
             if (offset == 0) {

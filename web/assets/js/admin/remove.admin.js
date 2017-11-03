@@ -3,7 +3,11 @@ function deleteSuperCat(superCatId) {
             "This will also delete or set null anything that goes under this SuperCategory(lower categories, products, etc)!")) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.status == 200 && this.readyState == 4) {
+            if (this.status == 500 && this.readyState == 4) {
+                window.location.replace("../error/error_500.php");
+            } else if (this.status == 400 && this.readyState == 4) {
+                window.location.replace("../error/error_400.php");
+            } else if (this.status == 200 && this.readyState == 4) {
                 $('#delId-' + superCatId).remove();
             }
         };
@@ -17,7 +21,11 @@ function deleteCat(catId) {
             "This will also delete or set null anything that goes under this Category(lower categories, products, etc)!")) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.status == 200 && this.readyState == 4) {
+            if (this.status == 500 && this.readyState == 4) {
+                window.location.replace("../error/error_500.php");
+            } else if (this.status == 400 && this.readyState == 4) {
+                window.location.replace("../error/error_400.php");
+            } else if (this.status == 200 && this.readyState == 4) {
                 $('#delId-' + catId).remove();
             }
         };
@@ -31,7 +39,11 @@ function deleteSubCat(subcatId) {
             "This will also unset the category of any products that go under this SubCategory!")) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.status == 200 && this.readyState == 4) {
+            if (this.status == 500 && this.readyState == 4) {
+                window.location.replace("../error/error_500.php");
+            } else if (this.status == 400 && this.readyState == 4) {
+                window.location.replace("../error/error_400.php");
+            } else if (this.status == 200 && this.readyState == 4) {
                 $('#delId-' + subcatId).remove();
             }
         };
@@ -45,7 +57,11 @@ function deleteSpec(specId) {
             "This will also delete the product specification of any products that have this Subcat Spec!")) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.status == 200 && this.readyState == 4) {
+            if (this.status == 500 && this.readyState == 4) {
+                window.location.replace("../error/error_500.php");
+            } else if (this.status == 400 && this.readyState == 4) {
+                window.location.replace("../error/error_400.php");
+            } else if (this.status == 200 && this.readyState == 4) {
                 $('#delId-' + specId).remove();
             }
         };
@@ -57,7 +73,11 @@ function deleteSpec(specId) {
 function deletePromo(promoId) {
     var xhttp = new XMLHttpRequest();
     xhttp.onreadystatechange = function () {
-        if (this.status == 200 && this.readyState == 4) {
+        if (this.status == 500 && this.readyState == 4) {
+            window.location.replace("../error/error_500.php");
+        } else if (this.status == 400 && this.readyState == 4) {
+            window.location.replace("../error/error_400.php");
+        } else if (this.status == 200 && this.readyState == 4) {
             $('#delId-' + promoId).remove();
         }
     };
@@ -70,7 +90,11 @@ function toggleVisibility(productId, currentVis) {
     if (confirm("Are you sure you want to toggle visibility of Product with ID " + productId + " ?")) {
         var xhttp = new XMLHttpRequest();
         xhttp.onreadystatechange = function () {
-            if (this.status == 200 && this.readyState == 4) {
+            if (this.status == 500 && this.readyState == 4) {
+                window.location.replace("../error/error_500.php");
+            } else if (this.status == 400 && this.readyState == 4) {
+                window.location.replace("../error/error_400.php");
+            } else if (this.status == 200 && this.readyState == 4) {
                 var visibility = document.getElementById("togId-" + productId);
                 if (visibility.innerHTML == 1) {
                     visibility.innerHTML = 0;
