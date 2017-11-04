@@ -44,7 +44,7 @@ require_once "../elements/navigation.php";
                                        style="border:0; color:#f6931f; font-weight:bold;">
                             </p>
 
-                            <div id="slider-range" onclick="onPriceRangeChange()"></div>
+                            <div id="slider-range"></div>
                         </section>
                     </div>
                 </div>

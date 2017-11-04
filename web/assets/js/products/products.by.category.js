@@ -36,22 +36,25 @@ $(function () {
         min: 0,
         max: 4000,
         values: [0, 1500],
+        step: 5,
         slide: function (event, ui) {
             $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
             minPrice = ui.values[0];
             maxPrice = ui.values[1];
+        },
+        stop: function (event, ui) {
+            $(window).bind('scroll', function () {
+                onScrollToBottom();
+            });
+            offset = 0;
+            loadProducts(offset);
         }
     });
     $("#amount").val("$" + $("#slider-range").slider("values", 0) +
         " - $" + $("#slider-range").slider("values", 1));
 });
-
 function onPriceRangeChange() {
-    $(window).bind('scroll', function () {
-        onScrollToBottom();
-    });
-    offset = 0;
-    loadProducts(offset);
+
 }
 
 //mixed load products function called by everything
