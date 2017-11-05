@@ -86,9 +86,14 @@ class ProductsDao
                            GROUP BY p.id HAVING p.visible = 1 AND P.subcategory_id IS NOT NULL
                            ORDER BY o.status = 3 DESC, sold DESC, average DESC LIMIT 4";
 
-    const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.price, I.image_url, P.subcategory_id FROM products P JOIN images I 
-                              ON P.id = I.product_id WHERE P.visible = 1 AND P.subcategory_id IS NOT NULL
-                               GROUP BY P.id HAVING title LIKE ? LIMIT 3";
+    const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.visible, MIN(I.image_url) image_url, P.subcategory_id, 
+                             ROUND(IF(MAX(pr.percent) IS NOT NULL, 
+                             p.price - MAX(pr.percent)/100*p.price, p.price), 2) price
+                             FROM products P JOIN images I ON P.id = I.product_id
+                             LEFT JOIN promotions pr ON p.id = pr.product_id 
+                             WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL
+                             GROUP BY P.id HAVING P.visible = 1 
+                             AND P.subcategory_id IS NOT NULL AND title LIKE ? LIMIT 3";
 
     const SEARCH_PRODUCTS_NO_LIMIT = "SELECT P.id, P.title, P.visible, P.price, MIN(I.image_url) image_url, 
                                       P.subcategory_id, MAX(pr.percent) percent, AVG(r.rating) average,
