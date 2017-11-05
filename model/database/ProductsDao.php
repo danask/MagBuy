@@ -24,7 +24,7 @@ class ProductsDao
                                LEFT JOIN reviews r ON p.id = r.product_id
 							   LEFT JOIN promotions pr ON p.id = pr.product_id 
                                WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL
-                               GROUP BY p.id HAVING p.visible = 1 AND p.subcategory_id IS NOT NULL AND p.id = ?";
+                               GROUP BY p.id HAVING p.visible = 1 AND p.subcategory_id IS NOT NULL AND p.id = 3";
 
     const GET_PRODUCT_BY_ID_ADMIN = "SELECT p.id, i.image_url, p.title, p.description, p.price, p.subcategory_id, 
                                      p.visible, p.quantity, MAX(pr.percent) percent, AVG(r.rating) average 
