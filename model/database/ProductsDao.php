@@ -113,51 +113,58 @@ class ProductsDao
     const DELETE_PRODUCT_SPECS = "DELETE FROM subcat_specification_value WHERE product_id = ?";
 
     const GET_SUBCAT_PRODUCTS_NEWEST = "SELECT p.id, MIN(i.image_url) image_url, p.title, p.subcategory_id, 
-                                              p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
-                                              p.price, pr.percent, IF(pr.start_date <= NOW() AND pr.end_date >= NOW() 
-                                            AND pr.id IS NOT NULL, p.price - pr.percent/100*p.price, p.price) price_fin 
+                                            p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
+                                            p.price, MAX(pr.percent) percent, IF(MAX(pr.percent) IS NOT NULL, 
+                                            p.price - pr.percent/100*p.price, p.price) price_fin 
                                             FROM products p JOIN images i ON p.id = i.product_id
                                             LEFT JOIN reviews r ON p.id = r.product_id
-                                            LEFT JOIN promotions pr ON pr.product_id = p.id 
+                                            LEFT JOIN promotions pr ON p.id = pr.product_id 
+                                            WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL 
                                             GROUP BY p.id HAVING p.subcategory_id = :sub AND p.visible = 1 
                                             AND price_fin BETWEEN :minP AND :maxP 
                                             ORDER BY p.created_at DESC, average DESC, reviewsCount DESC 
                                             LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_MOST_SOLD = "SELECT p.id, MIN(i.image_url) image_url, p.title, p.subcategory_id, 
-                                              p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
-                                              p.price, pr.percent, IF(pr.start_date <= NOW() AND pr.end_date >= NOW() 
-                                            AND pr.id IS NOT NULL, p.price - pr.percent/100*p.price, p.price) price_fin,
+                                            p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
+                                            p.price, MAX(pr.percent) percent, 
+                                            IF(MAX(pr.percent) IS NOT NULL, 
+                                            p.price - pr.percent/100*p.price, p.price) price_fin,
                                             SUM(DISTINCT op.quantity) sold, o.status
                                             FROM products p JOIN images i ON p.id = i.product_id
                                             LEFT JOIN reviews r ON p.id = r.product_id
-                                            LEFT JOIN promotions pr ON pr.product_id = p.id
                                             LEFT JOIN order_products op ON p.id = op.product_id
                                             LEFT JOIN orders o ON o.id = op.order_id 
+                                            LEFT JOIN promotions pr ON p.id = pr.product_id 
+                                            WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL
                                             GROUP BY p.id HAVING p.subcategory_id = :sub AND p.visible = 1
 											AND price_fin BETWEEN :minP AND :maxP
                                             ORDER BY o.status = 3 DESC, sold DESC, average DESC LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_MOST_REVIEWED = "SELECT p.id, MIN(i.image_url) image_url, p.title, p.subcategory_id, 
-                                              p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
-                                              p.price, pr.percent, IF(pr.start_date <= NOW() AND pr.end_date >= NOW() 
-                                            AND pr.id IS NOT NULL, p.price - pr.percent/100*p.price, p.price) price_fin 
+                                            p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
+                                            p.price, MAX(pr.percent) percent, 
+                                            IF(MAX(pr.percent) IS NOT NULL, 
+                                            p.price - pr.percent/100*p.price, p.price) price_fin 
                                             FROM products p JOIN images i ON p.id = i.product_id
                                             LEFT JOIN reviews r ON p.id = r.product_id
-                                            LEFT JOIN promotions pr ON pr.product_id = p.id 
+                                            LEFT JOIN promotions pr ON p.id = pr.product_id 
+                                            WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL
                                             GROUP BY p.id HAVING p.subcategory_id = :sub AND p.visible = 1 
-                                            AND price_fin BETWEEN :minP AND :maxP 
+                                            AND price_fin BETWEEN :minP AND :maxP
                                             ORDER BY reviewsCount DESC, average DESC LIMIT 8 OFFSET :off";
 
     const GET_SUBCAT_PRODUCTS_HIGHEST_RATED = "SELECT p.id, MIN(i.image_url) image_url, p.title, p.subcategory_id, 
-                                              p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
-                                              p.price, pr.percent, IF(pr.start_date <= NOW() AND pr.end_date >= NOW() 
-                                            AND pr.id IS NOT NULL, p.price - pr.percent/100*p.price, p.price) price_fin 
+                                            p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
+                                            p.price, MAX(pr.percent) percent, 
+                                            IF(MAX(pr.percent) IS NOT NULL, 
+                                            p.price - pr.percent/100*p.price, p.price) price_fin 
                                             FROM products p JOIN images i ON p.id = i.product_id
                                             LEFT JOIN reviews r ON p.id = r.product_id
-                                            LEFT JOIN promotions pr ON pr.product_id = p.id 
+                                            LEFT JOIN promotions pr ON p.id = pr.product_id 
+                                            WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL
                                             GROUP BY p.id HAVING p.subcategory_id = :sub AND p.visible = 1 
-                                            AND price_fin BETWEEN :minP AND :maxP 
+                                            AND price_fin BETWEEN :minP AND :maxP
                                             ORDER BY average DESC, reviewsCount DESC LIMIT 8 OFFSET :off";
 
     //Get connection in construct

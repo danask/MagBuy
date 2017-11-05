@@ -1,0 +1,11 @@
+2017-11-05 15:13:03 /MagBuy/controller/products/products_by_category_controller.php PDOException: SQLSTATE[HY093]: Invalid parameter number: parameter was not defined in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:362
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(362): PDOStatement->execute()
+#1 C:\xampp\htdocs\MagBuy\controller\products\products_by_category_controller.php(22): model\database\ProductsDao->getSubCatProducts('1', '0', '4', '0', '1500')
+#2 {main}
+2017-11-05 15:21:04 /MagBuy/controller/products/products_by_category_controller.php PDOException: SQLSTATE[42000]: Syntax error or access violation: 1064 You have an error in your SQL syntax; check the manual that corresponds to your MariaDB server version for the right syntax to use near 'LEFT JOIN order_products op ON p.id = op.product_id
+                           ' at line 11 in C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php:366
+Stack trace:
+#0 C:\xampp\htdocs\MagBuy\model\database\ProductsDao.php(366): PDOStatement->execute()
+#1 C:\xampp\htdocs\MagBuy\controller\products\products_by_category_controller.php(22): model\database\ProductsDao->getSubCatProducts('1', '0', '2', '0', '1500')
+#2 {main}
