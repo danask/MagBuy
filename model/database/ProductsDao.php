@@ -38,7 +38,7 @@ class ProductsDao
                                      p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
                                      p.price, MAX(pr.percent) percent, 
                                      IF(MAX(pr.percent) IS NOT NULL, 
-                                     p.price - pr.percent/100*p.price, p.price) price_fin 
+                                     p.price - MAX(pr.percent)/100*p.price, p.price) price_fin 
                                      FROM products p JOIN images i ON p.id = i.product_id
                                      LEFT JOIN reviews r ON p.id = r.product_id
                                      LEFT JOIN promotions pr ON p.id = pr.product_id 
@@ -50,7 +50,7 @@ class ProductsDao
                                      p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
                                      p.price, MAX(pr.percent) percent, 
                                      IF(MAX(pr.percent) IS NOT NULL, 
-                                     p.price - pr.percent/100*p.price, p.price) price_fin 
+                                     p.price - MAX(pr.percent)/100*p.price, p.price) price_fin 
                                      FROM products p JOIN images i ON p.id = i.product_id
                                      LEFT JOIN reviews r ON p.id = r.product_id
                                      LEFT JOIN promotions pr ON p.id = pr.product_id 
@@ -62,7 +62,7 @@ class ProductsDao
     const GET_MOST_RECENT_PRODUCTS = "SELECT p.id, MIN(i.image_url) image_url, p.title, p.subcategory_id, 
                                       p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
                                       p.price, MAX(pr.percent) percent, IF(MAX(pr.percent) IS NOT NULL, 
-                                      p.price - pr.percent/100*p.price, p.price) price_fin 
+                                      p.price - MAX(pr.percent)/100*p.price, p.price) price_fin 
                                       FROM products p JOIN images i ON p.id = i.product_id
                                       LEFT JOIN reviews r ON p.id = r.product_id
                                       LEFT JOIN promotions pr ON p.id = pr.product_id 
@@ -75,7 +75,7 @@ class ProductsDao
                            p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
                            p.price, MAX(pr.percent) percent, 
                            IF(MAX(pr.percent) IS NOT NULL, 
-                           p.price - pr.percent/100*p.price, p.price) price_fin,
+                           p.price - MAX(pr.percent)/100*p.price, p.price) price_fin,
                            SUM(DISTINCT op.quantity) sold, o.status
                            FROM products p JOIN images i ON p.id = i.product_id
                            LEFT JOIN reviews r ON p.id = r.product_id
@@ -135,7 +135,7 @@ class ProductsDao
     const GET_SUBCAT_PRODUCTS_NEWEST = "SELECT p.id, MIN(i.image_url) image_url, p.title, p.subcategory_id, 
                                             p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
                                             p.price, MAX(pr.percent) percent, IF(MAX(pr.percent) IS NOT NULL, 
-                                            p.price - pr.percent/100*p.price, p.price) price_fin 
+                                            p.price - MAX(pr.percent)/100*p.price, p.price) price_fin 
                                             FROM products p JOIN images i ON p.id = i.product_id
                                             LEFT JOIN reviews r ON p.id = r.product_id
                                             LEFT JOIN promotions pr ON p.id = pr.product_id 
@@ -149,7 +149,7 @@ class ProductsDao
                                             p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
                                             p.price, MAX(pr.percent) percent, 
                                             IF(MAX(pr.percent) IS NOT NULL, 
-                                            p.price - pr.percent/100*p.price, p.price) price_fin,
+                                            p.price - MAX(pr.percent)/100*p.price, p.price) price_fin,
                                             SUM(DISTINCT op.quantity) sold, o.status
                                             FROM products p JOIN images i ON p.id = i.product_id
                                             LEFT JOIN reviews r ON p.id = r.product_id
@@ -165,7 +165,7 @@ class ProductsDao
                                             p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
                                             p.price, MAX(pr.percent) percent, 
                                             IF(MAX(pr.percent) IS NOT NULL, 
-                                            p.price - pr.percent/100*p.price, p.price) price_fin 
+                                            p.price - MAX(pr.percent)/100*p.price, p.price) price_fin 
                                             FROM products p JOIN images i ON p.id = i.product_id
                                             LEFT JOIN reviews r ON p.id = r.product_id
                                             LEFT JOIN promotions pr ON p.id = pr.product_id 
@@ -176,9 +176,8 @@ class ProductsDao
 
     const GET_SUBCAT_PRODUCTS_HIGHEST_RATED = "SELECT p.id, MIN(i.image_url) image_url, p.title, p.subcategory_id, 
                                             p.visible, COUNT(DISTINCT r.id) reviewsCount, AVG(r.rating) average, 
-                                            p.price, MAX(pr.percent) percent, 
-                                            IF(MAX(pr.percent) IS NOT NULL, 
-                                            p.price - pr.percent/100*p.price, p.price) price_fin 
+                                            p.price, MAX(pr.percent) percent, IF(MAX(pr.percent) IS NOT NULL, 
+                                            p.price - MAX(pr.percent)/100*p.price, p.price) price_fin 
                                             FROM products p JOIN images i ON p.id = i.product_id
                                             LEFT JOIN reviews r ON p.id = r.product_id
                                             LEFT JOIN promotions pr ON p.id = pr.product_id 
