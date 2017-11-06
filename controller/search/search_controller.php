@@ -42,9 +42,17 @@ if (isset($_GET['needle'])) {
 
     if (!trim($_GET['search']) == "") {
 
-        $searchDao = \model\database\ProductsDao::getInstance();
+        try {
+            $searchDao = \model\database\ProductsDao::getInstance();
 
-        $result = $searchDao->searchProductNoLimit($_GET['search']);
+            $result = $searchDao->searchProductNoLimit($_GET['search']);
+        } catch (PDOException $e) {
+            $message = date("Y-m-d H:i:s") . " " . $_SERVER['SCRIPT_NAME'] . " $e\n";
+            error_log($message, 3, '../../errors.log');
+            header("Location: ../../view/error/error_500.php");
+            die();
+        }
+
     } else {
 
         $result = array();
