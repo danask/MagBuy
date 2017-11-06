@@ -53,9 +53,6 @@ $(function () {
     $("#amount").val("$" + $("#slider-range").slider("values", 0) +
         " - $" + $("#slider-range").slider("values", 1));
 });
-function onPriceRangeChange() {
-
-}
 
 //mixed load products function called by everything
 function loadProducts(offset) {

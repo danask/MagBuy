@@ -23,13 +23,13 @@ require_once "../../../utility/blocked_user_dir_back.php";
 <div align="center">
     <h2>User ID <?= $userDetails['id'] ?></h2>
     <?php if ($_SESSION['role'] == 3) { ?>
-    <a href="users_view.php">
-        <button class="btn btn-primary">Back to Users Panel</button>
-    </a>
-    <?php } elseif ($_SESSION['role'] == 2) {?>
-    <a href="../orders/orders_view.php">
-        <button class="btn btn-primary">Back to Orders</button>
-    </a>
+        <a href="users_view.php">
+            <button class="btn btn-primary">Back to Users Panel</button>
+        </a>
+    <?php } elseif ($_SESSION['role'] == 2) { ?>
+        <a href="../orders/orders_view.php">
+            <button class="btn btn-primary">Back to Orders</button>
+        </a>
     <?php } ?>
 
 </div>
@@ -38,6 +38,7 @@ require_once "../../../utility/blocked_user_dir_back.php";
     Email: <?= $userDetails['email'] ?><br>
     First Name: <?= $userDetails['first_name'] ?><br>
     Last Name: <?= $userDetails['last_name'] ?><br>
+    <?= ($userDetails['is_personal'] == 1 ? "Personal" : "Business") ?> Address: <?= $userDetails['full_adress'] ?><br>
     Mobile phone: <?= $userDetails['mobile_phone'] ?><br>
     Last login: <?= $userDetails['last_login'] ?><br><br>
     <h3>Orders:</h3>

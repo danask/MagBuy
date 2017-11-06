@@ -46,7 +46,9 @@ class UserDao
 
     const GET_ALL_USERS_ADMIN = "SELECT * FROM users";
 
-    const GET_USER_DETAILS_ADMIN = "SELECT * FROM users WHERE id = ?";
+    const GET_USER_DETAILS_ADMIN = "SELECT u.id, u.email, u.first_name, u.last_name, u.mobile_phone, u.image_url, 
+                                  u.last_login, a.full_adress, a.is_personal 
+                                  FROM users u JOIN adresses a ON a.user_id = u.id  WHERE u.id = ?";
 
     const GET_USER_ORDERS_ADMIN = "SELECT * FROM orders WHERE user_id = ?";
 
