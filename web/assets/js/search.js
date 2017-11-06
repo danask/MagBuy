@@ -6,7 +6,9 @@ function searchSuggest() {
     var xhttp = new XMLHttpRequest();
 
     xhttp.onreadystatechange = function () {
-        if (this.readyState == 4 && this.status == 200) {
+        if (this.status == 500 && this.readyState == 4) {
+            window.location.replace("../error/error_500.php");
+        } else if (this.readyState == 4 && this.status == 200) {
 
             var flag = true;
 
@@ -31,7 +33,7 @@ function searchSuggest() {
                 container.appendChild(productDiv);
             }
 
-            if(flag) {
+            if (flag) {
                 container.style.display = "none";
             }
 

@@ -68,8 +68,7 @@ function loadProducts(offset) {
     xhttp.onreadystatechange = function () {
         if (this.status == 500 && this.readyState == 4) {
             window.location.replace("../error/error_500.php");
-        }
-        if (this.status == 200 && this.readyState == 4) {
+        } else if (this.status == 200 && this.readyState == 4) {
             loaderDiv.innerHTML = "";
             if (offset == 0) {
                 productsWindow.innerHTML = "";
