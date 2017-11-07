@@ -33,7 +33,7 @@ try {
     );                                   // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('magbuy@outlook.com', 'MagBuy');
+    $mail->setFrom('magbuycenter@gmail.com', 'MagBuy');
     foreach ($subscribedUsers as $userEmail) {
 
         $mail->addAddress($userEmail['email'], 'User');     // Add a recipient
