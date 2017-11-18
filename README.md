@@ -2,10 +2,6 @@
 
 # A full-featured Online Shop
 
-<img src="https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo1.JPG" alt="Drawing" style="width: 50px;"/>
-<img src="https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo2.JPG" alt="Drawing" style="width: 50px;"/>
-<img src="https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo3.JPG" alt="Drawing" style="width: 50px;"/>
-
 
 ## Basic User Functionality
 
@@ -93,3 +89,20 @@ before creating new product.
 ordered products.
 - Restricted directory browsing by .htaccess. 
 - Can not add promotion to invisible product.
+
+
+##Preview
+
+###Home
+
+![Home Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo1.JPG)
+
+
+###Category
+
+![Category Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo2.JPG)
+
+
+##Admin Panel
+
+![Admin Panel Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo3.JPG)
