@@ -2,9 +2,9 @@
 
 # A full-featured Online Shop
 
-![Preview image](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo1.jpg)
-![Preview image](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo2.jpg)
-![Preview image](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo3.jpg)
+![Home Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo1.JPG)
+![Category Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo2.JPG)
+![Admin Panel Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo3.JPG)
 
 
 ## Basic User Functionality
