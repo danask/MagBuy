@@ -91,16 +91,16 @@ ordered products.
 - Can not add promotion to invisible product.
 
 
-##Preview
+## Preview
 
-================ Home ================
+
 
 ![Home Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo1.JPG)
 
-================ Category ================
+
 
 ![Category Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo2.JPG)
 
-================ Admin Panel================
+
 
 ![Admin Panel Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo3.JPG)
