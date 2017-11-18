@@ -94,8 +94,8 @@ ordered products.
 # Previews
 
 ## Home
-![Home Demo](Demo1.JPG)
+![Home Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo1.JPG)
 ## Category
-![Category Demo](Demo2.JPG)
+![Category Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo2.JPG)
 ## Admin Panel
-![Admin Panel Demo](Demo3.JPG)
+![Admin Panel Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo3.JPG)
