@@ -2,6 +2,11 @@
 
 # A full-featured Online Shop
 
+![Preview image](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo1.jpg)
+![Preview image](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo2.jpg)
+![Preview image](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo3.jpg)
+
+
 ## Basic User Functionality
 
 
