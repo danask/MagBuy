@@ -2,6 +2,7 @@
 
 # A full-featured Online Shop
 
+<img src="https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo1.JPG" alt="Drawing" style="width: 200px;"/>
 ![Home Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo1.JPG =250x250)
 ![Category Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo2.JPG =250x250)
 ![Admin Panel Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo3.JPG =250x250)
