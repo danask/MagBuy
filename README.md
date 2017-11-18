@@ -94,7 +94,9 @@ ordered products.
 # Previews
 
 ## Home
+<kbd>
 ![Home Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo1.JPG)
+</kbd>
 <br/><br/>
 ## Category
 ![Category Demo](https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo2.JPG)
