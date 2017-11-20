@@ -91,6 +91,12 @@ ordered products.
 - Can not add promotion to invisible product.
 
 
+# Database Schema
+
+<img src="https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Database Schema.jpg" alt="Database Schema">
+
+<br/><br/>
+
 # Previews
 
 ## Home Page
