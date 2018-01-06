@@ -5,7 +5,7 @@
 ## Preview
 
 - **[MagBuy Link](http://gadzhev.gwiddle.co.uk/MagBuy)**
-- Registered admin - _Username:_ **admin@admin** &nbsp; _Password:_  **admin**
+- Registered admin - _Username:_ **admin@admin.com** &nbsp; _Password:_  **admin**
 
 ## Basic User Functionality
 
