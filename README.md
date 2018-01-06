@@ -2,9 +2,12 @@
 
 # A full-featured Online Shop
 
+## Preview
+
+- [Link](http://gadzhev.gwiddle.co.uk/MagBuy)
+- Registered admin - _Username:_ **admin@admin** &nbsp; _Password:_  **admin**
 
 ## Basic User Functionality
-
 
 - User friendly interface .
 - Responsive design.
@@ -94,23 +97,3 @@ ordered products.
 # Database Schema
 
 <img src="https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Database Schema.jpg" alt="Database Schema">
-
-<br/><br/>
-
-# Previews
-
-## Home Page
-
-<img src="https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo1.jpg" alt="Home Preview">
-
-<br/><br/>
-
-## Category Page
-
-<img src="https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo2.jpg" alt="Category Preview">
-
-<br/><br/>
-
-## Admin Panel Page
-
-<img src="https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Demo3.jpg" alt="Admin Panel Preview">
