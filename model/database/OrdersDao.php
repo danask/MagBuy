@@ -23,7 +23,7 @@ class OrdersDao
 
     const CHANGE_ORDER_STATUS = "UPDATE orders SET status = ? WHERE id = ?";
 
-    const GET_USER_EMAIL_BY_ORDER = "SELECT U.email FROM users U JOIN orders O ON U.id = O.user_id WHERE O.id = ?";
+    const GET_USER_EMAIL_BY_ORDER = "SELECT u.email FROM users u JOIN orders o ON U.id = o.user_id WHERE o.id = ?";
 
     const GET_ORDER_DETAILS = "SELECT o.id, u.email AS email, o.created_at, o.status, p.title AS product, op.quantity 
                               AS quantity, p.id AS product_id, u.id AS user_id FROM orders o

@@ -32,9 +32,9 @@ class UserDao
 
     const CHECK_ADDRESS_SET = "SELECT id FROM adresses WHERE NOT full_adress = '0' AND user_id = ?";
 
-    const GET_USER_INFO = "SELECT U.id, U.email, U.enabled, U.first_name, U.last_name, U.mobile_phone, U.image_url, 
-                                  U.password, U.last_login, U.role, A.full_adress, A.is_personal  FROM users AS U 
-                                  JOIN adresses AS A ON U.id = A.user_id WHERE A.user_id = ?";
+    const GET_USER_INFO = "SELECT u.id, u.email, u.enabled, u.first_name, u.last_name, u.mobile_phone, u.image_url, 
+                                  u.password, u.last_login, u.role, a.full_adress, a.is_personal  FROM users AS u 
+                                  JOIN adresses AS a ON u.id = a.user_id WHERE a.user_id = ?";
 
     const SET_LAST_LOGIN = "UPDATE users SET last_login = ? WHERE email = ?";
 

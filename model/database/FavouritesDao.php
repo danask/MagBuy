@@ -20,19 +20,19 @@ class FavouritesDao {
 
     const CHECK_IF_IN_FAVOURITES = "SELECT id FROM favourites WHERE user_id = ? AND product_id = ?";
 
-    const ALL_FAVOURITES_BY_USER_ID = "SELECT P.id, P.title, P.description, 
+    const ALL_FAVOURITES_BY_USER_ID = "SELECT p.id, p.title, p.description, 
                                        ROUND(IF(MAX(pr.percent) IS NOT NULL, 
                                        p.price - MAX(pr.percent)/100*p.price, p.price), 2) 
-                                       price, MIN(I.image_url) image_url, F.user_id, P.visible,
-                                       P.subcategory_id FROM products P 
-                                       JOIN favourites F ON P.id = F.product_id 
-                                       JOIN images I ON P.id = I.product_id 
+                                       price, MIN(i.image_url) image_url, f.user_id, p.visible,
+                                       p.subcategory_id FROM products p 
+                                       JOIN favourites f ON p.id = f.product_id 
+                                       JOIN images I ON p.id = i.product_id 
                                        LEFT JOIN promotions pr ON p.id = pr.product_id 
-                                       GROUP BY F.id HAVING F.user_id = ? AND P.visible = 1 AND P.subcategory_id
+                                       GROUP BY f.id HAVING f.user_id = ? AND p.visible = 1 AND p.subcategory_id
                                        IS NOT NULL";
 
-    const SUBSCRIBED_USERS_BY_PRODUCT_ID = "SELECT U.email FROM users U LEFT JOIN favourites F ON U.id = F.user_id 
-                                            WHERE F.product_id = ?";
+    const SUBSCRIBED_USERS_BY_PRODUCT_ID = "SELECT u.email FROM users u LEFT JOIN favourites f ON u.id = f.user_id 
+                                            WHERE f.product_id = ?";
 
 
     //Get connection in construct

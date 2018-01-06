@@ -6,7 +6,7 @@ if (session_status() == PHP_SESSION_NONE) {
 }
 
 // Check if user have session (if user is logged)
-if (isset($_SESSION['role']) && $_SESSION['role'] != 3 && $_SESSION['role'] != 2) {
+if (!isset($_SESSION['role']) || $_SESSION['role'] == 1) {
 
     //Redirect to Error
     header("Location: ../../view/error/error_400.php");

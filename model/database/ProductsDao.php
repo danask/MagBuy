@@ -43,7 +43,7 @@ class ProductsDao
                                      LEFT JOIN reviews r ON p.id = r.product_id
                                      LEFT JOIN promotions pr ON p.id = pr.product_id 
                                      WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL
-                                     GROUP BY p.id HAVING p.visible = 1 AND P.subcategory_id IS NOT NULL
+                                     GROUP BY p.id HAVING p.visible = 1 AND p.subcategory_id IS NOT NULL
                                      ORDER BY average DESC, reviewsCount DESC LIMIT 4";
 
     const GET_RELATED_PRODUCTS = "SELECT p.id, MIN(i.image_url) image_url, p.title, p.subcategory_id, 
@@ -67,7 +67,7 @@ class ProductsDao
                                       LEFT JOIN reviews r ON p.id = r.product_id
                                       LEFT JOIN promotions pr ON p.id = pr.product_id 
                                       WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL 
-                                      GROUP BY p.id HAVING p.visible = 1 AND P.subcategory_id IS NOT NULL
+                                      GROUP BY p.id HAVING p.visible = 1 AND p.subcategory_id IS NOT NULL
                                       ORDER BY p.created_at DESC, average DESC, reviewsCount DESC 
                                       LIMIT 4";
 
@@ -83,27 +83,27 @@ class ProductsDao
                            LEFT JOIN orders o ON o.id = op.order_id 
                            LEFT JOIN promotions pr ON p.id = pr.product_id 
                            WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL
-                           GROUP BY p.id HAVING p.visible = 1 AND P.subcategory_id IS NOT NULL
+                           GROUP BY p.id HAVING p.visible = 1 AND p.subcategory_id IS NOT NULL
                            ORDER BY o.status = 3 DESC, sold DESC, average DESC LIMIT 4";
 
-    const SEARCH_PRODUCTS = "SELECT P.id, P.title, P.visible, MIN(I.image_url) image_url, P.subcategory_id, 
+    const SEARCH_PRODUCTS = "SELECT p.id, p.title, p.visible, MIN(I.image_url) image_url, p.subcategory_id, 
                              ROUND(IF(MAX(pr.percent) IS NOT NULL, 
                              p.price - MAX(pr.percent)/100*p.price, p.price), 2) price
-                             FROM products P JOIN images I ON P.id = I.product_id
+                             FROM products p JOIN images i ON p.id = i.product_id
                              LEFT JOIN promotions pr ON p.id = pr.product_id 
                              WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL
-                             GROUP BY P.id HAVING P.visible = 1 
-                             AND P.subcategory_id IS NOT NULL AND title LIKE ? LIMIT 3";
+                             GROUP BY p.id HAVING p.visible = 1 
+                             AND p.subcategory_id IS NOT NULL AND title LIKE ? LIMIT 3";
 
-    const SEARCH_PRODUCTS_NO_LIMIT = "SELECT P.id, P.title, P.visible, P.price, MIN(I.image_url) image_url, 
-                                      P.subcategory_id, MAX(pr.percent) percent, AVG(r.rating) average,
+    const SEARCH_PRODUCTS_NO_LIMIT = "SELECT p.id, p.title, p.visible, p.price, MIN(I.image_url) image_url, 
+                                      p.subcategory_id, MAX(pr.percent) percent, AVG(r.rating) average,
                                       COUNT(DISTINCT r.id) reviewsCount
-                                      FROM products P JOIN images I ON P.id = I.product_id
+                                      FROM products p JOIN images i ON p.id = i.product_id
                                       LEFT JOIN reviews r ON p.id = r.product_id
                                       LEFT JOIN promotions pr ON p.id = pr.product_id 
                                       WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL
-                                      GROUP BY P.id HAVING P.visible = 1 
-                                      AND P.subcategory_id IS NOT NULL AND title LIKE ?";
+                                      GROUP BY p.id HAVING p.visible = 1 
+                                      AND p.subcategory_id IS NOT NULL AND title LIKE ?";
 
     const GET_ALL_PRODUCTS_ADMIN = "SELECT p.id, p.title, p.description, p.price, p.quantity, p.visible, 
                                     p.created_at, sc.name AS subcat_name, MAX(pr.percent) percent
