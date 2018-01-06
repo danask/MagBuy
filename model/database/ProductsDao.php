@@ -86,7 +86,7 @@ class ProductsDao
                            GROUP BY p.id HAVING p.visible = 1 AND p.subcategory_id IS NOT NULL
                            ORDER BY o.status = 3 DESC, sold DESC, average DESC LIMIT 4";
 
-    const SEARCH_PRODUCTS = "SELECT p.id, p.title, p.visible, MIN(I.image_url) image_url, p.subcategory_id, 
+    const SEARCH_PRODUCTS = "SELECT p.id, p.title, p.visible, MIN(i.image_url) image_url, p.subcategory_id, 
                              ROUND(IF(MAX(pr.percent) IS NOT NULL, 
                              p.price - MAX(pr.percent)/100*p.price, p.price), 2) price
                              FROM products p JOIN images i ON p.id = i.product_id
