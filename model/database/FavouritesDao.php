@@ -26,7 +26,7 @@ class FavouritesDao {
                                        price, MIN(i.image_url) image_url, f.user_id, p.visible,
                                        p.subcategory_id FROM products p 
                                        JOIN favourites f ON p.id = f.product_id 
-                                       JOIN images I ON p.id = i.product_id 
+                                       JOIN images i ON p.id = i.product_id 
                                        LEFT JOIN promotions pr ON p.id = pr.product_id 
                                        GROUP BY f.id HAVING f.user_id = ? AND p.visible = 1 AND p.subcategory_id
                                        IS NOT NULL";
