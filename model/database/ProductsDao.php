@@ -95,7 +95,7 @@ class ProductsDao
                              GROUP BY p.id HAVING p.visible = 1 
                              AND p.subcategory_id IS NOT NULL AND title LIKE ? LIMIT 3";
 
-    const SEARCH_PRODUCTS_NO_LIMIT = "SELECT p.id, p.title, p.visible, p.price, MIN(I.image_url) image_url, 
+    const SEARCH_PRODUCTS_NO_LIMIT = "SELECT p.id, p.title, p.visible, p.price, MIN(i.image_url) image_url, 
                                       p.subcategory_id, MAX(pr.percent) percent, AVG(r.rating) average,
                                       COUNT(DISTINCT r.id) reviewsCount
                                       FROM products p JOIN images i ON p.id = i.product_id
