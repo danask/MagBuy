@@ -55,7 +55,7 @@ class ProductsDao
                                      LEFT JOIN reviews r ON p.id = r.product_id
                                      LEFT JOIN promotions pr ON p.id = pr.product_id 
                                      WHERE pr.start_date <= NOW() AND pr.end_date >= NOW() OR pr.id IS NULL
-                                     GROUP BY p.id HAVING p.visible = 1 AND P.subcategory_id IS NOT NULL
+                                     GROUP BY p.id HAVING p.visible = 1 AND p.subcategory_id IS NOT NULL
                                      AND NOT p.id = ? AND p.subcategory_id = ?
                                      ORDER BY average DESC, reviewsCount DESC LIMIT 4";
 
