@@ -9,7 +9,7 @@
 
 ## Basic User Functionality
 
-- User friendly interface .
+- User friendly interface.
 - Responsive design.
 - Secure and reliable shopping.
 - Pleasurable browsing of categorized products.
