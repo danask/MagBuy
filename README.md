@@ -92,7 +92,7 @@ before creating new product.
 ordered products.
 - Restricted directory browsing by .htaccess. 
 - Can not add promotion to invisible product.
-- **NB: _If you are testing MagBuy on your own hosting service, be sure to approve the new device in MagBuy's central email otherwise the email service won't work because it is using Gmail and every new device has to be approved for security reasons!_**
+- **NB: _If you are testing MagBuy on your own hosting service, be sure to approve the new device in MagBuy's central email or use your own for the different email functionalities, otherwise the email service won't work because it is using Gmail and every new device has to be approved for security reasons! You can use different email for different functions (order confirmation, order status, password reset and promotion). The email service code is in the corresponding controllers._**
 
 
 # Database Schema
