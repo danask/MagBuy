@@ -4,7 +4,7 @@
 
 ## Preview
 
-- [Link](http://gadzhev.gwiddle.co.uk/MagBuy)
+- **[MagBuy Link](http://gadzhev.gwiddle.co.uk/MagBuy)**
 - Registered admin - _Username:_ **admin@admin** &nbsp; _Password:_  **admin**
 
 ## Basic User Functionality
@@ -96,4 +96,4 @@ ordered products.
 
 # Database Schema
 
-<img src="https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Database Schema.jpg" alt="Database Schema">
+<img src="https://raw.githubusercontent.com/lgadzhev/MagBuy/master/Database Schema.png" alt="Database Schema">
