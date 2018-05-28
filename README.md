@@ -2,10 +2,6 @@
 
 # A full-featured Online Shop
 
-## Preview
-
-- **[MagBuy Link](http://gadzhev.gwiddle.co.uk/MagBuy)**
-
 ## Basic User Functionality
 
 - User friendly interface.
